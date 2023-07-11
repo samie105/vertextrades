@@ -9,13 +9,40 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@heroicons/react": "^2.0.18",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@ts-morph/common": "^0.20.0",
+    "animate.css": "^4.1.1",
+    "aos": "^3.0.0-beta.6",
     "autoprefixer": "10.4.14",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.6",
+    "class-variance-authority": "^0.6.1",
+    "clsx": "^1.2.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^12.0.4",
+    "jquery": "^3.7.0",
+    "jquery-mobile": "^1.5.0-alpha.1",
+    "jquery.easing": "^1.4.1",
+    "lucide-react": "^0.244.0",
     "next": "13.4.6",
     "postcss": "8.4.24",
     "react": "18.2.0",
+    "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
-    "tailwindcss": "3.3.2"
+    "react-parallax": "^3.5.1",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^1.13.2",
+    "tailwindcss": "3.3.2",
+    "tailwindcss-animate": "^1.0.6",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "20.3.2",
+    "@types/react": "18.2.14"
   }
 }
