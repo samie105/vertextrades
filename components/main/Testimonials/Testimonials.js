@@ -188,7 +188,7 @@ export default function Testimonials() {
                         height={50}
                         width={50}
                         className=""
-                        src="/assets/nellyaran.jpg"
+                        src="/assets/testiii.jpg"
                         alt=""
                       />
                     </div>

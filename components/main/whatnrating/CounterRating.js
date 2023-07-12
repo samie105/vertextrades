@@ -2,7 +2,7 @@ import { Poppins } from "next/font/google";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import CountUp from "react-countup";
-const font = Poppins({ subsets: ["latin"], weight: ["900"] });
+const font = Poppins({ subsets: ["latin"], weight: ["400"] });
 export default function CounterRating() {
   useEffect(() => {
     AOS.init();
@@ -43,7 +43,7 @@ export default function CounterRating() {
                 className="font-bold"
                 enableScrollSpy
               />
-              K+
+              <spzn className="font-bold">K+</spzn>
             </div>
             <div className="count-res font-bold uppercase text-sm">
               <p>Successfull Trades</p>
@@ -82,7 +82,7 @@ export default function CounterRating() {
                 enableScrollSpy
                 className="font-bold"
               />
-              K+
+              <spzn className="font-bold">K+</spzn>
             </div>
             <div className="count-res font-bold uppercase text-sm">
               <p>Happy Customers</p>
@@ -151,10 +151,10 @@ export default function CounterRating() {
                 enableScrollSpy
                 className="font-bold"
               />
-              %
+              <spzn className="font-bold">%</spzn>
             </div>
             <div className="count-res font-bold uppercase text-sm">
-              <p>Customer Satisfaction</p>
+              <p>Client Satisfaction</p>
             </div>
           </div>
         </div>
