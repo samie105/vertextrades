@@ -151,9 +151,9 @@ export default function Testimonials() {
           </div>
         </div>
         <div className="md:hidden">
-          <Slider {...settings}>
-            <div className="TestimonyOne">
-              <div className="testi-card shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl">
+          <Slider {...settings} className="w-full ">
+            <div className="TestimonyOne w-60">
+              <div className="testi-card shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl w-full">
                 <div className="card-brand mb-4">
                   <div className="icon-container flex items-center font-bold ">
                     <div className=" mr-2">
@@ -163,23 +163,25 @@ export default function Testimonials() {
                   </div>
                 </div>
                 <div className="card-body text-sm">
-                  <blockquote>
+                  <div>
                     <sup>
                       <FontAwesomeIcon
                         icon={faQuoteLeft}
                         className="w-3 h-3 inline text-gray-300"
                       />
                     </sup>{" "}
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Veniam, deserunt. Voluptate veniam facere, delectus eveniet
-                    nisi quis incidunt mollitia veritatis.{" "}
+                    I can't thank my broker enough for their outstanding
+                    service. From the moment I signed up, they have provided
+                    exceptional support and guidance. Their platform is
+                    intuitive and packed with powerful features that have
+                    greatly improved my trading experience.{" "}
                     <sup>
                       <FontAwesomeIcon
                         icon={faQuoteRight}
                         className="w-3 h-3 inline text-gray-300"
                       />
                     </sup>
-                  </blockquote>
+                  </div>
                 </div>
                 <div className="card-author mt-5 flex items-center">
                   <div className="avatar ">
@@ -190,6 +192,7 @@ export default function Testimonials() {
                         className=""
                         src="/assets/testiii.jpg"
                         alt=""
+                        priority
                       />
                     </div>
                   </div>
@@ -211,23 +214,24 @@ export default function Testimonials() {
                   </div>
                 </div>
                 <div className="card-body text-sm">
-                  <blockquote>
+                  <div>
                     <sup>
                       <FontAwesomeIcon
                         icon={faQuoteLeft}
                         className="w-3 h-3 inline text-gray-300"
                       />
                     </sup>{" "}
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Veniam, deserunt. Voluptate veniam facere, delectus eveniet
-                    nisi quis incidunt mollitia veritatis.{" "}
+                    Choosing this platform was a game-changer for me. Their
+                    dedication to customer satisfaction is unmatched. Whenever I
+                    have a question or need assistance, their knowledgeable
+                    support team is always there to help.{" "}
                     <sup>
                       <FontAwesomeIcon
                         icon={faQuoteRight}
                         className="w-3 h-3 inline text-gray-300"
                       />
                     </sup>
-                  </blockquote>
+                  </div>
                 </div>
                 <div className="card-author mt-5 flex items-center">
                   <div className="avatar ">

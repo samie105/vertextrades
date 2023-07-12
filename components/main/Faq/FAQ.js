@@ -16,31 +16,45 @@ export default function FAQ() {
   };
 
   return (
-    <div className="my-20">
-      <div className="inner-cont mx-10 mb-10">
+    <div className="my-20 bg-gray-50 py-5">
+      <div className="inner-cont mx-10 mb-10 lg:w-1/2 md:w-2/3">
         <div className="smallertex">
-          <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
+          <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
               className="w-5 h-5 mr-2"
             >
-              <path d="M16.5 6a3 3 0 00-3-3H6a3 3 0 00-3 3v7.5a3 3 0 003 3v-6A4.5 4.5 0 0110.5 6h6z" />
-              <path d="M18 7.5a3 3 0 013 3V18a3 3 0 01-3 3h-7.5a3 3 0 01-3-3v-7.5a3 3 0 013-3H18z" />
+              <path
+                fillRule="evenodd"
+                d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z"
+                clipRule="evenodd"
+              />
+              <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
             </svg>
-            <p>FAQ</p>
+
+            <p>queries</p>
           </div>
         </div>
         <div className="larger-text text-2xl font-bold capitalize">
           You Got questions? we got answers!
+        </div>
+        <div className="text-writeUp text-sm my-3">
+          <p>
+            Immerse yourself in an unparalleled experience of exceptional
+            service. Our dedicated team is committed to exceeding your
+            expectations with meticulous attention to detail and personalized
+            care. From the moment you arrive, we create a warm and sophisticated
+            atmosphere tailored to your desires.{" "}
+          </p>{" "}
         </div>
       </div>
       <div className="faq-cont mx-10">
         <Accordion
           type="single"
           collapsible
-          className="grid grid-cols-1 rounded-xl md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid  grid-cols-1 transition-all sadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-xl md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AccordionItem value="item-1" className=" ">
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
