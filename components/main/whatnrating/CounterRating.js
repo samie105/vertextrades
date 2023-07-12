@@ -2,7 +2,6 @@ import { Poppins } from "next/font/google";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import CountUp from "react-countup";
-const font = Poppins({ subsets: ["latin"], weight: ["400"] });
 export default function CounterRating() {
   useEffect(() => {
     AOS.init();
@@ -34,9 +33,7 @@ export default function CounterRating() {
                 </svg>
               </div>
             </div>
-            <div
-              className={`text-count my-3 ${font.className} font-bold text-xl`}
-            >
+            <div className={`text-count my-3 font-bold text-xl`}>
               <CountUp
                 end={510}
                 duration={10}
@@ -73,9 +70,7 @@ export default function CounterRating() {
                 </svg>
               </div>
             </div>
-            <div
-              className={`text-count my-3 ${font.className} font-bold text-xl`}
-            >
+            <div className={`text-count my-3 font-bold text-xl`}>
               <CountUp
                 end={127}
                 duration={10}
@@ -107,9 +102,7 @@ export default function CounterRating() {
                 </svg>
               </div>
             </div>
-            <div
-              className={`text-count my-3 ${font.className} font-bold text-xl`}
-            >
+            <div className={`text-count my-3 font-bold text-xl`}>
               <CountUp
                 end={2017}
                 start={1960}
@@ -142,9 +135,7 @@ export default function CounterRating() {
                 </svg>
               </div>
             </div>
-            <div
-              className={`text-count my-3 ${font.className} font-bold text-xl`}
-            >
+            <div className={`text-count my-3  font-bold text-xl`}>
               <CountUp
                 end={100}
                 duration={10}
