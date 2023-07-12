@@ -183,7 +183,9 @@ export default function FAQ() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5 ml-1"
+            className={`w-5 h-5 ml-1 transition-transform ${
+              showMore ? "rotate-180" : "rotate-0"
+            }`}
           >
             <path
               fillRule="evenodd"
