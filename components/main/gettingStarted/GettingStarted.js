@@ -10,7 +10,7 @@ export default function GettingStarted() {
   }, []);
   return (
     <>
-      <section className="stepContainer flex flex-col lg:flex-row md:flex-col  mt-10 mx-8 relative max-w-[100vw] overflow-hidden">
+      <section className="stepContainer flex flex-col lg:flex-row md:flex-col  mt-10 mx-8 relative max-w-[100vw]">
         <div className="absolute w-full h-full" data-aos="fade-right">
           {" "}
           <div className="w-40 h-40 absolute opacity-30">
@@ -82,7 +82,7 @@ export default function GettingStarted() {
             </button>
           </div>
         </div>
-        <div className="stepSection my-4 w-full lg:flex md:flex md flex-grow  ">
+        <div className="stepSection my-4 w-full lg:flex md:flex md flex-grow  px-3 md:px-0">
           <div
             className="stepRowOne lg:flex lg:flex-col md:flex md:mx-4 md:flex-col w-full"
             data-aos="fade-right"

@@ -88,7 +88,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="grid3">
-            <h2 className="text-xl my-4">
+            <h2 className="text-xl my-9">
               <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -98,9 +98,10 @@ export default function Footer() {
                 >
                   <path
                     fillRule="evenodd"
-                    d="M8.161 2.58a1.875 1.875 0 011.678 0l4.993 2.498c.106.052.23.052.336 0l3.869-1.935A1.875 1.875 0 0121.75 4.82v12.485c0 .71-.401 1.36-1.037 1.677l-4.875 2.437a1.875 1.875 0 01-1.676 0l-4.994-2.497a.375.375 0 00-.336 0l-3.868 1.935A1.875 1.875 0 012.25 19.18V6.695c0-.71.401-1.36 1.036-1.677l4.875-2.437zM9 6a.75.75 0 01.75.75V15a.75.75 0 01-1.5 0V6.75A.75.75 0 019 6zm6.75 3a.75.75 0 00-1.5 0v8.25a.75.75 0 001.5 0V9z"
+                    d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z"
                     clipRule="evenodd"
                   />
+                  <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
                 </svg>
 
                 <p>Contacts Information</p>
@@ -201,7 +202,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-message py-4 flex justify-center font-bold text-gray-400 bg-slate-950">
+      <div className="footer-message py-4 flex justify-center text-gray-400 bg-slate-900 text-xs md:text-base">
         © 2023 [brokername].com All Rights Reserved.
       </div>
     </>
