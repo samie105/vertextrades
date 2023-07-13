@@ -94,7 +94,10 @@ export default function Navbar() {
                 />
               </svg>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-slate-900 text-white">
+            <SheetContent
+              side="right"
+              className="bg-slate-900 border-0 text-white"
+            >
               <SheetHeader className="text-white">
                 <SheetTitle>
                   <div className="text-white font-bold">Broker Name</div>
