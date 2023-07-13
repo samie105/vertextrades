@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <>
       <div className="footer-container bg-slate-900 p-5  text-white">
-        <div className="grid-system grid gap-x-5 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">
+        <div className="grid-system grid gap-x-5 grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
           <div className="grid1 my-10">
             <section className="broker-name text-3xl my-4">
               [BROKER NAME ]
@@ -36,7 +36,7 @@ export default function Footer() {
                 <p>Useful Links</p>
               </div>
             </h2>
-            <div className="links grid-cols-2 grid text-gray-400 mx-2 transition-all cursor-pointer">
+            <div className="links focus:outline-none  focus:bg-none grid-cols-2 grid text-gray-400 mx-2 transition-all cursor-pointer">
               {[
                 "Getting Started",
                 "About Us",
@@ -106,7 +106,7 @@ export default function Footer() {
                 <p>Contacts Information</p>
               </div>
             </h2>
-            <div className="phone-container px-4 py-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
+            <div className="phone-container px-4 py-2 my-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
               <section className="phone-section flex items-center ">
                 <div className="icon p-3 rounded-full bg-[#ffffff20] mr-4 opacity-60">
                   <svg
@@ -125,7 +125,7 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div className="phonenum text-sm">
-                  <div className="phone text-base text-gray-200 font-bold">
+                  <div className="phone  text-gray-200 font-bold">
                     Phone Contact
                   </div>
                   <div className="phone text-gray-400 my-1 text-sm">
@@ -133,30 +133,83 @@ export default function Footer() {
                   </div>
                 </div>
               </section>
-              <section className="icon-section">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <section className="icon-section"></section>
+            </div>
+            <div className="email-container px-4 py-2 my-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
+              <section className="email-section flex items-center ">
+                <div className="icon p-3 rounded-full bg-[#ffffff20] mr-4 opacity-60">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                    />
+                  </svg>
+                </div>
+                <div className="emailadd text-sm">
+                  <div className="email  text-gray-200 font-bold">
+                    E-mail Contact
+                  </div>
+                  <div className="phone text-gray-400 my-1 text-sm">
+                    brokername@brokersite.com
+                  </div>
+                </div>
               </section>
+              <section className="icon-section"></section>
+            </div>
+            <div className="address-container px-4 py-2 my-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
+              <section className="address-section flex items-center ">
+                <div className="icon p-3 rounded-full bg-[#ffffff20] mr-4 opacity-60">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                    />
+                  </svg>
+                </div>
+                <div className="addressadd text-sm">
+                  <div className="address  text-gray-200 font-bold">
+                    Office Address
+                  </div>
+                  <div className="phone text-gray-400 my-1 text-sm">
+                    4240 Atwaters center, CA 20032, USA
+                  </div>
+                </div>
+              </section>
+              <section className="icon-section"></section>
             </div>
           </div>
         </div>
+      </div>
+      <div className="footer-message py-4 flex justify-center font-bold text-gray-400 bg-slate-950">
+        © 2023 [brokername].com All Rights Reserved.
       </div>
     </>
   );
 }
 //
 //               <div>About Us</div>
-//               <div>Partners</div>
+//               <div>Partners</div>© 2023 Bittnovo.com All R
 //               <div>Features & Benefits</div>
 //               <div>Testimonials</div>
 //               <div>FAQ</div>
