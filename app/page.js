@@ -7,6 +7,7 @@ import AboutUs from "../components/main/AboutUs/AboutUs";
 import Wcy from "../components/main/whyUs/Wcy";
 import Testimonials from "../components/main/Testimonials/Testimonials";
 import FAQ from "../components/main/Faq/FAQ";
+import Footer from "../components/main/footer/Footer";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Wcy />
         <Testimonials />
         <FAQ />
+        <Footer />
       </main>
     </>
   );
