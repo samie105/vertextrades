@@ -9,16 +9,49 @@ import Slider from "react-slick";
 export default function Testimonials() {
   const settings = {
     infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
     autoplay: true,
-    speed: 500,
     autoplaySpeed: 2000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    //centerMode: true,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          vertical: false,
+          verticalSwiping: false,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+          vertical: false,
+          verticalSwiping: false,
+        },
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          vertical: false,
+          verticalSwiping: false,
+        },
+      },
+    ],
   };
   return (
     <>
-      <div className="wwd-container md:flex flex flex-col max-w-[100vw] lg:items-center mx-10 lg:flex-row my-10">
-        <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/3 mr-10">
+      <div className="wwd-container flex flex-col bg-gray-50 mt-10 pb-24">
+        <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/2 mx-10">
           <div className="inner-cont">
             <div className="smallertex">
               <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
@@ -51,10 +84,12 @@ export default function Testimonials() {
               </p>{" "}
             </div>
           </div>
-        </div>{" "}
-        <div className="first-cont lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="TestimonyOne hidden md:block">
-            <div className="testi-card shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl">
+        </div>
+      </div>
+      <div className="first-cont z-20 -translate-y-24 mx-5 h-32">
+        <Slider {...settings}>
+          <div className="TestimonyOne">
+            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
               <div className="card-brand mb-4">
                 <div className="icon-container flex items-center font-bold ">
                   <div className=" mr-2">
@@ -101,8 +136,8 @@ export default function Testimonials() {
               </div>
             </div>
           </div>
-          <div className="TestimonyTwo hidden md:block">
-            <div className="testi-card shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl">
+          <div className="TestimonyTwo">
+            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
               <div className="card-brand mb-4">
                 <div className="icon-container flex items-center font-bold ">
                   <div className=" mr-2">
@@ -149,111 +184,103 @@ export default function Testimonials() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="md:hidden">
-          <Slider {...settings} className="w-full ">
-            <div className="TestimonyOne w-60">
-              <div className="testi-card shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl w-full">
-                <div className="card-brand mb-4">
-                  <div className="icon-container flex items-center font-bold ">
-                    <div className=" mr-2">
-                      <FontAwesomeIcon icon={faTwitter} className="w-4 h-4" />
-                    </div>
-                    <p>Twitter</p>
+          <div className="TestimonyOne">
+            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
+              <div className="card-brand mb-4">
+                <div className="icon-container flex items-center font-bold ">
+                  <div className=" mr-2">
+                    <FontAwesomeIcon icon={faTwitter} className="w-4 h-4" />
+                  </div>
+                  <p>Twitter</p>
+                </div>
+              </div>
+              <div className="card-body text-sm">
+                <blockquote>
+                  <sup>
+                    <FontAwesomeIcon
+                      icon={faQuoteLeft}
+                      className="w-3 h-3 inline text-gray-300"
+                    />
+                  </sup>{" "}
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Veniam, deserunt. Voluptate veniam facere, delectus eveniet
+                  nisi quis incidunt mollitia veritatis.{" "}
+                  <sup>
+                    <FontAwesomeIcon
+                      icon={faQuoteRight}
+                      className="w-3 h-3 inline text-gray-300"
+                    />
+                  </sup>
+                </blockquote>
+              </div>
+              <div className="card-author mt-5 flex items-center">
+                <div className="avatar ">
+                  <div className="img-container rounded-full bg-fuchsia-200 w-10 h-10 overflow-hidden">
+                    <Image
+                      height={50}
+                      width={50}
+                      className=""
+                      src="/assets/nellyaran.jpg"
+                      alt=""
+                    />
                   </div>
                 </div>
-                <div className="card-body text-sm">
-                  <div>
-                    <sup>
-                      <FontAwesomeIcon
-                        icon={faQuoteLeft}
-                        className="w-3 h-3 inline text-gray-300"
-                      />
-                    </sup>{" "}
-                    I can't thank my broker enough for their outstanding
-                    service. From the moment I signed up, they have provided
-                    exceptional support and guidance. Their platform is
-                    intuitive and packed with powerful features that have
-                    greatly improved my trading experience.{" "}
-                    <sup>
-                      <FontAwesomeIcon
-                        icon={faQuoteRight}
-                        className="w-3 h-3 inline text-gray-300"
-                      />
-                    </sup>
-                  </div>
-                </div>
-                <div className="card-author mt-5 flex items-center">
-                  <div className="avatar ">
-                    <div className="img-container rounded-full bg-fuchsia-200 w-10 h-10 overflow-hidden">
-                      <Image
-                        height={50}
-                        width={50}
-                        className=""
-                        src="/assets/testiii.jpg"
-                        alt=""
-                        priority
-                      />
-                    </div>
-                  </div>
-                  <div className="av-writeUp ml-5 text-xs font-semibold">
-                    <div className="name mb-1">Nelly Aran</div>
-                    <div className="desc">Candle Forecasts at Inksquare</div>
-                  </div>
+                <div className="av-writeUp ml-5 text-xs font-semibold">
+                  <div className="name mb-1">Nelly Aran</div>
+                  <div className="desc">Candle Forecasts at Inksquare</div>
                 </div>
               </div>
             </div>
-            <div className="TestimonyTwo">
-              <div className="testi-card shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl">
-                <div className="card-brand mb-4">
-                  <div className="icon-container flex items-center font-bold ">
-                    <div className=" mr-2">
-                      <FontAwesomeIcon icon={faFacebook} className="w-4 h-4" />
-                    </div>
-                    <p>Facebook</p>
+          </div>
+          <div className="TestimonyTwo">
+            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
+              <div className="card-brand mb-4">
+                <div className="icon-container flex items-center font-bold ">
+                  <div className=" mr-2">
+                    <FontAwesomeIcon icon={faFacebook} className="w-4 h-4" />
+                  </div>
+                  <p>Facebook</p>
+                </div>
+              </div>
+              <div className="card-body text-sm">
+                <blockquote>
+                  <sup>
+                    <FontAwesomeIcon
+                      icon={faQuoteLeft}
+                      className="w-3 h-3 inline text-gray-300"
+                    />
+                  </sup>{" "}
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Veniam, deserunt. Voluptate veniam facere, delectus eveniet
+                  nisi quis incidunt mollitia veritatis.{" "}
+                  <sup>
+                    <FontAwesomeIcon
+                      icon={faQuoteRight}
+                      className="w-3 h-3 inline text-gray-300"
+                    />
+                  </sup>
+                </blockquote>
+              </div>
+              <div className="card-author mt-5 flex items-center">
+                <div className="avatar ">
+                  <div className="img-container rounded-full bg-fuchsia-200 w-10 h-10 overflow-hidden">
+                    <Image
+                      height={50}
+                      width={50}
+                      className=""
+                      src="/assets/nellyaran.jpg"
+                      alt=""
+                    />
                   </div>
                 </div>
-                <div className="card-body text-sm">
-                  <div>
-                    <sup>
-                      <FontAwesomeIcon
-                        icon={faQuoteLeft}
-                        className="w-3 h-3 inline text-gray-300"
-                      />
-                    </sup>{" "}
-                    Choosing this platform was a game-changer for me. Their
-                    dedication to customer satisfaction is unmatched. Whenever I
-                    have a question or need assistance, their knowledgeable
-                    support team is always there to help.{" "}
-                    <sup>
-                      <FontAwesomeIcon
-                        icon={faQuoteRight}
-                        className="w-3 h-3 inline text-gray-300"
-                      />
-                    </sup>
-                  </div>
-                </div>
-                <div className="card-author mt-5 flex items-center">
-                  <div className="avatar ">
-                    <div className="img-container rounded-full bg-fuchsia-200 w-10 h-10 overflow-hidden">
-                      <Image
-                        height={50}
-                        width={50}
-                        className=""
-                        src="/assets/nellyaran.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div className="av-writeUp ml-5 text-xs font-semibold">
-                    <div className="name mb-1">Da Silva P. Viera</div>
-                    <div className="desc">Indicator Analyst at Voce-Bulls</div>
-                  </div>
+                <div className="av-writeUp ml-5 text-xs font-semibold">
+                  <div className="name mb-1">Da Silva P. Viera</div>
+                  <div className="desc">Indicator Analyst at Voce-Bulls</div>
                 </div>
               </div>
             </div>
-          </Slider>
-        </div>
+          </div>
+        </Slider>
       </div>
     </>
   );

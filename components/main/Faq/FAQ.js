@@ -189,7 +189,7 @@ export default function FAQ() {
         </Accordion>
         <di className="flex w-full justify-center">
           <button
-            className="text-black my-5 flex items-center  rounded-lg x-6 py-4 font-bold mt-4"
+            className="text-black my-5 flex items-center text-sm md:text-base  rounded-lg x-6 py-4 font-bold mt-4"
             onClick={handleShowMore}
           >
             <p>{showMore ? "Show less" : "Show more"}</p>
