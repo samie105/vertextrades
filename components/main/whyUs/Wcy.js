@@ -14,7 +14,7 @@ export default function Wcy() {
   };
   return (
     <>
-      <div className="wcy-container py-5  w-full mt-20 px-10 ">
+      <div id="Advantages" className="wcy-container py-5  w-full mt-20 px-10 ">
         <div className="inner-cont w-full md:text-center ">
           <div className="smallertex flex md:justify-center">
             <div className="inner-smaller-text text-gray-600 flex md:bg-gray-100 rounded-full md:p-3 items-center font-semibold my-2 uppercase text-sm">

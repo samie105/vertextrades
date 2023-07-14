@@ -54,7 +54,10 @@ export default function Testimonials() {
   };
   return (
     <>
-      <div className="wwd-container flex flex-col bg-gray-50 mt-10 pb-24">
+      <div
+        id="Testimonials"
+        className="wwd-container flex flex-col bg-gray-50 mt-10 pb-24"
+      >
         <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/2 mx-10">
           <div className="inner-cont">
             <div className="smallertex">

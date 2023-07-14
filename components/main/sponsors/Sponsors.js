@@ -57,7 +57,10 @@ export default function Sponsors() {
   };
   return (
     <>
-      <div className="spons-cont items-center lg:flex bg-gray-50 py-14  my-12 w-full relative">
+      <div
+        id="Partners"
+        className="spons-cont items-center lg:flex bg-gray-50 py-14  my-12 w-full relative"
+      >
         <div className="absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
           <Image
             width={500}

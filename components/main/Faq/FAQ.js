@@ -16,7 +16,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="my-20 bg-gray-50 py-5">
+    <div id="FAQ" className="my-20 bg-gray-50 py-5">
       <div className="inner-cont mx-10 mb-10 lg:w-1/2 md:w-2/3">
         <div className="smallertex">
           <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm ">

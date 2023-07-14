@@ -4,7 +4,10 @@ import React from "react";
 export default function AboutUs() {
   return (
     <>
-      <div className="wwd-container md:flex flex flex-col max-w-[100vw]  mx-10 lg:flex-row">
+      <div
+        id="Features & Benefits"
+        className="wwd-container md:flex flex flex-col max-w-[100vw]  mx-10 lg:flex-row"
+      >
         <div className="second-cont mt-10 mb-3 md:w-2/3 mr-10">
           <div className="inner-cont">
             <div className="smallertex">

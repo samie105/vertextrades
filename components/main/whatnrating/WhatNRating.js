@@ -16,7 +16,10 @@ export default function WhatNRating() {
   }, []);
   return (
     <>
-      <section className="lg:h-[70vh] md:h-[60vh] sm:h-[60] h-[50vh] my-3 relative w-full">
+      <section
+        id="About Us"
+        className="lg:h-[70vh] md:h-[60vh] sm:h-[60] h-[50vh] my-3 relative w-full"
+      >
         {isLargeScreen ? (
           <Parallax
             bgImage="/assets/first.jpg"

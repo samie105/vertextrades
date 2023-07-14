@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-scroll";
 import {
   Sheet,
   SheetContent,
@@ -54,19 +55,29 @@ export default function Navbar() {
         <div className="Navigation-Items">
           <div className="itemcontainer lg:flex hidden">
             {navItems.map((item) => (
-              <div
+              <Link
                 key={item.label}
-                className={`text-sm ${
-                  activeNavItem === item.label ? "font-bold" : "font-medium"
-                } px-3 cursor-pointer transition-opacity duration-500 ${
-                  activeNavItem !== item.label
-                    ? "opacity-70 hover:opacity-100"
-                    : ""
-                }`}
-                onClick={() => handleNavItemClick(item.label)}
+                to={item.label}
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                activeClass="font-bold"
+                onSetActive={() => setActiveNavItem(item.label)}
               >
-                {item.label}
-              </div>
+                <div
+                  className={`text-sm ${
+                    activeNavItem === item.label ? "font-bold" : "font-normal"
+                  } px-3 cursor-pointer transition-opacity duration-500 text-white ${
+                    activeNavItem !== item.label
+                      ? "text-gray-400 hover:opacity-100"
+                      : ""
+                  }`}
+                  onClick={() => handleNavItemClick(item.label)}
+                >
+                  {item.label}
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -103,27 +114,41 @@ export default function Navbar() {
                   <div className="text-white font-bold">Broker Name</div>
                 </SheetTitle>
               </SheetHeader>
-              <div className="nav-menus mt-10 flex-col flex">
+              <div className="nav-menus mt-10 flex-col w-full flex">
                 {navItems.map((item) => (
-                  <SheetClose key={item.label}>
-                    <div
-                      className={`menu-item mb-1 py-3 opacity-50 hover:opacity-90 duration-200 cursor-pointer hover:bg-slate-800 px-3 rounded-md flex items-center ${
-                        activeNavItem === item.label
-                          ? "bg-slate-800 text-white opacity-100 font-bold rounded-xl hover:bg-slate-800"
-                          : ""
-                      }`}
-                      onClick={() => handleNavItemClick(item.label)}
-                    >
-                      <p>{item.label}</p>
-                    </div>
-                  </SheetClose>
+                  <Link
+                    key={item.label}
+                    to={item.label}
+                    spy={true}
+                    smooth={true}
+                    offset={-75}
+                    duration={500}
+                    className="w-full"
+                    activeClass="font-bold"
+                    onSetActive={() => setActiveNavItem(item.label)}
+                  >
+                    <SheetClose key={item.label} className="w-full">
+                      <div
+                        className={`menu-item mb-1 py-3 opacity-50 hover:opacity-90 duration-200 cursor-pointer hover:bg-slate-800 px-3 rounded-md flex items-center ${
+                          activeNavItem === item.label
+                            ? "bg-slate-800 text-white opacity-100 font-bold rounded-xl hover:bg-slate-800"
+                            : ""
+                        }`}
+                        onClick={() => handleNavItemClick(item.label)}
+                      >
+                        <p>{item.label}</p>
+                      </div>
+                    </SheetClose>
+                  </Link>
                 ))}
               </div>
-              <div className="cta-button mt-12 flex items-center cursor-pointer w-full absolute bottom-5 justify-center">
-                <div className="cta-button flex  items-center bg-slate-800 text-white px-7 py-3 rounded-xl">
-                  <p className="pr-1">Create an account</p>
+              <SheetClose>
+                <div className="cta-button justify-center flex items-center pr-12 cursor-pointer w-full absolute bottom-5 ">
+                  <div className=" w-full bg-slate-800  text-white px-7 py-3 rounded-xl">
+                    Create an account
+                  </div>
                 </div>
-              </div>
+              </SheetClose>
             </SheetContent>
           </Sheet>
         </div>

@@ -49,7 +49,7 @@ export default function Slider() {
 
   return (
     <>
-      <div className="camera_wrap relative w-full">
+      <div className="camera_wrap relative w-full" id="Home">
         <div data-src="/assets/brokerImage1.jpg">
           <Image
             className="h-screen w-full"

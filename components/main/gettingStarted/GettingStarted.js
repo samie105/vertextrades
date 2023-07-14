@@ -10,7 +10,10 @@ export default function GettingStarted() {
   }, []);
   return (
     <>
-      <section className="stepContainer flex flex-col lg:flex-row md:flex-col  mt-10 mx-8 relative max-w-[100vw]">
+      <section
+        id="Getting Started"
+        className="stepContainer flex flex-col lg:flex-row md:flex-col  mt-10 mx-8 relative max-w-[100vw]"
+      >
         <div className="absolute w-full h-full" data-aos="fade-right">
           {" "}
           <div className="w-40 h-40 absolute opacity-30">

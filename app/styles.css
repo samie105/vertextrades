@@ -15,12 +15,9 @@ div.camera_pie {
 }
 
 .active {
-  padding-right: 30px;
   opacity: 1;
-  background-color: rgba(51, 51, 51, 0.26);
-}
-.active:hover {
-  background-color: rgba(51, 51, 51, 0.26);
+  font-weight: 700;
+  color: white !important;
 }
 
 *:focus {
