@@ -10,6 +10,8 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 
+import AuthUi from "../AuthUi/AuthUi";
+
 export default function Navbar() {
   const [activeNavItem, setActiveNavItem] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -142,13 +144,8 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-              <SheetClose>
-                <div className="cta-button justify-center flex items-center pr-12 cursor-pointer w-full absolute bottom-5 ">
-                  <div className=" w-full bg-slate-800  text-white px-7 py-3 rounded-xl">
-                    Create an account
-                  </div>
-                </div>
-              </SheetClose>
+
+              <AuthUi />
             </SheetContent>
           </Sheet>
         </div>
