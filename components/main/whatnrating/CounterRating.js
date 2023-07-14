@@ -37,12 +37,12 @@ export default function CounterRating() {
               <CountUp
                 end={510}
                 duration={10}
-                className="font-bold"
+                className="font-extrabold"
                 enableScrollSpy
               />
-              <spzn className="font-bold">K+</spzn>
+              <spzn className="font-extrabold">K+</spzn>
             </div>
-            <div className="count-res font-bold uppercase text-sm">
+            <div className="count-res uppercase text-sm">
               <p>Successfull Trades</p>
             </div>
           </div>
@@ -75,11 +75,11 @@ export default function CounterRating() {
                 end={127}
                 duration={10}
                 enableScrollSpy
-                className="font-bold"
+                className="font-extrabold"
               />
-              <spzn className="font-bold">K+</spzn>
+              <spzn className="font-extrabold">K+</spzn>
             </div>
-            <div className="count-res font-bold uppercase text-sm">
+            <div className="count-res uppercase text-sm">
               <p>Happy Customers</p>
             </div>
           </div>
@@ -107,12 +107,12 @@ export default function CounterRating() {
                 end={2017}
                 start={1960}
                 duration={8}
-                className="font-bold"
+                className="font-extrabold"
                 separator=""
                 enableScrollSpy
               />
             </div>
-            <div className="count-res font-bold uppercase text-sm">
+            <div className="count-res uppercase text-sm">
               <p>Trading Since</p>
             </div>
           </div>
@@ -140,11 +140,11 @@ export default function CounterRating() {
                 end={100}
                 duration={10}
                 enableScrollSpy
-                className="font-bold"
+                className="font-extrabold"
               />
-              <spzn className="font-bold">%</spzn>
+              <spzn className="font-extrabold">%</spzn>
             </div>
-            <div className="count-res font-bold uppercase text-sm">
+            <div className="count-res  uppercase text-sm">
               <p>Client Satisfaction</p>
             </div>
           </div>

@@ -17,7 +17,7 @@ export default function Wcy() {
       <div id="Advantages" className="wcy-container py-5  w-full mt-20 px-10 ">
         <div className="inner-cont w-full md:text-center ">
           <div className="smallertex flex md:justify-center">
-            <div className="inner-smaller-text text-gray-600 flex md:bg-gray-100 rounded-full md:p-3 items-center font-semibold my-2 uppercase text-sm">
+            <div className="inner-smaller-text flex md:bg-gray-100 rounded-full md:p-3 items-center font-semibold my-2 uppercase text-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ export default function Wcy() {
             </div>
           </div>
           <div className="larger-text text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-            Reasons Why Choose Us??
+            Reasons Why You Need Choose Us??
           </div>
           <div className="text-writeUp text-sm my-5 w-full md:w-[60%] md:mx-auto ">
             <p>
