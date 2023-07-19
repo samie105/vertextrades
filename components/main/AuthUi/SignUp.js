@@ -75,7 +75,7 @@ const Signup = () => {
   } = useForm({ resolver: zodResolver(signupFormSchema) });
 
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("us");
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleSignupSubmit = (data) => {

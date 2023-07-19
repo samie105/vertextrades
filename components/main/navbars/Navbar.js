@@ -11,6 +11,8 @@ import {
 } from "../../ui/sheet";
 
 import AuthUi from "../AuthUi/AuthUi";
+import { DialogTrigger } from "../../ui/dialog";
+import { Dialog } from "@radix-ui/react-dialog";
 
 export default function Navbar() {
   const [activeNavItem, setActiveNavItem] = useState("Home");
@@ -83,14 +85,19 @@ export default function Navbar() {
             ))}
           </div>
         </div>
-        <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden">
-          <div
-            className="btn1 px-4 cursor-pointer flex py-3 rounded-xl"
-            style={{ backgroundColor: "#ffffff10" }}
-          >
-            <p className="px-0.5 opacity-90">Create an account</p>
-          </div>
-        </div>
+        <Dialog>
+          <DialogTrigger>
+            <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden">
+              <div
+                className="btn1 px-4 cursor-pointer flex py-3 rounded-xl"
+                style={{ backgroundColor: "#ffffff10" }}
+              >
+                <p className="px-0.5 opacity-90">Get started trading</p>
+              </div>
+            </div>
+          </DialogTrigger>
+          <AuthUi />
+        </Dialog>
         <div className="menu-bar cursor-pointer lg:hidden">
           <Sheet>
             <SheetTrigger>
@@ -144,8 +151,16 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-
-              <AuthUi />
+              <Dialog>
+                <DialogTrigger>
+                  <div className="cta-button justify-center flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
+                    <button className="w-full bg-slate-800 text-white px-7 py-3 rounded-xl">
+                      Login or Sign up
+                    </button>
+                  </div>
+                </DialogTrigger>
+                <AuthUi />
+              </Dialog>
             </SheetContent>
           </Sheet>
         </div>

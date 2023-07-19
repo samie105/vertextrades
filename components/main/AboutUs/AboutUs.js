@@ -1,7 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
+import { Dialog, DialogTrigger } from "../../ui/dialog";
+import AuthUi from "../AuthUi/AuthUi";
+import dynamic from "next/dynamic";
 
-export default function AboutUs() {
+function AboutUs() {
   return (
     <>
       <div
@@ -40,23 +43,28 @@ export default function AboutUs() {
                 and sophisticated atmosphere tailored to your desires.{" "}
               </p>{" "}
             </div>
-            <div className="btn  mt-12 mb-5 hidden lg:block">
-              <button className="px-5 py-4 bg-black text-white font-semibold text-sm items-center rounded-xl flex">
-                <p>Start enjoying benefits</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6 ml-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
+            <Dialog>
+              <DialogTrigger>
+                <div className="btn  mt-12 mb-5 hidden lg:block">
+                  <button className="px-5 py-4 bg-black text-white font-semibold text-sm items-center rounded-xl flex">
+                    <p>Start enjoying benefits</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-6 h-6 ml-4"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </DialogTrigger>
+              <AuthUi />
+            </Dialog>
           </div>
         </div>{" "}
         <div className="first-cont  md:flex md:w-full flex-grow">
@@ -210,3 +218,4 @@ export default function AboutUs() {
     </>
   );
 }
+export default dynamic(() => Promise.resolve(AboutUs), { ssr: false });
