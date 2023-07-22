@@ -49,7 +49,7 @@ export default function Navbar() {
   return (
     <>
       <div
-        className={`nav-container flex justify-between duration-300 items-center py-6 px-10 transition-colors ${
+        className={`nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors ${
           isScrolled ? "bg-slate-900" : "bg-transparent"
         }`}
       >
@@ -71,8 +71,10 @@ export default function Navbar() {
               >
                 <div
                   className={`text-sm ${
-                    activeNavItem === item.label ? "font-bold" : "font-normal"
-                  } px-3 cursor-pointer transition-opacity duration-500 text-white ${
+                    activeNavItem === item.label
+                      ? "font-bold opacity-100"
+                      : "font-normal opacity-40"
+                  } pl-3 cursor-pointer transition-opacity duration-500 text-white ${
                     activeNavItem !== item.label
                       ? "text-gray-400 hover:opacity-100"
                       : ""
