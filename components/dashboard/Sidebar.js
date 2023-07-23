@@ -22,8 +22,8 @@ export default function Sidebar() {
               }`}
               onClick={() => handleNavItemClick(index)}
             >
-              <div className="mx-2 font-bold">{item.icon}</div>
-              <span className="text-xs md:text-sm">{item.nav}</span>
+              <div className="mx-2 font-bold ">{item.icon}</div>
+              <span className="text-xs lg:ext-sm">{item.nav}</span>
             </div>
           </Link>
         ))}

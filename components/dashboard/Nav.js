@@ -6,14 +6,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { navList } from "./navList";
+import Sheeet from "./sheeet";
 
 export default function Nav() {
   return (
     <>
-      <div className="nav-container flex justify-between duration-300 items-center py-4 px-5 transition-colors bg-slate-900">
+      <div className="nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors bg-slate-900">
         <div className="burger md:hidden cursor-pointer">
-          <Sheet>
+          <Sheet className="p-0">
             <SheetTrigger>
               <div className="burger-container">
                 <svg
@@ -30,7 +30,7 @@ export default function Nav() {
                 </svg>
               </div>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[50%]">
+            <SheetContent side="left" className="px-4">
               <Sheeet />
             </SheetContent>
           </Sheet>
@@ -38,32 +38,9 @@ export default function Nav() {
         <div className="title">
           <h2 className="">Broker Name</h2>
         </div>
-        <div className="nav-tools">
-          <div>Some info</div>
+        <div className="nav-tools text-sm">
+          <div>Logout</div>
         </div>
-      </div>
-    </>
-  );
-}
-function Sheeet() {
-  return (
-    <>
-      {" "}
-      <SheetHeader className="text-white">
-        <SheetTitle>
-          <div className="text font-bold">Broker Name</div>
-        </SheetTitle>
-      </SheetHeader>
-      <div className="mt-10 nav-menus">
-        {navList.map((item) => (
-          <div
-            key={item.nav}
-            className="flex items-center pb-8 cursor-pointer text-sm font-medium text-gray-500"
-          >
-            <div className="icon mr-2 ">{item.icon}</div>
-            <div className="nav">{item.nav}</div>
-          </div>
-        ))}
       </div>
     </>
   );

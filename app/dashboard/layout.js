@@ -8,15 +8,15 @@ export const metadata = {
 
 export default function Layout({ children }) {
   return (
-    <main className="h-[100vh] overflow-hidden">
+    <main className="h-[100vh]">
       <div className="fixed top-0 left-0 w-full text-white z-30 ">
         <Nav />
       </div>
-      <div className="content-container md:flex mt-[52px] w-full h-full">
+      <div className="content-container md:flex mt-[66px] w-full h-full">
         <div className="side-bar h-full w-[18%] hidden md:block">
           <Sidebar />
         </div>
-        <div className="main-bar h-full">{children}</div>
+        <div className="main-bar h-full w-full">{children}</div>
       </div>
     </main>
   );

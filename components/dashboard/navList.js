@@ -1,5 +1,24 @@
 export const navList = [
   {
+    nav: "Dashboard",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="w-5 h-5"
+      >
+        <path d="M14 6H6v8h8V6z" />
+        <path
+          fillRule="evenodd"
+          d="M9.25 3V1.75a.75.75 0 011.5 0V3h1.5V1.75a.75.75 0 011.5 0V3h.5A2.75 2.75 0 0117 5.75v.5h1.25a.75.75 0 010 1.5H17v1.5h1.25a.75.75 0 010 1.5H17v1.5h1.25a.75.75 0 010 1.5H17v.5A2.75 2.75 0 0114.25 17h-.5v1.25a.75.75 0 01-1.5 0V17h-1.5v1.25a.75.75 0 01-1.5 0V17h-1.5v1.25a.75.75 0 01-1.5 0V17h-.5A2.75 2.75 0 013 14.25v-.5H1.75a.75.75 0 010-1.5H3v-1.5H1.75a.75.75 0 010-1.5H3v-1.5H1.75a.75.75 0 010-1.5H3v-.5A2.75 2.75 0 015.75 3h.5V1.75a.75.75 0 011.5 0V3h1.5zM4.5 5.75c0-.69.56-1.25 1.25-1.25h8.5c.69 0 1.25.56 1.25 1.25v8.5c0 .69-.56 1.25-1.25 1.25h-8.5c-.69 0-1.25-.56-1.25-1.25v-8.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    linkPath: "/dashboard",
+  },
+  {
     nav: "Live Trades",
     icon: (
       <svg
@@ -15,7 +34,7 @@ export const navList = [
         />
       </svg>
     ),
-    linkPath: "/dashboard",
+    linkPath: "/dashboard/livetrades",
   },
   {
     nav: "Deposit",
@@ -133,7 +152,7 @@ export const navList = [
     linkPath: "/dashboard/deposits",
   },
   {
-    nav: "Logout",
+    nav: "Verification",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -143,11 +162,11 @@ export const navList = [
       >
         <path
           fillRule="evenodd"
-          d="M10 2a.75.75 0 01.75.75v7.5a.75.75 0 01-1.5 0v-7.5A.75.75 0 0110 2zM5.404 4.343a.75.75 0 010 1.06 6.5 6.5 0 109.192 0 .75.75 0 111.06-1.06 8 8 0 11-11.313 0 .75.75 0 011.06 0z"
+          d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
           clipRule="evenodd"
         />
       </svg>
     ),
-    linkPath: "/dashboard/deposits",
+    linkPath: "/dashboard/verify",
   },
 ];
