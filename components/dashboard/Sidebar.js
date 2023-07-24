@@ -10,15 +10,15 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="bg-slate-800 h-screen pt-1">
+    <div className=" h-screen pt-1">
       <div className="">
         {navList.map((item, index) => (
           <Link key={index} href={item.linkPath} passHref>
             <div
-              className={`flex flex-col md:flex-row items-center py-4 px-2 transition-all ${
+              className={`flex flex-col md:flex-row border-r items-center py-4 px-2 transition-all ${
                 activeNavItem === index
-                  ? "text-white font-bold bg-green-700"
-                  : "text-gray-300 hover:text-gray-100"
+                  ? "text-white font-bold bg-slate-800"
+                  : "text-gray-600 hover:text-gray-600"
               }`}
               onClick={() => handleNavItemClick(index)}
             >

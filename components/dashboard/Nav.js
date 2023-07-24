@@ -11,7 +11,7 @@ import Sheeet from "./sheeet";
 export default function Nav() {
   return (
     <>
-      <div className="nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors bg-slate-900">
+      <div className="nav-container flex justify-between duration-300 text-slate-900 items-center py-6 px-5 transition-colors border-b bg-white">
         <div className="burger md:hidden cursor-pointer">
           <Sheet className="p-0">
             <SheetTrigger>
@@ -36,7 +36,7 @@ export default function Nav() {
           </Sheet>
         </div>
         <div className="title">
-          <h2 className="">Broker Name</h2>
+          <h2 className="font-bold">Broker Name</h2>
         </div>
         <div className="nav-tools text-sm">
           <div>Logout</div>
