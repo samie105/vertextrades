@@ -4,18 +4,19 @@ import { dashhh } from "./dashbd";
 import AssetWidget from "./AssetWidgtet";
 import AssetWidgetTwo from "./AssetWidgetTwo";
 import LatestTrades from "./LatestTrades";
+import AssetWidgetThree from "./AssetWidgetThree";
 
 export default function Dash() {
   return (
     <>
       <div className="dash-cont p-4">
-        <div className="dash-header font-bold text-xl mt-3">Dashboard</div>
+        {/* <div className="dash-header font-bold text-xl mt-3">Dashboard</div> */}
         <div className="account-boards w-full my-3 text-sm">
-          <div className="card-info shado-md border rounded-lg px-2 py-4 flex items-center justify-between">
-            <div className="card-header font-bold ml-1 flex items-center">
-              <div className="hidden md:block">
+          <div className="card-info shado-md border rounded-lg px-2 py-4 flex items-center bg-slate-800  justify-between">
+            <div className="card-header font-bold ml-1 flex items-center text-white">
+              <div className="block">
                 {" "}
-                <div className="icon-cont bg-gry-50 border rounded-full p-3 mr-2">
+                <div className="icon-cont bg-gry-50 bg-slate-700 rounded-full p-3 mr-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -30,16 +31,16 @@ export default function Dash() {
                   </svg>
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="md:flex items-center">
                 {" "}
-                <p>Trading Balance:</p>
-                <div className="my-1 bg-gay-200 rounded-lg md:ml-2">
+                <p>Trading Balance</p>
+                <div className="my-1 bg-gay-200 rounded-lg md:ml-2 text-base text-gray-500">
                   {" "}
-                  <sp>$</sp> <span className="text-center">0.00</span>
+                  $0.00
                 </div>
                 <div className="live hidden md:block">
-                  <div className="live-info py-1 px-2 flex items-center bg-green-100 text-xs mx-3 text-green-700 rounded-md">
-                    <div className="dot w-1 h-1 mr-2 animate-ping bg-green-800 rounded-full"></div>{" "}
+                  <div className="live-info py-1 px-2 flex items-center bg-green-700 text-xs mx-3 text-white rounded-full">
+                    <div className="dot w-1 h-1 mr-2 animate-ping bg-white  rounded-full"></div>{" "}
                     <p>Live</p>
                   </div>
                 </div>
@@ -57,7 +58,7 @@ export default function Dash() {
                 </svg>
                 <p className="hidden md:block">Withdraw</p>
               </div>
-              <div className="mx-1 bg-slate-800 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
+              <div className="mx-1 bg-slate-700 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -79,7 +80,7 @@ export default function Dash() {
           {dashhh.map((items) => (
             <>
               <div
-                className={`card border rounded-lg p-5 flex items-center cursor-pointer `}
+                className={`card border rounded-lg p-5 flex items-center ${items.bgcolorb} cursor-pointer `}
               >
                 <div
                   className={`icon p-3 rounded-full text-white mr-4 ${items.bgcolor}`}
@@ -90,7 +91,7 @@ export default function Dash() {
                   <div className="card-header capitalize font-bold">
                     {items.name}
                   </div>
-                  <div className="card-info mt-1 font-bold text-gray-500">
+                  <div className="card-info mt-1 text-base font-bold text-gray-500">
                     {items.bal}
                   </div>
                 </div>
@@ -101,6 +102,7 @@ export default function Dash() {
         <div className="assets">
           <AssetWidgetTwo />
           <AssetWidget />
+          <AssetWidgetThree />
         </div>
         <div className="latest-trades mt-5">
           <div className="header text-lg font-bold mb-3">Latest Trades</div>

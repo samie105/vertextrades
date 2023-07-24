@@ -3,6 +3,7 @@ export const dashhh = [
     name: "total deposited",
     bal: "$0.00",
     bgcolor: "bg-red-700",
+    bgcolorb: "bg-red-700/10",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +23,7 @@ export const dashhh = [
     name: "total withdrawn",
     bal: "$0.00",
     bgcolor: "bg-black",
+    bgcolorb: "bg-black/10",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +43,7 @@ export const dashhh = [
     name: "assets owned",
     bal: "0",
     bgcolor: "bg-green-700",
+    bgcolorb: "bg-green-700/10",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +63,7 @@ export const dashhh = [
     name: "trade placed",
     bal: "0",
     bgcolor: "bg-blue-700",
+    bgcolorb: "bg-blue-700/10",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

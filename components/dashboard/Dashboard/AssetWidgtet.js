@@ -11,7 +11,7 @@ export default function AssetWidgtet() {
           showChart: true,
           locale: "en",
           largeChartUrl: "",
-          isTransparent: false,
+          isTransparent: true,
           showSymbolLogo: true,
           showFloatingTooltip: true,
           width: "100%",

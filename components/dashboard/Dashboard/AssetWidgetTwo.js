@@ -6,7 +6,6 @@ export default function AssetWidgetTwo() {
     <>
       <div className="mb-3">
         <Ticker
-          className="border-0"
           widgetPropsAny={{
             symbols: [
               {
@@ -31,26 +30,9 @@ export default function AssetWidgetTwo() {
               },
             ],
             colorTheme: "light",
-            isTransparent: false,
+            isTransparent: true,
             showSymbolLogo: true,
             locale: "en",
-          }}
-        />
-      </div>
-
-      <div className="text hidden">AI Signals</div>
-
-      <div>
-        <TechnicalAnalysis
-          widgetPropsAny={{
-            interval: "1m",
-            width: "100%",
-            isTransparent: false,
-            height: 450,
-            symbol: "COINBASE:BTCUSD",
-            showIntervalTabs: true,
-            locale: "en",
-            colorTheme: "light",
           }}
         />
       </div>
