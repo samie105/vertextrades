@@ -38,7 +38,7 @@ export const dashhh = [
     ),
   },
   {
-    name: "total assets owned",
+    name: "assets owned",
     bal: "0",
     bgcolor: "bg-green-700",
     icon: (
@@ -57,7 +57,7 @@ export const dashhh = [
     ),
   },
   {
-    name: "total trade placed",
+    name: "trade placed",
     bal: "0",
     bgcolor: "bg-blue-700",
     icon: (

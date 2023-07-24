@@ -2,6 +2,7 @@
 import React from "react";
 import { dashhh } from "./dashbd";
 import AssetWidget from "./AssetWidgtet";
+import AssetWidgetTwo from "./AssetWidgetTwo";
 import LatestTrades from "./LatestTrades";
 
 export default function Dash() {
@@ -31,12 +32,12 @@ export default function Dash() {
               </div>
               <div className="flex items-center">
                 {" "}
-                <p>Current Balance:</p>
-                <div className="my-1 bg-gay-200 rounded-lg ml-2">
+                <p>Trading Balance:</p>
+                <div className="my-1 bg-gay-200 rounded-lg md:ml-2">
                   {" "}
                   <sp>$</sp> <span className="text-center">0.00</span>
                 </div>
-                <div className="live">
+                <div className="live hidden md:block">
                   <div className="live-info py-1 px-2 flex items-center bg-green-100 text-xs mx-3 text-green-700 rounded-md">
                     <div className="dot w-1 h-1 mr-2 animate-ping bg-green-800 rounded-full"></div>{" "}
                     <p>Live</p>
@@ -45,7 +46,7 @@ export default function Dash() {
               </div>
             </div>
             <div className="card-info flex">
-              <div className="mx-1 bg-gray-100 flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-md">
+              <div className="mx-1 bg-green-800 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -56,7 +57,7 @@ export default function Dash() {
                 </svg>
                 <p className="hidden md:block">Withdraw</p>
               </div>
-              <div className="mx-1 bg-gray-100 flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-md">
+              <div className="mx-1 bg-slate-800 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -77,9 +78,11 @@ export default function Dash() {
         <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-2">
           {dashhh.map((items) => (
             <>
-              <div className="card border rounded-lg p-5 flex items-center cursor-pointer">
+              <div
+                className={`card border rounded-lg p-5 flex items-center cursor-pointer `}
+              >
                 <div
-                  className={`icon p-3 rounded-full text-white mr-2 ${items.bgcolor}`}
+                  className={`icon p-3 rounded-full text-white mr-4 ${items.bgcolor}`}
                 >
                   {items.icon}
                 </div>
@@ -87,13 +90,16 @@ export default function Dash() {
                   <div className="card-header capitalize font-bold">
                     {items.name}
                   </div>
-                  <div className="card-info mt-1 font-bold">{items.bal}</div>
+                  <div className="card-info mt-1 font-bold text-gray-500">
+                    {items.bal}
+                  </div>
                 </div>
               </div>
             </>
           ))}
         </div>
         <div className="assets">
+          <AssetWidgetTwo />
           <AssetWidget />
         </div>
         <div className="latest-trades mt-5">
