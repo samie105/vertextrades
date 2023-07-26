@@ -3,7 +3,7 @@ import { MiniChart, SymbolOverview } from "react-tradingview-embed";
 
 export default function AssetWidgetThree() {
   return (
-    <>
+    <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
       <SymbolOverview
         widgetPropsAny={{
           symbols: [
@@ -20,6 +20,7 @@ export default function AssetWidgetThree() {
           autosize: false,
           showVolume: false,
           showMA: false,
+          isTransparent: true,
           hideDateRanges: false,
           hideMarketStatus: false,
           hideSymbolLogo: false,
@@ -40,6 +41,6 @@ export default function AssetWidgetThree() {
           dateRanges: ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
         }}
       />
-    </>
+    </div>
   );
 }
