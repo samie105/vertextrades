@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "../../ui/input";
@@ -20,19 +20,27 @@ import {
 } from "../../ui/select";
 import { countryList } from "./countries";
 
-const signupFormSchema = z.object({
-  name: z.string().nonempty("Name is required"),
-  email: z.string().email("Invalid email").nonempty("Email is required"),
-  phoneNumber: z.string().nonempty("Phone number is required"),
-  country: z.string().nonempty("Country is required"),
-  gender: z.string().nonempty("Gender is required"),
-  dob: z.string().nonempty("Date of Birth is required"),
-  password: z
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .nonempty("Password is required"),
-  confirmPassword: z.string().nonempty("Confirm Password is required"),
-});
+const stepValidationSchemas = [
+  z.object({
+    name: z.string().nonempty("Name is required"),
+    email: z.string().email("Invalid email").nonempty("Email is required"),
+  }),
+  z.object({
+    phoneNumber: z.string().nonempty("Phone number is required"),
+    country: z.string().nonempty("Country is required"),
+  }),
+  z.object({
+    gender: z.string().nonempty("Gender is required"),
+    dob: z.string().nonempty("Date of Birth is required"),
+  }),
+  z.object({
+    password: z
+      .string()
+      .min(6, "Password must be at least 6 characters")
+      .nonempty("Password is required"),
+    confirmPassword: z.string().nonempty("Confirm Password is required"),
+  }),
+];
 
 const genderOptions = [
   { label: "Male", value: "male" },
@@ -67,31 +75,23 @@ export function DatePickerDemo({ selected, onSelect }) {
 }
 
 const Signup = () => {
-  const {
-    control: signupControl,
-    handleSubmit: signupHandleSubmit,
-    formState: signupFormState,
-    setError: signupSetError,
-  } = useForm({ resolver: zodResolver(signupFormSchema) });
+  const [currentStep, setCurrentStep] = useState(0);
+  const { control, handleSubmit, formState, setError, reset } = useForm({
+    mode: "onChange",
+  });
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState("us");
-  const [currentStep, setCurrentStep] = useState(0);
 
   const handleSignupSubmit = (data) => {
-    try {
-      if (data.password !== data.confirmPassword) {
-        signupSetError("confirmPassword", {
-          type: "manual",
-          message: "Passwords do not match",
-        });
-        return;
-      }
-
-      console.log(data);
-    } catch (error) {
-      console.error(error);
+    if (data.password !== data.confirmPassword) {
+      setError("confirmPassword", {
+        type: "manual",
+        message: "Passwords do not match",
+      });
+      return;
     }
+    console.log(data);
   };
 
   const handleCountryChange = (event) => {
@@ -99,7 +99,20 @@ const Signup = () => {
   };
 
   const handleNextStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
+    const currentStepSchema = stepValidationSchemas[currentStep];
+    const result = currentStepSchema.safeParse(formState.values);
+
+    if (result.success) {
+      setCurrentStep((prevStep) => prevStep + 1);
+    } else {
+      // The validation failed
+      for (const [key, value] of Object.entries(result.error.errors)) {
+        setError(key, {
+          type: "manual",
+          message: value.message,
+        });
+      }
+    }
   };
 
   const handlePreviousStep = () => {
@@ -120,7 +133,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="name"
-                control={signupControl}
+                control={control}
                 render={({ field, fieldState }) => (
                   <>
                     <Input
@@ -146,7 +159,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="email"
-                control={signupControl}
+                control={control}
                 render={({ field, fieldState }) => (
                   <>
                     <Input
@@ -180,7 +193,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="country"
-                control={signupControl}
+                control={control}
                 render={({ field }) => (
                   <div className="w-full pr-4 py-3 bg-gray-800 text-white text-sm rounded-lg border-none">
                     <select
@@ -208,7 +221,7 @@ const Signup = () => {
             <div className="mb-5">
               <Controller
                 name="phoneNumber"
-                control={signupControl}
+                control={control}
                 render={({ field, fieldState }) => (
                   <>
                     <PhoneInput
@@ -239,7 +252,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="gender"
-                control={signupControl}
+                control={control}
                 render={({ field }) => (
                   <Select
                     {...field}
@@ -267,7 +280,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="dob"
-                control={signupControl}
+                control={control}
                 render={({ field }) => (
                   <DatePickerDemo
                     selected={selectedDate}
@@ -290,7 +303,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="password"
-                control={signupControl}
+                control={control}
                 render={({ field, fieldState }) => (
                   <>
                     <Input
@@ -319,7 +332,7 @@ const Signup = () => {
               </Label>
               <Controller
                 name="confirmPassword"
-                control={signupControl}
+                control={control}
                 render={({ field, fieldState }) => (
                   <>
                     <Input
@@ -349,7 +362,7 @@ const Signup = () => {
   const totalSteps = 4; // Set the total number of steps
 
   return (
-    <form onSubmit={signupHandleSubmit(handleSignupSubmit)} className="">
+    <form onSubmit={handleSubmit(handleSignupSubmit)} className="">
       <div className="message mb-5">
         <div className="text-white font-bold">Create a new account</div>
         <p className="text-sm font-normal text-gray-400 mt-3">
@@ -384,6 +397,7 @@ const Signup = () => {
             type="button"
             onClick={handleNextStep}
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg"
+            disabled={!formState.isValid}
           >
             Continue
           </Button>
@@ -392,6 +406,7 @@ const Signup = () => {
           <Button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg"
+            disabled={!formState.isValid}
           >
             Sign Up
           </Button>

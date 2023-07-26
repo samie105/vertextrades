@@ -12,7 +12,7 @@ export default function Dash() {
       <div className="dash-cont p-4">
         {/* <div className="dash-header font-bold text-xl mt-3">Dashboard</div> */}
         <div className="account-boards w-full my-3 text-sm">
-          <div className="card-info shado-md border rounded-lg px-2 py-4 flex items-center bg-slate-800  justify-between">
+          <div className="card-info shado-md border sticky rounded-lg px-2 py-4 flex items-center bg-slate-800  justify-between">
             <div className="card-header font-bold ml-1 flex items-center text-white">
               <div className="block">
                 {" "}
@@ -31,11 +31,10 @@ export default function Dash() {
                   </svg>
                 </div>
               </div>
-              <div className="md:flex items-center">
+              <div className="flex flex-col md:flex-row md:items-center text-xs ml-2">
                 {" "}
                 <p>Trading Balance</p>
-                <div className="my-1 bg-gay-200 rounded-lg md:ml-2 text-base text-gray-500">
-                  {" "}
+                <div className="mt-2 bg-gay-200 rounded-lg md:ml-2 text-sm text-left text-gray-400">
                   $0.00
                 </div>
                 <div className="live hidden md:block">
@@ -47,7 +46,7 @@ export default function Dash() {
               </div>
             </div>
             <div className="card-info flex">
-              <div className="mx-1 bg-green-800 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
+              <div className="mx-1 bg-slate-700 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -80,10 +79,10 @@ export default function Dash() {
           {dashhh.map((items) => (
             <>
               <div
-                className={`card border rounded-lg p-5 flex items-center ${items.bgcolorb} cursor-pointer `}
+                className={`card border rounded-lg p-5 flex items-center bg-slate-800/5 cursor-pointer `}
               >
                 <div
-                  className={`icon p-3 rounded-full text-white mr-4 ${items.bgcolor}`}
+                  className={`icon p-3 rounded-full text-white mr-4 bg-slate-800`}
                 >
                   {items.icon}
                 </div>
@@ -100,8 +99,12 @@ export default function Dash() {
           ))}
         </div>
         <div className="assets">
-          <AssetWidgetTwo />
           <AssetWidget />
+          <div className="my-2">
+            {" "}
+            <AssetWidgetTwo />
+          </div>
+
           <AssetWidgetThree />
         </div>
         <div className="latest-trades mt-5">

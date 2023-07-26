@@ -16,7 +16,7 @@ export default function Layout({ children }) {
         <div className="side-bar h-full w-[18%] hidden md:block">
           <Sidebar />
         </div>
-        <div className="main-bar h-full w-full max-h-[100vh] overflow-y-scroll">
+        <div className="main-bar h-full w-full max-h-[100vh] overflow-y-scroll  ">
           {children}
         </div>
       </div>
