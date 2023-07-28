@@ -5,6 +5,7 @@ import AssetWidget from "./AssetWidgtet";
 import AssetWidgetTwo from "./AssetWidgetTwo";
 import LatestTrades from "./LatestTrades";
 import AssetWidgetThree from "./AssetWidgetThree";
+import AssetWidgetFour from "./AssetWidgetFour";
 
 export default function Dash() {
   return (
@@ -34,7 +35,7 @@ export default function Dash() {
               <div className="flex flex-col md:flex-row md:items-center text-xs ml-2">
                 {" "}
                 <p>Trading Balance</p>
-                <div className="mt-2 bg-gay-200 rounded-lg md:ml-2 text-sm text-left text-gray-400">
+                <div className="mt-2 md:mt-0 bg-gay-200 rounded-lg md:ml-2 text-sm text-left text-gray-400">
                   $0.00
                 </div>
                 <div className="live hidden md:block">
@@ -107,6 +108,7 @@ export default function Dash() {
 
           <AssetWidgetThree />
         </div>
+        <AssetWidgetFour />
         <div className="latest-trades mt-5">
           <div className="header text-lg font-bold mb-3">Latest Trades</div>
           <div className="border rounded-lg">

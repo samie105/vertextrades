@@ -22,4 +22,8 @@ div.camera_pie {
 
 *:focus {
   outline: none !important;
+}
+
+.js-copyright-label {
+  display: none !important;
 }/*# sourceMappingURL=styles.css.map */
