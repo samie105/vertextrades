@@ -2,7 +2,6 @@ import React from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -44,7 +43,10 @@ export default function LatestTrades() {
           ))
         ) : (
           <TableRow>
-            <TableCell colSpan="8" className="text-center">
+            <TableCell
+              colSpan="8"
+              className="text-center font-bold text-gray-500"
+            >
               No Recent Trade Activity
             </TableCell>
           </TableRow>

@@ -15,7 +15,7 @@ export default function AssetWidgetThree() {
       <SymbolOverview
         widgetPropsAny={{
           symbols: [
-            ["Apple", "AAPL|1D"],
+            ["Apple", "AAPL|1M"],
             ["Google", "GOOGL|1D"],
             ["Microsoft", "MSFT|1D"],
             ["BINANCE:RNDRUSDT|1D"],
