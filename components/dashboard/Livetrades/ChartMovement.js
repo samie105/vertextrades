@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -6,6 +7,32 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 const ChartMovement = () => {
+  const trades = [
+    "EUR-CHF",
+    "GBP-JPN",
+    "USD-AUD",
+    "CHF-JPN",
+    "EUR-JPN",
+    "JPN-USD",
+    "USD-CHF",
+    "EUR-USD",
+  ];
+  const signals = [
+    "connecting to IOT server",
+    "placing trades",
+    "analyzing markets",
+    "market appreciation",
+    "calculating pips",
+    "Artificial Intelligence 99%",
+    "Artificial Intelligence 94%",
+    "pulling",
+    "retrying ",
+  ];
+  const [tradeIndex, setTradeIndex] = useState(0);
+  const [currentTrade, setCurrentTrade] = useState(trades[tradeIndex]);
+  const [currentSignal, setCurrentSignal] = useState(
+    signals[Math.floor(Math.random() * signals.length)]
+  ); // Initial random signal
   useEffect(() => {
     let chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.hiddenState.properties.opacity = 0;
@@ -103,7 +130,24 @@ const ChartMovement = () => {
       chart.dispose();
     };
   }, []);
+  useEffect(() => {
+    const tradeInterval = setInterval(() => {
+      setTradeIndex((prevIndex) => (prevIndex + 1) % trades.length);
+    }, 5000);
 
+    const signalInterval = setInterval(() => {
+      setCurrentSignal(signals[Math.floor(Math.random() * signals.length)]);
+    }, 1000);
+
+    return () => {
+      clearInterval(tradeInterval);
+      clearInterval(signalInterval);
+    };
+  }, []);
+
+  useEffect(() => {
+    setCurrentTrade(trades[tradeIndex]);
+  }, [tradeIndex]);
   return (
     <div className="my-4 card rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
       <div className="p-2">
@@ -123,9 +167,13 @@ const ChartMovement = () => {
         </div>
         <div className="grid my-4 w-full grid-cols-2 text-center justify-between items-center text-sm">
           <div>
-            <div className="bg-slate-100 font-bold p-3 rounded-lg">EUR-CHF</div>
+            <div className="bg-slate-100 font-bold p-3 rounded-lg trades">
+              {currentTrade}
+            </div>
           </div>
-          <div className="font-bold">Checking Signal Strength</div>
+          <div className="font-bold signals capitalize text-green-600">
+            {currentSignal}...
+          </div>
         </div>
       </div>
       <div
