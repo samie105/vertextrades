@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useState, useEffect } from "react";
+import ChartMovement from "./ChartMovement";
 import { livess } from "./lives";
 
 const Livetrade = () => {
@@ -17,25 +18,28 @@ const Livetrade = () => {
       const minDiff = -10; // Minimum difference from the previous number
       const maxDiff = 10; // Maximum difference from the previous number
       const randomDiff = getRandomNumberInRange(minDiff, maxDiff);
-      return previousNumber + randomDiff;
+      const newNumber = previousNumber + randomDiff;
+      return Math.max(newNumber, 20); // Ensure the new number is not below 40
     };
 
     // Initialize the random numbers for each item in the list
     const initialRandomNumbers = {};
     livess.forEach((item) => {
-      initialRandomNumbers[item.name] = getRandomNumberInRange(40, 120);
+      initialRandomNumbers[item.name] = getRandomNumberInRange(20, 120);
     });
     setRandomNumbers(initialRandomNumbers);
 
     // Function to update the random numbers every second
     const interval = setInterval(() => {
-      const updatedRandomNumbers = {};
-      livess.forEach((item) => {
-        const previousNumber = randomNumbers[item.name];
-        updatedRandomNumbers[item.name] =
-          generateRandomNumberNearPrevious(previousNumber);
+      setRandomNumbers((prevRandomNumbers) => {
+        const updatedRandomNumbers = {};
+        livess.forEach((item) => {
+          const previousNumber = prevRandomNumbers[item.name];
+          updatedRandomNumbers[item.name] =
+            generateRandomNumberNearPrevious(previousNumber);
+        });
+        return updatedRandomNumbers;
       });
-      setRandomNumbers(updatedRandomNumbers);
     }, 1000); // Change the number every 1 second
 
     return () => clearInterval(interval);
@@ -54,11 +58,11 @@ const Livetrade = () => {
             } cursor-pointer `}
           >
             <div
-              className={`icon p-3 rounded-full ${
+              className={`icon p-3 rounded-full text-white mr-4 ${
                 items.name === "live"
                   ? "bg-green-800 animate-pulse"
                   : "bg-slate-800"
-              } text-white mr-4 bg-slate-800`}
+              } bg-slate-800`}
             >
               {items.icon}
             </div>
@@ -81,6 +85,12 @@ const Livetrade = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="grid grid-cols-1">
+        <div className="ai-trading-cont w-full">
+          <ChartMovement />
+        </div>
+        <div></div>
       </div>
     </div>
   );
