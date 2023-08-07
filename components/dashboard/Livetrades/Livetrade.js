@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useState, useEffect } from "react";
-import ChartMovement from "./ChartMovement";
 import { livess } from "./lives";
 
 const Livetrade = () => {
@@ -85,12 +84,6 @@ const Livetrade = () => {
             </div>
           </div>
         ))}
-      </div>
-      <div className="grid grid-cols-1">
-        <div className="ai-trading-cont w-full">
-          <ChartMovement />
-        </div>
-        <div></div>
       </div>
     </div>
   );

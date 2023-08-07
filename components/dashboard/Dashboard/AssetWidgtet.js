@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { MarketOverview } from "react-tradingview-embed";
 
