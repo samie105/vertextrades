@@ -36,6 +36,7 @@ export default function AdvancedCh() {
           symbol: "NASDAQ:AAPL",
           interval: "D",
           timezone: "Etc/UTC",
+          isTransparent: true,
           theme: "light",
           style: "1",
           locale: "en",

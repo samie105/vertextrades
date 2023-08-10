@@ -72,7 +72,7 @@ const ChartMovement = () => {
     valueAxis.interpolationDuration = 500;
     valueAxis.rangeChangeDuration = 500;
     valueAxis.renderer.inside = true;
-    valueAxis.renderer.minLabelPosition = 0.05;
+    valueAxis.renderer.minLabelPosition = 0.0;
     valueAxis.renderer.maxLabelPosition = 0.95;
     valueAxis.renderer.axisFills.template.disabled = true;
     valueAxis.renderer.ticks.template.disabled = true;
@@ -85,6 +85,8 @@ const ChartMovement = () => {
     series.defaultState.transitionDuration = 0;
     series.tensionX = 0.8;
     series.stroke = am4core.color("rgba(20, 0, 71, 1)");
+    series.fillOpacity = 0.1; // Adjust the opacity as needed
+    series.fill = am4core.color("rgba(20, 0, 71, 1)");
 
     let bullet = series.createChild(am4charts.CircleBullet);
     bullet.circle.radius = 5;
@@ -153,7 +155,7 @@ const ChartMovement = () => {
     setCurrentTrade(trades[tradeIndex]);
   }, [tradeIndex]);
   return (
-    <div className="my-4 card rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+    <div className="my-4 card rounded-lg shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
       <div className="p-2">
         <div className="flex my-2 ecn-cont w-full justify-center">
           <div className=" bg-slate-800 hover:bg-slate-600 flex items-center p-3 rounded-lg text-white font-bold text-sm">
