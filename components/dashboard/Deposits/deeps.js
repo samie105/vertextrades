@@ -3,19 +3,19 @@ export const deposits = [
     coinName: "Bitcoin",
     short: "Bitcoin",
     image: "/assets/bitcoin.webp",
-    address: "xiohxhihfojdokhijkhnofwefodsdhfodhod",
+    address: "0xiohxhihfojdokhijkhnofwefodsdhfodhod",
   },
   {
     coinName: "Ethereum",
     short: "Ethereum",
     image: "/assets/ethereum.webp",
-    address: "xiohxhihfojhijkhnowefodsdhfodhod",
+    address: "0xiohxhihfojhijkhnowefodsdhfodhod",
   },
   {
     coinName: "Tether USDT",
     short: "Tether",
     image: "/assets/Tether.webp",
-    address: "xiohxhihfookhijkhnofwefodsdhfodhod",
+    address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
   },
 ];
 export const othermeans = [
@@ -23,18 +23,18 @@ export const othermeans = [
     coinName: "Binance",
     short: "binance",
     image: "/assets/bnb.webp",
-    address: "xiohxhihfookhijkhnofwefod",
+    address: "0xiohxhihfookhijkhnofwefod",
   },
   {
     coinName: "Dogecoin",
     short: "Dogecoin",
     image: "/assets/dogecoin.webp",
-    address: "xiohxhihfhijkhnofwefodsd",
+    address: "0xiohxhihfhijkhnofwefodsd",
   },
   {
     coinName: "Tron",
     short: "Tron",
     image: "/assets/tron-logo.webp",
-    address: "xiohxhihfookhijkhfwefodsd",
+    address: "0xiohxhihfookhijkhfwefodsd",
   },
 ];
