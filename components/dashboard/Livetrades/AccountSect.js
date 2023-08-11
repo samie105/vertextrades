@@ -16,7 +16,7 @@ export default function AccountSect() {
   }, []);
   return (
     <div className="p-4">
-      <div className="card-container p-3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] grid grid-cols-1 lg:grid-cols-2 gap-2">
+      <div className="card-container p-3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] grid grid-cols-1 lg:grid-cols-2 gap-2 rounded">
         <div className="accoutsect font-medium ">
           <div className="name-cont flex items-center text-sm">
             {" "}
