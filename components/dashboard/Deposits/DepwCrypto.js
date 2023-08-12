@@ -12,6 +12,7 @@ import {
 } from "../../ui/select";
 import { deposits, othermeans } from "./deeps";
 import Image from "next/image";
+import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
 
 export default function DepwCrypto() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -63,30 +64,30 @@ export default function DepwCrypto() {
 
   return (
     <div className="p-4">
-      <div className="pb-4 transition-all">
-        {" "}
-        <div className="heading pb-1 flex items-center mt-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-5 h-5 mr-1 text-gray-600"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"
-            />
-          </svg>
-          <p className="text-sm uppercase">Crypto</p>
+      <div className="deposits-cont shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-3 rounded-lg transition-all">
+        <div className="pb-2 transition-all w-full text-center">
+          {" "}
+          <div className="heading pb-1 flex items-center mt-3 justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5 mr-1 text-gray-600"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"
+              />
+            </svg>
+            <p className="text-sm uppercase">Crypto</p>
+          </div>
+          <div className="header-text font-bold capitalize text-lg pb-4">
+            Deposit using Crypto
+          </div>
         </div>
-        <div className="header-text font-bold capitalize text-lg pb-4">
-          Deposit using Crypto
-        </div>
-      </div>
-      <div className="deposits-cont shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-3 rounded-lg">
         <div className="px-2 py-5">
           <Select
             className="w-full outline-none bg-gray-50 py-4"
@@ -95,7 +96,7 @@ export default function DepwCrypto() {
             <SelectTrigger className="w-full bg-gray-50 py-4">
               <SelectValue
                 className="font-bold"
-                placeholder="Select a Deposit Method"
+                placeholder="Select a Deposit Asset"
               />
             </SelectTrigger>
             <SelectContent className="border-0">
@@ -210,18 +211,22 @@ export default function DepwCrypto() {
               {equivalentInCrypto} {selectedMethod}
             </div>
           )}
-
-          <div
-            className={`flex-cont ${
-              amountInUSD == 0
-                ? "bg-gray-200 text-gray-500"
-                : "bg-slate-800 text-white"
-            }   py-3 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm`}
-          >
-            <button className="capitalize">
-              Confirm {selectedMethod && selectedMethod} Deposit
-            </button>
-          </div>
+          <Dialog>
+            <DialogTrigger className="w-full">
+              <div
+                className={`flex-cont ${
+                  amountInUSD == 0
+                    ? "bg-gray-200 text-gray-500"
+                    : "bg-slate-800 text-white"
+                }   py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+              >
+                <button className="capitalize">
+                  Confirm {selectedMethod && selectedMethod} Deposit
+                </button>
+              </div>
+            </DialogTrigger>
+            <DialogContent>lol</DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>
