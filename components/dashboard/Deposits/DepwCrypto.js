@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -12,7 +13,13 @@ import {
 } from "../../ui/select";
 import { deposits, othermeans } from "./deeps";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "../../ui/dialog";
+import { useDropzone } from "react-dropzone";
 
 export default function DepwCrypto() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -20,6 +27,8 @@ export default function DepwCrypto() {
   const [currentPrice, setCurrentPrice] = useState(0);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [isCopied, setIsCopied] = useState(false);
+  const [files, setFiles] = useState([]);
+  const [showDropzone, setShowDropzone] = useState(false);
 
   useEffect(() => {
     if (selectedMethod) {
@@ -46,7 +55,18 @@ export default function DepwCrypto() {
     );
     setSelectedAddress(selectedOption?.address || "");
   };
-
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/jpeg, image/png, image/jpg",
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+  });
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(selectedAddress);
     navigator.clipboard.writeText(selectedAddress);
@@ -55,7 +75,9 @@ export default function DepwCrypto() {
       setIsCopied(false);
     }, 2000);
   };
-
+  const handleVerifyDeposits = () => {
+    setShowDropzone(true);
+  };
   const handleAmountChange = (e) => {
     setAmountInUSD(e.target.value);
   };
@@ -225,7 +247,98 @@ export default function DepwCrypto() {
                 </button>
               </div>
             </DialogTrigger>
-            <DialogContent>lol</DialogContent>
+            <DialogContent className="w-[90%] rounded-lg">
+              <DialogHeader className="font-bold capitalize">
+                Confirm {selectedMethod} Deposit
+              </DialogHeader>
+              <div className="address mt-5">
+                <label
+                  htmlFor="address"
+                  className="capitalize text-sm font-semibold"
+                >
+                  {selectedMethod} Deposit Address
+                </label>
+                <div
+                  id="address"
+                  className=" flex items-center bg-gray-50 px-2 py-1 mt-1  rounded-lg border"
+                >
+                  <input
+                    type="text"
+                    value={selectedAddress}
+                    readOnly
+                    className="w-full px-2 py-3 text-sm rounded-lg bg-gray-50 font-bold text-gray-500"
+                  />
+                  <button onClick={handleCopyAddress} className="ml-3">
+                    {isCopied ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5 mr-2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M4.5 12.75l6 6 9-13.5"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5 mr-2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="message text-xs">
+                <p>
+                  <strong className="font-bold">Note:</strong> The above address
+                  is a temporal trading address that becomes invalid after 10
+                  mins of visibility to avoid fraud and psiphing and to avoid
+                  server overloading, please be sure you're in a secure area for
+                  quick and safe deposits.{" "}
+                </p>
+              </div>
+              {showDropzone && (
+                <div
+                  {...getRootProps({ className: "dropzone" })}
+                  className="border p-3 rounded-lg bg-gray-50"
+                >
+                  <input {...getInputProps()} />
+                  <p className="text-sm">
+                    {files.length != 0
+                      ? files.map((file, index) => (
+                          <div key={index}>{file.path}</div>
+                        ))
+                      : "Please upload your deposit screenshot here"}
+                  </p>
+                </div>
+              )}
+              <div
+                className={`flex-cont 
+                  
+                    bg-slate-800 text-white
+                   py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+                onClick={handleVerifyDeposits}
+              >
+                <button className="capitalize">
+                  {showDropzone ? "Verify Deposits" : "Proceed"}
+                </button>
+              </div>
+            </DialogContent>
           </Dialog>
         </div>
       </div>
