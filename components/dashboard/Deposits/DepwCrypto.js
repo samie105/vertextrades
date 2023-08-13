@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+
 import axios from "axios";
 import {
   Select,
@@ -20,6 +22,7 @@ import {
   DialogTrigger,
 } from "../../ui/dialog";
 import { useDropzone } from "react-dropzone";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 export default function DepwCrypto() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -69,12 +72,24 @@ export default function DepwCrypto() {
   });
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(selectedAddress);
-    navigator.clipboard.writeText(selectedAddress);
     setIsCopied(true);
     setTimeout(() => {
       setIsCopied(false);
     }, 2000);
   };
+  const handleToast = () => {
+    toast.warn(` Deposit of $${amountInUSD} Under Review`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const handleVerifyDeposits = () => {
     setShowDropzone(true);
   };
@@ -249,7 +264,14 @@ export default function DepwCrypto() {
             </DialogTrigger>
             <DialogContent className="w-[90%] rounded-lg">
               <DialogHeader className="font-bold capitalize">
-                Confirm {selectedMethod} Deposit
+                Confirm {equivalentInCrypto !== NaN && equivalentInCrypto}{" "}
+                Deposit
+                {amountInUSD && (
+                  <span>
+                    {" "}
+                    of {selectedMethod} to get ${amountInUSD}
+                  </span>
+                )}
               </DialogHeader>
               <div className="address mt-5">
                 <label
@@ -303,6 +325,21 @@ export default function DepwCrypto() {
                   </button>
                 </div>
               </div>
+              {showDropzone && (
+                <div
+                  {...getRootProps({ className: "dropzone" })}
+                  className="border py-4 px-2 rounded-lg bg-gray-50 cursor-pointer"
+                >
+                  <input {...getInputProps()} />
+                  <p className="text-sm font-bold capitalize">
+                    {files.length != 0
+                      ? files.map((file, index) => (
+                          <div key={index}>{file.path}</div>
+                        ))
+                      : "Click here to upload screenshot of transaction"}
+                  </p>
+                </div>
+              )}
               <div className="message text-xs">
                 <p>
                   <strong className="font-bold">Note:</strong> The above address
@@ -312,32 +349,33 @@ export default function DepwCrypto() {
                   quick and safe deposits.{" "}
                 </p>
               </div>
-              {showDropzone && (
+
+              {!showDropzone && (
                 <div
-                  {...getRootProps({ className: "dropzone" })}
-                  className="border p-3 rounded-lg bg-gray-50"
-                >
-                  <input {...getInputProps()} />
-                  <p className="text-sm">
-                    {files.length != 0
-                      ? files.map((file, index) => (
-                          <div key={index}>{file.path}</div>
-                        ))
-                      : "Please upload your deposit screenshot here"}
-                  </p>
-                </div>
-              )}
-              <div
-                className={`flex-cont 
+                  className={`flex-cont 
                   
                     bg-slate-800 text-white
                    py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
-                onClick={handleVerifyDeposits}
-              >
-                <button className="capitalize">
-                  {showDropzone ? "Verify Deposits" : "Proceed"}
-                </button>
-              </div>
+                  onClick={handleVerifyDeposits}
+                >
+                  <button className="capitalize">Proceed</button>
+                </div>
+              )}
+              <DialogClose>
+                {showDropzone && (
+                  <div
+                    className={`flex-cont 
+                  
+                    bg-slate-800 text-white
+                   py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+                    onClick={handleToast}
+                  >
+                    <button className="capitalize">
+                      {`Verify Deposits of $${amountInUSD}`}
+                    </button>
+                  </div>
+                )}
+              </DialogClose>
             </DialogContent>
           </Dialog>
         </div>

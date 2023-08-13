@@ -26,4 +26,11 @@ div.camera_pie {
 
 .js-copyright-label {
   display: none !important;
-}/*# sourceMappingURL=styles.css.map */
+} /*# sourceMappingURL=styles.css.map */
+
+.Toastify__close-button {
+  display: none;
+}
+.Toastify__toast-container {
+  border-radius: 50%;
+}
