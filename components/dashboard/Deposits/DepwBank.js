@@ -54,25 +54,43 @@ export default function DepwBank() {
         </div>
         <Dialog>
           <DialogTrigger className="w-full">
-            <div
-              className={`flex-cont ${
-                amountForTransfer && amountForTransfer != 0
-                  ? "bg-slate-800 text-white"
-                  : "bg-gray-300 text-gray-700"
-              }  py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
-            >
-              <button className="capitalize">Deposit with bank wire</button>
-            </div>
+            {amountForTransfer && amountForTransfer != 0 && (
+              <div
+                className={`flex-cont ${
+                  amountForTransfer && amountForTransfer != 0
+                    ? "bg-slate-800 text-white"
+                    : "bg-gray-300 text-gray-700"
+                }  py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+              >
+                <button className="capitalize">Deposit with bank wire</button>
+              </div>
+            )}
           </DialogTrigger>
           <DialogContent className="w-[90%] rounded-lg">
             <DialogHeader className="font-bold">
               Deposit Using Bank Wire
             </DialogHeader>
             <div className="my-2 p-2">
-              <div className="message-cont border border-yellow-600 text-sm font-bold bg-yellow-50 text-yellow-700 rounded-lg p-2">
-                Bank wire details are withheld due to security reasons, please
-                contact live support using the live chat system below for more
-                info
+              <div className="message-cont border flex border-yellow-600 text-sm font-bold bg-yellow-50 text-yellow-700 rounded-lg p-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-10 h-10 mr-3"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+
+                <p>
+                  {" "}
+                  Bank wire details are withheld due to security reasons, please
+                  contact live support using the live chat system below for more
+                  info
+                </p>
               </div>
             </div>
 

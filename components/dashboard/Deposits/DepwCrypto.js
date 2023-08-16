@@ -250,19 +250,21 @@ export default function DepwCrypto() {
           )}
           <Dialog>
             <DialogTrigger className="w-full">
-              <div
-                className={`flex-cont ${
-                  amountInUSD == 0
-                    ? "bg-gray-200 text-gray-500"
-                    : "bg-slate-800 text-white"
-                }   py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
-              >
-                <button className="capitalize">
-                  Confirm {selectedMethod && selectedMethod} Deposit
-                </button>
-              </div>
+              {amountInUSD && (
+                <div
+                  className={`flex-cont ${
+                    amountInUSD == 0
+                      ? "bg-gray-200 text-gray-500"
+                      : "bg-slate-800 text-white"
+                  }   py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+                >
+                  <button className="capitalize">
+                    Confirm {selectedMethod && selectedMethod} Deposit
+                  </button>
+                </div>
+              )}
             </DialogTrigger>
-            <DialogContent className="w-[90%] rounded-lg">
+            <DialogContent className="w-[90%] rounded-lg overflow-hidden">
               <DialogHeader className="font-bold capitalize">
                 Confirm {equivalentInCrypto !== NaN && equivalentInCrypto}{" "}
                 Deposit
@@ -326,18 +328,42 @@ export default function DepwCrypto() {
                 </div>
               </div>
               {showDropzone && (
+                <label
+                  htmlFor="address"
+                  className="capitalize text-sm font-semibold mt-5"
+                >
+                  Upload Deposit Proof (screenshot)
+                </label>
+              )}
+              {showDropzone && (
                 <div
                   {...getRootProps({ className: "dropzone" })}
-                  className="border py-4 px-2 rounded-lg bg-gray-50 cursor-pointer"
+                  className="border py-4 overflow-hidden  px-2 rounded-lg bg-gray-50 cursor-pointer"
                 >
                   <input {...getInputProps()} />
-                  <p className="text-sm font-bold capitalize">
-                    {files.length != 0
-                      ? files.map((file, index) => (
-                          <div key={index}>{file.path}</div>
-                        ))
-                      : "Click here to upload screenshot of transaction"}
-                  </p>
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-5 h-5 mx-2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                      />
+                    </svg>
+                    <p className="text-sm font-bold capitalize">
+                      {files.length != 0
+                        ? files.map((file, index) => (
+                            <div key={index}>{file.path}</div>
+                          ))
+                        : "Click here to upload screenshot of transaction"}
+                    </p>
+                  </div>
                 </div>
               )}
               <div className="message text-xs">
