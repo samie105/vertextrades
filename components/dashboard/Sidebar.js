@@ -18,7 +18,7 @@ export default function Sidebar() {
               className={`flex flex-col md:flex-row border-r items-center py-4 px-2 transition-all ${
                 activeNavItem === index
                   ? "text-white font-bold bg-slate-800"
-                  : "text-gray-600 hover:text-gray-600"
+                  : "text-gray-600 hover:bg-gray-200"
               }`}
               onClick={() => handleNavItemClick(index)}
             >

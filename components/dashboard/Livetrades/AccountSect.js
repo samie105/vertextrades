@@ -16,9 +16,9 @@ export default function AccountSect() {
   }, []);
   return (
     <div className="p-4">
-      <div className="card-container p-3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] grid grid-cols-1 lg:grid-cols-2 gap-2 rounded">
-        <div className="accoutsect font-medium ">
-          <div className="name-cont flex items-center text-sm">
+      <div className="card-container p-4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-xl">
+        <div className="accoutsect font-medium my-2">
+          <div className="name-cont flex items-center text-sm py-1">
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export default function AccountSect() {
             </svg>
             <div className="userName ml-2 font-bold">Nie Richfield</div>
           </div>
-          <div className="email-cont my-4 flex items-center text-sm">
+          <div className="email-cont my-4 flex items-center text-sm py-1">
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,11 +47,9 @@ export default function AccountSect() {
               </svg>
               <div className="ml-2 font-bold">Email:</div>
             </div>
-            <div className="email mx-2 capitalize">
-              samsonrichfield@gmail.com
-            </div>
+            <div className="email mx-2">Samsonrichfield@gmail.com</div>
           </div>
-          <div className="inventment-cont my-4 flex items-center text-sm">
+          <div className="inventment-cont my-4 flex items-center text-sm py-1">
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +68,7 @@ export default function AccountSect() {
             </div>
             <div className="plan font-bold mx-2 capitalize">$0.00</div>
           </div>
-          <div className="email-cont my-4 flex items-center text-sm">
+          <div className="email-cont my-4 flex items-center text-sm py-1">
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

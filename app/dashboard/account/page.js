@@ -1,12 +1,12 @@
 import React from "react";
 import Livetrade from "../../../components/dashboard/Livetrades/Livetrade";
-import Purchase from "../../../components/dashboard/purchasebtc/purchase";
+import Account from "../../../components/dashboard/accounts/Account";
 
 export default function page() {
   return (
     <div>
       <Livetrade />
-      <Purchase />
+      <Account />
     </div>
   );
 }
