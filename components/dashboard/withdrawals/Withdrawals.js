@@ -17,14 +17,12 @@ export default function Withdrawals() {
     walletAddress: "",
     amount: "",
     password: "",
-    taxCodePin: "",
   });
-  const [btcFilled, setBtcFilled] = useState(false);
+  const [btcFilled, setBtcFilled] = useState(true);
   const [formErrors, setFormErrors] = useState({
     walletAddress: "",
     amount: "",
     password: "",
-    taxCodePin: "",
   });
 
   const validateForm = () => {
@@ -37,9 +35,6 @@ export default function Withdrawals() {
     }
     if (!formData.password) {
       errors.password = "Password is required";
-    }
-    if (!formData.taxCodePin) {
-      errors.password = "Tax code is required";
     }
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -54,6 +49,7 @@ export default function Withdrawals() {
     e.preventDefault();
     if (validateForm()) {
       // Perform submit logic here
+      setBtcFilled(false);
     }
   };
   return (
