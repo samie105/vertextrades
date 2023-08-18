@@ -21,9 +21,9 @@ export default function Btcpayment({
     const updateProgress = () => {
       setProgress((prevProgress) => {
         const newProgress = prevProgress + 0.5;
-        if (newProgress >= 60 && !taxCodePin) {
+        if (newProgress >= 80 && !taxCodePin) {
           setWaitingForPin(true);
-          return 60;
+          return 80;
         } else if (newProgress >= 100) {
           // Logic when the progress reaches 100%
           return 100;
