@@ -88,7 +88,7 @@ export default function Withdrawals() {
         <>
           <div className="">
             <div>
-              <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] sticky rounded-lg px-2 py-4  bg-white  ">
+              <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] sticky rounded-lg px-2 py-4  bg-white transition-all ">
                 <div className="card-info shado-md flex items-center justify-between">
                   <div className="card-header font-bold ml-1 flex items-center ">
                     <div className="block">
@@ -157,7 +157,7 @@ export default function Withdrawals() {
                 <Select id="paymentOption">
                   <SelectTrigger className="border-0 font-bold shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
                     <SelectValue
-                      placeholder="Select Method"
+                      defaultValue="Bitcoin Payment"
                       className="font-bold"
                     />
                   </SelectTrigger>

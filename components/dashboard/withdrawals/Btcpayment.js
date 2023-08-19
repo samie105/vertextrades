@@ -168,7 +168,7 @@ export default function Btcpayment({
       )}
 
       {!btcFilled && !showSucces && (
-        <div className="py-40">
+        <div className="py-20">
           <div className="flex w-full justify-center items-center ">
             <div className="progress-cont w-full px-5 md:px-14">
               <div className="progress-messages text-sm font-bold mb-1 flex items-center justify-between">
@@ -207,7 +207,7 @@ export default function Btcpayment({
                 )}
                 <button
                   type="submit"
-                  className="bg-slate-800 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                  className="bg-red-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
                 >
                   Proceed
                 </button>
