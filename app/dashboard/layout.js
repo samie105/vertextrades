@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import Nav from "../../components/dashboard/Nav";
 import Sidebar from "../../components/dashboard/Sidebar";
 
@@ -9,6 +10,21 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <main className="h-[100vh]">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        style={{
+          padding: "1rem 2rem",
+        }}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="fixed top-0 left-0 w-full text-white z-30 ">
         <Nav />
       </div>

@@ -81,6 +81,16 @@ export default function DepwCrypto() {
     toast.warn(` Deposit of $${amountInUSD} Under Review`, {
       position: "top-center",
       autoClose: 5000,
+      style: {
+        borderRadius: "8px",
+        // width: "70%",
+        padding: "10px",
+        fontSize: "14px",
+        margin: "10px auto",
+        backgroundColor: "white",
+        color: "#00050",
+        textAlign: "center",
+      },
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
