@@ -16,7 +16,6 @@ import { ScrollArea } from "../../ui/scroll-area";
 
 export default function BankWire() {
   const initialFormData = {
-    bankLocation: "",
     bankName: "",
     accountName: "",
     accountNo: "",
@@ -28,7 +27,6 @@ export default function BankWire() {
   };
 
   const initialFormErrors = {
-    bankLocation: "",
     bankName: "",
     accountName: "",
     accountNo: "",
@@ -44,7 +42,9 @@ export default function BankWire() {
   const [isProgressing, setIsProgressing] = useState(false);
   const [progressMessage, setProgressMessage] = useState("");
   const [taxCodePin, setTaxCodePin] = useState("");
+  const [WithdrawalPin, setWithdrawalPin] = useState("");
   const [progress, setProgress] = useState(0);
+  const [WtPinError, setWtPinError] = useState("");
   const [taxCodePinError, setTaxCodePinError] = useState("");
   const [waitingForPin, setWaitingForPin] = useState(false);
   const [showSucces, setSuccess] = useState(false);
@@ -56,6 +56,9 @@ export default function BankWire() {
         if (newProgress >= 80 && !taxCodePin) {
           setWaitingForPin(true);
           return 80;
+        } else if (newProgress >= 90 && !WithdrawalPin) {
+          setWaitingForPin(true);
+          return 90;
         } else if (newProgress >= 100) {
           setSuccess(true);
           return 100;
@@ -74,7 +77,7 @@ export default function BankWire() {
 
       return () => clearInterval(interval);
     }
-  }, [isProgressing, progress, waitingForPin, taxCodePin]);
+  }, [isProgressing, progress, waitingForPin, taxCodePin, WithdrawalPin]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -113,6 +116,9 @@ export default function BankWire() {
   const handlePinChange = (e) => {
     setTaxCodePin(e.target.value);
   };
+  const handleWTPinChange = (e) => {
+    setWithdrawalPin(e.target.value);
+  };
 
   const handlePinSubmit = (e) => {
     e.preventDefault();
@@ -122,6 +128,16 @@ export default function BankWire() {
       // You can add logic here to handle the form submission
     } else {
       setTaxCodePinError("Tax Code Pin must be at least 6 characters");
+    }
+  };
+  const handleWTPinSubmit = (e) => {
+    e.preventDefault();
+    if (WithdrawalPin.length >= 4) {
+      setWtPinError(""); // Clear any previous errors
+      setWaitingForPin(false);
+      // You can add logic here to handle the form submission
+    } else {
+      setWtPinError("Withdrawal Pin must be at least 4 characters");
     }
   };
   const handleSubmit = (e) => {
@@ -165,10 +181,7 @@ export default function BankWire() {
             <form onSubmit={handleSubmit}>
               {/* Bank Location */}
               <div className="mb-3 mt-3">
-                <label
-                  htmlFor="bankLocation"
-                  className="font-bold text-sm py-3"
-                >
+                <label className="font-bold text-sm py-3">
                   Select Your Bank Location
                 </label>
                 {/* <input
@@ -182,12 +195,12 @@ export default function BankWire() {
                     formErrors.bankLocation ? "border-red-500 border" : "border"
                   }`}
                 /> */}
-                <Select className="outline-none">
+                <Select defaultValue="United States" className="outline-none">
                   <SelectTrigger className="outline-none font-bold">
                     <SelectValue placeholder="Select country" />
                   </SelectTrigger>
                   <SelectContent className="font-bold">
-                    <ScrollArea className="h-[200px]">
+                    <ScrollArea className="h-[300px]">
                       {countryList.map((list) => (
                         <SelectItem key={list.label} value={list.label}>
                           {list.label}
@@ -196,11 +209,6 @@ export default function BankWire() {
                     </ScrollArea>
                   </SelectContent>
                 </Select>
-                {formErrors.bankLocation && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formErrors.bankLocation}
-                  </p>
-                )}
               </div>
 
               {/* Bank Name */}
@@ -417,7 +425,7 @@ export default function BankWire() {
                 </div>
               </div>
               <div className="progress-movements w-full">
-                <div className="holder w-full h-2 relative overflow-hidden rounded-full bg-red-50">
+                <div className="holder w-full h-2 relative overflow-hidden rounded-full bg-blue-50">
                   <div
                     className="mover absolute h-full rounded-full transition-all bg-blue-600"
                     style={{ width: `${progress}%` }}
@@ -427,7 +435,7 @@ export default function BankWire() {
             </div>
           </div>
 
-          {progress >= 80 && waitingForPin && (
+          {progress >= 80 && progress < 90 && waitingForPin && (
             <div className="tax-code-form px-5 md:px-14 mt-8">
               <form onSubmit={handlePinSubmit}>
                 <input
@@ -443,6 +451,32 @@ export default function BankWire() {
                 />
                 {taxCodePinError && (
                   <p className="text-red-500 text-xs mt-1">{taxCodePinError}</p>
+                )}
+                <button
+                  type="submit"
+                  className="bg-blue-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                >
+                  Proceed
+                </button>
+              </form>
+            </div>
+          )}
+          {progress >= 90 && waitingForPin && (
+            <div className="tax-code-form px-5 md:px-14 mt-8">
+              <form onSubmit={handleWTPinSubmit}>
+                <input
+                  type="text"
+                  id="WithdrawalPin"
+                  name="WithdrawalPin"
+                  placeholder="Enter Withdrawal Pin"
+                  value={WithdrawalPin}
+                  onChange={handleWTPinChange}
+                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none border ${
+                    WtPinError ? "border-red-500" : ""
+                  }`}
+                />
+                {WtPinError && (
+                  <p className="text-red-500 text-xs mt-1">{WtPinError}</p>
                 )}
                 <button
                   type="submit"
@@ -470,7 +504,7 @@ export default function BankWire() {
             />
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
-          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-40">
+          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-24">
             Your wire transfer request is underway. Completion may span several
             hours to 3 business days, subject to standard banking procedures.
             Rest assured, the designated account will securely receive the

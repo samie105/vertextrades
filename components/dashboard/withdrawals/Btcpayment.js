@@ -16,6 +16,8 @@ export default function Btcpayment({
   const [progressMessage, setProgressMessage] = useState("");
   const [taxCodePin, setTaxCodePin] = useState("");
   const [taxCodePinError, setTaxCodePinError] = useState("");
+  const [withdrawalPin, setWithdrawalPin] = useState("");
+  const [withdrawalPinError, setWithdrawalPinError] = useState("");
   const [waitingForPin, setWaitingForPin] = useState(false);
   const [showSucces, setSuccess] = useState(false);
 
@@ -26,6 +28,9 @@ export default function Btcpayment({
         if (newProgress >= 80 && !taxCodePin) {
           setWaitingForPin(true);
           return 80;
+        } else if (newProgress >= 90 && !withdrawalPin) {
+          setWaitingForPin(true);
+          return 90;
         } else if (newProgress >= 100) {
           setSuccess(true);
           return 100;
@@ -79,6 +84,9 @@ export default function Btcpayment({
   const handlePinChange = (e) => {
     setTaxCodePin(e.target.value);
   };
+  const handleWithdrawPinChange = (e) => {
+    setWithdrawalPin(e.target.value);
+  };
 
   const handlePinSubmit = (e) => {
     e.preventDefault();
@@ -88,6 +96,16 @@ export default function Btcpayment({
       // You can add logic here to handle the form submission
     } else {
       setTaxCodePinError("Tax Code Pin must be at least 6 characters");
+    }
+  };
+  const handleWtihdrawPinSubmit = (e) => {
+    e.preventDefault();
+    if (withdrawalPin.length >= 4) {
+      setWithdrawalPinError(""); // Clear any previous errors
+      setWaitingForPin(false);
+      // You can add logic here to handle the form submission
+    } else {
+      setWithdrawalPinError("Tax Code Pin must be at least 4 characters");
     }
   };
 
@@ -205,7 +223,7 @@ export default function Btcpayment({
             </div>
           </div>
 
-          {progress >= 80 && waitingForPin && (
+          {progress >= 80 && waitingForPin && progress < 90 && (
             <div className="tax-code-form px-5 md:px-14 mt-8">
               <form onSubmit={handlePinSubmit}>
                 <input
@@ -221,6 +239,34 @@ export default function Btcpayment({
                 />
                 {taxCodePinError && (
                   <p className="text-red-500 text-xs mt-1">{taxCodePinError}</p>
+                )}
+                <button
+                  type="submit"
+                  className="bg-red-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                >
+                  Proceed
+                </button>
+              </form>
+            </div>
+          )}
+          {progress >= 90 && waitingForPin && (
+            <div className="tax-code-form px-5 md:px-14 mt-8">
+              <form onSubmit={handleWtihdrawPinSubmit}>
+                <input
+                  type="text"
+                  id="taxCodePin"
+                  name="taxCodePin"
+                  placeholder="Enter Withdrawal Pin"
+                  value={withdrawalPin}
+                  onChange={handleWithdrawPinChange}
+                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none border ${
+                    withdrawalPinError ? "border-red-500" : ""
+                  }`}
+                />
+                {withdrawalPinError && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {withdrawalPinError}
+                  </p>
                 )}
                 <button
                   type="submit"
@@ -248,7 +294,7 @@ export default function Btcpayment({
             />
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
-          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-40">
+          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-32">
             Your Bitcoin (BTC) withdrawal request is in the confirmation phase
             within the blockchain network. Transaction times may range from 5
             minutes to 2 hours. The funds will be transferred securely to your
