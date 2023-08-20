@@ -4,6 +4,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { countryList } from "../../main/AuthUi/countries";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../ui/select";
+import { ScrollArea } from "../../ui/scroll-area";
 
 export default function BankWire() {
   const initialFormData = {
@@ -162,7 +171,7 @@ export default function BankWire() {
                 >
                   Select Your Bank Location
                 </label>
-                <input
+                {/* <input
                   type="text"
                   id="bankLocation"
                   name="bankLocation"
@@ -172,7 +181,21 @@ export default function BankWire() {
                   className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
                     formErrors.bankLocation ? "border-red-500 border" : "border"
                   }`}
-                />
+                /> */}
+                <Select className="outline-none">
+                  <SelectTrigger className="outline-none font-bold">
+                    <SelectValue placeholder="Select country" />
+                  </SelectTrigger>
+                  <SelectContent className="font-bold">
+                    <ScrollArea className="h-[200px]">
+                      {countryList.map((list) => (
+                        <SelectItem key={list.label} value={list.label}>
+                          {list.label}
+                        </SelectItem>
+                      ))}
+                    </ScrollArea>
+                  </SelectContent>
+                </Select>
                 {formErrors.bankLocation && (
                   <p className="text-red-500 text-xs mt-1">
                     {formErrors.bankLocation}
