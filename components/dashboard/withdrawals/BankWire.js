@@ -505,12 +505,11 @@ export default function BankWire() {
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
           <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-24">
-            Your wire transfer request is underway. Completion may span several
-            hours to 3 business days, subject to standard banking procedures.
-            Rest assured, the designated account will securely receive the
-            funds. Please refer to your online banking portal for transaction
-            status or engage our support team for assistance. Thank you for
-            choosing our services.
+            Your wire transfer is underway and may take several hours to 3
+            business days, subject to standard banking procedures. For
+            transaction status or assistance, please refer to your online
+            banking portal or contact our support team. Thank you for choosing
+            our services.
           </p>
           <Link href="/dashboard" passHref>
             {" "}

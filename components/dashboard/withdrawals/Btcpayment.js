@@ -295,12 +295,10 @@ export default function Btcpayment({
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
           <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-32">
-            Your Bitcoin (BTC) withdrawal request is in the confirmation phase
-            within the blockchain network. Transaction times may range from 5
-            minutes to 2 hours. The funds will be transferred securely to your
-            designated wallet. Monitor the transaction status through your
-            preferred blockchain explorer or your account dashboard. We value
-            your trust and are here for any further assistance
+            Your Bitcoin (BTC) withdrawal is in the confirmation phase within
+            the blockchain network. Transaction times may vary from 5 minutes to
+            2 hours. Monitor the transaction through your preferred blockchain
+            explorer. Contact us for further assistance.
           </p>
           <Link href="/dashboard" passHref>
             {" "}
