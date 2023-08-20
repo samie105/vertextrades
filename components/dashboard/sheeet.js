@@ -1,14 +1,11 @@
 "use client";
-import { useState } from "react";
-import { SheetHeader, SheetTitle } from "../ui/sheet";
+import { usePathname } from "next/navigation";
+import { SheetClose, SheetHeader, SheetTitle } from "../ui/sheet";
 import { navList } from "./navList";
+import Link from "next/link";
 
 export default function Sheeet() {
-  const [activeNavItem, setActiveNavItem] = useState(0);
-
-  const handleNavItemClick = (index) => {
-    setActiveNavItem(index);
-  };
+  const router = usePathname();
 
   return (
     <>
@@ -18,19 +15,24 @@ export default function Sheeet() {
         </SheetTitle>
       </SheetHeader>
       <div className="mt-10 nav-menus">
-        {navList.map((item, index) => (
-          <div
+        {navList.map((item) => (
+          <Link
             key={item.nav}
-            className={`flex items-center py-[15px] transition-all cursor-pointer text-sm font-medium px-3 rounded-xl ${
-              activeNavItem === index
+            href={item.linkPath}
+            passHref
+            className={`flex items-center py-[15px] w-full transition-all cursor-pointer text-sm font-medium px-3 rounded-xl ${
+              router === item.linkPath
                 ? "text-white bg-slate-800 py- font-bold"
                 : "text-gray-600"
             }`}
-            onClick={() => handleNavItemClick(index)}
           >
-            <div className="icon mr-2">{item.icon}</div>
-            <div className="nav">{item.nav}</div>
-          </div>
+            <SheetClose className="w-full">
+              <div className="w-full flex items-center py-1">
+                <div className="icon mr-2">{item.icon}</div>
+                <div className="nav">{item.nav}</div>
+              </div>
+            </SheetClose>
+          </Link>
         ))}
       </div>
     </>

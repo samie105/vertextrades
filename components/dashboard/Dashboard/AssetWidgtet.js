@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { MarketOverview } from "react-tradingview-embed";
 
@@ -7,11 +8,14 @@ export default function AssetWidgtet() {
     <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg my-4 ">
       <div className="header p-5 flex w-full items-center justify-between">
         <h2 className="text-lg font-bold">My Assets</h2>
-        <div>
-          <button className="bg-slate-800 rounded-full py-3 px-5 text-white font-bold text-xs md:text-sm">
-            Deposit
-          </button>
-        </div>
+        <Link href="dashboard/deposits" passHref>
+          {" "}
+          <div>
+            <button className="bg-slate-800 rounded-full py-3 px-5 text-white font-bold text-xs md:text-sm">
+              Deposit
+            </button>
+          </div>
+        </Link>
       </div>
       <MarketOverview
         widgetPropsAny={{
