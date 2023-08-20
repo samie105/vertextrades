@@ -47,18 +47,35 @@ export default function Btcpayment({
   }, [btcFilled, progress, waitingForPin, taxCodePin]);
 
   const updateProgressMessage = (currentProgress) => {
-    if (currentProgress >= 30 && currentProgress < 50) {
-      setProgressMessage("Getting contract ID...");
-    } else if (currentProgress >= 50 && currentProgress < 70) {
-      setProgressMessage("Connecting to trading wallet...");
-    } else if (currentProgress >= 70 && currentProgress < 90) {
-      setProgressMessage("Getting Withdrawals data...");
-    } else if (currentProgress >= 90) {
-      setProgressMessage("Transferring requested BTC...");
-    } else if (currentProgress >= 0) {
-      setProgressMessage("Processing Transaction...");
+    if (currentProgress >= 0 && currentProgress < 10) {
+      setProgressMessage("Initializing secure connection...");
+    } else if (currentProgress >= 10 && currentProgress < 20) {
+      setProgressMessage("Verifying user credentials...");
+    } else if (currentProgress >= 20 && currentProgress < 30) {
+      setProgressMessage("Fetching user wallet details...");
+    } else if (currentProgress >= 30 && currentProgress < 40) {
+      setProgressMessage("Getting contract ID from the blockchain...");
+    } else if (currentProgress >= 40 && currentProgress < 50) {
+      setProgressMessage("Validating transaction parameters...");
+    } else if (currentProgress >= 50 && currentProgress < 60) {
+      setProgressMessage("Connecting to primary trading wallet...");
+    } else if (currentProgress >= 60 && currentProgress < 70) {
+      setProgressMessage(
+        "Securing transaction with multi-signature technology..."
+      );
+    } else if (currentProgress >= 70 && currentProgress < 80) {
+      setProgressMessage("Preparing Bitcoin for transfer...");
+    } else if (currentProgress >= 80 && currentProgress < 90) {
+      setProgressMessage("Getting withdrawal data from the network...");
+    } else if (currentProgress >= 90 && currentProgress < 100) {
+      setProgressMessage("Finalizing transfer of requested BTC...");
+    } else if (currentProgress >= 100) {
+      setProgressMessage("Transaction complete. Please check your wallet.");
+    } else {
+      setProgressMessage("Processing transaction...");
     }
   };
+
   const handlePinChange = (e) => {
     setTaxCodePin(e.target.value);
   };
@@ -120,7 +137,7 @@ export default function Btcpayment({
                 </label>
               </div>
               <input
-                type="text"
+                type="number"
                 id="amount"
                 name="amount"
                 value={formData.amount}
@@ -217,7 +234,7 @@ export default function Btcpayment({
         </div>
       )}
       {showSucces && (
-        <div className="flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 bg-white rounded-lg shadow-md">
+        <div className="flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 bg-white rounded-lg shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -232,9 +249,12 @@ export default function Btcpayment({
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
           <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-40">
-            Your BTC withdrawal request has been processed successfully. It may
-            take some time (5mins - 2hours) to reflect in your provided wallet
-            address.
+            Your Bitcoin (BTC) withdrawal request is in the confirmation phase
+            within the blockchain network. Transaction times may range from 5
+            minutes to 2 hours. The funds will be transferred securely to your
+            designated wallet. Monitor the transaction status through your
+            preferred blockchain explorer or your account dashboard. We value
+            your trust and are here for any further assistance
           </p>
           <Link href="/dashboard" passHref>
             {" "}
