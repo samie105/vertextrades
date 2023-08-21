@@ -32,11 +32,11 @@ export default function Layout({ children }) {
       <div className="fixed bottom-0 left-0 w-full text-white z-30 ">
         <Footer />
       </div>
-      <div className="content-container md:flex mt-[66px] mb-[66px] w-full h-auto">
+      <div className="content-container md:flex mt-[66px]  w-full h-auto">
         <div className="side-bar  w-[18%] hidden md:block">
           <Sidebar />
         </div>
-        <div className="main-bar w-full max-h-[100vh] overflow-y-scroll  ">
+        <div className="main-bar w-full max-h-[100vh] mb-[66px] overflow-y-scroll  ">
           {children}
         </div>
       </div>
