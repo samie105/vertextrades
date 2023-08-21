@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Switch } from "../../ui/switch";
+import { usePathname } from "next/navigation";
 
 export default function AccountSect() {
+  const path = usePathname();
   const [signalStrength, setSignalStrength] = useState(90);
   const [maintenanceGauge, setMaintenanceGauge] = useState(99);
   const [autoTrades, setAutoTrades] = useState(true);
@@ -16,8 +18,18 @@ export default function AccountSect() {
   }, []);
   return (
     <div className="p-4">
-      <div className="card-container p-4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-xl">
-        <div className="accoutsect font-medium my-2">
+      <div
+        className={`card-container p-4 shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] ${
+          path.includes("livetrades")
+            ? ""
+            : "grid grid-cols-1 lg:grid-cols-2 gap-2"
+        }  rounded-xl`}
+      >
+        <div
+          className={`accoutsect font-medium my-2 ${
+            path.includes("livetrades") ? "hidden" : ""
+          }`}
+        >
           <div className="name-cont flex items-center text-sm py-1">
             {" "}
             <svg

@@ -30,7 +30,7 @@ export default function Nav() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                 >
                   <path
                     fillRule="evenodd"
@@ -50,7 +50,7 @@ export default function Nav() {
         </div>
         <div className="nav-tools text-sm flex items-center">
           <Select defaultValue="Bitcoin">
-            <SelectTrigger className="rounded-lg border-0 focus:border-0">
+            <SelectTrigger className="">
               <SelectValue className="outline-none " />
             </SelectTrigger>
             <SelectContent className="outline-none focus:outline-none">
@@ -78,7 +78,7 @@ export default function Nav() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="md:w-5 md:h-5 w-4 h-4 md:mr-1"
+                  className="md:w-5 md:h-5 w-5 h-5 md:mr-1"
                 >
                   <path
                     fillRule="evenodd"
@@ -109,20 +109,76 @@ export default function Nav() {
               </div>
             </PopoverContent>
           </Popover>
-          <div className=" flex font-bold text-red-600 rounded-full p-3 bg-red-50 md:mr-5 text-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-4 h-4 "
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
+          <Popover>
+            <PopoverTrigger>
+              <div className=" flex font-bold text-red-600 rounded-full p-3 bg-red-50 md:mr-5 text-sm">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-5 h-5 "
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </PopoverTrigger>
+            <PopoverContent className="w-[200px] mx-3">
+              <div className="content">
+                <div className="deposit flex items-center text-sm py-3 rounded-lg px-2 font-bold text-green-800 bg-green-50">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M1 4a1 1 0 011-1h16a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4zm12 4a3 3 0 11-6 0 3 3 0 016 0zM4 9a1 1 0 100-2 1 1 0 000 2zm13-1a1 1 0 11-2 0 1 1 0 012 0zM1.75 14.5a.75.75 0 000 1.5c4.417 0 8.693.603 12.749 1.73 1.111.309 2.251-.512 2.251-1.696v-.784a.75.75 0 00-1.5 0v.784a.272.272 0 01-.35.25A49.043 49.043 0 001.75 14.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+
+                  <p>Deposit</p>
+                </div>
+                <div className="withdraw flex items-center text-sm py-3 rounded-lg px-2 font-bold text-slate-800 bg-slate-50 my-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <path d="M1 4.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 2H3.25A2.25 2.25 0 001 4.25zM1 7.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 5H3.25A2.25 2.25 0 001 7.25zM7 8a1 1 0 011 1 2 2 0 104 0 1 1 0 011-1h3.75A2.25 2.25 0 0119 10.25v5.5A2.25 2.25 0 0116.75 18H3.25A2.25 2.25 0 011 15.75v-5.5A2.25 2.25 0 013.25 8H7z" />
+                  </svg>
+                  <p>Withdraw</p>
+                </div>
+                <div className="logout flex items-center text-sm py-3 rounded-lg text-red-600 bg-red-50 px-2 font-bold">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
+                      clipRule="evenodd"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114l-1.048-.943h9.546A.75.75 0 0019 10z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+
+                  <p>Logout</p>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </>

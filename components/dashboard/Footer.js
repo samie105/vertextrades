@@ -64,7 +64,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="font-bold text-sm pl-4 flex items-center">
+      <div className="font-bold text-sm pl-4 flex pb-3 md:pb-0 items-center">
         <FlagIcon code="US" size={16} />
         <div className="mx-2">
           <code>{currentTime}</code>
