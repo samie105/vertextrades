@@ -65,10 +65,20 @@ const Livetrade = () => {
                     </div>
                   </div>
                   <div className="icon">
-                    <div>{items.icon}</div>
+                    <div>
+                      {items.name === "live" ? (
+                        <div className="live md:hidden">
+                          <div className="live-info p-1 flex items-center animate-ping bg-green-700 text-xs mx-3 text-white rounded-full">
+                            <div className="dot w-1 h-1 animate-ping bg-white  rounded-full"></div>{" "}
+                          </div>
+                        </div>
+                      ) : (
+                        items.icon
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="extra font-semibold text-xs text-green-500">
+                <div className="extra font-semibold text-xs text-green-700">
                   {items.name === "live"
                     ? `${changePercent.toFixed(1)}% from last second`
                     : "+0% from last month"}
