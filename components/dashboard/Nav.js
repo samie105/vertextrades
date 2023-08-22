@@ -129,7 +129,7 @@ export default function Nav() {
             </PopoverTrigger>
             <PopoverContent className="w-[250px] mx-3">
               <div className="content">
-                <Link href="deposits" passHref>
+                <Link href="/dashboard/deposits" passHref>
                   <div className="deposit flex items-center text-sm py-4 rounded-lg px-2 font-bold text-slate-800 bg-slate-50">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -147,8 +147,8 @@ export default function Nav() {
                     <p>Deposit</p>
                   </div>
                 </Link>
-                <Link href="withdrawals" passHref>
-                  <div className="withdraw flex items-center text-sm py-4 rounded-lg px-2 font-bold text-slate-800 bg-slate-50 my-2">
+                <Link href="/dashboard/withdrawals" passHref>
+                  <div className="withdrawals flex items-center text-sm py-4 rounded-lg px-2 font-bold text-slate-800 bg-slate-50 my-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"

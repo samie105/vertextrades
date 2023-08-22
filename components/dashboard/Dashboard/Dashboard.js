@@ -7,6 +7,7 @@ import LatestTrades from "./LatestTrades";
 import AssetWidgetThree from "./AssetWidgetThree";
 import AssetWidgetFour from "./AssetWidgetFour";
 import Link from "next/link";
+import { Card, CardContent } from "../../ui/card";
 
 export default function Dash() {
   return (
@@ -72,7 +73,7 @@ export default function Dash() {
                 </Link>
                 <Link href="dashboard/deposits" passHref>
                   {" "}
-                  <div className="mx-1 bg-slate-700 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
+                  <div className="mx-1 bg-green-700 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
@@ -95,24 +96,28 @@ export default function Dash() {
         <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-4 gap-2">
           {dashhh.map((items) => (
             <>
-              <div
-                key={items.name}
-                className={`card border rounded-lg p-5 flex items-center bg-slate-800/5 cursor-pointer `}
-              >
-                <div
-                  className={`icon p-3 rounded-full text-white mr-4 bg-slate-800`}
-                >
-                  {items.icon}
-                </div>
-                <div>
-                  <div className="card-header capitalize font-bold">
-                    {items.name}
+              <Card>
+                <CardContent className="p-4 bg-gray-50">
+                  <div className="cont flex justify-between rounded-xl">
+                    <div className="deets w-full">
+                      <div className="name capitalize text-sm font-bold">
+                        {items.name}
+                      </div>
+                      <div
+                        className={`bal font-bold text-xl text-black my-2 md:text-2xl`}
+                      >
+                        {items.bal}
+                      </div>
+                    </div>
+                    <div className="icon">
+                      <div>{items.icon}</div>
+                    </div>
                   </div>
-                  <div className="card-info mt-1 text-base font-bold text-gray-500">
-                    {items.bal}
+                  <div className="extra font-semibold text-xs text-green-700">
+                    +0 from last month
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </>
           ))}
         </div>

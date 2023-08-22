@@ -69,8 +69,8 @@ const Livetrade = () => {
                   <div className="icon">
                     <div>
                       {items.name === "live" ? (
-                        <div className="live md:hidden">
-                          <div className="live-info p-1 flex items-center animae-ping bg-green-700 text-xs mx-3 text-white rounded-full">
+                        <div className="live">
+                          <div className="live-info p-1 flex items-center bg-green-700 text-xs text-white rounded-full">
                             <div className="dot w-1 h-1 animate-ping bg-white  rounded-full"></div>{" "}
                           </div>
                         </div>
