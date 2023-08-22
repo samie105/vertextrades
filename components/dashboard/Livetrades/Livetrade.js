@@ -47,26 +47,31 @@ const Livetrade = () => {
         {livess.map((items) => (
           <div key={items.name}>
             <Card>
-              <CardContent className="cont flex justify-between p-4 rounded-xl">
-                <div className="deets w-full">
-                  <div className="name capitalize text-sm font-bold">
-                    {items.name}
+              <CardContent className="p-4">
+                <div className="cont flex justify-between rounded-xl">
+                  <div className="deets w-full">
+                    <div className="name capitalize text-sm font-bold">
+                      {items.name}
+                    </div>
+                    <div className={`bal font-bold text-2xl text-black my-1`}>
+                      {items.name === "live" ? (
+                        <CountUp
+                          end={randomNumbers[items.name]}
+                          duration={0.5}
+                        />
+                      ) : (
+                        items.bal
+                      )}
+                    </div>
                   </div>
-                  <div className={`bal font-bold text-2xl text-black my-1`}>
-                    {items.name === "live" ? (
-                      <CountUp end={randomNumbers[items.name]} duration={0.5} />
-                    ) : (
-                      items.bal
-                    )}
-                  </div>
-                  <div className="extra font-semibold text-xs text-green-500">
-                    {items.name === "live"
-                      ? `${changePercent.toFixed(1)}% from last second`
-                      : "+0% from last month"}
+                  <div className="icon">
+                    <div>{items.icon}</div>
                   </div>
                 </div>
-                <div className="icon">
-                  <div>{items.icon}</div>
+                <div className="extra font-semibold text-xs text-green-500">
+                  {items.name === "live"
+                    ? `${changePercent.toFixed(1)}% from last second`
+                    : "+0% from last month"}
                 </div>
               </CardContent>
             </Card>
