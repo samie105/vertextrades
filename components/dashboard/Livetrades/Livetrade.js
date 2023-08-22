@@ -53,7 +53,9 @@ const Livetrade = () => {
                     <div className="name capitalize text-sm font-bold">
                       {items.name}
                     </div>
-                    <div className={`bal font-bold text-2xl text-black my-1`}>
+                    <div
+                      className={`bal font-bold text-xl text-black my-2 md:text-2xl`}
+                    >
                       {items.name === "live" ? (
                         <CountUp
                           end={randomNumbers[items.name]}
@@ -68,7 +70,7 @@ const Livetrade = () => {
                     <div>
                       {items.name === "live" ? (
                         <div className="live md:hidden">
-                          <div className="live-info p-1 flex items-center animate-ping bg-green-700 text-xs mx-3 text-white rounded-full">
+                          <div className="live-info p-1 flex items-center animae-ping bg-green-700 text-xs mx-3 text-white rounded-full">
                             <div className="dot w-1 h-1 animate-ping bg-white  rounded-full"></div>{" "}
                           </div>
                         </div>
