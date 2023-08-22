@@ -47,7 +47,7 @@ const Livetrade = () => {
         {livess.map((items) => (
           <div key={items.name}>
             <Card>
-              <CardContent className="p-4">
+              <CardContent className="p-4 bg-gray-50">
                 <div className="cont flex justify-between rounded-xl">
                   <div className="deets w-full">
                     <div className="name capitalize text-sm font-bold">
