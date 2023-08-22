@@ -2,12 +2,13 @@ export const livess = [
   {
     name: "live",
     bal: "$0.00",
+
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-5 h-5 animate-pulse text-green-500"
       >
         <path
           fillRule="evenodd"
@@ -25,7 +26,7 @@ export const livess = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-5 h-5 text-red-600"
       >
         <path
           fillRule="evenodd"
@@ -43,7 +44,7 @@ export const livess = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-5 h-5 text-blue-700"
       >
         <path
           fillRule="evenodd"
@@ -61,7 +62,7 @@ export const livess = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-5 h-5 text-yellow-600"
       >
         <path
           fillRule="evenodd"
@@ -79,7 +80,7 @@ export const livess = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-5 h-5 text-yellow-600"
       >
         <path
           fillRule="evenodd"
@@ -97,7 +98,7 @@ export const livess = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5"
+        className="w-5 h-5 text-yellow-600"
       >
         <path
           fillRule="evenodd"

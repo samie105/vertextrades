@@ -1,45 +1,42 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { livess } from "./lives";
+import { Card, CardContent } from "../../ui/card";
+import CountUp from "react-countup";
 
 const Livetrade = () => {
   const [randomNumbers, setRandomNumbers] = useState({});
+  const [changePercent, setChangePercent] = useState(0); // Store the change percentage for "live" only
 
   useEffect(() => {
-    // Function to generate a random number between min and max (inclusive)
-    const getRandomNumberInRange = (min, max) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
-
-    // Function to generate a random number near the previous number
-    const generateRandomNumberNearPrevious = (previousNumber) => {
-      const minDiff = -10; // Minimum difference from the previous number
-      const maxDiff = 10; // Maximum difference from the previous number
-      const randomDiff = getRandomNumberInRange(minDiff, maxDiff);
-      const newNumber = previousNumber + randomDiff;
-      return Math.max(newNumber, 20); // Ensure the new number is not below 40
-    };
-
-    // Initialize the random numbers for each item in the list
+    // Initialize random numbers
     const initialRandomNumbers = {};
     livess.forEach((item) => {
-      initialRandomNumbers[item.name] = getRandomNumberInRange(20, 120);
+      initialRandomNumbers[item.name] =
+        Math.floor(Math.random() * (120 - 20 + 1)) + 20;
     });
     setRandomNumbers(initialRandomNumbers);
 
-    // Function to update the random numbers every second
+    // Set interval to update the random numbers every second
     const interval = setInterval(() => {
       setRandomNumbers((prevRandomNumbers) => {
-        const updatedRandomNumbers = {};
-        livess.forEach((item) => {
-          const previousNumber = prevRandomNumbers[item.name];
-          updatedRandomNumbers[item.name] =
-            generateRandomNumberNearPrevious(previousNumber);
-        });
+        const updatedRandomNumbers = { ...prevRandomNumbers };
+        const previousNumber = prevRandomNumbers["live"];
+        const minDiff = -10;
+        const maxDiff = 10;
+        const randomDiff =
+          Math.floor(Math.random() * (maxDiff - minDiff + 1)) + minDiff;
+        const newNumber = Math.max(previousNumber + randomDiff, 20);
+        updatedRandomNumbers["live"] = newNumber;
+
+        const percentChange =
+          ((newNumber - previousNumber) / previousNumber) * 100;
+        setChangePercent(percentChange);
+
         return updatedRandomNumbers;
       });
-    }, 1000); // Change the number every 1 second
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -48,40 +45,31 @@ const Livetrade = () => {
     <div className="p-4">
       <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-3 gap-2">
         {livess.map((items) => (
-          <div
-            key={items.name}
-            className={`card border rounded-lg p-5 flex items-center ${
-              items.name === "live"
-                ? "bg-green-800/5 animae-pulse"
-                : "bg-slate-800/5"
-            } cursor-pointer `}
-          >
-            <div
-              className={`icon p-3 rounded-full text-white mr-4 ${
-                items.name === "live"
-                  ? "bg-green-800 animate-pulse"
-                  : "bg-slate-800"
-              } bg-slate-800`}
-            >
-              {items.icon}
-            </div>
-            <div>
-              <div className={`card-header capitalize font-bold`}>
-                <div className="flex items-center">
-                  {items.name === "live" && (
-                    <div className="number mr-1">
-                      {randomNumbers[items.name]}
-                    </div>
-                  )}
-                  <div> {items.name}</div>
+          <div key={items.name}>
+            <Card>
+              <CardContent className="cont flex justify-between p-4 rounded-xl">
+                <div className="deets w-full">
+                  <div className="name capitalize text-sm font-bold">
+                    {items.name}
+                  </div>
+                  <div className={`bal font-bold text-2xl text-black my-1`}>
+                    {items.name === "live" ? (
+                      <CountUp end={randomNumbers[items.name]} duration={0.5} />
+                    ) : (
+                      items.bal
+                    )}
+                  </div>
+                  <div className="extra font-semibold text-xs text-green-500">
+                    {items.name === "live"
+                      ? `${changePercent.toFixed(1)}% from last second`
+                      : "+0% from last month"}
+                  </div>
                 </div>
-              </div>
-              <div
-                className={`card-info mt-1 text-base font-bold text-gray-500`}
-              >
-                {items.bal}
-              </div>
-            </div>
+                <div className="icon">
+                  <div>{items.icon}</div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         ))}
       </div>

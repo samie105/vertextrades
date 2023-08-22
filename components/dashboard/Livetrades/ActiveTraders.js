@@ -141,26 +141,43 @@ const ActiveTraders = () => {
       <div className=" py-5 shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         {" "}
         <div className="heading text-lg font-bold text-slate-800 px-3 my-2 rounded-lg">
-          Latest Trades
+          Latest Trades{" "}
+          <span className="text-green-500 text-sm">(Highest Gainers)</span>
         </div>
         <Table className=" ">
           <TableRow>
-            <TableHead className="font-bold">Transaction ID</TableHead>
-            <TableHead className="font-bold">Name</TableHead>
-            <TableHead className="font-bold">Profit</TableHead>
-            <TableHead className="font-bold">Market</TableHead>
-            <TableHead className="font-bold">Auto-Trade</TableHead>
+            <TableHead className="font-bold text-black">
+              Transaction ID
+            </TableHead>
+            <TableHead className="font-bold text-black">Name</TableHead>
+            <TableHead className="font-bold text-black">Profit</TableHead>
+            <TableHead className="font-bold text-black">Market</TableHead>
+            <TableHead className="font-bold text-black">Auto-Trade</TableHead>
           </TableRow>
           <TableBody>
             {trades.map((trade, index) => (
               <TableRow key={index} className="border-0">
-                <TableCell className="border-0">
+                <TableCell className="border-0 font-bold text--800">
                   {trade.transactionId}
                 </TableCell>
-                <TableCell className="border-0">{trade.name}</TableCell>
-                <TableCell className="border-0">{trade.profit}</TableCell>
-                <TableCell className="border-0">{trade.market}</TableCell>
-                <TableCell className="border-0">{trade.autoTrade}</TableCell>
+                <TableCell className="border-0 font-bold text-red-900">
+                  {trade.name}
+                </TableCell>
+                <TableCell className="border-0 text-green-600 font-bold">
+                  {trade.profit}
+                </TableCell>
+                <TableCell className="border-0 font-bold">
+                  {trade.market}
+                </TableCell>
+                <TableCell
+                  className={`border-0 ${
+                    trade.autoTrade === "Active"
+                      ? "text-green-600 font-bold"
+                      : "text-red-600 font-bold"
+                  }`}
+                >
+                  {trade.autoTrade}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
