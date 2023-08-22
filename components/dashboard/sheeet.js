@@ -22,8 +22,8 @@ export default function Sheeet() {
             passHref
             className={`flex items-center py-[15px] w-full transition-all cursor-pointer text-sm font-medium px-3 rounded-xl ${
               router === item.linkPath
-                ? "text-white bg-slate-800 py- font-bold"
-                : "text-gray-600"
+                ? "text-white bg-slate-800 font-bold"
+                : "text-black font-semibold"
             }`}
           >
             <SheetClose className="w-full">
