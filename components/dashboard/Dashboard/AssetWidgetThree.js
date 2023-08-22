@@ -4,7 +4,7 @@ import { MiniChart, SymbolOverview } from "react-tradingview-embed";
 
 export default function AssetWidgetThree() {
   return (
-    <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
+    <div className="shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
       <div className="header p-5 flex w-full items-center justify-between">
         <h2 className="text-lg font-bold">Trendy Stock Markets</h2>
         <Link href="dashboard/deposits" passHref>
