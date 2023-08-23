@@ -9,14 +9,11 @@ import dynamic from "next/dynamic";
 
 /* eslint-disable react/no-unescaped-entities */
 function GettingStarted() {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <>
       <section
         id="Getting Started"
-        className="stepContainer flex flex-col lg:flex-row md:flex-col  mt-10 mx-8 relative max-w-[100vw]"
+        className="stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-5 md:pt-10 mt-10 px-8 relative max-w[100vw]"
       >
         <div className="absolute w-full h-full" data-aos="fade-right">
           {" "}

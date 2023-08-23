@@ -3,7 +3,7 @@ import { TickerTape } from "react-tradingview-embed";
 
 export default function TradingView() {
   return (
-    <div>
+    <div className="mb-4">
       <div className="tradingview-widget-container w-full">
         <TickerTape
           widgetPropsAny={{

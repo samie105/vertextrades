@@ -50,14 +50,14 @@ export default function Navbar() {
     <>
       <div
         className={`nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors ${
-          isScrolled ? "bg-slate-900" : "bg-transparent"
+          isScrolled ? "bg-black" : "bg-transparent"
         }`}
       >
         <div className="logo-area">
           <h2 className="font-bold text-base">Broker Logo Name</h2>
         </div>
         <div className="Navigation-Items">
-          <div className="itemcontainer lg:flex hidden">
+          <div className="itemcontainer lg:flex hidden text-sm">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -70,13 +70,13 @@ export default function Navbar() {
                 onSetActive={() => setActiveNavItem(item.label)}
               >
                 <div
-                  className={`text-sm ${
+                  className={`text-xs ${
                     activeNavItem === item.label
                       ? "font-bold opacity-100"
                       : "font-normal opacity-40"
                   } pl-3 cursor-pointer transition-opacity duration-500 text-white ${
                     activeNavItem !== item.label
-                      ? "text-gray-400 hover:opacity-100"
+                      ? "text-white hover:opacity-100"
                       : ""
                   }`}
                   onClick={() => handleNavItemClick(item.label)}
@@ -91,8 +91,8 @@ export default function Navbar() {
           <DialogTrigger>
             <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden">
               <div
-                className="btn1 px-4 cursor-pointer flex py-3 rounded-xl"
-                style={{ backgroundColor: "#ffffff10" }}
+                className="btn1 px-4 cursor-pointer flex py-3 bg-green-600 rounded-xl"
+                // style={{ backgroundColor: "#ffffff10" }}
               >
                 <p className="px-0.5 opacity-90">Get started trading</p>
               </div>
@@ -116,13 +116,10 @@ export default function Navbar() {
                 />
               </svg>
             </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="bg-slate-900 border-0 text-white"
-            >
+            <SheetContent side="right" className="bg-white border-0">
               <SheetHeader className="text-white">
                 <SheetTitle>
-                  <div className="text-white font-bold">Broker Name</div>
+                  <div className=" font-bold">Broker Name</div>
                 </SheetTitle>
               </SheetHeader>
               <div className="nav-menus mt-10 flex-col w-full flex">
@@ -140,9 +137,9 @@ export default function Navbar() {
                   >
                     <SheetClose key={item.label} className="w-full">
                       <div
-                        className={`menu-item mb-1 py-3 opacity-50 hover:opacity-90 duration-200 cursor-pointer hover:bg-slate-800 px-3 rounded-md flex items-center ${
+                        className={`menu-item mb-1 py-3 hover:opacity-90 text-gray-500 duration-200 cursor-pointer hover:bg-gray-100 px-3 rounded-md flex items-center ${
                           activeNavItem === item.label
-                            ? "bg-slate-800 text-white opacity-100 font-bold rounded-xl hover:bg-slate-800"
+                            ? "bg-green-50 opacity-100 text-green-600 font-bold rounded-xl hover:bg-green-50"
                             : ""
                         }`}
                         onClick={() => handleNavItemClick(item.label)}
@@ -155,11 +152,13 @@ export default function Navbar() {
               </div>
               <Dialog>
                 <DialogTrigger>
-                  <div className="cta-button justify-center flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
-                    <button className="w-full bg-slate-800 text-white px-7 py-3 rounded-xl">
-                      Login or Sign up
-                    </button>
-                  </div>
+                  <SheetClose>
+                    <div className="cta-button justify-center text-sm flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
+                      <button className="w-full bg-green-700 text-white px-7 py-4 rounded-xl font-bold">
+                        Login or Sign up
+                      </button>
+                    </div>
+                  </SheetClose>
                 </DialogTrigger>
                 <AuthUi />
               </Dialog>
