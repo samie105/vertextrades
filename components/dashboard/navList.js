@@ -6,7 +6,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-green-500"
+        className="w-5 h-5"
       >
         <path d="M14 6H6v8h8V6z" />
         <path
@@ -25,7 +25,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-yellow-600"
+        className="w-5 h-5"
       >
         <path
           fillRule="evenodd"
@@ -43,7 +43,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-green-500"
+        className="w-5 h-5"
       >
         <path
           fillRule="evenodd"
@@ -61,7 +61,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-red-600"
+        className="w-5 h-5"
       >
         <path d="M1 4.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 2H3.25A2.25 2.25 0 001 4.25zM1 7.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 5H3.25A2.25 2.25 0 001 7.25zM7 8a1 1 0 011 1 2 2 0 104 0 1 1 0 011-1h3.75A2.25 2.25 0 0119 10.25v5.5A2.25 2.25 0 0116.75 18H3.25A2.25 2.25 0 011 15.75v-5.5A2.25 2.25 0 013.25 8H7z" />
       </svg>
@@ -75,7 +75,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-blue-700"
+        className="w-5 h-5"
       >
         <path
           fillRule="evenodd"
@@ -93,7 +93,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-orange-600"
+        className="w-5 h-5"
       >
         <path d="M10.75 10.818v2.614A3.13 3.13 0 0011.888 13c.482-.315.612-.648.612-.875 0-.227-.13-.56-.612-.875a3.13 3.13 0 00-1.138-.432zM8.33 8.62c.053.055.115.11.184.164.208.16.46.284.736.363V6.603a2.45 2.45 0 00-.35.13c-.14.065-.27.143-.386.233-.377.292-.514.627-.514.909 0 .184.058.39.202.592.037.051.08.102.128.152z" />
         <path
@@ -112,7 +112,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-yellow-700"
+        className="w-5 h-5"
       >
         <path
           fillRule="evenodd"
@@ -130,7 +130,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-blue-800"
+        className="w-5 h-5"
       >
         <path d="M10 9a3 3 0 100-6 3 3 0 000 6zM6 8a2 2 0 11-4 0 2 2 0 014 0zM1.49 15.326a.78.78 0 01-.358-.442 3 3 0 014.308-3.516 6.484 6.484 0 00-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 01-2.07-.655zM16.44 15.98a4.97 4.97 0 002.07-.654.78.78 0 00.357-.442 3 3 0 00-4.308-3.517 6.484 6.484 0 011.907 3.96 2.32 2.32 0 01-.026.654zM18 8a2 2 0 11-4 0 2 2 0 014 0zM5.304 16.19a.844.844 0 01-.277-.71 5 5 0 019.947 0 .843.843 0 01-.277.71A6.975 6.975 0 0110 18a6.974 6.974 0 01-4.696-1.81z" />
       </svg>
@@ -144,7 +144,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-red-700"
+        className="w-5 h-5"
       >
         <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
       </svg>
@@ -158,7 +158,7 @@ export const navList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-5 h-5 text-cyan-600"
+        className="w-5 h-5"
       >
         <path
           fillRule="evenodd"

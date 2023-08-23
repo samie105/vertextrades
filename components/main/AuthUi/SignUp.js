@@ -10,7 +10,7 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { Calendar } from "../../ui/calendar";
 import PhoneInput from "react-phone-input-2";
-
+import VerificationPage from "./VerifficationPage";
 import {
   Select,
   SelectContent,
@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "../../ui/select";
 import { countryList } from "./countries";
+import { FlagIcon } from "react-flag-kit";
 
 const stepValidationSchemas = [
   z.object({
@@ -75,15 +76,22 @@ export function DatePickerDemo({ selected, onSelect }) {
 }
 
 const Signup = () => {
+  const [isVerificationStep, setIsVerificationStep] = useState(false);
+  const [formData, setFormData] = useState({});
+
   const [currentStep, setCurrentStep] = useState(0);
-  const { control, handleSubmit, formState, setError, reset } = useForm({
+  const { control, handleSubmit, getValues, setError, formState } = useForm({
     mode: "onChange",
+    resolver: zodResolver(stepValidationSchemas[currentStep]),
   });
 
-  const [selectedDate, setSelectedDate] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState("us");
 
   const handleSignupSubmit = (data) => {
+    const finalData = {
+      ...formData,
+      ...data,
+    };
     if (data.password !== data.confirmPassword) {
       setError("confirmPassword", {
         type: "manual",
@@ -91,7 +99,9 @@ const Signup = () => {
       });
       return;
     }
-    console.log(data);
+
+    setIsVerificationStep(true);
+    console.log("data", finalData);
   };
 
   const handleCountryChange = (event) => {
@@ -100,16 +110,25 @@ const Signup = () => {
 
   const handleNextStep = () => {
     const currentStepSchema = stepValidationSchemas[currentStep];
-    const result = currentStepSchema.safeParse(formState.values);
+    const currentStepData = getValues(); // Get all form values for the current step
+
+    setFormData({
+      ...formData,
+      ...currentStepData,
+    });
+    // Validate the current step's data
+    const result = currentStepSchema.safeParse(currentStepData);
 
     if (result.success) {
       setCurrentStep((prevStep) => prevStep + 1);
     } else {
       // The validation failed
-      for (const [key, value] of Object.entries(result.error.errors)) {
+      for (const [key, value] of Object.entries(
+        result.error.flatten().fieldErrors
+      )) {
         setError(key, {
           type: "manual",
-          message: value.message,
+          message: value[0].message,
         });
       }
     }
@@ -195,25 +214,37 @@ const Signup = () => {
                 name="country"
                 control={control}
                 render={({ field }) => (
-                  <div className="w-full pr-4 py-3 bg-gray-800 text-white text-sm rounded-lg border-none">
-                    <select
-                      id="country"
-                      className="bg-gray-800 text-white w-full ml-1 mr-3"
-                      value={field.value}
-                      onChange={(event) => {
-                        field.onChange(event);
-                        handleCountryChange(event);
-                      }}
-                    >
-                      <option value="" disabled>
-                        Select country
-                      </option>
-                      {countryList.map((country) => (
-                        <option key={country.value} value={country.value}>
-                          {country.label}
+                  <div className="flex items-center">
+                    <div className="w-full pr-4 py-3 bg-gray-800 text-white  text-sm rounded-lg border-none">
+                      <select
+                        id="country"
+                        className="bg-gray-800 text-white w-full ml-1 mr-3"
+                        value={field.value}
+                        onChange={(event) => {
+                          field.onChange(event);
+                          handleCountryChange(event);
+                        }}
+                      >
+                        <option value="" disabled>
+                          Select country
                         </option>
-                      ))}
-                    </select>
+                        {countryList.map((country) => (
+                          <option key={country.value} value={country.value}>
+                            <div className="flex items-center">
+                              {country.label}
+                            </div>{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="flag ml-2 p-4 bg-slate-800 rounded-lg">
+                      {" "}
+                      <FlagIcon
+                        code={selectedCountry.toUpperCase()}
+                        size={21}
+                        className="mr-1"
+                      />
+                    </div>
                   </div>
                 )}
               />
@@ -254,23 +285,19 @@ const Signup = () => {
                 name="gender"
                 control={control}
                 render={({ field }) => (
-                  <Select
+                  <select
                     {...field}
-                    className="w-full"
-                    defaultValue=""
-                    placeholder="Select gender"
+                    className="w-full bg-slate-800 px-4 py-3 rounded-lg border-0 text-white"
                   >
-                    <SelectTrigger className="w-full bg-slate-800 border-0">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-0 text-white">
-                      {genderOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    <option value="" disabled>
+                      Select Gender
+                    </option>
+                    {genderOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 )}
               />
             </div>
@@ -282,9 +309,14 @@ const Signup = () => {
                 name="dob"
                 control={control}
                 render={({ field }) => (
-                  <DatePickerDemo
-                    selected={selectedDate}
-                    onSelect={setSelectedDate}
+                  <input
+                    type="date"
+                    {...field}
+                    className="w-full px-4 py-3 rounded-lg bg-slate-800 border-0 text-white"
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setSelectedDate(e.target.value);
+                    }}
                   />
                 )}
               />
@@ -362,57 +394,68 @@ const Signup = () => {
   const totalSteps = 4; // Set the total number of steps
 
   return (
-    <form onSubmit={handleSubmit(handleSignupSubmit)} className="">
-      <div className="message mb-5">
-        <div className="text-white font-bold">Create a new account</div>
-        <p className="text-sm font-normal text-gray-400 mt-3">
-          Continue where you left off by logging in, we keep track of your every
-          progress.
-        </p>
-      </div>
-      <div className="">{renderFormStep(currentStep)}</div>
-      <div className="flex justify-between">
-        {currentStep > 0 && (
-          <Button
-            type="button"
-            onClick={handlePreviousStep}
-            className=" mr-2 bg-slate-800 text-white py-3 px-4 rounded-lg"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                fillRule="evenodd"
-                d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Button>
-        )}
-        {currentStep < totalSteps - 1 && (
-          <Button
-            type="button"
-            onClick={handleNextStep}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg"
-            disabled={!formState.isValid}
-          >
-            Continue
-          </Button>
-        )}
-        {currentStep === totalSteps - 1 && (
-          <Button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg"
-            disabled={!formState.isValid}
-          >
-            Sign Up
-          </Button>
-        )}
-      </div>
-    </form>
+    <>
+      {isVerificationStep ? (
+        <VerificationPage
+          Input={Input}
+          Button={Button}
+          Label={Label}
+          formData={formData}
+        />
+      ) : (
+        <form onSubmit={handleSubmit(handleSignupSubmit)} className="">
+          <div className="message mb-5">
+            <div className="text-white font-bold">Create a new account</div>
+            <p className="text-sm font-normal text-gray-400 mt-3">
+              Continue where you left off by logging in, we keep track of your
+              every progress.
+            </p>
+          </div>
+          <div className="">{renderFormStep(currentStep)}</div>
+          <div className="flex justify-between">
+            {currentStep > 0 && (
+              <Button
+                type="button"
+                onClick={handlePreviousStep}
+                className=" mr-2 bg-slate-800 text-white py-3 px-4 rounded-lg"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Button>
+            )}
+            {currentStep < totalSteps - 1 && (
+              <Button
+                type="button"
+                onClick={handleNextStep}
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
+                disabled={!formState.isValid}
+              >
+                Proceed
+              </Button>
+            )}
+            {currentStep === totalSteps - 1 && (
+              <Button
+                type="submit"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
+                disabled={!formState.isValid}
+              >
+                Sign Up
+              </Button>
+            )}
+          </div>
+        </form>
+      )}
+    </>
   );
 };
 

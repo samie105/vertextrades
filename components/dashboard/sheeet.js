@@ -23,7 +23,7 @@ export default function Sheeet() {
             className={`flex items-center py-[15px] w-full transition-all cursor-pointer text-sm font-medium px-3 rounded-xl ${
               router === item.linkPath
                 ? "text-white bg-slate-800 font-bold"
-                : "text-black font-semibold"
+                : "text-black "
             }`}
           >
             <SheetClose className="w-full">
