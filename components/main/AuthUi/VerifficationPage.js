@@ -30,6 +30,15 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
     // Handle code verification here
   };
 
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
+  };
+
   return (
     <>
       <div className="message text-sm mb-8 text-gray-300">
@@ -40,7 +49,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
       <div>
         <Label
           htmlFor="verificationCode"
-          className="block text-white text-sm mb-2 font-bold"
+          className="block text-white text-sm mb-2"
         >
           Enter Verification Code
         </Label>
@@ -48,7 +57,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
           type="text"
           id="verificationCode"
           placeholder="Enter the code sent to your email"
-          className="w-full px-4 py-5 bg-gray-800 text-white outline-none text-sm rounded-lg border-none"
+          className="w-full px-4 py-3 bg-gray-800 text-white text-sm rounded-lg border-none"
         />
         <Button
           type="button"
@@ -59,12 +68,12 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
         </Button>
         <Button
           type="button"
-          className="w-full bg-gray-600 text-white py-2 px-4 rounded-lg mt-2 hover:bg-gray-700"
+          className="w-full bg-gray-600 text-white py-2 px-4 rounded-lg mt-2"
           onClick={handleResendCode}
           disabled={isResendDisabled}
         >
           {isResendDisabled
-            ? `Resend Code (${Math.floor(countdown / 60)}:${countdown % 60})`
+            ? `Resend Code (${formatTime(countdown)})`
             : "Resend Code"}
         </Button>
       </div>
