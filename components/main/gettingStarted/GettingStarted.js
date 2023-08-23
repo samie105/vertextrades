@@ -13,7 +13,7 @@ function GettingStarted() {
     <>
       <section
         id="Getting Started"
-        className="stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-5 md:pt-10 mt-10 px-8 relative max-w[100vw]"
+        className="stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-7 md:pt-10 mt-10 px-3 relative max-w[100vw]"
       >
         <div className="absolute w-full h-full" data-aos="fade-right">
           {" "}
@@ -36,7 +36,7 @@ function GettingStarted() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-4 h-4"
+              className="w-4 h-4 text-red-700"
             >
               <path d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z" />
               <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z" />
@@ -50,7 +50,9 @@ function GettingStarted() {
               className="howItWorks font-black text-2xl md:text-4xl lg:text-4xl"
               data-aos="fade-down"
             >
-              <p>How It Works?</p>
+              <p>
+                How It <span className="text-red-800">Works?</span>{" "}
+              </p>
             </div>
           </div>
 
@@ -68,10 +70,10 @@ function GettingStarted() {
           <Dialog>
             <DialogTrigger>
               <div
-                className="btn ml-2 mt-12 mb-5 hidden lg:block"
+                className="btn ml-2 mt-5 md:mt-12 mb-5 lg:block"
                 data-aos="fade-up"
               >
-                <button className="px-5 py-4 bg-black text-white font-semibold text-sm items-center rounded-xl flex">
+                <button className="px-5 py-4 bg-red-800 text-white font-semibold text-sm items-center rounded-xl flex">
                   <p>Create an account</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -99,12 +101,12 @@ function GettingStarted() {
             <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
               <div className="stepHead ">
                 <div className="small-text">
-                  <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                  <div className="cont flex items-center uppercase font-semibold opacit-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-4 h-4 mr-2"
+                      className="w-4 h-4 mr-2 text-red-700"
                     >
                       <path
                         fillRule="evenodd"
@@ -116,7 +118,9 @@ function GettingStarted() {
                   </div>
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                  <p>create an account</p>
+                  <p>
+                    create an <span className="text-red-700">account</span>
+                  </p>
                 </div>
               </div>
               <div className="stepBody">
@@ -132,12 +136,12 @@ function GettingStarted() {
             <div className="stepTwo  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] h-full py-6 px-3 rounded-xl my-2">
               <div className="stepHead ">
                 <div className="small-text">
-                  <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                  <div className="cont flex items-center uppercase font-semibold opacit-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-4 h-4 mr-2"
+                      className="w-4 h-4 mr-2 text-red-700"
                     >
                       <path
                         fillRule="evenodd"
@@ -149,7 +153,9 @@ function GettingStarted() {
                   </div>
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                  <p>make a deposit</p>
+                  <p>
+                    make a <span className="text-red-700">deposit</span>{" "}
+                  </p>
                 </div>
               </div>
               <div className="stepBody">
@@ -170,12 +176,12 @@ function GettingStarted() {
             <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
               <div className="stepHead ">
                 <div className="small-text">
-                  <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                  <div className="cont flex items-center uppercase font-semibold  text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-4 h-4 mr-2"
+                      className="w-4 h-4 mr-2 text-red-700"
                     >
                       <path
                         fillRule="evenodd"
@@ -187,7 +193,9 @@ function GettingStarted() {
                   </div>
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                  <p>Trading Interception</p>
+                  <p>
+                    <span className="text-red-700">Trading</span> Interception
+                  </p>
                 </div>
               </div>
               <div className="stepBody">
@@ -203,12 +211,12 @@ function GettingStarted() {
             <div className="stepTwo  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl my-2">
               <div className="stepHead ">
                 <div className="small-text">
-                  <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                  <div className="cont flex items-center uppercase font-semibold opacit-0 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-4 h-4 mr-2"
+                      className="w-4 h-4 mr-2 text-red-700"
                     >
                       <path
                         fillRule="evenodd"
@@ -220,7 +228,10 @@ function GettingStarted() {
                   </div>
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                  <p>Make withdrawal request</p>
+                  <p>
+                    Make <span className="text-red-700">withdrawal</span>{" "}
+                    request
+                  </p>
                 </div>
               </div>
               <div className="stepBody">

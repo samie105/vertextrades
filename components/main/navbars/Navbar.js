@@ -139,7 +139,7 @@ export default function Navbar() {
                       <div
                         className={`menu-item mb-1 py-3 hover:opacity-90 text-gray-500 duration-200 cursor-pointer hover:bg-gray-100 px-3 rounded-md flex items-center ${
                           activeNavItem === item.label
-                            ? "bg-green-50 opacity-100 text-green-600 font-bold rounded-xl hover:bg-green-50"
+                            ? "bg-green-50 opacity-100 border-green-700 border text-green-600 font-bold rounded-xl hover:bg-green-50"
                             : ""
                         }`}
                         onClick={() => handleNavItemClick(item.label)}

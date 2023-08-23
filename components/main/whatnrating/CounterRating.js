@@ -54,12 +54,12 @@ export default function CounterRating() {
         >
           <div className="inner w-full h-full ">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-gray-100">
+              <div className="p-4 rounded-full bg-green-50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 text-green-700"
                 >
                   <path
                     fillRule="evenodd"
@@ -91,12 +91,12 @@ export default function CounterRating() {
         >
           <div className="inner w-full h-full ">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-gray-100">
+              <div className="p-4 rounded-full bg-blue-50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 text-blue-700"
                 >
                   <path d="M16.881 4.346A23.112 23.112 0 018.25 6H7.5a5.25 5.25 0 00-.88 10.427 21.593 21.593 0 001.378 3.94c.464 1.004 1.674 1.32 2.582.796l.657-.379c.88-.508 1.165-1.592.772-2.468a17.116 17.116 0 01-.628-1.607c1.918.258 3.76.75 5.5 1.446A21.727 21.727 0 0018 11.25c0-2.413-.393-4.735-1.119-6.904zM18.26 3.74a23.22 23.22 0 011.24 7.51 23.22 23.22 0 01-1.24 7.51c-.055.161-.111.322-.17.482a.75.75 0 101.409.516 24.555 24.555 0 001.415-6.43 2.992 2.992 0 00.836-2.078c0-.806-.319-1.54-.836-2.078a24.65 24.65 0 00-1.415-6.43.75.75 0 10-1.409.516c.059.16.116.321.17.483z" />
                 </svg>
@@ -124,12 +124,12 @@ export default function CounterRating() {
         >
           <div className="inner w-full h-full ">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-gray-100">
+              <div className="p-4 rounded-full bg-red-50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 text-red-600"
                 >
                   <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                 </svg>

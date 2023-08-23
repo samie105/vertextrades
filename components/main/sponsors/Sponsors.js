@@ -85,7 +85,8 @@ export default function Sponsors() {
             </div>
             <div className="message-head capitalize">
               <p className="text-2xl md:text-3xl lg:text-4xl font-bold my-3">
-                Top Companies and Trade{" "}
+                Top <span className="text-green-700">Companies</span> and{" "}
+                <span className="text-green-700">Trade</span>{" "}
                 <br className="hidden md:block lg:hidden" /> Partners !!!
               </p>
             </div>
