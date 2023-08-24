@@ -56,17 +56,17 @@ export default function Testimonials() {
     <>
       <div
         id="Testimonials"
-        className="wwd-container flex flex-col bg-red-50/70 mt-10 pb-24"
+        className="wwd-container flex flex-col bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-gray-900 to-gray-600 mt-10 pb-24"
       >
         <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/2 mx-10">
-          <div className="inner-cont">
+          <div className="inner-cont text-white">
             <div className="smallertex">
               <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5 mr-2 text-red-600"
+                  className="w-5 h-5 mr-2 text-ed-600"
                 >
                   <path
                     fillRule="evenodd"
@@ -79,7 +79,7 @@ export default function Testimonials() {
               </div>
             </div>
             <div className="larger-text text-2xl font-bold capitalize">
-              what <span className="text-red-600">people say</span> about us.
+              what <span className="text-re-600">people say</span> about us.
             </div>
             <div className="text-writeUp text-sm my-3">
               <p>

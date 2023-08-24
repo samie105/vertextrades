@@ -13,7 +13,7 @@ function GettingStarted() {
     <>
       <section
         id="Getting Started"
-        className="stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-7 md:pt-10 mt-10 px-3 relative max-w[100vw]"
+        className="stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-24 md:pt-28 mt-10 px-3 relative max-w[100vw]"
       >
         <div className="absolute w-full h-full" data-aos="fade-right">
           {" "}

@@ -6,6 +6,7 @@ import Sponsors from "../components/main/sponsors/Sponsors";
 import AboutUs from "../components/main/AboutUs/AboutUs";
 import Wcy from "../components/main/whyUs/Wcy";
 import Testimonials from "../components/main/Testimonials/Testimonials";
+import ImageUsing from "../components/main/toUse/ImageUsing";
 import FAQ from "../components/main/Faq/FAQ";
 import Footer from "../components/main/footer/Footer";
 import Navbar from "../components/main/navbars/Navbar";
@@ -26,6 +27,7 @@ export default function Home() {
 
         <GettingStarted />
         <WhatNRating />
+        <ImageUsing />
         <Sponsors />
         <AboutUs />
         <Wcy />

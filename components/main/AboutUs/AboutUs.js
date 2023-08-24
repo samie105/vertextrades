@@ -9,7 +9,7 @@ function AboutUs() {
     <>
       <div
         id="Features & Benefits"
-        className="wwd-container md:flex flex flex-col max-w-[100vw] mx-6 md:mx-10 lg:flex-row"
+        className="wwd-container md:flex flex flex-col max-w-[100vw] px-6 md:px-10 lg:flex-row md:bg-gradient-to-r bg-gradient-to-b from-green-50 via-white to-white"
       >
         <div className="second-cont mt-10 mb-3 md:w-2/3 mr-10">
           <div className="inner-cont">

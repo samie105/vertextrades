@@ -14,8 +14,8 @@ export default function Wcy() {
     autoplaySpeed: 2000,
   };
   return (
-    <div className="relative w-full bg--50/50">
-      <div className="absolute top-0 md:left-0 right-0">
+    <div className="relative w-full bg-gradient-to-b py-1 from-gray-100 via-white to-white">
+      <div className="absolute hidden top-0 md:left-0 right-0">
         {" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,11 +30,11 @@ export default function Wcy() {
         id="Advantages"
         className="wcy-container py-5  w-full mt-20 px-5 md:px-10 "
       >
-        <div className="inner-cont w-full md:text-center ">
-          <div className="smallertex flex md:justify-center">
+        <div className="inner-cont w-full md:ext-center ">
+          <div className="smallertex  md:jusify-center hidden">
             <div
               data-aos="fade-down"
-              className="inner-smaller-text flex md:bg-green-50 md:text-green-700 rounded-full md:p-3 items-center font-semibold my-2 uppercase text-sm"
+              className="inner-smaller-text flex md:bg-reen-700 rounded-full  items-center font-semibold my-2 uppercase text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,11 +53,11 @@ export default function Wcy() {
             className="larger-text text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
           >
             Reasons Why You Need{" "}
-            <span className="text-green-700 underline">Choose Us??</span>
+            <span className="text-gren-700 unerline">Choose Us??</span>
           </div>
           <div
             data-aos="fade-left"
-            className="text-writeUp text-sm my-5 w-full md:w-[60%] md:mx-auto "
+            className="text-writeUp text-sm my-5 w-full md:w-[60%] md:m "
           >
             <p>
               With years of industry experience, our team comprises highly
@@ -67,7 +67,7 @@ export default function Wcy() {
             </p>{" "}
           </div>
         </div>
-        <div className="cardcontainer md:mx-20 ">
+        <div className="cardcontainer  ">
           <div
             data-aos="fade-up"
             className="row-one grid lg:grid-cols-3 md:grid-cols-2 gap-4 bg-white"
