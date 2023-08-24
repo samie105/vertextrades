@@ -16,7 +16,10 @@ export default function FAQ() {
   };
 
   return (
-    <div id="FAQ" className="my-20 bg-gray-50 py-5">
+    <div
+      id="FAQ"
+      className="my-20 bg-gradient-to-b from-red-50 via-white to-white py-5"
+    >
       <div className="inner-cont mx-10 mb-10 lg:w-1/2 md:w-2/3">
         <div className="smallertex">
           <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm ">
@@ -24,7 +27,7 @@ export default function FAQ() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-5 h-5 mr-2"
+              className="w-5 h-5 mr-2 text-red-700"
             >
               <path
                 fillRule="evenodd"
@@ -38,7 +41,8 @@ export default function FAQ() {
           </div>
         </div>
         <div className="larger-text text-2xl font-bold capitalize">
-          You Got questions? we got answers!
+          You Got <span className="text-red-700">questions?</span> we got{" "}
+          <span className="text-red-700">answers!</span>
         </div>
         <div className="text-writeUp text-sm my-3">
           <p>

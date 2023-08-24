@@ -6,7 +6,7 @@ import AuthUi from "../AuthUi/AuthUi";
 function Footer() {
   return (
     <>
-      <div className="footer-container bg-slate-900 p-5  text-white">
+      <div className="footer-container bg-gradient-to-r from-gray-800 via-gray-900 to-black p-5  text-white">
         <div className="grid-system grid gap-x-5 grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
           <div className="grid1 my-10">
             <section className="broker-name text-3xl my-4">
@@ -210,7 +210,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-message py-4 flex justify-center text-gray-400 bg-slate-900 text-xs md:text-base">
+      <div className="footer-message py-4 flex justify-center text-gray-400 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-xs md:text-base">
         © 2023 [brokername].com All Rights Reserved.
       </div>
     </>
