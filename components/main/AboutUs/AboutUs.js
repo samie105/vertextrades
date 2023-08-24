@@ -9,7 +9,7 @@ function AboutUs() {
     <>
       <div
         id="Features & Benefits"
-        className="wwd-container md:flex flex flex-col max-w-[100vw]  mx-10 lg:flex-row"
+        className="wwd-container md:flex flex flex-col max-w-[100vw] mx-6 md:mx-10 lg:flex-row"
       >
         <div className="second-cont mt-10 mb-3 md:w-2/3 mr-10">
           <div className="inner-cont">
@@ -19,7 +19,7 @@ function AboutUs() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5 mr-2"
+                  className="w-5 h-5 mr-2 text-green-700"
                 >
                   <path
                     fillRule="evenodd"
@@ -32,7 +32,7 @@ function AboutUs() {
               </div>
             </div>
             <div className="larger-text text-2xl font-bold">
-              Get Exceptional Services!!
+              Get <span className="text-green-700">Exceptional</span> Services!!
             </div>
             <div className="text-writeUp text-sm my-3">
               <p>
@@ -45,8 +45,8 @@ function AboutUs() {
             </div>
             <Dialog>
               <DialogTrigger>
-                <div className="btn  mt-12 mb-5 hidden lg:block">
-                  <button className="px-5 py-4 bg-black text-white font-semibold text-sm items-center rounded-xl flex">
+                <div className="btn mt-5 md:mt-12 mb-5 lg:block">
+                  <button className="px-5 py-4 bg-green-700 text-white font-semibold text-sm items-center rounded-xl flex">
                     <p>Start enjoying benefits</p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -74,12 +74,12 @@ function AboutUs() {
               <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
                 <div className="stepHead ">
                   <div className="small-text">
-                    <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                    <div className="cont flex items-center uppercase font-semibold opaity-70 text-xs">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2"
+                        className="w-4 h-4 mr-2 text-green-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -91,7 +91,9 @@ function AboutUs() {
                     </div>
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                    <p>Safe & Secure</p>
+                    <p>
+                      Safe & <span className="text-green-700">Secure</span>{" "}
+                    </p>
                   </div>
                 </div>
                 <div className="stepBody">
@@ -109,12 +111,12 @@ function AboutUs() {
               <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
                 <div className="stepHead ">
                   <div className="small-text">
-                    <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                    <div className="cont flex items-center uppercase font-semibold opaity-70 text-xs">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2"
+                        className="w-4 h-4 mr-2 text-green-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -127,7 +129,9 @@ function AboutUs() {
                     </div>
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                    <p>Profitable Assets</p>
+                    <p>
+                      Profitable <span className="text-green-700">Assets</span>{" "}
+                    </p>
                   </div>
                 </div>
                 <div className="stepBody">
@@ -147,12 +151,12 @@ function AboutUs() {
               <div className="stepOne shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
                 <div className="stepHead ">
                   <div className="small-text">
-                    <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                    <div className="cont flex items-center uppercase font-semibold opacty-70 text-xs">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2"
+                        className="w-4 h-4 mr-2 text-green-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -164,7 +168,9 @@ function AboutUs() {
                     </div>
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                    <p>Secure Wallet</p>
+                    <p>
+                      <span className="text-green-700">Secure </span>Wallet{" "}
+                    </p>
                   </div>
                 </div>
                 <div className="stepBody">
@@ -181,12 +187,12 @@ function AboutUs() {
               <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
                 <div className="stepHead ">
                   <div className="small-text">
-                    <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
+                    <div className="cont flex items-center uppercase font-semibold opacit-70 text-xs">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2"
+                        className="w-4 h-4 mr-2 text-green-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -199,7 +205,10 @@ function AboutUs() {
                     </div>
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
-                    <p>Instant Withdrawals</p>
+                    <p>
+                      <span className="text-green-700">Instant</span>{" "}
+                      Withdrawals
+                    </p>
                   </div>
                 </div>
                 <div className="stepBody">

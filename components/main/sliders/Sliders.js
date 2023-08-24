@@ -6,7 +6,7 @@ import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
 
-export default function Slider() {
+function Slider() {
   useEffect(() => {
     const loadPlugins = () => {
       const script1 = document.createElement("script");
@@ -276,3 +276,5 @@ export default function Slider() {
     </>
   );
 }
+
+export default dynamic(() => Promise.resolve(Slider), { ssr: false });

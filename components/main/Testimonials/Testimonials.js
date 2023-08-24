@@ -56,7 +56,7 @@ export default function Testimonials() {
     <>
       <div
         id="Testimonials"
-        className="wwd-container flex flex-col bg-gray-50 mt-10 pb-24"
+        className="wwd-container flex flex-col bg-red-50/70 mt-10 pb-24"
       >
         <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/2 mx-10">
           <div className="inner-cont">
@@ -66,7 +66,7 @@ export default function Testimonials() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5 mr-2"
+                  className="w-5 h-5 mr-2 text-red-600"
                 >
                   <path
                     fillRule="evenodd"
@@ -79,7 +79,7 @@ export default function Testimonials() {
               </div>
             </div>
             <div className="larger-text text-2xl font-bold capitalize">
-              what people say about us.
+              what <span className="text-red-600">people say</span> about us.
             </div>
             <div className="text-writeUp text-sm my-3">
               <p>
@@ -98,7 +98,7 @@ export default function Testimonials() {
           <div className="TestimonyOne">
             <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
               <div className="card-brand mb-4">
-                <div className="icon-container flex items-center font-bold ">
+                <div className="icon-container text-blue-300 flex items-center font-bold ">
                   <div className=" mr-2">
                     <FontAwesomeIcon icon={faTwitter} className="w-4 h-4" />
                   </div>
@@ -120,7 +120,7 @@ export default function Testimonials() {
                   <sup>
                     <FontAwesomeIcon
                       icon={faQuoteRight}
-                      className="w-3 h-3 inline text-gray-300"
+                      className="w-3 h-3 inline text-gray-400"
                     />
                   </sup>
                 </blockquote>
@@ -147,7 +147,7 @@ export default function Testimonials() {
           <div className="TestimonyTwo">
             <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
               <div className="card-brand mb-4">
-                <div className="icon-container flex items-center font-bold ">
+                <div className="icon-container text-blue-700 flex items-center font-bold ">
                   <div className=" mr-2">
                     <FontAwesomeIcon icon={faFacebook} className="w-4 h-4" />
                   </div>
@@ -196,7 +196,7 @@ export default function Testimonials() {
           <div className="TestimonyOne">
             <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
               <div className="card-brand mb-4">
-                <div className="icon-container flex items-center font-bold ">
+                <div className="icon-container text-blue-700 flex items-center font-bold ">
                   <div className=" mr-2">
                     <FontAwesomeIcon icon={faFacebook} className="w-4 h-4" />
                   </div>
@@ -245,7 +245,7 @@ export default function Testimonials() {
           <div className="TestimonyTwo">
             <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
               <div className="card-brand mb-4">
-                <div className="icon-container flex items-center font-bold ">
+                <div className="icon-container flex items-center text-orange-700 font-bold ">
                   <div className=" mr-2">
                     <FontAwesomeIcon icon={faReddit} className="w-4 h-4" />
                   </div>

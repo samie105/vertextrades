@@ -20,8 +20,10 @@ export default function Home() {
         <div className="relative w-full  animate__animated animate__slideInUp">
           <Slider />
         </div>
+        <div className="my-2">
+          <TradingView />
+        </div>
 
-        <TradingView />
         <GettingStarted />
         <WhatNRating />
         <Sponsors />
