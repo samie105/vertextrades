@@ -44,7 +44,7 @@ export default function VerificationPage({ formDatas }) {
 
   return (
     <>
-      <div className="message text-sm mb-8 text-gray-300">
+      <div className="message text-sm mb-8 text-gray-900">
         We sent a 6 digit verification code to{" "}
         <strong className="font-bold">{formDatas.email}</strong>. Please check
         your mailbox or check your provided email address for mistakes or errors
@@ -52,7 +52,7 @@ export default function VerificationPage({ formDatas }) {
       <div>
         <Label
           htmlFor="verificationCode"
-          className="block text-white text-sm mb-2"
+          className="block text- font-bold text-sm mb-2"
         >
           Enter Verification Code
         </Label>
@@ -60,7 +60,7 @@ export default function VerificationPage({ formDatas }) {
           type="text"
           id="verificationCode"
           placeholder="Enter the code sent to your email"
-          className="w-full px-4 py-3 bg-gray-800 text-white text-sm rounded-lg border-none"
+          className="w-full px-4 py-4 bg-gray-200 -white text-sm rounded-lg border-none"
         />
         <Button
           type="button"

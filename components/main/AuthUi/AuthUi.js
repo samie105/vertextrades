@@ -15,21 +15,21 @@ import Signup from "./SignUp";
 export default function AuthUi() {
   return (
     <>
-      <DialogContent className="bg-slate-900 border-0 transition-all text-white rounded-xl w-[90%] md:w-[60%] lg:w:-[20%]">
+      <DialogContent className=" border-0 transition-all text-gray-900 rounded-xl w-[90%] md:w-[60%] lg:w:-[20%]">
         <DialogHeader className="text-white">
           <DialogTitle className=""></DialogTitle>
         </DialogHeader>
         <Tabs defaultValue="signup" className="transition-all">
-          <TabsList className="w-full grid grid-cols-2 bg-slate-800 font-bold">
+          <TabsList className="w-full grid grid-cols-2 bg-gray-100 font-bold">
             <TabsTrigger
               value="signup"
-              className="data-[state=active]:bg-slate-700  data-[state=active]:text-white"
+              className="data-[state=active]:bg-gray-200 data-[state=active]:font-bold data-[state=active]:text-black"
             >
               Sign Up
             </TabsTrigger>
             <TabsTrigger
               value="login"
-              className="data-[state=active]:bg-slate-700  data-[state=active]:text-white"
+              className="data-[state=active]:bg-gray-200 data-[state=active]:font-bold data-[state=active]:text-black"
             >
               Log In
             </TabsTrigger>

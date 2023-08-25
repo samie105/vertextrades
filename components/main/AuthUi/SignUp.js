@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { InfinitySpin } from "react-loader-spinner";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "../../ui/input";
@@ -78,6 +79,7 @@ export function DatePickerDemo({ selected, onSelect }) {
 const Signup = () => {
   const [isVerificationStep, setIsVerificationStep] = useState(false);
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const [currentStep, setCurrentStep] = useState(0);
   const { control, handleSubmit, getValues, setError, formState } = useForm({
@@ -86,12 +88,47 @@ const Signup = () => {
   });
 
   const [selectedCountry, setSelectedCountry] = useState("us");
+  const checkPhoneNumberExists = async (phoneNumber) => {
+    try {
+      const response = await fetch("/phoneexist/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: phoneNumber }),
+      });
+      const data = await response.json();
+      return data.exists;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
 
-  const handleSignupSubmit = (data) => {
-    const finalData = {
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await fetch("/emailexists/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      return data.exists;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
+  const handleSignupSubmit = async (data) => {
+    setIsLoading(true);
+    const { confirmPassword, ...finalData } = {
       ...formData,
       ...data,
     };
+
     if (data.password !== data.confirmPassword) {
       setError("confirmPassword", {
         type: "manual",
@@ -100,7 +137,30 @@ const Signup = () => {
       return;
     }
 
-    setIsVerificationStep(true);
+    try {
+      // Send the data to your backend
+      const response = await fetch("/signup/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(finalData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // If the signup was successful, show the verification page
+        setIsVerificationStep(true);
+      } else {
+        // Handle any errors from the backend
+        console.error(result.error);
+      }
+    } catch (error) {
+      // Handle any network or other errors
+      console.error(error);
+    }
+    setIsLoading(false);
     console.log("data", finalData);
   };
 
@@ -108,7 +168,34 @@ const Signup = () => {
     setSelectedCountry(event.target.value);
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
+    setIsLoading(true);
+    if (currentStep === 0) {
+      const email = getValues("email");
+      const emailExists = await checkEmailExists(email);
+
+      if (emailExists) {
+        setError("email", {
+          type: "manual",
+          message: "Email address already in use",
+        });
+        setIsLoading(false);
+        return;
+      }
+    }
+    if (currentStep === 1) {
+      const phoneNumber = getValues("phoneNumber");
+      const phoneExists = await checkPhoneNumberExists(phoneNumber);
+      if (phoneExists) {
+        setError("phoneNumber", {
+          type: "manual",
+          message: "Phone number already in use",
+        });
+        setIsLoading(false);
+        return;
+      }
+    }
+
     const currentStepSchema = stepValidationSchemas[currentStep];
     const currentStepData = getValues(); // Get all form values for the current step
 
@@ -132,6 +219,7 @@ const Signup = () => {
         });
       }
     }
+    setIsLoading(false);
   };
 
   const handlePreviousStep = () => {
@@ -146,7 +234,7 @@ const Signup = () => {
             <div className="mb-5 mt-6">
               <Label
                 htmlFor="name"
-                className="block text-white text-sm mb-2 capitalize"
+                className="block text-black font-bold text-sm mb-2 capitalize"
               >
                 Legal Full Name
               </Label>
@@ -160,7 +248,7 @@ const Signup = () => {
                       id="name"
                       placeholder="John Doe"
                       error={fieldState.error?.message}
-                      className="w-full px-4 py-3 bg-gray-800 text-white capitalize rounded-lg text-sm border-none"
+                      className="w-full px-4 py-1 bg-gray-200 text-black capitalize rounded-lg text-sm border-none"
                       {...field}
                     />
                     {fieldState.error && (
@@ -173,8 +261,8 @@ const Signup = () => {
               />
             </div>
             <div className="mb-5">
-              <Label htmlFor="email" className="block text-white text-sm mb-2">
-                Email
+              <Label htmlFor="email" className="block font-bold text-sm mb-2">
+                Email Address
               </Label>
               <Controller
                 name="email"
@@ -186,7 +274,7 @@ const Signup = () => {
                       id="email"
                       placeholder="johndoe@example.com"
                       error={fieldState.error?.message}
-                      className="w-full px-4 py-3 bg-gray-800 text-white rounded-lg text-sm border-none"
+                      className="w-full px-4 py-1 bg-gray-200 lowercase text-black rounded-lg text-sm border-none"
                       {...field}
                     />
                     {fieldState.error && (
@@ -204,10 +292,7 @@ const Signup = () => {
         return (
           <>
             <div className="mb-5">
-              <Label
-                htmlFor="country"
-                className="block text-white text-sm mb-2"
-              >
+              <Label htmlFor="country" className="block font-bold text-sm mb-2">
                 Country
               </Label>
               <Controller
@@ -215,10 +300,10 @@ const Signup = () => {
                 control={control}
                 render={({ field }) => (
                   <div className="flex items-center">
-                    <div className="w-full pr-4 py-3 bg-gray-800 text-white  text-sm rounded-lg border-none">
+                    <div className="w-full pr-4 py-3 bg-gray-200 text-black  text-sm rounded-lg border-none">
                       <select
                         id="country"
-                        className="bg-gray-800 text-white w-full ml-1 mr-3"
+                        className=" bg-gray-200 text-black w-full ml-1 mr-3"
                         value={field.value}
                         onChange={(event) => {
                           field.onChange(event);
@@ -237,7 +322,7 @@ const Signup = () => {
                         ))}
                       </select>
                     </div>
-                    <div className="flag ml-2 p-4 bg-slate-800 rounded-lg">
+                    <div className="flag ml-2 p-4 bg-gray-200 rounded-lg">
                       {" "}
                       <FlagIcon
                         code={selectedCountry.toUpperCase()}
@@ -261,7 +346,7 @@ const Signup = () => {
                       {...field}
                       className="w-full"
                       containerClass="w-full"
-                      inputClass="w-full px-4 py-3  bg-slate-800 text-sm rounded-lg border-none"
+                      inputClass="w-full px-4 py-3 bg-gray-200 text-black text-sm rounded-lg border-none"
                     />
                     {fieldState.error && (
                       <p className="text-sm text-red-500 my-1 font-semibold">
@@ -278,7 +363,7 @@ const Signup = () => {
         return (
           <>
             <div className="mb-5">
-              <Label htmlFor="gender" className="block text-white text-sm mb-2">
+              <Label htmlFor="gender" className="block font-bold text-sm mb-2">
                 Gender
               </Label>
               <Controller
@@ -287,7 +372,7 @@ const Signup = () => {
                 render={({ field }) => (
                   <select
                     {...field}
-                    className="w-full bg-slate-800 px-4 py-3 rounded-lg border-0 text-white"
+                    className="w-full px-4 py-1 bg-gray-200 text-black rounded-lg border-0 "
                   >
                     <option value="" disabled>
                       Select Gender
@@ -302,7 +387,7 @@ const Signup = () => {
               />
             </div>
             <div className="mb-5">
-              <Label htmlFor="dob" className="block text-white text-sm mb-2">
+              <Label htmlFor="dob" className="block font-bold text-sm mb-2">
                 Date of Birth
               </Label>
               <Controller
@@ -312,7 +397,7 @@ const Signup = () => {
                   <input
                     type="date"
                     {...field}
-                    className="w-full px-4 py-3 rounded-lg bg-slate-800 border-0 text-white"
+                    className="w-full px-4 py-3 bg-gray-200 text-black rounded-lg  border-0 "
                     onChange={(e) => {
                       field.onChange(e);
                       setSelectedDate(e.target.value);
@@ -329,7 +414,7 @@ const Signup = () => {
             <div className="mb-5">
               <Label
                 htmlFor="password"
-                className="block text-white text-sm mb-2"
+                className="block font-bold text-sm mb-2"
               >
                 Password
               </Label>
@@ -343,7 +428,7 @@ const Signup = () => {
                       id="password"
                       placeholder="Create a password"
                       error={fieldState.error?.message}
-                      className="w-full px-4 py-3 bg-gray-800 text-white text-sm rounded-lg border-none"
+                      className="w-full px-4 py-1 bg-gray-200 text-black text-sm rounded-lg border-none"
                       {...field}
                     />
                     {fieldState.error && (
@@ -358,7 +443,7 @@ const Signup = () => {
             <div className="mb-5">
               <Label
                 htmlFor="confirmPassword"
-                className="block text-white text-sm mb-2"
+                className="block font-bold text-sm mb-2"
               >
                 Confirm Password
               </Label>
@@ -372,7 +457,7 @@ const Signup = () => {
                       id="confirmPassword"
                       placeholder="Confirm password"
                       error={fieldState.error?.message}
-                      className="w-full px-4 py-3 bg-gray-800 text-white text-sm rounded-lg border-none"
+                      className="w-full px-4 py-1 bg-gray-200 text-black text-sm rounded-lg border-none"
                       {...field}
                     />
                     {fieldState.error && (
@@ -405,8 +490,8 @@ const Signup = () => {
       ) : (
         <form onSubmit={handleSubmit(handleSignupSubmit)} className="">
           <div className="message mb-5">
-            <div className="text-white font-bold">Create a new account</div>
-            <p className="text-sm font-normal text-gray-400 mt-3">
+            <div className="text-gray-950 font-bold">Create a new account</div>
+            <p className="text-sm font-normal text-gray-800 mt-3">
               Continue where you left off by logging in, we keep track of your
               every progress.
             </p>
@@ -417,7 +502,7 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handlePreviousStep}
-                className=" mr-2 bg-slate-800 text-white py-3 px-4 rounded-lg"
+                className=" mr-2 bg-gray-200 text-black py-3 px-4 rounded-lg"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -437,19 +522,27 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handleNextStep}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
+                className="w-full bg-green-800 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
                 disabled={!formState.isValid}
               >
-                Proceed
+                {isLoading ? (
+                  <InfinitySpin width="100" color="#ffffff" />
+                ) : (
+                  "Proceed"
+                )}
               </Button>
             )}
             {currentStep === totalSteps - 1 && (
               <Button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
+                className="w-full bg-green-800 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
                 disabled={!formState.isValid}
               >
-                Sign Up
+                {isLoading ? (
+                  <InfinitySpin width="100" color="#ffffff" />
+                ) : (
+                  "Create my account"
+                )}
               </Button>
             )}
           </div>

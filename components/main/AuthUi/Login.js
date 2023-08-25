@@ -44,14 +44,17 @@ const Login = () => {
       ) : (
         <form onSubmit={loginHandleSubmit(handleLoginSubmit)} className="">
           <div className="message mb-5">
-            <div className="text-white font-bold">Sign-In to your account</div>
-            <p className="text-sm font-normal text-gray-400 mt-3">
+            <div className="text-black font-bold">Sign-In to your account</div>
+            <p className="text-sm font-normal text-gray-800 mt-3">
               Continue where you left off by logging in, we keep track of your
               every progress.
             </p>
           </div>
-          <div className="mb-5 mt-6">
-            <Label htmlFor="email" className="block text-white text-sm mb-2">
+          <div className=" mt-6 mb-2">
+            <Label
+              htmlFor="email"
+              className="block text-black font-bold text-sm mb-2"
+            >
               Email
             </Label>
             <Controller
@@ -64,7 +67,7 @@ const Login = () => {
                     id="email"
                     placeholder="johndoe@example.com"
                     error={fieldState.error?.message}
-                    className="w-full px-4 py-3 bg-gray-800 text-white rounded-lg text-sm border-none"
+                    className="w-full px-4 py-3 bg-gray-100 text-black rounded-lg text-sm border-none"
                     {...field}
                   />
                   {fieldState.error && (
@@ -76,8 +79,11 @@ const Login = () => {
               )}
             />
           </div>
-          <div className="mb-5">
-            <Label htmlFor="password" className="block text-white text-sm ">
+          <div className="mb-2">
+            <Label
+              htmlFor="password"
+              className="block text-black font-bold text-sm mb-2"
+            >
               Password
             </Label>
             <Controller
@@ -90,7 +96,7 @@ const Login = () => {
                     id="password"
                     placeholder="Enter your password"
                     error={fieldState.error?.message}
-                    className="w-full px-4 py-3 bg-gray-800 text-white rounded-lg text-sm border-none"
+                    className="w-full px-4 py-1 bg-gray-100 text-black rounded-lg text-sm border-none"
                     {...field}
                   />
                   {fieldState.error && (
@@ -102,7 +108,7 @@ const Login = () => {
               )}
             />
           </div>
-          <div className="flex justify-end w-full text-right items-center mb-5 text-sm">
+          <div className="flex justify-end w-full text-right items-center mb-5 text-xs">
             <a
               href="/forgot-password"
               className="text-green-500 font-bold text-sm underline"
