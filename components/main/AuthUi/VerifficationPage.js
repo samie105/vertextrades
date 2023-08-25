@@ -84,7 +84,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
 
   return (
     <>
-      <div className="message text-sm mb-8 text-gray-800">
+      <div className="message  add text-sm mb-8 text-gray-800">
         We sent a 6 digit verification code to{" "}
         <strong className="font-bold">{formData.email}</strong>. Please check
         your mailbox or check your provided email address for mistakes or errors
