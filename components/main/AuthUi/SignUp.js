@@ -12,6 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { Calendar } from "../../ui/calendar";
 import PhoneInput from "react-phone-input-2";
 import VerificationPage from "./VerifficationPage";
+import { setCookie } from "nookies";
 import {
   Select,
   SelectContent,
@@ -77,6 +78,8 @@ export function DatePickerDemo({ selected, onSelect }) {
 }
 
 const Signup = () => {
+  const [cookieVar, setCookieVar] = useState(null);
+
   const [isVerificationStep, setIsVerificationStep] = useState(false);
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -134,6 +137,7 @@ const Signup = () => {
         type: "manual",
         message: "Passwords do not match",
       });
+      setIsLoading(false);
       return;
     }
 
@@ -152,6 +156,7 @@ const Signup = () => {
       if (result.success) {
         // If the signup was successful, show the verification page
         setIsVerificationStep(true);
+        setCookieVar(result.token);
       } else {
         // Handle any errors from the backend
         console.error(result.error);
@@ -486,6 +491,7 @@ const Signup = () => {
           Button={Button}
           Label={Label}
           formData={formData}
+          cookieVar={cookieVar}
         />
       ) : (
         <form onSubmit={handleSubmit(handleSignupSubmit)} className="">

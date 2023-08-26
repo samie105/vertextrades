@@ -6,9 +6,11 @@ import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { InfinitySpin } from "react-loader-spinner";
 import { Label } from "../../ui/label";
+import { setCookie } from "nookies";
 
-export default function VerificationPage({ formDatas }) {
+export default function VerificationPage({ formDatas, cookieVar }) {
   const router = useRouter();
+  const [error, setError] = useState("");
   const [countdown, setCountdown] = useState(120);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [verificationCode, setVerificationCode] = useState("");
@@ -50,6 +52,7 @@ export default function VerificationPage({ formDatas }) {
   }, [isResendDisabled, countdown]);
 
   const handleResendCode = async () => {
+    setError("");
     setIsLoading(true);
     try {
       const response = await fetch("/verifyemail/sendcode/api", {
@@ -71,6 +74,7 @@ export default function VerificationPage({ formDatas }) {
   };
 
   const handleVerifyCode = async () => {
+    setError("");
     setIsLoading(true);
     try {
       const response = await fetch("/verifyemail/verifycode/api", {
@@ -86,7 +90,17 @@ export default function VerificationPage({ formDatas }) {
 
       if (response.status === 200) {
         // Handle successful verification
+        setCookie(null, "token", cookieVar, {
+          httpOnly: false,
+          secure: process.env.NODE_ENV === "production", // Use 'secure' in production
+          path: "/", // Adjust the path if needed
+          maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
+        });
         router.push("/dashboard");
+      }
+      if (response.status !== 200) {
+        // Handle successful verification
+        setError("Please check code and try again");
       }
     } catch (error) {
       console.error(error);
@@ -125,6 +139,8 @@ export default function VerificationPage({ formDatas }) {
           placeholder="Enter the code sent to your email"
           className="w-full px-4 py-4 bg-gray-200 text-black text-sm rounded-lg border-none"
         />
+        {error && <div className="text-sm mt-2 text-red-600">{error}</div>}
+
         <Button
           type="button"
           className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-4 rounded-lg mt-4"

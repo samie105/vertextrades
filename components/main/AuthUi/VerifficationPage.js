@@ -3,9 +3,17 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { InfinitySpin } from "react-loader-spinner"; // Make sure to import the loader
+import { setCookie } from "nookies";
 
-export default function VerificationPage({ Label, Input, Button, formData }) {
+export default function VerificationPage({
+  Label,
+  Input,
+  Button,
+  formData,
+  cookieVar,
+}) {
   const [countdown, setCountdown] = useState(120);
+  const [error, setError] = useState("");
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [verificationCode, setVerificationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state
@@ -34,6 +42,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
   };
 
   const handleVerifyCode = async () => {
+    setError("");
     setIsLoading(true);
     try {
       const response = await fetch("/verifyemail/verifycode/api", {
@@ -47,9 +56,16 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
 
       if (result.success) {
         // Handle successful verification
+        setCookie(null, "token", cookieVar, {
+          httpOnly: false,
+          secure: process.env.NODE_ENV === "production", // Use 'secure' in production
+          path: "/", // Adjust the path if needed
+          maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
+        });
         router.push("/dashboard");
       } else {
         // Handle failed verification
+        setError("Please check code and try again");
       }
     } catch (error) {
       console.error("verification error");
@@ -58,6 +74,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
   };
 
   const handleResendCode = async () => {
+    setError("");
     await sendCode();
     setCountdown(120);
     setIsResendDisabled(true);
@@ -112,6 +129,8 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
           value={verificationCode}
           onChange={(e) => setVerificationCode(e.target.value)}
         />
+        {error && <div className="text-sm mt-2 text-red-600">{error}</div>}
+
         <Button
           type="button"
           className="w-full bg-green-600 hover:bg-green-700 text-white py-5 px-4 rounded-lg mt-4"

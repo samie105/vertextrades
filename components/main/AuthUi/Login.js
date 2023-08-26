@@ -8,6 +8,7 @@ import { Button } from "../../ui/button";
 import { Label } from "../../ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import VerificationPage from "./VerificationPagetwo";
+import { setCookie } from "nookies"; //
 
 const loginFormSchema = z.object({
   email: z
@@ -22,6 +23,7 @@ const loginFormSchema = z.object({
 
 const Login = () => {
   const [formDatas, setFormData] = useState(null);
+  const [cookieVar, setCookieVar] = useState(null);
   const [showVerificationPage, setShowVerificationPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Add this line
   const {
@@ -32,7 +34,8 @@ const Login = () => {
   } = useForm({ resolver: zodResolver(loginFormSchema) });
 
   const handleLoginSubmit = async (data) => {
-    setIsLoading(true); // Set loading to true when the form is submitted
+    setIsLoading(true);
+
     try {
       const response = await fetch("/login/api", {
         method: "POST",
@@ -43,10 +46,12 @@ const Login = () => {
       });
 
       const result = await response.json();
-      setIsLoading(false); // Set loading to false once the response is received
+      setIsLoading(false);
 
       if (response.status === 200) {
-        localStorage.setItem("token", result.token);
+        // Set the authentication token as a cookie
+        setCookieVar(result.token);
+
         setFormData(data);
         setShowVerificationPage(true);
       } else {
@@ -56,7 +61,7 @@ const Login = () => {
         });
       }
     } catch (error) {
-      setIsLoading(false); // Set loading to false in case of an error
+      setIsLoading(false);
       setError("password", {
         type: "manual",
         message: "An error occurred",
@@ -68,7 +73,11 @@ const Login = () => {
   return (
     <>
       {showVerificationPage ? (
-        <VerificationPage formDatas={formDatas} />
+        <VerificationPage
+          formDatas={formDatas}
+          cookieVar={cookieVar}
+          setError={setError}
+        />
       ) : (
         <form onSubmit={loginHandleSubmit(handleLoginSubmit)} className="">
           <div className="message mb-5">

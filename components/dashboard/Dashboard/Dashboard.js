@@ -95,7 +95,7 @@ export default function Dash() {
         </div>{" "}
         <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-4 gap-2">
           {dashhh.map((items) => (
-            <>
+            <div key={items.name}>
               <Card>
                 <CardContent className="p-4 bg-gray-50">
                   <div className="cont flex justify-between rounded-xl">
@@ -118,7 +118,7 @@ export default function Dash() {
                   </div>
                 </CardContent>
               </Card>
-            </>
+            </div>
           ))}
         </div>
         <div className="assets">
