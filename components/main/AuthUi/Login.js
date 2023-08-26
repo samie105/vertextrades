@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { InfinitySpin } from "react-loader-spinner";
 import { z } from "zod";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
@@ -22,17 +23,44 @@ const loginFormSchema = z.object({
 const Login = () => {
   const [formDatas, setFormData] = useState(null);
   const [showVerificationPage, setShowVerificationPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Add this line
   const {
     control: loginControl,
     handleSubmit: loginHandleSubmit,
+    setError, // Don't forget to destructure setError
     formState: loginFormState,
   } = useForm({ resolver: zodResolver(loginFormSchema) });
 
-  const handleLoginSubmit = (data) => {
+  const handleLoginSubmit = async (data) => {
+    setIsLoading(true); // Set loading to true when the form is submitted
     try {
-      setFormData(data); // Store the form data in the state
-      setShowVerificationPage(true); // Show the verification page
+      const response = await fetch("/login/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      setIsLoading(false); // Set loading to false once the response is received
+
+      if (response.status === 200) {
+        localStorage.setItem("token", result.token);
+        setFormData(data);
+        setShowVerificationPage(true);
+      } else {
+        setError("password", {
+          type: "manual",
+          message: result.message || "An error occurred",
+        });
+      }
     } catch (error) {
+      setIsLoading(false); // Set loading to false in case of an error
+      setError("password", {
+        type: "manual",
+        message: "An error occurred",
+      });
       console.error(error);
     }
   };
@@ -96,7 +124,7 @@ const Login = () => {
                     id="password"
                     placeholder="Enter your password"
                     error={fieldState.error?.message}
-                    className="w-full px-4 py-1 bg-gray-100 text-black rounded-lg text-sm border-none"
+                    className="w-full px-4 py-1 bg-gray-100 lowercase text-black rounded-lg text-sm border-none"
                     {...field}
                   />
                   {fieldState.error && (
@@ -119,9 +147,14 @@ const Login = () => {
 
           <Button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg"
+            disabled={isLoading}
+            className="w-full bg-green-800 disabled:bg-green-800 hover:bg-green-700 text-white py-3 px-4 rounded-lg"
           >
-            Log In
+            {isLoading ? (
+              <InfinitySpin width="100" color="#ffffff" />
+            ) : (
+              "Log In"
+            )}
           </Button>
         </form>
       )}

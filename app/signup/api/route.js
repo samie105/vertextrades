@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken"; // Import jsonwebtoken
 import UserModel from "../../mongodbConnect";
 
 export async function POST(request) {
-  const { name, country, email, dob, phone, password } = await request.json(); // Directly destructure from request.body
-  // Generate unique withdrawalPin and taxCodePin
+  const { name, country, email, dob, phone, password } = await request.json();
   const withdrawalPin = await generateUniquePin();
   const taxCodePin = await generateUniquePin();
-  console.log("server");
+
   const user = new UserModel({
     name,
     country,
@@ -22,14 +22,20 @@ export async function POST(request) {
 
   try {
     await user.save();
-    return NextResponse.json({ success: true, user }, { status: 201 });
+
+    // Generate JWT token
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "3d",
+    });
+
+    return NextResponse.json({ success: true, user, token }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ success: false, error }, { status: 400 });
   }
 }
 
 async function generateUniquePin() {
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-#$";
   let pin;
 
   do {

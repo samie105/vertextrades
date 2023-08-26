@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { InfinitySpin } from "react-loader-spinner"; // Make sure to import the loader
 
 export default function VerificationPage({ Label, Input, Button, formData }) {
@@ -8,9 +9,13 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [verificationCode, setVerificationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [isInitialSend, setIsInitialSend] = useState(true);
+  const router = useRouter();
 
   const sendCode = async () => {
-    setIsLoading(true);
+    if (!isInitialSend) {
+      setIsLoading(true);
+    }
     try {
       await fetch("/verifyemail/sendcode/api", {
         method: "POST",
@@ -19,10 +24,13 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
         },
         body: JSON.stringify({ email: formData.email }),
       });
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
+    if (!isInitialSend) {
+      setIsLoading(false);
+    }
+    setIsInitialSend(false); // Set to false after the first send
   };
 
   const handleVerifyCode = async () => {
@@ -39,7 +47,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
 
       if (result.success) {
         // Handle successful verification
-        console.log("verified");
+        router.push("/dashboard");
       } else {
         // Handle failed verification
       }
