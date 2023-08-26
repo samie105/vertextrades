@@ -7,7 +7,7 @@ import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 
-export default function Slider() {
+function Slider() {
   return (
     <>
       <Script
@@ -250,3 +250,5 @@ export default function Slider() {
     </>
   );
 }
+
+export default dynamic(() => Promise.resolve(Slider), { ssr: false });
