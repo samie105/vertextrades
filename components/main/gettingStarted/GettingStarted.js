@@ -8,7 +8,7 @@ import { Dialog } from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
 
 /* eslint-disable react/no-unescaped-entities */
-function GettingStarted() {
+export default function GettingStarted() {
   return (
     <>
       <section
@@ -251,4 +251,3 @@ function GettingStarted() {
     </>
   );
 }
-export default dynamic(() => Promise.resolve(GettingStarted), { ssr: false });

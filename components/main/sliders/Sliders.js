@@ -5,33 +5,14 @@ import Image from "next/image";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
-function Slider() {
-  useEffect(() => {
-    const loadPlugins = () => {
-      const script1 = document.createElement("script");
-      script1.src = "/plugins/jquery.min.js"; // Path to the external jquery.min.js file in the public directory
-      script1.async = true;
-      document.body.appendChild(script1);
-
-      script1.onload = () => {
-        const script2 = document.createElement("script");
-        script2.src = "/plugins/jquery.easing.1.3.js";
-        script2.async = true;
-        document.body.appendChild(script2);
-
-        const script3 = document.createElement("script");
-        script3.src = "/plugins/jquery.mobile.customized.min.js";
-        script3.async = true;
-        document.body.appendChild(script3);
-
-        const script4 = document.createElement("script");
-        script4.src = "/plugins/camera.js"; // Path to the external jquery.mobile.customized.min.js file in the public directory
-        script4.async = true;
-        document.body.appendChild(script4);
-
-        script4.onload = () => {
-          // All plugins are loaded, you can now use them
+export default function Slider() {
+  return (
+    <>
+      <Script
+        src="/plugins/camera.js"
+        onLoad={() => {
           $(() => {
             $(".camera_wrap").camera({
               autoAdvance: true,
@@ -43,15 +24,8 @@ function Slider() {
               navigationHover: false,
             });
           });
-        };
-      };
-    };
-
-    loadPlugins();
-  }, []);
-
-  return (
-    <>
+        }}
+      />
       <div className="camera_wrap relative w-full" id="Home">
         <div data-src="/assets/brokerImage1.jpg">
           <Image
@@ -276,5 +250,3 @@ function Slider() {
     </>
   );
 }
-
-export default dynamic(() => Promise.resolve(Slider), { ssr: false });

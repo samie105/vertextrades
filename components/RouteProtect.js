@@ -1,8 +1,11 @@
-import { useRouter } from "next/router";
+"use client";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-function MyApp({ Component, pageProps }) {
+export default function RouteProtection() {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const checkUserAuthentication = () => {
     const token = localStorage.getItem("token");
@@ -21,15 +24,8 @@ function MyApp({ Component, pageProps }) {
         router.replace("/");
       }
     };
+    handleRouteChange(`${pathname}`);
+  }, [pathname, router, searchParams]);
 
-    router.events.on("routeChangeStart", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
-  }, [router]);
-
-  return <Component {...pageProps} />;
+  return null;
 }
-
-export default MyApp;
