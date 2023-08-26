@@ -200,7 +200,7 @@ function Slider() {
         </div>
         <div data-src="/assets/brokerImage3.jpg">
           <Image
-            className="h-screen"
+            className="h-screen gg"
             src="/assets/brokerImage3.jpg"
             alt=""
             width={500}
