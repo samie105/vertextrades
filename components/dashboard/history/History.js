@@ -10,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "../../ui/table";
-import { hist } from "./hist";
 import {
   Select,
   SelectContent,
@@ -18,11 +17,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
+import { useUserData } from "../../../contexts/userrContext";
 
 export default function History() {
+  const { details } = useUserData();
+  const hist = [
+    {
+      name: "deposit",
+      data: details.depositHistory,
+    },
+    {
+      name: "withdrawal",
+      data: details.withdrawalHistory,
+    },
+  ];
   const [selectedHistory, setSelectedHistory] = useState("deposit");
 
-  const currentHistory = hist.find((h) => h.name === selectedHistory);
+  const history = hist.find((h) => h.name === selectedHistory);
+  const currentHistory = [...history.data].reverse();
 
   return (
     <div className="p-4">
@@ -62,7 +74,7 @@ export default function History() {
                     Deposit Method
                   </TableHead>
                   <TableHead className="font-bold text-slate-800">
-                    Payment Proof
+                    Amount
                   </TableHead>
                   <TableHead className="font-bold text-slate-800">
                     Transaction Status
@@ -71,7 +83,7 @@ export default function History() {
               ) : (
                 <>
                   <TableHead className="font-bold text-slate-800">
-                    Transaction ID
+                    Date
                   </TableHead>
                   <TableHead className="font-bold text-slate-800">
                     Withdrawal Method
@@ -87,25 +99,40 @@ export default function History() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentHistory.data.length === 0 ? (
+            {currentHistory.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4} className="text-center font-bold">
                   No {selectedHistory} history
                 </TableCell>
               </TableRow>
             ) : (
-              currentHistory.data.map((item, index) => (
+              currentHistory.map((item, index) => (
                 <TableRow key={index}>
                   {selectedHistory === "deposit" ? (
                     <>
                       <TableCell>{item.dateAdded}</TableCell>
                       <TableCell>{item.depositMethod}</TableCell>
-                      <TableCell>{item.paymentProof}</TableCell>
+                      <TableCell>
+                        {"$" +
+                          (typeof item.amount === "string"
+                            ? parseFloat(item.amount).toLocaleString(
+                                undefined,
+                                {
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                }
+                              )
+                            : item.amount.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }))}
+                      </TableCell>
                       <TableCell
                         className={
-                          item.transactionStatus === "Pending"
-                            ? "text-orange-500"
-                            : "text-green-500"
+                          item.transactionStatus === "Pending" ||
+                          item.transactionStatus === "pending"
+                            ? "text-orange-500 capitalize"
+                            : "text-green-500 capitalize"
                         }
                       >
                         {item.transactionStatus}
@@ -113,14 +140,29 @@ export default function History() {
                     </>
                   ) : (
                     <>
-                      <TableCell>{item.transactionID}</TableCell>
-                      <TableCell>{item.withdrawalMethod}</TableCell>
-                      <TableCell>{item.amount}</TableCell>
+                      <TableCell>{item.dateAdded}</TableCell>
+                      <TableCell>{item.withdrawMethod}</TableCell>
+                      <TableCell>
+                        {"$" +
+                          (typeof item.amount === "string"
+                            ? parseFloat(item.amount).toLocaleString(
+                                undefined,
+                                {
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                }
+                              )
+                            : item.amount.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }))}
+                      </TableCell>
                       <TableCell
                         className={
-                          item.transactionStatus === "Pending"
-                            ? "text-orange-500"
-                            : "text-green-500"
+                          item.transactionStatus === "Pending" ||
+                          item.transactionStatus === "pending"
+                            ? "text-orange-500 capitalize"
+                            : "text-green-500 capitalize"
                         }
                       >
                         {item.transactionStatus}

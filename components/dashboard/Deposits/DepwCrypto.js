@@ -23,34 +23,17 @@ import {
 } from "../../ui/dialog";
 import { useDropzone } from "react-dropzone";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useUserData } from "../../../contexts/userrContext";
 
 export default function DepwCrypto() {
-  const [selectedMethod, setSelectedMethod] = useState(null);
+  const { selectedMethod, setSelectedMethod } = useUserData();
   const [amountInUSD, setAmountInUSD] = useState("");
-  const [currentPrice, setCurrentPrice] = useState(0);
+  const { currentPrice, email } = useUserData();
   const [selectedAddress, setSelectedAddress] = useState("");
   const [isCopied, setIsCopied] = useState(false);
   const [files, setFiles] = useState([]);
   const [showDropzone, setShowDropzone] = useState(false);
 
-  useEffect(() => {
-    if (selectedMethod) {
-      const assetId = selectedMethod.toLowerCase().replace(/\s+/g, "-");
-      const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${assetId}&vs_currencies=usd`;
-
-      console.log("Fetching price for:", assetId); // Debugging log
-
-      axios
-        .get(apiUrl)
-        .then((response) => {
-          console.log("Price fetched:", response.data); // Debugging log
-          setCurrentPrice(response.data[assetId]?.usd || 0);
-        })
-        .catch((error) => {
-          console.error("Error fetching the current price:", error);
-        });
-    }
-  }, [selectedMethod]);
   const handleMethodChange = (value) => {
     setSelectedMethod(value);
     const selectedOption = [...deposits, ...othermeans].find(
@@ -77,6 +60,23 @@ export default function DepwCrypto() {
       setIsCopied(false);
     }, 2000);
   };
+  const sendDepositHistory = async () => {
+    try {
+      const response = await axios.post("/history/deposit/api", {
+        email,
+        depositMethod: selectedMethod + " Deposit",
+        amount: amountInUSD,
+        transactionStatus: "Pending",
+      });
+      if (response.data.success) {
+        console.log("done");
+        //dosmothing
+      }
+    } catch (error) {
+      console.error("Error adding withdrawal history:", error);
+      throw error;
+    }
+  };
   const handleToast = () => {
     toast.warn(` Deposit of $${amountInUSD} Under Review`, {
       position: "top-center",
@@ -98,6 +98,8 @@ export default function DepwCrypto() {
       progress: undefined,
       theme: "light",
     });
+    sendDepositHistory();
+    setAmountInUSD("");
   };
 
   const handleVerifyDeposits = () => {

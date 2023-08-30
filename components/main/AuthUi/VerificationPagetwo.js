@@ -8,7 +8,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import { Label } from "../../ui/label";
 import { setCookie } from "nookies";
 
-export default function VerificationPage({ formDatas, cookieVar }) {
+export default function VerificationPage({ formDatas, cookieVar, cookieVar1 }) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [countdown, setCountdown] = useState(120);
@@ -91,6 +91,12 @@ export default function VerificationPage({ formDatas, cookieVar }) {
       if (response.status === 200) {
         // Handle successful verification
         setCookie(null, "token", cookieVar, {
+          httpOnly: false,
+          secure: process.env.NODE_ENV === "production", // Use 'secure' in production
+          path: "/", // Adjust the path if needed
+          maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
+        });
+        setCookie(null, "email", cookieVar1, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
           path: "/", // Adjust the path if needed

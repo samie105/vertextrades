@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -8,7 +9,6 @@ import {
 } from "../ui/sheet";
 import Sheeet from "./sheeet";
 import Image from "next/image";
-import { deposits, othermeans } from "./Deposits/deeps";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import {
   Select,
@@ -18,8 +18,56 @@ import {
   SelectValue,
 } from "../ui/select";
 import Link from "next/link";
+import axios from "axios";
+import { useUserData } from "../../contexts/userrContext";
 
 export default function Nav() {
+  const { coinPrices, setCoinPrices } = useUserData();
+  const { details } = useUserData();
+  const deposits = [
+    {
+      coinName: "Bitcoin",
+      short: "Bitcoin",
+      image: "/assets/bitcoin.webp",
+      address: "0xiohxhihfojdokhijkhnofwefodsdhfodhod",
+    },
+    {
+      coinName: "Ethereum",
+      short: "Ethereum",
+      image: "/assets/ethereum.webp",
+      address: "0xiohxhihfojhijkhnowefodsdhfodhod",
+    },
+    {
+      coinName: "Tether USDT",
+      short: "Tether",
+      image: "/assets/Tether.webp",
+      address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
+    },
+  ];
+  useEffect(() => {
+    const fetchCoinPrices = async () => {
+      try {
+        // Create an array of coin symbols for API request
+        const coinSymbols = deposits.map((coin) => coin.short.toLowerCase());
+
+        // API request to fetch coin prices
+        const response = await axios.get(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${coinSymbols.join(
+            ","
+          )}&vs_currencies=usd`
+        );
+
+        // Update coinPrices state with fetched prices
+        setCoinPrices(response.data);
+      } catch (error) {
+        console.error("Error fetching coin prices:", error);
+      }
+    };
+
+    fetchCoinPrices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div className="nav-container flex justify-between duration-300 text-slate-900 items-center py-3 px-5 transition-colors border-b bg-white">
@@ -63,7 +111,14 @@ export default function Nav() {
                         <Image src={deps.image} alt="" width={20} height={15} />
                       </div>
                       <div className="price text-sm mx-2 font-bold">
-                        <code>{`${Math.random().toFixed(5) * 2}`}</code>
+                        <code>
+                          {coinPrices[deps.short.toLowerCase()]
+                            ? (
+                                details.tradingBalance /
+                                coinPrices[deps.short.toLowerCase()].usd
+                              ).toFixed(5)
+                            : "0.00"}
+                        </code>
                       </div>
                     </div>
                   </SelectItem>

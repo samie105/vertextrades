@@ -1,34 +1,45 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken
-import UserModel from "../../mongodbConnect";
+import UserModel from "../../../mongodbConnect";
 
 export async function POST(request) {
-  const { name, country, email, dob, phone, password } = await request.json();
+  const { name, country, email, dob, phoneNumber, password } =
+    await request.json();
   const withdrawalPin = await generateUniquePin();
   const taxCodePin = await generateUniquePin();
+  const lowerEmail = email.toLowerCase();
 
   const user = new UserModel({
     name,
     country,
-    email,
-    phone,
+    email: lowerEmail,
+    phone: phoneNumber,
     dob,
     password,
     withdrawalPin,
     taxCodePin,
     autoTrades: true,
     isVerified: false,
+    tradingBalance: 0, // Initialize the new number fields
+    totalDeposited: 0,
+    totalWithdrawn: 0,
+    totalAssets: 0,
+    trade: 0, // Initialize trade with 0
+    balance: 0,
+    totalWon: 0,
+    totalLoss: 0,
+    role: "user", // Set role as "user"
+    investmentPackage: "gold plan", // Set investment package as "gold plan"
   });
-
   try {
     await user.save();
 
     // Generate JWT token
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-      expiresIn: "3d",
+      expiresIn: "5d",
     });
 
-    return NextResponse.json({ success: true, user, token }, { status: 201 });
+    return NextResponse.json({ success: true, email, token }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ success: false, error }, { status: 400 });
   }

@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { object } from "zod";
+
 const mongoURI = process.env.CONNECTION_STRING;
 
 // Establish the connection
@@ -17,7 +19,6 @@ mongoose.connection.on("error", (err) => {
   console.log("Error connecting to MongoDB:", err);
 });
 
-// Define Mongoose schema for your form data
 const userSchema = new mongoose.Schema({
   name: String,
   country: String,
@@ -25,8 +26,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   phone: String,
   password: String,
-  depositHistory: [Number],
-  withdrawalHistory: [Number],
+  depositHistory: [Object],
+  withdrawalHistory: [Object],
   withdrawalPin: { type: String, unique: true },
   taxCodePin: { type: String, unique: true },
   autoTrades: Boolean,
@@ -34,10 +35,18 @@ const userSchema = new mongoose.Schema({
   verificationCode: String,
   codeExpiry: Date,
   emailVerified: { type: Boolean, default: false },
-  // ... Add more fields as needed
+  tradingBalance: Number, // New field: trading balance
+  totalDeposited: Number, // New field: total deposited
+  totalWithdrawn: Number, // New field: total withdrawn
+  totalAssets: Number, // New field: total assets
+  trade: Number, // New field: trade
+  balance: Number, // New field: balance
+  totalWon: Number, // New field: total won
+  totalLoss: Number, // New field: total loss
+  role: String, // New field: role
+  investmentPackage: String, // New field: investment package
 });
 
-// Check if the model already exists before defining it
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default UserModel;

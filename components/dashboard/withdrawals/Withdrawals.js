@@ -11,9 +11,15 @@ import {
 } from "../../ui/select";
 import Btcpayment from "./Btcpayment";
 import Bankwire from "./BankWire";
+import { useUserData } from "../../../contexts/userrContext";
+import axios from "axios";
 
 export default function Withdrawals() {
-  const isVerified = true;
+  const { details, coinPrices } = useUserData();
+  const { email } = useUserData();
+  const [loading, setLoading] = useState(false);
+  const [mssg, setMssg] = useState(false);
+  const isVerified = details.isVerified;
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [formData, setFormData] = useState({
     walletAddress: "",
@@ -40,6 +46,14 @@ export default function Withdrawals() {
     if (!formData.password) {
       errors.password = "Password is required";
     }
+    if (formData.amount > details.tradingBalance) {
+      errors.amount =
+        "Insufficient Balance, you can only withdraw $" +
+        details.tradingBalance;
+    }
+    if (formData.amount <= 0) {
+      errors.amount = "Please add a valid amount";
+    }
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -48,12 +62,36 @@ export default function Withdrawals() {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+  async function loginUser(email, password) {
+    const errors = {};
+    setLoading(true);
+    try {
+      const response = await axios.post("/withdrawals/verifypw/api", {
+        email,
+        password,
+      });
 
+      if (response.data.success) {
+        // Perform action when login is successful
+        setBtcFilled(false);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        errors.password = "Incorrect! Check password and try again";
+        // Perform action when login fails
+      }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.log("An error occurred:", error.message);
+    }
+    setFormErrors(errors);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      loginUser(email, formData.password);
+
       // Perform submit logic here
-      setBtcFilled(false);
     }
   };
   return (
@@ -78,7 +116,7 @@ export default function Withdrawals() {
                 the verification process to continue.
               </div>
               <div className="cta pt-2">
-                <Link href="verify" passHref>
+                <Link href="/dashboard/verify" passHref>
                   <button className="bg-slate-800 text-white py-3 px-5 text-sm font-bold rounded-xl hover:bg-slate-600">
                     Verify Now
                   </button>
@@ -117,8 +155,10 @@ export default function Withdrawals() {
                         <p>Available Balance</p>{" "}
                       </div>
 
-                      <div className="mt-2 md:mt-0 bg-gay-200 rounded-lg md:ml-2 text-sm text-left text-gray-700">
-                        $0.00
+                      <div className="mt-2 md:mt-0 text-lg  bg-gay-200 rounded-lg md:ml-2 md:text-sm text-left text-gray-700">
+                        {` $${
+                          details && details.tradingBalance.toLocaleString()
+                        }.00`}
                       </div>
                     </div>
                   </div>
@@ -132,7 +172,13 @@ export default function Withdrawals() {
                           height={20}
                         />
                       </div>
-                      <div className="font-bold">0.0004</div>
+                      <div className="font-bold">
+                        {details &&
+                          coinPrices &&
+                          (
+                            details.tradingBalance / coinPrices.bitcoin.usd
+                          ).toFixed(5)}
+                      </div>
                     </div>
                     <div className="btc sm:flex hidden items-center ml-3 text-xs bg-cyan-50 rounded-xl p-3">
                       <div className="image mr-2">
@@ -143,7 +189,14 @@ export default function Withdrawals() {
                           height={20}
                         />
                       </div>
-                      <div className="font-bold">55.00</div>
+                      <div className="font-bold">
+                        {" "}
+                        {details &&
+                          coinPrices &&
+                          (
+                            details.tradingBalance / coinPrices.tether.usd
+                          ).toFixed(2)}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -233,17 +286,21 @@ export default function Withdrawals() {
                 <div className="bitcoin-payment my-3 rounded-xl ">
                   <Btcpayment
                     formErrors={formErrors}
+                    mssg={mssg}
+                    loading={loading}
+                    setLoading={setLoading}
                     handleInputChange={handleInputChange}
                     handleSubmit={handleSubmit}
                     formData={formData}
                     btcFilled={btcFilled}
                     setBtcFilled={setBtcFilled}
+                    email={email}
                   />
                 </div>
               )}
               {paymentMethod === "Bank Wire" && (
                 <div className="bitcoin-payment my-3 rounded-xl ">
-                  <Bankwire />
+                  <Bankwire email={email} />
                 </div>
               )}
             </div>

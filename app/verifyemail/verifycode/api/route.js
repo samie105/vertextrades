@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import UserModel from "../../../mongodbConnect"; // Make sure to import your UserModel
+import UserModel from "../../../../mongodbConnect"; // Make sure to import your UserModel
 
 export async function POST(request) {
   const { email, code } = await request.json();
-  const user = await UserModel.findOne({ email });
+  const lowerEmail = email.toLowerCase();
+  const user = await UserModel.findOne({ email: lowerEmail });
+  console.log(user.verificationCode);
+  console.log(code);
 
   if (user && user.verificationCode === code && user.codeExpiry > Date.now()) {
     await UserModel.updateOne({ _id: user._id }, { emailVerified: true });

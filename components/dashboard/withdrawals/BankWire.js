@@ -13,8 +13,13 @@ import {
   SelectValue,
 } from "../../ui/select";
 import { ScrollArea } from "../../ui/scroll-area";
+import { useUserData } from "../../../contexts/userrContext";
+import { InfinitySpin } from "react-loader-spinner";
+import axios from "axios";
 
 export default function BankWire() {
+  const { details, coinPrices } = useUserData();
+  const { email } = useUserData();
   const initialFormData = {
     bankName: "",
     accountName: "",
@@ -44,6 +49,7 @@ export default function BankWire() {
   const [taxCodePin, setTaxCodePin] = useState("");
   const [WithdrawalPin, setWithdrawalPin] = useState("");
   const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [WtPinError, setWtPinError] = useState("");
   const [taxCodePinError, setTaxCodePinError] = useState("");
   const [waitingForPin, setWaitingForPin] = useState(false);
@@ -60,11 +66,29 @@ export default function BankWire() {
           setWaitingForPin(true);
           return 90;
         } else if (newProgress >= 100) {
+          sendWithdrawHistory();
           setSuccess(true);
           return 100;
         }
         return newProgress;
       });
+    };
+    const sendWithdrawHistory = async () => {
+      try {
+        const response = await axios.post("/history/withdraw/api", {
+          email,
+          withdrawMethod: "Bank Wire",
+          amount: formData.amount,
+          transactionStatus: "Pending",
+        });
+        if (response.data.success) {
+          console.log("done");
+          //dosmothing
+        }
+      } catch (error) {
+        console.error("Error adding withdrawal history:", error);
+        throw error;
+      }
     };
 
     if (isProgressing) {
@@ -119,12 +143,79 @@ export default function BankWire() {
   const handleWTPinChange = (e) => {
     setWithdrawalPin(e.target.value);
   };
+  async function loginUser(email, password) {
+    const errors = {};
+    setLoading(true);
+    try {
+      const response = await axios.post("/withdrawals/verifypw/api", {
+        email,
+        password,
+      });
 
+      if (response.data.success) {
+        // Perform action when login is successful
+        setIsProgressing(true);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        errors.password = "Incorrect! Check password and try again";
+        // Perform action when login fails
+      }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.log("An error occurred:", error.message);
+    }
+    setFormErrors(errors);
+  }
+  async function loginUser1(email, taxCodePin) {
+    setLoading(true);
+    try {
+      const response = await axios.post("/withdrawals/verifytaxcode/api", {
+        email,
+        taxCodePin,
+      });
+
+      if (response.data.success) {
+        // Perform action when login is successful
+        setWaitingForPin(false);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setTaxCodePinError("Incorrect! Check tax code and try again");
+        // Perform action when login fails
+      }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.log("An error occurred:", error.message);
+    }
+  }
+  async function loginUser2(email, withdrawalPin) {
+    setLoading(true);
+    try {
+      const response = await axios.post("/withdrawals/verifywithdrawpin/api", {
+        email,
+        withdrawalPin,
+      });
+
+      if (response.data.success) {
+        // Perform action when login is successful
+        setWaitingForPin(false);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setWtPinError("Incorrect! Check password and try again");
+        // Perform action when login fails
+      }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.log("An error occurred:", error.message);
+    }
+  }
   const handlePinSubmit = (e) => {
     e.preventDefault();
     if (taxCodePin.length >= 6) {
       setTaxCodePinError(""); // Clear any previous errors
-      setWaitingForPin(false);
+      loginUser1(email, taxCodePin);
       // You can add logic here to handle the form submission
     } else {
       setTaxCodePinError("Tax Code Pin must be at least 6 characters");
@@ -134,7 +225,7 @@ export default function BankWire() {
     e.preventDefault();
     if (WithdrawalPin.length >= 4) {
       setWtPinError(""); // Clear any previous errors
-      setWaitingForPin(false);
+      loginUser2(email, WithdrawalPin);
       // You can add logic here to handle the form submission
     } else {
       setWtPinError("Withdrawal Pin must be at least 4 characters");
@@ -153,15 +244,22 @@ export default function BankWire() {
         } is required`;
       }
     }
+    if (formData.amount <= 0) errors.amount = "Enter a valid amount";
+    if (formData.password.length < 6) {
+      errors.password = "Password should be at least 6 characters long";
+    }
+    if (formData.amount > details.tradingBalance)
+      errors.amount =
+        "Insufficient Balance, your withdrawable balance is $" +
+        details.tradingBalance.toLocaleString();
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
     }
-
+    loginUser(email, formData.password);
     // Form submission logic here
     // ...
-    setIsProgressing(true);
   };
 
   return (
@@ -404,10 +502,15 @@ export default function BankWire() {
               </div>
 
               <button
+                disabled={loading}
                 type="submit"
-                className="w-full px-4 py-3 mt-4 text-sm rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:bg-blue-600"
+                className="w-full disabled:bg-blue-300 px-4 flex justify-center items-center mt-4 text-sm rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:bg-blue-600"
               >
-                Transfer using Wire
+                {loading ? (
+                  <InfinitySpin width="100" color="#ffffff" />
+                ) : (
+                  <div className="py-3">Transfer using Wire</div>
+                )}
               </button>
             </form>
           </div>
@@ -454,9 +557,13 @@ export default function BankWire() {
                 )}
                 <button
                   type="submit"
-                  className="bg-blue-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                  className="bg-blue-600 py- flex items-center  justify-center mt-2 w-full rounded-lg text-sm text-white font-bold"
                 >
-                  Proceed
+                  {loading ? (
+                    <InfinitySpin width="100" color="#ffffff" />
+                  ) : (
+                    <div className="py-3">Continue withdrawal</div>
+                  )}
                 </button>
               </form>
             </div>
@@ -476,13 +583,20 @@ export default function BankWire() {
                   }`}
                 />
                 {WtPinError && (
-                  <p className="text-red-500 text-xs mt-1">{WtPinError}</p>
+                  <p className="text-red-500 font-bold text-xs mt-1">
+                    {WtPinError}
+                  </p>
                 )}
                 <button
+                  disabled={loading}
                   type="submit"
-                  className="bg-blue-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                  className="bg-blue-600 flex justify-center items-center py- mt-2 w-full rounded-lg text-sm text-white font-bold"
                 >
-                  Proceed
+                  {loading ? (
+                    <InfinitySpin width="100" color="#ffffff" />
+                  ) : (
+                    <div className="py-3">Finalize Withdrawal</div>
+                  )}
                 </button>
               </form>
             </div>

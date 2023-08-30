@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { Switch } from "../../ui/switch";
 import { usePathname } from "next/navigation";
+import { useUserData } from "../../../contexts/userrContext";
 
 export default function AccountSect() {
+  const { details } = useUserData();
   const path = usePathname();
   const [signalStrength, setSignalStrength] = useState(90);
   const [maintenanceGauge, setMaintenanceGauge] = useState(99);
-  const [autoTrades, setAutoTrades] = useState(true);
+  const autoTrades = details.autoTrades;
   useEffect(() => {
     const timer = setInterval(() => {
       setSignalStrength(Math.floor(Math.random() * (100 - 90) + 90));
@@ -44,7 +46,9 @@ export default function AccountSect() {
                 clipRule="evenodd"
               />
             </svg>
-            <div className="userName ml-2 font-bold">Nie Richfield</div>
+            <div className="userName ml-2 font-bold">
+              {details && details.name}
+            </div>
           </div>
           <div className="email-cont my-4 flex items-center text-sm py-1">
             <div className="flex items-center">
@@ -59,7 +63,7 @@ export default function AccountSect() {
               </svg>
               <div className="ml-2 font-bold">Email:</div>
             </div>
-            <div className="email mx-2">Samsonrichfield@gmail.com</div>
+            <div className="email mx-2">{details && details.email}</div>
           </div>
           <div className="inventment-cont my-4 flex items-center text-sm py-1">
             <div className="flex items-center">
@@ -99,7 +103,7 @@ export default function AccountSect() {
               <div className="ml-2 font-bold">Trading Plan:</div>
             </div>
             <div className="plan font-bold text-orange-600 mx-2 capitalize">
-              Gold Plan
+              {details && details.investmentPackage}
             </div>
           </div>
         </div>

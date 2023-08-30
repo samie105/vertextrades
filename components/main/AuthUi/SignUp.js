@@ -79,6 +79,7 @@ export function DatePickerDemo({ selected, onSelect }) {
 
 const Signup = () => {
   const [cookieVar, setCookieVar] = useState(null);
+  const [cookieVar1, setCookieVar1] = useState(null);
 
   const [isVerificationStep, setIsVerificationStep] = useState(false);
   const [formData, setFormData] = useState({});
@@ -156,7 +157,9 @@ const Signup = () => {
       if (result.success) {
         // If the signup was successful, show the verification page
         setIsVerificationStep(true);
+        localStorage.setItem("email", result.email);
         setCookieVar(result.token);
+        setCookieVar1(result.email);
       } else {
         // Handle any errors from the backend
         console.error(result.error);
@@ -487,6 +490,7 @@ const Signup = () => {
     <>
       {isVerificationStep ? (
         <VerificationPage
+          cookieVar1={cookieVar1}
           Input={Input}
           Button={Button}
           Label={Label}

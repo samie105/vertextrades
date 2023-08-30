@@ -6,8 +6,6 @@ import "aos/dist/aos.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
-import { Suspense } from "react";
-import RouteProtection from "../components/RouteProtect";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 const font = Poppins({ subsets: ["latin"], weight: ["300"] });
@@ -31,9 +29,6 @@ export default function RootLayout({ children }) {
           strategy="beforeInteractive"
         />
         {children}
-        {/* <Suspense fallback={null}>
-          <RouteProtection />{" "}
-        </Suspense> */}
       </body>
     </html>
   );

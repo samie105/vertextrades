@@ -11,6 +11,7 @@ export default function VerificationPage({
   Button,
   formData,
   cookieVar,
+  cookieVar1,
 }) {
   const [countdown, setCountdown] = useState(120);
   const [error, setError] = useState("");
@@ -57,6 +58,12 @@ export default function VerificationPage({
       if (result.success) {
         // Handle successful verification
         setCookie(null, "token", cookieVar, {
+          httpOnly: false,
+          secure: process.env.NODE_ENV === "production", // Use 'secure' in production
+          path: "/", // Adjust the path if needed
+          maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
+        });
+        setCookie(null, "email", cookieVar1, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
           path: "/", // Adjust the path if needed

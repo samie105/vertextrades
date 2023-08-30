@@ -1,14 +1,18 @@
 import { NextResponse } from "next/server";
-import UserModel from "../../../mongodbConnect";
+import UserModel from "../../../../mongodbConnect";
 import nodemailer from "nodemailer";
 
 export async function POST(request) {
   const { email } = await request.json();
+  const lowerEmail = email.toLowerCase();
   const verificationCode = generateVerificationCode();
   const codeExpiry = Date.now() + 10 * 60 * 1000; // 10 minutes from now
 
   try {
-    await UserModel.updateOne({ email }, { verificationCode, codeExpiry });
+    await UserModel.updateOne(
+      { email: lowerEmail },
+      { verificationCode, codeExpiry }
+    );
     await sendVerificationEmail(email, verificationCode);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

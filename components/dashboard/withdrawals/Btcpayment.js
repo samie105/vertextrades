@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function Btcpayment({
   handleInputChange,
@@ -10,6 +12,9 @@ export default function Btcpayment({
   handleSubmit,
   formData,
   btcFilled,
+  loading,
+  email,
+  setLoading,
   setBtcFilled,
 }) {
   const [progress, setProgress] = useState(0);
@@ -32,13 +37,30 @@ export default function Btcpayment({
           setWaitingForPin(true);
           return 90;
         } else if (newProgress >= 100) {
+          sendWithdrawHistory();
           setSuccess(true);
           return 100;
         }
         return newProgress;
       });
     };
-
+    const sendWithdrawHistory = async () => {
+      try {
+        const response = await axios.post("/history/withdraw/api", {
+          email,
+          withdrawMethod: "Bitcoin Transfer",
+          amount: formData.amount,
+          transactionStatus: "Pending",
+        });
+        if (response.data.success) {
+          console.log("done");
+          //dosmothing
+        }
+      } catch (error) {
+        console.error("Error adding withdrawal history:", error);
+        throw error;
+      }
+    };
     if (!btcFilled) {
       const interval = setInterval(() => {
         if (progress < 100 && !waitingForPin) {
@@ -87,12 +109,58 @@ export default function Btcpayment({
   const handleWithdrawPinChange = (e) => {
     setWithdrawalPin(e.target.value);
   };
+  async function loginUser1(email, taxCodePin) {
+    setLoading(true);
+    try {
+      const response = await axios.post("/withdrawals/verifytaxcode/api", {
+        email,
+        taxCodePin,
+      });
 
+      if (response.data.success) {
+        // Perform action when login is successful
+
+        setLoading(false);
+        setWaitingForPin(false);
+      } else {
+        setLoading(false);
+        setTaxCodePinError("Incorrect! Check tax code and try again");
+        // Perform action when login fails
+      }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.log("An error occurred:", error.message);
+    }
+  }
+  async function loginUser2(email, withdrawalPin) {
+    setLoading(true);
+    try {
+      const response = await axios.post("/withdrawals/verifywithdrawpin/api", {
+        email,
+        withdrawalPin,
+      });
+
+      if (response.data.success) {
+        // Perform action when login is successful
+
+        setLoading(false);
+        setWaitingForPin(false);
+      } else {
+        setLoading(false);
+        setWithdrawalPinError("Incorrect! Check withdrawal pin and try again");
+        // Perform action when login fails
+      }
+    } catch (error) {
+      // Handle any error that occurs during the request
+      console.log("An error occurred:", error.message);
+    }
+  }
   const handlePinSubmit = (e) => {
     e.preventDefault();
     if (taxCodePin.length >= 6) {
       setTaxCodePinError(""); // Clear any previous errors
-      setWaitingForPin(false);
+      loginUser1(email, taxCodePin);
+
       // You can add logic here to handle the form submission
     } else {
       setTaxCodePinError("Tax Code Pin must be at least 6 characters");
@@ -102,7 +170,7 @@ export default function Btcpayment({
     e.preventDefault();
     if (withdrawalPin.length >= 4) {
       setWithdrawalPinError(""); // Clear any previous errors
-      setWaitingForPin(false);
+      loginUser2(email, withdrawalPin);
       // You can add logic here to handle the form submission
     } else {
       setWithdrawalPinError("Tax Code Pin must be at least 4 characters");
@@ -144,7 +212,7 @@ export default function Btcpayment({
                 }`}
               />
               {formErrors.walletAddress && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="text-red-500 font-semibold text-xs mt-1">
                   {formErrors.walletAddress}
                 </p>
               )}
@@ -166,7 +234,9 @@ export default function Btcpayment({
                 }`}
               />
               {formErrors.amount && (
-                <p className="text-red-500 text-xs mt-1">{formErrors.amount}</p>
+                <p className="text-red-500 font-semibold text-xs mt-1">
+                  {formErrors.amount}
+                </p>
               )}
 
               <div className="mb-1 mt-3">
@@ -186,16 +256,21 @@ export default function Btcpayment({
                 }`}
               />
               {formErrors.password && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="text-red-500 font-semibold text-xs mt-1">
                   {formErrors.password}
                 </p>
               )}
 
               <button
+                disabled={loading}
                 type="submit"
-                className="w-full px-4 py-3 mt-4 text-sm rounded-lg bg-red-500 text-white font-bold hover:bg-red-600 focus:outline-none focus:bg-red-600"
+                className="w-full disabled:bg-red-400 px-4 mt-4 text-sm rounded-lg flex items-center justify-center bg-red-500 text-white font-bold hover:bg-red-600 focus:outline-none focus:bg-red-600"
               >
-                Withdraw BTC
+                {loading ? (
+                  <InfinitySpin width="100" color="#ffffff" />
+                ) : (
+                  <div className="py-3">Withdraw BTC</div>
+                )}
               </button>
             </form>
           </div>
@@ -238,13 +313,20 @@ export default function Btcpayment({
                   }`}
                 />
                 {taxCodePinError && (
-                  <p className="text-red-500 text-xs mt-1">{taxCodePinError}</p>
+                  <p className="text-red-500 font-bold text-xs mt-1">
+                    {taxCodePinError}
+                  </p>
                 )}
                 <button
+                  disabled={loading}
                   type="submit"
-                  className="bg-red-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                  className="bg-red-600 py- mt-2 w-full flex justify-center items-center rounded-lg text-sm text-white font-bold"
                 >
-                  Proceed
+                  {loading ? (
+                    <InfinitySpin width="100" color="#ffffff" />
+                  ) : (
+                    <div className="py-3">Proceed withdrawal</div>
+                  )}
                 </button>
               </form>
             </div>
@@ -264,15 +346,19 @@ export default function Btcpayment({
                   }`}
                 />
                 {withdrawalPinError && (
-                  <p className="text-red-500 text-xs mt-1">
+                  <p className="text-red-500 font-bold text-xs mt-1">
                     {withdrawalPinError}
                   </p>
                 )}
                 <button
                   type="submit"
-                  className="bg-red-600 py-3 mt-2 w-full rounded-lg text-sm text-white font-bold"
+                  className="bg-red-600 mt-2 w-full flex items-center justify-center rounded-lg text-sm text-white font-bold"
                 >
-                  Proceed
+                  {loading ? (
+                    <InfinitySpin width="100" color="#ffffff" />
+                  ) : (
+                    <div className="py-3">Finalize withdrawal</div>
+                  )}
                 </button>
               </form>
             </div>

@@ -8,7 +8,6 @@ import { Button } from "../../ui/button";
 import { Label } from "../../ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import VerificationPage from "./VerificationPagetwo";
-import { setCookie } from "nookies"; //
 
 const loginFormSchema = z.object({
   email: z
@@ -24,6 +23,7 @@ const loginFormSchema = z.object({
 const Login = () => {
   const [formDatas, setFormData] = useState(null);
   const [cookieVar, setCookieVar] = useState(null);
+  const [cookieVar1, setCookieVar1] = useState(null);
   const [showVerificationPage, setShowVerificationPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Add this line
   const {
@@ -51,7 +51,8 @@ const Login = () => {
       if (response.status === 200) {
         // Set the authentication token as a cookie
         setCookieVar(result.token);
-
+        setCookieVar1(result.email);
+        localStorage.setItem("email", result.email);
         setFormData(data);
         setShowVerificationPage(true);
       } else {
@@ -76,6 +77,7 @@ const Login = () => {
         <VerificationPage
           formDatas={formDatas}
           cookieVar={cookieVar}
+          cookieVar1={cookieVar1}
           setError={setError}
         />
       ) : (

@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const ck = request.headers.get("cookie");
-  // console.log(ck);
-  // Parse the cookies from the request headers
-  //console.log(request.headers);
   const cookies = parseCookies(request.headers);
-  //console.log(cookies);
 
   // Check if a token exists in the cookies
   const token = cookies.token;
+
+  // Get the email from the cookies
 
   // If there's no token and the request path starts with or includes "/dashboard"
   if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {

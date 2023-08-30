@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
-import UserModel from "../../mongodbConnect";
+import UserModel from "../../../mongodbConnect";
 import { NextResponse } from "next/server"; // Import NextResponse
 
 export async function POST(request) {
   const { email, password } = await request.json();
-
+  const lowerEmail = email.toLowerCase();
+  console.log(lowerEmail);
   // Find user
-  const user = await UserModel.findOne({ email });
+  const user = await UserModel.findOne({ email: lowerEmail });
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 400 });
   }
@@ -26,7 +27,7 @@ export async function POST(request) {
   });
 
   return NextResponse.json(
-    { token, message: "Login successful" },
+    { token, message: "Login successful", email: lowerEmail },
     { status: 200 }
   );
 }
