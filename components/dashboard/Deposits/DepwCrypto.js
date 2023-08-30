@@ -396,7 +396,7 @@ export default function DepwCrypto() {
                    py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                   onClick={handleVerifyDeposits}
                 >
-                  <button className="capitalize">Proceed</button>
+                  <button className="capitalize">Confirm Deposit</button>
                 </div>
               )}
               <DialogClose>

@@ -9,13 +9,17 @@ export const UserDataProvider = ({ children }) => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(0);
   const [coinPrices, setCoinPrices] = useState({});
-  const rawEmail = decodeURIComponent(
-    document.cookie.replace(
-      /(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    )
-  );
-  const email = rawEmail.replace(/%40/g, "@");
+  let email = ""; // Initialize email
+
+  if (typeof document !== "undefined") {
+    const rawEmail = decodeURIComponent(
+      document.cookie.replace(
+        /(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      )
+    );
+    email = rawEmail.replace(/%40/g, "@");
+  }
   const deposits = [
     {
       coinName: "Bitcoin",
