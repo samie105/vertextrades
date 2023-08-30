@@ -24,11 +24,11 @@ export default function History() {
   const hist = [
     {
       name: "deposit",
-      data: details.depositHistory,
+      data: details.depositHistory || [], // Initialize as empty array if data is not available yet
     },
     {
       name: "withdrawal",
-      data: details.withdrawalHistory,
+      data: details.withdrawalHistory || [], // Initialize as empty array if data is not available yet
     },
   ];
   const [selectedHistory, setSelectedHistory] = useState("deposit");
