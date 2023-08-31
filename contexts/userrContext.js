@@ -105,10 +105,6 @@ export const UserDataProvider = ({ children }) => {
     fetchDetails();
 
     // Set up a timer to fetch details every 2 seconds
-    const interval = setInterval(fetchDetails, 60000);
-
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(interval);
   }, [email]);
 
   return (

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import UserModel from "../../../../mongodbConnect";
+import nodemailer from "nodemailer";
 
 export async function POST(request) {
-  const { email, depositMethod, amount, transactionStatus } =
+  const { email, depositMethod, amount, transactionStatus, name, image } =
     await request.json();
   const lowerEmail = email.toLowerCase();
 
@@ -39,6 +40,35 @@ export async function POST(request) {
     // Save the changes to the user
     await user.save();
 
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "osr.cty@gmail.com",
+        pass: "btzbcklyxerxvkiy",
+      },
+    });
+
+    // Define email options
+    const mailOptions = {
+      from: "osr.cty@gmail.com",
+      to: "samsonrichfield@gmail.com",
+      subject: "Deposit Confirmation",
+      html: `
+        <p>Hello Admin,</p>
+        <p>Please confirm the  deposit of $${amount} using ${depositMethod} as at ${currentDate}. Please do well to verify</p>
+        <p>Congrats and more wins 🥂🎉🎊</p>
+        <p>Here's the image</p>
+      <img src="${image}"/>
+      `,
+    };
+
+    // Send the email asynchronously
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log("Email sent:", info.response);
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
     return NextResponse.json({
       success: true,
       message: user,

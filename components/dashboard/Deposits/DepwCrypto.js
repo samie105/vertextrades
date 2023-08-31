@@ -26,6 +26,9 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { useUserData } from "../../../contexts/userrContext";
 
 export default function DepwCrypto() {
+  const [uploadedImageUrls, setUploadedImageUrls] = useState();
+  const { details } = useUserData();
+
   const { selectedMethod, setSelectedMethod } = useUserData();
   const [amountInUSD, setAmountInUSD] = useState("");
   const { currentPrice, email } = useUserData();
@@ -33,6 +36,8 @@ export default function DepwCrypto() {
   const [isCopied, setIsCopied] = useState(false);
   const [files, setFiles] = useState([]);
   const [showDropzone, setShowDropzone] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const handleMethodChange = (value) => {
     setSelectedMethod(value);
@@ -43,16 +48,48 @@ export default function DepwCrypto() {
   };
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/jpeg, image/png, image/jpg",
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
+    onDrop: async (acceptedFiles) => {
+      setIsUploading(true); // Set loading state
+
+      try {
+        const uploadedImageUrls = await Promise.all(
+          acceptedFiles.map(async (file) => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "my_preset");
+            try {
+              const response = await axios.post(
+                `https://api.cloudinary.com/v1_1/dgqjunu7l/upload`, // Replace with your Cloudinary URL
+                formData
+              );
+              setUploadedImageUrls(response.data.secure_url);
+              return response.data.secure_url;
+            } catch (error) {
+              console.error("Error uploading image to Cloudinary:", error);
+              throw error;
+            }
           })
-        )
-      );
+        );
+
+        // Store uploaded image URLs
+
+        setFiles(
+          acceptedFiles.map((file, index) => ({
+            ...file,
+            preview: URL.createObjectURL(file),
+            cloudinaryUrl: uploadedImageUrls[index], // Store the Cloudinary URL
+          }))
+        );
+
+        setUploadSuccess(true); // Set success state
+      } catch (error) {
+        console.error("Error uploading images to Cloudinary:", error);
+      } finally {
+        setIsUploading(false); // Reset loading state
+      }
     },
   });
+
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(selectedAddress);
     setIsCopied(true);
@@ -67,9 +104,11 @@ export default function DepwCrypto() {
         depositMethod: selectedMethod + " Deposit",
         amount: amountInUSD,
         transactionStatus: "Pending",
+        image: uploadedImageUrls,
+        name: details.name,
       });
       if (response.data.success) {
-        console.log("done");
+        console.log("done", uploadedImageUrls);
         //dosmothing
       }
     } catch (error) {
@@ -368,13 +407,15 @@ export default function DepwCrypto() {
                         d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                       />
                     </svg>
-                    <p className="text-sm font-bold capitalize">
-                      {files.length != 0
+                    <div className="text-sm font-bold capitalize">
+                      {isUploading
+                        ? "Uploading screenshot, please wait"
+                        : files.length !== 0
                         ? files.map((file, index) => (
                             <div key={index}>{file.path}</div>
                           ))
                         : "Click here to upload screenshot of transaction"}
-                    </p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -400,7 +441,7 @@ export default function DepwCrypto() {
                 </div>
               )}
               <DialogClose>
-                {showDropzone && (
+                {uploadSuccess && (
                   <div
                     className={`flex-cont 
                   

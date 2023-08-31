@@ -111,14 +111,18 @@ export default function Nav() {
                         <Image src={deps.image} alt="" width={20} height={15} />
                       </div>
                       <div className="price text-sm mx-2 font-bold">
-                        <code>
-                          {coinPrices[deps.short.toLowerCase()]
-                            ? (
-                                details.tradingBalance /
-                                coinPrices[deps.short.toLowerCase()].usd
-                              ).toFixed(5)
-                            : "0.00"}
-                        </code>
+                        {details !== 0 ? (
+                          <code>
+                            {coinPrices[deps.short.toLowerCase()]
+                              ? (
+                                  details.tradingBalance /
+                                  coinPrices[deps.short.toLowerCase()].usd
+                                ).toFixed(5)
+                              : "0.00"}
+                          </code>
+                        ) : (
+                          <span>calculating...</span>
+                        )}
                       </div>
                     </div>
                   </SelectItem>
