@@ -103,8 +103,8 @@ export default function Nav() {
               <SelectValue className="outline-none " />
             </SelectTrigger>
             <SelectContent className="outline-none focus:outline-none">
-              {deposits.map((deps) => (
-                <>
+              {deposits.map((deps, index) => (
+                <div key={deps.coinName}>
                   <SelectItem key={deps.coinName} value={deps.coinName}>
                     <div className="flex items-center">
                       <div className="image">
@@ -122,7 +122,7 @@ export default function Nav() {
                       </div>
                     </div>
                   </SelectItem>
-                </>
+                </div>
               ))}
             </SelectContent>
           </Select>

@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import { TechnicalAnalysis, Ticker } from "react-tradingview-embed";
+import { Ticker } from "react-tradingview-embed";
 
 export default function AssetWidgetTwo() {
   return (

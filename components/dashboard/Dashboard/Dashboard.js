@@ -205,15 +205,12 @@ export default function Dash() {
           ))}
         </div>
         <div className="assets">
-          <AssetWidget />
-          <div className="my-2">
-            {" "}
-            <AssetWidgetTwo />
-          </div>
+          {details && <AssetWidget />}
+          <div className="my-2"> {details && <AssetWidgetTwo />}</div>
 
           <AssetWidgetThree />
         </div>
-        <AssetWidgetFour />
+        {details && <AssetWidgetFour />}
         <div className="latest-trades mt-5">
           <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
             <div className="header text-lg font-bold mb-3 px-4 pt-3">
