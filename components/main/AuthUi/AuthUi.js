@@ -15,7 +15,7 @@ import Signup from "./SignUp";
 export default function AuthUi() {
   return (
     <>
-      <DialogContent className=" border-0 transition-all text-gray-900 rounded-xl w-[90%] md:w-[60%] lg:w:-[20%]">
+      <DialogContent className=" border-0 transition-all focus:outline-none text-gray-900 rounded-xl w-[90%] md:w-[60%] lg:w:-[20%]">
         <DialogHeader className="text-white">
           <DialogTitle className=""></DialogTitle>
         </DialogHeader>

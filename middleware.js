@@ -7,20 +7,28 @@ export function middleware(request) {
   const token = cookies.token;
   const role = cookies.role;
 
-  // Get the email from the cookies
-
-  // If there's no token and the request path starts with or includes "/dashboard"
   if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
-    console.log("not auth");
-    // Redirect to the root route
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+  if (!token && request.nextUrl.pathname.startsWith("/admin")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
   if (token && request.nextUrl.pathname === "/") {
-    // Redirect to the root route
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
+  if (token && role === "user" && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+  if (token && role === "user" && request.nextUrl.pathname === "/admin") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+  if (token && role === "admin" && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
+  if (token && role === "admin" && request.nextUrl.pathname === "/dashboard") {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
 
-  // If token exists or the route doesn't start with "/dashboard", continue as usual
   return NextResponse.next();
 }
 
