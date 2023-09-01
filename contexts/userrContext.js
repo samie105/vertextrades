@@ -1,11 +1,14 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
+  const router = useRouter();
   const [details, setDetails] = useState(0);
+  const [defaultOpen, setDefaultOPen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(0);
   const [coinPrices, setCoinPrices] = useState({});
@@ -40,6 +43,11 @@ export const UserDataProvider = ({ children }) => {
       address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
     },
   ];
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("defaultOpen", defaultOpen.toString());
+    }
+  }, [defaultOpen]);
   useEffect(() => {
     const fetchCoinPrices = async () => {
       try {
@@ -85,17 +93,34 @@ export const UserDataProvider = ({ children }) => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const response = await fetch("/fetching/fetchAllDetails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "/fetching/fetchAllDetails",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
           },
-          body: JSON.stringify({ email }),
-          next: { revalidate: 1 },
-        });
-
-        const data = await response.json();
-        setDetails(data);
+          { next: { revalidate: 1 } }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setDetails(data);
+          setDefaultOPen(true);
+        } else {
+          console.log(response);
+          // Remove the "token" cookie if it's not found
+          const tokenCookie = document.cookie
+            .split(";")
+            .find((cookie) => cookie.trim().startsWith("token="));
+          if (tokenCookie) {
+            document.cookie =
+              "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            console.log("Token cookie removed");
+          }
+          router.replace("/");
+        }
       } catch (error) {
         console.error(error);
       }
@@ -105,6 +130,7 @@ export const UserDataProvider = ({ children }) => {
     fetchDetails();
 
     // Set up a timer to fetch details every 2 seconds
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 
   return (
@@ -119,6 +145,8 @@ export const UserDataProvider = ({ children }) => {
         coinPrices,
         setCoinPrices,
         email,
+        defaultOpen,
+        setDefaultOPen,
       }}
     >
       {children}

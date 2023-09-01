@@ -3,10 +3,12 @@ import UserModel from "../../../mongodbConnect";
 
 export async function POST(request) {
   const { email } = await request.json();
+  const lowerEmail = email.toLowerCase();
 
   try {
-    const existingUser = await UserModel.findOne({ email });
+    const existingUser = await UserModel.findOne({ email: lowerEmail });
     if (existingUser) {
+      console.log(existingUser);
       return NextResponse.json({ exists: true }, { status: 200 });
     } else {
       return NextResponse.json({ exists: false }, { status: 200 });

@@ -20,8 +20,10 @@ import {
 import Link from "next/link";
 import axios from "axios";
 import { useUserData } from "../../contexts/userrContext";
+import { useRouter } from "next/navigation";
 
 export default function Nav() {
+  const router = useRouter();
   const { coinPrices, setCoinPrices } = useUserData();
   const { details } = useUserData();
   const deposits = [
@@ -68,6 +70,14 @@ export default function Nav() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleLogout = () => {
+    // Remove the "token" cookie
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    // Redirect to the logout page or any other desired action
+    router.replace("/"); // Replace "/logout" with your actual logout route
+  };
+
   return (
     <>
       <div className="nav-container flex justify-between duration-300 text-slate-900 items-center py-3 px-5 transition-colors border-b bg-white">
@@ -111,7 +121,7 @@ export default function Nav() {
                         <Image src={deps.image} alt="" width={20} height={15} />
                       </div>
                       <div className="price text-sm mx-2 font-bold">
-                        {details !== 0 ? (
+                        {details !== 0 && details !== null ? (
                           <code>
                             {coinPrices[deps.short.toLowerCase()]
                               ? (
@@ -220,7 +230,10 @@ export default function Nav() {
                   </div>
                 </Link>
 
-                <div className="logout flex items-center text-sm py-4 rounded-lg text-red-600 bg-red-50 px-2 font-bold">
+                <div
+                  className="logout flex items-center text-sm py-4 rounded-lg text-red-600 bg-red-50 px-2 font-bold cursor-pointer"
+                  onClick={handleLogout}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"

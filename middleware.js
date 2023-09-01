@@ -5,6 +5,7 @@ export function middleware(request) {
 
   // Check if a token exists in the cookies
   const token = cookies.token;
+  const role = cookies.role;
 
   // Get the email from the cookies
 

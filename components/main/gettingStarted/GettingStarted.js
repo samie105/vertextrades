@@ -1,14 +1,19 @@
 "use client";
 import Image from "next/image";
 import AOS from "aos";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 import { Dialog } from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
+import { useUserData } from "../../../contexts/userrContext";
 
 /* eslint-disable react/no-unescaped-entities */
 function GettingStarted() {
+  const [defaultOpen, setDefaultOpen] = useState(
+    localStorage.getItem("defaultOpen")
+  );
+
   return (
     <>
       <section
@@ -67,7 +72,7 @@ function GettingStarted() {
             infrastructure that infos. We believe it is incredibly important to
             redistribute this power & profitability.
           </div>
-          <Dialog>
+          <Dialog defaultOpen={defaultOpen}>
             <DialogTrigger>
               <div
                 className="btn ml-2 mt-5 md:mt-12 mb-5 lg:block"

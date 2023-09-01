@@ -191,7 +191,7 @@ export default function FAQ() {
             </>
           )}
         </Accordion>
-        <di className="flex w-full justify-center">
+        <div className="flex w-full justify-center">
           <button
             className="text-black my-5 flex items-center text-sm md:text-base  rounded-lg x-6 py-4 font-bold mt-4"
             onClick={handleShowMore}
@@ -212,7 +212,7 @@ export default function FAQ() {
               />
             </svg>
           </button>
-        </di>
+        </div>
       </div>
     </div>
   );

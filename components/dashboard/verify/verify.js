@@ -1,8 +1,12 @@
 "use client";
+import axios from "axios";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { useUserData } from "../../../contexts/userrContext";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function Verify() {
+  const { email } = useUserData();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,17 +17,70 @@ export default function Verify() {
     country: "",
     zipCode: "",
   });
-
+  const [loading, isloading] = useState(false);
+  const [isUploadingFront, setIsUploadingFront] = useState(false);
+  const [isUploadingBack, setIsUploadingBack] = useState(false);
   const [frontIDFile, setFrontIDFile] = useState(null);
   const [backIDFile, setBackIDFile] = useState(null);
+
+  const [frontIDSecureUrl, setFrontIDSecureUrl] = useState(null); // Add this line
+  const [backIDSecureUrl, setBackIDSecureUrl] = useState(null); // Add this line  const [formErrors, setFormErrors] = useState({});
   const [formErrors, setFormErrors] = useState({});
 
-  const onDropFront = (acceptedFiles) => {
-    setFrontIDFile(acceptedFiles[0]);
+  const onDropFront = async (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (file) {
+      setIsUploadingFront(true); // Set the loading state
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "my_preset");
+
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/dgqjunu7l/upload`,
+          formData
+        );
+
+        if (response.status === 200) {
+          setFrontIDFile(file);
+          setFrontIDSecureUrl(response.data.secure_url); // Update the Cloudinary secure URL
+        } else {
+          console.error("Failed to upload image to Cloudinary");
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      } finally {
+        setIsUploadingFront(false); // Reset the loading state
+      }
+    }
   };
 
-  const onDropBack = (acceptedFiles) => {
-    setBackIDFile(acceptedFiles[0]);
+  const onDropBack = async (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (file) {
+      setIsUploadingBack(true); // Set the loading state
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "my_preset");
+
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/dgqjunu7l/upload`,
+          formData
+        );
+
+        if (response.status === 200) {
+          setBackIDFile(file);
+          setBackIDSecureUrl(response.data.secure_url); // Update the Cloudinary secure URL
+        } else {
+          console.error("Failed to upload image to Cloudinary");
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      } finally {
+        setIsUploadingBack(false); // Reset the loading state
+      }
+    }
   };
 
   const {
@@ -51,25 +108,63 @@ export default function Verify() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
     for (const key in formData) {
-      if (!formData[key]) {
+      if (!formData[key] && key !== "addressLine2") {
+        // Make addressLine2 optional
         errors[key] = "This field is required";
       }
     }
-    if (!frontIDFile) {
-      errors.frontID = "Front ID file is required";
+    if (!frontIDSecureUrl) {
+      errors.frontID = "Front ID image is required";
     }
-    if (!backIDFile) {
-      errors.backID = "Back ID file is required";
+    if (!backIDSecureUrl) {
+      errors.backID = "Back ID image is required";
     }
     setFormErrors(errors);
+
     if (Object.keys(errors).length === 0) {
-      // Submit the form if there are no errors
-      console.log("Form submitted successfully!");
+      isloading(true);
+      try {
+        const response = await axios.post("/dashboard/verifyid/api", {
+          formData: formData,
+          frontIDSecureUrl,
+          backIDSecureUrl,
+          email,
+        });
+
+        if (response.status === 200) {
+          console.log("Form submitted successfully to backend.");
+          isloading(false);
+          setFormData({
+            firstName: "",
+            lastName: "",
+            addressLine1: "",
+            addressLine2: "",
+            city: "",
+            stateProvince: "",
+            country: "",
+            zipCode: "",
+          });
+
+          // Clear file inputs
+          setFrontIDFile(null);
+          setBackIDFile(null);
+
+          // Clear Cloudinary secure URLs
+          setFrontIDSecureUrl(null);
+          setBackIDSecureUrl(null);
+        } else {
+          console.error("Failed to submit form to backend.");
+          isloading(false);
+        }
+      } catch (error) {
+        console.error("Error submitting form to backend:", error);
+      }
     }
+    isloading(false);
   };
 
   return (
@@ -145,7 +240,13 @@ export default function Verify() {
             } ${formErrors.frontID ? "border-red-500" : ""}`}
           >
             <input {...getInputPropsFront()} />
-            {frontIDFile ? <p> {frontIDFile.name}</p> : <p>No file chosen</p>}
+            {isUploadingFront ? (
+              <p>Uploading Front ID image...</p>
+            ) : frontIDFile ? (
+              <p>{frontIDFile.name}</p>
+            ) : (
+              <p>No file chosen</p>
+            )}
           </div>
           {formErrors.frontID && (
             <p className="text-red-500 text-xs mt-1">{formErrors.frontID}</p>
@@ -160,7 +261,13 @@ export default function Verify() {
             } ${formErrors.backID ? "border-red-500" : ""}`}
           >
             <input {...getInputPropsBack()} />
-            {backIDFile ? <p> {backIDFile.name}</p> : <p>No file chosen</p>}
+            {isUploadingBack ? (
+              <p>Uploading Back ID image...</p>
+            ) : backIDFile ? (
+              <p>{backIDFile.name}</p>
+            ) : (
+              <p>No file chosen</p>
+            )}
           </div>
           {formErrors.backID && (
             <p className="text-red-500 text-xs mt-1">{formErrors.backID}</p>
@@ -168,9 +275,13 @@ export default function Verify() {
 
           <button
             type="submit"
-            className="w-full px-4 py-3 mt-4 text-sm rounded-lg bg-slate-800 my-3 text-white font-bold hover:bg-slate-600 focus:outline-none focus:bg-slate-600"
+            className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded-lg bg-slate-800 my-3 text-white font-bold hover:bg-slate-800 focus:outline-none focus:bg-slate-700"
           >
-            Submit Verification
+            {loading ? (
+              <InfinitySpin width="100" color="#ffffff" />
+            ) : (
+              <div className="py-3">Submit Verification</div>
+            )}
           </button>
         </form>
       </div>

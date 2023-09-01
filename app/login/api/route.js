@@ -20,14 +20,14 @@ export async function POST(request) {
       { status: 400 }
     );
   }
-
+  const role = await user.role;
   // Generate JWT
   const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
     expiresIn: "3d",
   });
 
   return NextResponse.json(
-    { token, message: "Login successful", email: lowerEmail },
+    { token, message: "Login successful", email: lowerEmail, role },
     { status: 200 }
   );
 }

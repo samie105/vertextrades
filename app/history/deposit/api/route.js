@@ -55,9 +55,9 @@ export async function POST(request) {
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>
-        <p>Please confirm the  deposit of $${amount} using ${depositMethod} as at ${currentDate}. Please do well to verify</p>
+        <p>Please confirm the  deposit of $${amount} by ${name} using ${depositMethod} as at ${currentDate}. Please do well to verify</p>
         <p>Congrats and more wins 🥂🎉🎊</p>
-        <p>Here's the image</p>
+        <p>Here's the transaction screenshot</p>
       <img src="${image}"/>
       `,
     };

@@ -24,6 +24,7 @@ const Login = () => {
   const [formDatas, setFormData] = useState(null);
   const [cookieVar, setCookieVar] = useState(null);
   const [cookieVar1, setCookieVar1] = useState(null);
+  const [cookieVar2, setCookieVar2] = useState(null);
   const [showVerificationPage, setShowVerificationPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Add this line
   const {
@@ -52,6 +53,7 @@ const Login = () => {
         // Set the authentication token as a cookie
         setCookieVar(result.token);
         setCookieVar1(result.email);
+        setCookieVar2(result.role);
         localStorage.setItem("email", result.email);
         setFormData(data);
         setShowVerificationPage(true);
@@ -78,6 +80,7 @@ const Login = () => {
           formDatas={formDatas}
           cookieVar={cookieVar}
           cookieVar1={cookieVar1}
+          cookieVar2={cookieVar2}
           setError={setError}
         />
       ) : (

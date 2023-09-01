@@ -38,8 +38,12 @@ export async function POST(request) {
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "5d",
     });
+    const role = await user.role;
 
-    return NextResponse.json({ success: true, email, token }, { status: 201 });
+    return NextResponse.json(
+      { success: true, email, token, role },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json({ success: false, error }, { status: 400 });
   }

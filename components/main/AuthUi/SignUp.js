@@ -80,6 +80,7 @@ export function DatePickerDemo({ selected, onSelect }) {
 const Signup = () => {
   const [cookieVar, setCookieVar] = useState(null);
   const [cookieVar1, setCookieVar1] = useState(null);
+  const [cookieVar2, setCookieVar2] = useState(null);
 
   const [isVerificationStep, setIsVerificationStep] = useState(false);
   const [formData, setFormData] = useState({});
@@ -160,6 +161,7 @@ const Signup = () => {
         localStorage.setItem("email", result.email);
         setCookieVar(result.token);
         setCookieVar1(result.email);
+        setCookieVar2(result.role);
       } else {
         // Handle any errors from the backend
         console.error(result.error);
@@ -491,6 +493,7 @@ const Signup = () => {
       {isVerificationStep ? (
         <VerificationPage
           cookieVar1={cookieVar1}
+          cookieVar2={cookieVar2}
           Input={Input}
           Button={Button}
           Label={Label}
@@ -512,7 +515,7 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handlePreviousStep}
-                className=" mr-2 bg-gray-200 text-black py-3 px-4 rounded-lg"
+                className=" mr-2 bg-gray-200 hover:bg-slate-300 text-black py-3 px-4 rounded-lg"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -532,27 +535,32 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handleNextStep}
-                className="w-full bg-green-800 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
+                className="w-full flex items-center justify-center text-white py-4 px-4 roundd-lg"
                 disabled={!formState.isValid}
               >
-                {isLoading ? (
-                  <InfinitySpin width="100" color="#ffffff" />
-                ) : (
-                  "Proceed"
-                )}
+                <div className="py-2">
+                  {" "}
+                  {isLoading ? (
+                    <InfinitySpin width="100" color="#ffffff" />
+                  ) : (
+                    "Proceed"
+                  )}
+                </div>
               </Button>
             )}
             {currentStep === totalSteps - 1 && (
               <Button
                 type="submit"
-                className="w-full bg-green-800 hover:bg-green-700 text-white py-4 px-4 rounded-lg"
+                className="w-full  flex items-center justify-center text-white py-4 px-4 rounded-lg"
                 disabled={!formState.isValid}
               >
-                {isLoading ? (
-                  <InfinitySpin width="100" color="#ffffff" />
-                ) : (
-                  "Create my account"
-                )}
+                <div className="py-2">
+                  {isLoading ? (
+                    <InfinitySpin width="100" color="#ffffff" />
+                  ) : (
+                    "Create my account"
+                  )}
+                </div>
               </Button>
             )}
           </div>
