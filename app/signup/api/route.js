@@ -18,6 +18,7 @@ export async function POST(request) {
     password,
     withdrawalPin,
     taxCodePin,
+    lastProfit: 0,
     autoTrades: true,
     isVerified: false,
     tradingBalance: 0, // Initialize the new number fields

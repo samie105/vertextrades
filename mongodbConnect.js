@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema({
   autoTrades: Boolean,
   isVerified: Boolean,
   verificationCode: String,
+  lastProfit: Number,
   codeExpiry: Date,
   emailVerified: { type: Boolean, default: false },
   tradingBalance: Number, // New field: trading balance

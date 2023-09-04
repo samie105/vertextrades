@@ -22,12 +22,6 @@ export function middleware(request) {
   if (token && role === "user" && request.nextUrl.pathname === "/admin") {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-  if (token && role === "admin" && request.nextUrl.pathname === "/") {
-    return NextResponse.redirect(new URL("/admin", request.url));
-  }
-  if (token && role === "admin" && request.nextUrl.pathname === "/dashboard") {
-    return NextResponse.redirect(new URL("/admin", request.url));
-  }
 
   return NextResponse.next();
 }
