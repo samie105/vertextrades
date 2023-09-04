@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import DT from "./DT";
+import { useRouter } from "next/navigation";
 
 export default function Dash() {
+  const router = useRouter();
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchDeets = async () => {
@@ -24,6 +26,7 @@ export default function Dash() {
               tradeBalance: deet.tradingBalance,
             }));
             setData(formattedData);
+            router.refresh();
           }
         }
       } catch (error) {
@@ -31,7 +34,7 @@ export default function Dash() {
       }
     };
     fetchDeets();
-  }, [data]);
+  }, [router]);
 
   return (
     <div className="px-4 pt-6 overflow-hidden">
