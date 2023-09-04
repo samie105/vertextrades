@@ -8,7 +8,7 @@ export default function Dash() {
     const fetchDeets = async () => {
       try {
         const response = await fetch("/db/getUser/api", {
-          next: { revalidate: 0 },
+          cache: "no-store",
         });
         if (response.ok) {
           const data = await response.json();
