@@ -147,7 +147,7 @@ export const columns = [
             <Link href={`/admin/${payment.email}`} passHref>
               <DropdownMenuItem>Edit User Details</DropdownMenuItem>
             </Link>
-            <DropdownMenuItem className="bg-red-50 font-bold text-red-700">
+            <DropdownMenuItem className="bg-red-50 font-bold hover:text-red-600 text-red-700">
               Delet User
             </DropdownMenuItem>
           </DropdownMenuContent>
