@@ -7,7 +7,9 @@ export default function Dash() {
   useEffect(() => {
     const fetchDeets = async () => {
       try {
-        const response = await fetch("/db/getUser/api");
+        const response = await fetch("/db/getUser/api", {
+          next: { revalidate: 0 },
+        });
         if (response.ok) {
           const data = await response.json();
           if (data.users && data.users.length > 0) {
