@@ -31,7 +31,7 @@ export default function Dash() {
       }
     };
     fetchDeets();
-  }, []);
+  }, [data]);
 
   return (
     <div className="px-4 pt-6 overflow-hidden">
