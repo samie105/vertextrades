@@ -4,8 +4,6 @@ export const metadata = {
   title: "Brokersite || Admin",
   description: "Admin Panel",
 };
-export const runtime = "nodejs";
-export const revalidate = 1;
 
 export default function Layout({ children }) {
   return (
