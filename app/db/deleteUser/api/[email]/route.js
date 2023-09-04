@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import UserModel from "../../../../../mongodbConnect";
-export const revalidate = true;
 
 export async function DELETE(request, { params }) {
   const { email } = params;
