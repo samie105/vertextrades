@@ -7,11 +7,11 @@ export const metadata = {
 
 export default function Layout({ children }) {
   return (
-    <section className="max-w-[100vw] overflow-hidden">
-      <div className="fixed top-0">
+    <section className="w-full h-full m-0 p-0 overflow-x-hidden">
+      <div className="fixed top-0 left-0 w-fit">
         <Nav />
       </div>
-      <div className="mt-16">{children}</div>
+      <div className="mt-16 max-w-[100vw]">{children}</div>
     </section>
   );
 }

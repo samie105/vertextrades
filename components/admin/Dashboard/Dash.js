@@ -7,7 +7,9 @@ export default function Dash() {
   useEffect(() => {
     const fetchDeets = async () => {
       try {
-        const response = await fetch("/db/getUser/api");
+        const response = await fetch("/db/getUser/api", {
+          next: { revalidate: 10 },
+        });
         if (response.ok) {
           const data = await response.json();
           if (data.users && data.users.length > 0) {
@@ -32,7 +34,7 @@ export default function Dash() {
   }, []);
 
   return (
-    <div className="px-4 pt-6 w-full  overflow-hidden">
+    <div className="px-4 pt-6 overflow-hidden">
       <section className="title">
         <h2 className=" font-bold">Dashboard</h2>
       </section>
@@ -99,7 +101,7 @@ export default function Dash() {
       </section>
 
       <section>
-        <DT data={data} />
+        <DT data={data} setData={setData} />
       </section>
     </div>
   );

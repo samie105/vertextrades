@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 import { DataTableDemo } from "../../../app/admin/data-table";
 
-export default function DT({ data }) {
+export default function DT({ data, setData }) {
   return (
     <>
-      <div className="p-4 mt-8 rounded-md border">
+      <div className="px-3 mx-auto mt-8 rounded-md border">
         {console.log(data)}
-        <DataTableDemo data={data} />
+        <DataTableDemo data={data} setData={setData} />
       </div>
     </>
   );

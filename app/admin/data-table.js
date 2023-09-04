@@ -39,125 +39,153 @@ import { useState } from "react";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import Link from "next/link";
 
-export const columns = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => <div className="px-4">{row.getValue("name")}</div>,
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="font-bold"
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
+async function deleteUser(email) {
+  try {
+    // Send a DELETE request to your API with the email in the request body
+    const response = await fetch(`/db/deleteUser/api/${email}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      // User deleted successfully, perform actions here
+      console.log("deleted");
+      return true;
+    } else {
+      // Handle error cases
+      console.error("User deletion failed");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error while deleting user:", error);
+    return false;
+  }
+}
+
+export function DataTableDemo({ data, setData }) {
+  const columns = [
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={table.getIsAllPageRowsSelected()}
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "phone",
-    header: "Phone",
-    cell: ({ row }) => <div>{row.getValue("phone")}</div>,
-  },
-  {
-    accessorKey: "password",
-    header: "Password",
-    cell: ({ row }) => <div>{row.getValue("password")}</div>,
-  },
-  {
-    accessorKey: "withdrawalPin",
-    header: "Withdrawal Pin",
-    cell: ({ row }) => <div>{row.getValue("withdrawalPin")}</div>,
-  },
-  {
-    accessorKey: "taxCodePin",
-    header: "Tax Code Pin",
-    cell: ({ row }) => <div>{row.getValue("taxCodePin")}</div>,
-  },
-  {
-    accessorKey: "tradeBalance",
-    header: () => <div className="text-right">Trading Balance</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("tradeBalance"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+    {
+      accessorKey: "name",
+      header: "Name",
+      cell: ({ row }) => <div className="px-4">{row.getValue("name")}</div>,
     },
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const payment = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.taxCodePin)}
-            >
-              Copy Tax Code Pin
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() =>
-                navigator.clipboard.writeText(payment.withdrawalPin)
-              }
-            >
-              Copy Withdrawal Pin
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <Link href={`/admin/${payment.email}`} passHref>
-              <DropdownMenuItem>Edit User Details</DropdownMenuItem>
-            </Link>
-            <DropdownMenuItem className="bg-red-50 font-bold hover:text-red-600 text-red-700">
-              Delet User
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+    {
+      accessorKey: "email",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="font-bold"
+          >
+            Email
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        <div className="lowercase">{row.getValue("email")}</div>
+      ),
     },
-  },
-];
+    {
+      accessorKey: "phone",
+      header: "Phone",
+      cell: ({ row }) => <div>{row.getValue("phone")}</div>,
+    },
+    {
+      accessorKey: "password",
+      header: "Password",
+      cell: ({ row }) => <div>{row.getValue("password")}</div>,
+    },
+    {
+      accessorKey: "withdrawalPin",
+      header: "Withdrawal Pin",
+      cell: ({ row }) => <div>{row.getValue("withdrawalPin")}</div>,
+    },
+    {
+      accessorKey: "taxCodePin",
+      header: "Tax Code Pin",
+      cell: ({ row }) => <div>{row.getValue("taxCodePin")}</div>,
+    },
+    {
+      accessorKey: "tradeBalance",
+      header: () => <div className="text-right">Trading Balance</div>,
+      cell: ({ row }) => {
+        const amount = parseFloat(row.getValue("tradeBalance"));
 
-export function DataTableDemo({ data }) {
+        // Format the amount as a dollar amount
+        const formatted = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(amount);
+
+        return <div className="text-right font-medium">{formatted}</div>;
+      },
+    },
+    {
+      id: "actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        const payment = row.original;
+
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                {/* <span className="sr-only">Open menu</span> */}
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() =>
+                  navigator.clipboard.writeText(payment.taxCodePin)
+                }
+              >
+                Copy Tax Code Pin
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() =>
+                  navigator.clipboard.writeText(payment.withdrawalPin)
+                }
+              >
+                Copy Withdrawal Pin
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <Link href={`/admin/${payment.email}`} passHref>
+                <DropdownMenuItem>Edit User Details</DropdownMenuItem>
+              </Link>
+              <DropdownMenuItem
+                onClick={() => handleDelete(payment.email)}
+                className="bg-re-50 font-bold hover:text-red-600 text-red-700"
+              >
+                Delete User
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    },
+  ];
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({
@@ -168,7 +196,17 @@ export function DataTableDemo({ data }) {
     password: true,
   });
   const [rowSelection, setRowSelection] = React.useState({});
+  const handleDelete = async (email) => {
+    const userDeleted = await deleteUser(email);
 
+    if (userDeleted) {
+      // Remove the deleted user from the table
+      // You might need to identify the row by email and update the state accordingly
+      // table.toggleRowSelected(email);
+      const updatedData = data.filter((user) => user.email !== email);
+      setData(updatedData);
+    }
+  };
   const table = useReactTable({
     data,
     columns,
@@ -228,7 +266,7 @@ export function DataTableDemo({ data }) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border px-2">
+      <div className="rounded-md border px-2 max-w-[100vw]">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
