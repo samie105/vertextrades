@@ -13,7 +13,7 @@ export default function ImageUsing() {
           className="w-full h-full"
         />
       </div>
-      <div className="mobile-verson md:hidden">
+      <div className="mobile-verson hidden px-10">
         <Image
           alt=""
           src="/assets/mobiletoUse1.png"

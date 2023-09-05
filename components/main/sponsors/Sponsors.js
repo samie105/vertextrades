@@ -59,7 +59,7 @@ export default function Sponsors() {
     <>
       <div
         id="Partners"
-        className="spons-cont items-center lg:flex bg-gray-50 py-14  my-12 w-full relative"
+        className="spons-cont items-center lg:flex bg-gray50 py-14  my-12 w-full relative"
       >
         <div className="absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
           <Image
@@ -76,7 +76,7 @@ export default function Sponsors() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-4 h-4 mr-1"
+                className="w-4 h-4 mr-1 text-red-700"
               >
                 <path d="M5.625 3.75a2.625 2.625 0 100 5.25h12.75a2.625 2.625 0 000-5.25H5.625zM3.75 11.25a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zM3 15.75a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75zM3.75 18.75a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75z" />
               </svg>
@@ -85,8 +85,8 @@ export default function Sponsors() {
             </div>
             <div className="message-head capitalize">
               <p className="text-2xl md:text-3xl lg:text-4xl font-bold my-3">
-                Top <span className="text-green-700">Companies</span> and{" "}
-                <span className="text-green-700">Trade</span>{" "}
+                Top <span className="text-red-700">Companies</span> and{" "}
+                <span className="text-red-700">Trade</span>{" "}
                 <br className="hidden md:block lg:hidden" /> Partners !!!
               </p>
             </div>

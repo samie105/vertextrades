@@ -24,8 +24,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      const scrollThreshold = 100;
+      const scrollTop = window.scrollY;
+      const scrollThreshold = 150;
       setIsScrolled(scrollTop > scrollThreshold);
     };
 
@@ -50,11 +50,11 @@ export default function Navbar() {
     <>
       <div
         className={`nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors ${
-          isScrolled ? "bg-black" : "bg-transparent"
+          isScrolled ? "bg-gray-950" : "bg-transparent"
         }`}
       >
         <div className="logo-area">
-          <h2 className="font-bold text-base">Broker Logo Name</h2>
+          <h2 className="font-bold text-base ">Broker Logo Name</h2>
         </div>
         <div className="Navigation-Items">
           <div className="itemcontainer lg:flex hidden text-sm">
@@ -91,7 +91,7 @@ export default function Navbar() {
           <DialogTrigger>
             <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden">
               <div
-                className="btn1 px-4 cursor-pointer flex py-3 bg-green-600 rounded-xl"
+                className="btn1 px-4 cursor-pointer flex py-3 bg-clip-tet text-transprent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-500 rounded-xl"
                 // style={{ backgroundColor: "#ffffff10" }}
               >
                 <p className="px-0.5 opacity-90">Get started trading</p>
@@ -116,7 +116,10 @@ export default function Navbar() {
                 />
               </svg>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-white border-0">
+            <SheetContent
+              side="right"
+              className="bg-gradient-to-b from-red-50 via-white to-white border-0 "
+            >
               <SheetHeader className="text-white">
                 <SheetTitle>
                   <div className=" font-bold">Broker Name</div>
@@ -137,9 +140,9 @@ export default function Navbar() {
                   >
                     <SheetClose key={item.label} className="w-full">
                       <div
-                        className={`menu-item mb-1 py-3 hover:opacity-90 text-gray-500 duration-200 cursor-pointer hover:bg-gray-100 px-3 rounded-md flex items-center ${
+                        className={`menu-item mb-1 py-2 hover:opacity-90 text-gray-500 duration-200 cursor-pointer hover:bg-gray-100 px-1 //rounded-md flex items-center ${
                           activeNavItem === item.label
-                            ? "bg-green-50 opacity-100 border-green-700 border text-green-600 font-bold rounded-xl hover:bg-green-50"
+                            ? " opacity-100 border-black border-b-2 text-black font-bold //rounded-md hover:bg-green-50"
                             : ""
                         }`}
                         onClick={() => handleNavItemClick(item.label)}
@@ -154,7 +157,7 @@ export default function Navbar() {
                 <DialogTrigger>
                   <SheetClose>
                     <div className="cta-button justify-center text-sm flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
-                      <button className="w-full bg-green-700 text-white px-7 py-4 rounded-xl font-bold">
+                      <button className="w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-rose-700 to-orange-700  text-white px-7 py-4 rounded-xl font-bold">
                         Login or Sign up
                       </button>
                     </div>

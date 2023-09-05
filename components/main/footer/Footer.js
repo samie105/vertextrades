@@ -6,7 +6,7 @@ import AuthUi from "../AuthUi/AuthUi";
 function Footer() {
   return (
     <>
-      <div className="footer-container bg-gradient-to-r from-gray-800 via-gray-900 to-black p-5  text-white">
+      <div className="footer-container bg-gray-950 p-5  text-white">
         <div className="grid-system grid gap-x-5 grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
           <div className="grid1 my-10">
             <section className="broker-name text-3xl my-4">
@@ -74,7 +74,7 @@ function Footer() {
             <Dialog>
               <DialogTrigger>
                 <div className="flex items-center justify-center ">
-                  <div className="flex w-2/3 items-center justify-center md:w-full my-5 px-6 py-4 bg-[#ffffff10] rounded-lg">
+                  <div className="flex w-2/3 items-center justify-center md:w-full my-5 px-6 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-600 rounded-lg">
                     {" "}
                     <p className="text-sm text-white">Create account</p>
                     <svg
@@ -115,9 +115,9 @@ function Footer() {
                 <p>Contacts Information</p>
               </div>
             </h2>
-            <div className="phone-container px-4 py-2 my-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
+            <div className="phone-container px-4 py-2 my-3 /bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
               <section className="phone-section flex items-center ">
-                <div className="icon p-3 rounded-full bg-[#ffffff20] mr-4 opacity-60">
+                <div className="icon p-3 rounded-full  mr-4 opacity-60">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -144,9 +144,9 @@ function Footer() {
               </section>
               <section className="icon-section"></section>
             </div>
-            <div className="email-container px-4 py-2 my-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
+            <div className="email-container px-4 py-2 my-3 /bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
               <section className="email-section flex items-center ">
-                <div className="icon p-3 rounded-full bg-[#ffffff20] mr-4 opacity-60">
+                <div className="icon p-3 rounded-full  mr-4 opacity-60">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -173,9 +173,9 @@ function Footer() {
               </section>
               <section className="icon-section"></section>
             </div>
-            <div className="address-container px-4 py-2 my-3 bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
+            <div className="address-container px-4 py-2 my-3 /bg-[#ffffff05] rounded-lg hover:bg-[#ffffff10] transition-all cursor-pointer flex  items-center justify-between">
               <section className="address-section flex items-center ">
-                <div className="icon p-3 rounded-full bg-[#ffffff20] mr-4 opacity-60">
+                <div className="icon p-3 rounded-full  mr-4 opacity-60">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -210,7 +210,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-message py-4 flex justify-center text-gray-400 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-xs md:text-base">
+      <div className="footer-message py-4 flex justify-center text-gray-400 bg-gray-950 text-xs md:text-base">
         © 2023 [brokername].com All Rights Reserved.
       </div>
     </>

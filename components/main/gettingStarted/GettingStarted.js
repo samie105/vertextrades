@@ -10,9 +10,11 @@ import { useUserData } from "../../../contexts/userrContext";
 
 /* eslint-disable react/no-unescaped-entities */
 function GettingStarted() {
-  const [defaultOpen, setDefaultOpen] = useState(
-    localStorage.getItem("defaultOpen")
-  );
+  const storedDefaultOpen = localStorage.getItem("defaultOpen");
+  const defaultOpen = storedDefaultOpen === "true";
+  //   const [defaultOpen] = useState(
+  //   localStorage.getItem("defaultOpen")
+  // );
 
   return (
     <>
@@ -56,7 +58,7 @@ function GettingStarted() {
               data-aos="fade-down"
             >
               <p>
-                How It <span className="text-red-800">Works?</span>{" "}
+                How It <span className="text-red-700">Works?</span>{" "}
               </p>
             </div>
           </div>
@@ -78,7 +80,7 @@ function GettingStarted() {
                 className="btn ml-2 mt-5 md:mt-12 mb-5 lg:block"
                 data-aos="fade-up"
               >
-                <button className="px-5 py-4 bg-red-800 text-white font-semibold text-sm items-center rounded-xl flex">
+                <button className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
                   <p>Create an account</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

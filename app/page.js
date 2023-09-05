@@ -9,6 +9,7 @@ import Testimonials from "../components/main/Testimonials/Testimonials";
 import ImageUsing from "../components/main/toUse/ImageUsing";
 import FAQ from "../components/main/Faq/FAQ";
 import Footer from "../components/main/footer/Footer";
+import Commodities from "../components/main/commodities/Commodities";
 import Navbar from "../components/main/navbars/Navbar";
 
 export default function Home() {
@@ -27,7 +28,8 @@ export default function Home() {
 
         <GettingStarted />
         <WhatNRating />
-        <ImageUsing />
+        {/* <ImageUsing /> */}
+        <Commodities />
         <Sponsors />
         <AboutUs />
         <Wcy />

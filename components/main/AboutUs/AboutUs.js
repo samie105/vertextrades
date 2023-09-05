@@ -9,9 +9,9 @@ function AboutUs() {
     <>
       <div
         id="Features & Benefits"
-        className="wwd-container md:flex flex flex-col max-w-[100vw] px-6 md:px-10 lg:flex-row md:bg-gradient-to-r bg-gradient-to-b from-green-50 via-white to-white"
+        className="wwd-container md:flex flex flex-col max-w-[100vw] md:py-8 py-4 px-6 md:px-10 lg:flex-row md:bg-gradient-to-r bg-gradient-to-b from-red-50/80 via-white to-white"
       >
-        <div className="second-cont mt-10 mb-3 md:w-2/3 mr-10">
+        <div className="second-cont mb-1 md:w-2/3 mr-10">
           <div className="inner-cont">
             <div className="smallertex">
               <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
@@ -19,7 +19,7 @@ function AboutUs() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5 mr-2 text-green-700"
+                  className="w-5 h-5 mr-2 text-red-700"
                 >
                   <path
                     fillRule="evenodd"
@@ -32,7 +32,7 @@ function AboutUs() {
               </div>
             </div>
             <div className="larger-text text-2xl font-bold">
-              Get <span className="text-green-700">Exceptional</span> Services!!
+              Get <span className="text-red-700">Exceptional</span> Services!!
             </div>
             <div className="text-writeUp text-sm my-3">
               <p>
@@ -46,7 +46,7 @@ function AboutUs() {
             <Dialog>
               <DialogTrigger>
                 <div className="btn mt-5 md:mt-12 mb-5 lg:block">
-                  <button className="px-5 py-4 bg-green-700 text-white font-semibold text-sm items-center rounded-xl flex">
+                  <button className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
                     <p>Start enjoying benefits</p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-green-700"
+                        className="w-4 h-4 mr-2 text-red-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -92,7 +92,7 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      Safe & <span className="text-green-700">Secure</span>{" "}
+                      Safe & <span className="text-red-700">Secure</span>{" "}
                     </p>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-green-700"
+                        className="w-4 h-4 mr-2 text-red-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -130,7 +130,7 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      Profitable <span className="text-green-700">Assets</span>{" "}
+                      Profitable <span className="text-red-700">Assets</span>{" "}
                     </p>
                   </div>
                 </div>
@@ -156,7 +156,7 @@ function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-green-700"
+                        className="w-4 h-4 mr-2 text-red-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -169,7 +169,7 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      <span className="text-green-700">Secure </span>Wallet{" "}
+                      <span className="text-red-700">Secure </span>Wallet{" "}
                     </p>
                   </div>
                 </div>
@@ -192,7 +192,7 @@ function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-green-700"
+                        className="w-4 h-4 mr-2 text-red-700"
                       >
                         <path
                           fillRule="evenodd"
@@ -206,8 +206,7 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      <span className="text-green-700">Instant</span>{" "}
-                      Withdrawals
+                      <span className="text-red-700">Instant</span> Withdrawals
                     </p>
                   </div>
                 </div>
