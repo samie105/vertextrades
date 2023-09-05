@@ -10,6 +10,8 @@ import ImageUsing from "../components/main/toUse/ImageUsing";
 import FAQ from "../components/main/Faq/FAQ";
 import Footer from "../components/main/footer/Footer";
 import Commodities from "../components/main/commodities/Commodities";
+import MT from "../components/main/MetaTrader/MT";
+import Stock from "../components/main/Stocks/Stocks";
 import Navbar from "../components/main/navbars/Navbar";
 
 export default function Home() {
@@ -28,10 +30,12 @@ export default function Home() {
 
         <GettingStarted />
         <WhatNRating />
-        {/* <ImageUsing /> */}
-        <Commodities />
-        <Sponsors />
         <AboutUs />
+        {/* <ImageUsing /> */}
+        <MT />
+        <Commodities />
+        <Stock />
+        <Sponsors />
         <Wcy />
         <Testimonials />
         <FAQ />

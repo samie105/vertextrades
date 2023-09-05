@@ -4,14 +4,14 @@ import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
 
-function AboutUs() {
+export default function AboutUs() {
   return (
     <>
       <div
         id="Features & Benefits"
-        className="wwd-container md:flex flex flex-col max-w-[100vw] md:py-8 py-4 px-6 md:px-10 lg:flex-row md:bg-gradient-to-r bg-gradient-to-b from-red-50/80 via-white to-white"
+        className="wwd-container pt-5 md:flex flex flex-col max-w-[100vw] md:py-8 py-4 px-6 md:px-10 lg:flex-row md:bg-graient-to-r bg-graient-to-b from-red-50/80 via-white to-white"
       >
-        <div className="second-cont mb-1 md:w-2/3 mr-10">
+        <div className="second-cont pt-8 md:pt-0 mb-1 md:w-2/3 mr-10">
           <div className="inner-cont">
             <div className="smallertex">
               <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
@@ -32,7 +32,11 @@ function AboutUs() {
               </div>
             </div>
             <div className="larger-text text-2xl font-bold">
-              Get <span className="text-red-700">Exceptional</span> Services!!
+              Get{" "}
+              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                Exceptional
+              </span>{" "}
+              Services!!
             </div>
             <div className="text-writeUp text-sm my-3">
               <p>
@@ -46,7 +50,7 @@ function AboutUs() {
             <Dialog>
               <DialogTrigger>
                 <div className="btn mt-5 md:mt-12 mb-5 lg:block">
-                  <button className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
+                  <div className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
                     <p>Start enjoying benefits</p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +64,7 @@ function AboutUs() {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </button>
+                  </div>
                 </div>
               </DialogTrigger>
               <AuthUi />
@@ -92,7 +96,10 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      Safe & <span className="text-red-700">Secure</span>{" "}
+                      Safe &{" "}
+                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                        Secure
+                      </span>{" "}
                     </p>
                   </div>
                 </div>
@@ -130,7 +137,10 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      Profitable <span className="text-red-700">Assets</span>{" "}
+                      Profitable{" "}
+                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                        Assets
+                      </span>{" "}
                     </p>
                   </div>
                 </div>
@@ -169,7 +179,10 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      <span className="text-red-700">Secure </span>Wallet{" "}
+                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                        Secure{" "}
+                      </span>
+                      Wallet{" "}
                     </p>
                   </div>
                 </div>
@@ -206,7 +219,10 @@ function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      <span className="text-red-700">Instant</span> Withdrawals
+                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                        Instant
+                      </span>{" "}
+                      Withdrawals
                     </p>
                   </div>
                 </div>
@@ -226,4 +242,3 @@ function AboutUs() {
     </>
   );
 }
-export default dynamic(() => Promise.resolve(AboutUs), { ssr: false });

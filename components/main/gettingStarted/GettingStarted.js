@@ -9,9 +9,7 @@ import dynamic from "next/dynamic";
 import { useUserData } from "../../../contexts/userrContext";
 
 /* eslint-disable react/no-unescaped-entities */
-function GettingStarted() {
-  const storedDefaultOpen = localStorage.getItem("defaultOpen");
-  const defaultOpen = storedDefaultOpen === "true";
+export default function GettingStarted() {
   //   const [defaultOpen] = useState(
   //   localStorage.getItem("defaultOpen")
   // );
@@ -74,13 +72,13 @@ function GettingStarted() {
             infrastructure that infos. We believe it is incredibly important to
             redistribute this power & profitability.
           </div>
-          <Dialog defaultOpen={defaultOpen}>
+          <Dialog>
             <DialogTrigger>
               <div
                 className="btn ml-2 mt-5 md:mt-12 mb-5 lg:block"
                 data-aos="fade-up"
               >
-                <button className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
+                <div className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
                   <p>Create an account</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +92,7 @@ function GettingStarted() {
                       clipRule="evenodd"
                     />
                   </svg>
-                </button>
+                </div>
               </div>
             </DialogTrigger>
             <AuthUi />
@@ -258,4 +256,3 @@ function GettingStarted() {
     </>
   );
 }
-export default dynamic(() => Promise.resolve(GettingStarted), { ssr: false });

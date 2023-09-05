@@ -117,7 +117,7 @@ export default function Navbar() {
               </svg>
             </SheetTrigger>
             <SheetContent
-              side="right"
+              side="left"
               className="bg-gradient-to-b from-red-50 via-white to-white border-0 "
             >
               <SheetHeader className="text-white">
@@ -157,9 +157,9 @@ export default function Navbar() {
                 <DialogTrigger>
                   <SheetClose>
                     <div className="cta-button justify-center text-sm flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
-                      <button className="w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-rose-700 to-orange-700  text-white px-7 py-4 rounded-xl font-bold">
+                      <div className="w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-rose-700 to-orange-700  text-white px-7 py-4 rounded-xl font-bold">
                         Login or Sign up
-                      </button>
+                      </div>
                     </div>
                   </SheetClose>
                 </DialogTrigger>

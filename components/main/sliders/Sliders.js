@@ -7,7 +7,7 @@ import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 
-function Slider() {
+export default function Slider() {
   return (
     <>
       <Script
@@ -77,7 +77,7 @@ function Slider() {
                 <Dialog>
                   <DialogTrigger>
                     <div className="calltoactionBtn  mt-10">
-                      <button className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md  px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
+                      <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md  px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
                         <p className="">Start Your Epic Journey 🎉</p>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,7 @@ function Slider() {
                             clipRule="evenodd"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </div>
                   </DialogTrigger>
                   <AuthUi />
@@ -149,7 +149,7 @@ function Slider() {
                 <Dialog>
                   <DialogTrigger>
                     <div className="calltoactionBtn text-center  mt-10">
-                      <button className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
+                      <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
                         <p className="">Cool? Start Trading</p>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ function Slider() {
                             clipRule="evenodd"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </div>
                   </DialogTrigger>
                   <AuthUi />
@@ -223,7 +223,7 @@ function Slider() {
                 <Dialog>
                   <DialogTrigger>
                     <div className="calltoactionBtn text-center   mt-10">
-                      <button className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
+                      <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
                         <p className="">Aye! Get Going</p>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +237,7 @@ function Slider() {
                             clipRule="evenodd"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </div>
                   </DialogTrigger>
                   <AuthUi />
@@ -250,5 +250,3 @@ function Slider() {
     </>
   );
 }
-
-export default dynamic(() => Promise.resolve(Slider), { ssr: false });

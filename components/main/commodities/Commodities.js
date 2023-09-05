@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Commodities() {
   return (
-    <div className="px-2 py-4 mt-8">
+    <div className="px-2 py-4 mt-2">
       <div className="inner-cont w-full md:ext-center px-5">
         <div className="smallertex">
           <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase  text-sm">
@@ -24,7 +24,7 @@ export default function Commodities() {
         </div>
         <div
           data-aos="fade-right"
-          className="larger-text text-xl text-gray-700 md:text-2xl lg:text-3xl font-bold mb-4 "
+          className="larger-text text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-gray-700 "
         >
           Trade with world-wide accepted{" "}
           <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
@@ -45,7 +45,11 @@ export default function Commodities() {
       </div>
       <div className="other-cont">
         <div className="commodities grid md:grid-cols-4 gap-2 grid-cols-2 px-2">
-          <div className="cm1 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            d
+            className="cm1 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,10 +65,14 @@ export default function Commodities() {
               </svg>
             </div>
             <div className="text font-bold textlg text-sm md:text-base">
-              Stocks
+              Indices
             </div>
           </div>
-          <div className="cm2 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="100"
+            className="cm2 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +91,11 @@ export default function Commodities() {
               ETFs
             </div>
           </div>
-          <div className="cm3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="200"
+            className="cm3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +114,11 @@ export default function Commodities() {
               Commodities
             </div>
           </div>
-          <div className="cm4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="300"
+            className="cm4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +135,11 @@ export default function Commodities() {
             </div>
             <div className="text font-bold text-g text-sm">Bonds</div>
           </div>
-          <div className="cm5 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="400"
+            className="cm5 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +157,11 @@ export default function Commodities() {
             </div>
             <div className="text font-bold text-g text-sm">Forex</div>
           </div>
-          <div className="cm6 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="500"
+            className="cm6 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +178,11 @@ export default function Commodities() {
             </div>
             <div className="text font-bold text-g text-sm">CFDs</div>
           </div>
-          <div className="cm7 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="600"
+            className="cm7 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -166,9 +194,13 @@ export default function Commodities() {
                 <path d="M8.003 4.07C8.55 3.992 9 4.447 9 5v5a1 1 0 001 1h5c.552 0 1.008.45.93.997A7.001 7.001 0 012 11a7.002 7.002 0 016.003-6.93z" />
               </svg>
             </div>
-            <div className="text font-bold text-g text-sm">Mutual Bonds</div>
+            <div className="text font-bold text-g text-sm">Metals</div>
           </div>
-          <div className="cm8 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-4 flex items-center">
+          <div
+            data-aos="fade up"
+            data-aos-delay="700"
+            className="cm8 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+          >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

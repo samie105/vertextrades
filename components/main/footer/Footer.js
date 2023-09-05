@@ -3,7 +3,7 @@ import React from "react";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 
-function Footer() {
+export default function Footer() {
   return (
     <>
       <div className="footer-container bg-gray-950 p-5  text-white">
@@ -216,7 +216,6 @@ function Footer() {
     </>
   );
 }
-export default dynamic(() => Promise.resolve(Footer), { ssr: false });
 
 //
 //               <div>About Us</div>
