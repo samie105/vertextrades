@@ -154,9 +154,11 @@ export function DataTableDemo({ data, setData }) {
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="py-1">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
               <DropdownMenuItem
+                className="py-2"
                 onClick={() =>
                   navigator.clipboard.writeText(payment.taxCodePin)
                 }
@@ -164,6 +166,7 @@ export function DataTableDemo({ data, setData }) {
                 Copy Tax Code Pin
               </DropdownMenuItem>
               <DropdownMenuItem
+                className="py-3"
                 onClick={() =>
                   navigator.clipboard.writeText(payment.withdrawalPin)
                 }
@@ -173,10 +176,14 @@ export function DataTableDemo({ data, setData }) {
 
               <DropdownMenuSeparator />
               <Link href={`/admin/${payment.email}`} passHref>
-                <DropdownMenuItem>Edit User Details</DropdownMenuItem>
+                <DropdownMenuItem className="py-3">
+                  Edit User Details
+                </DropdownMenuItem>
               </Link>
               <Link href={`/admin/history/deposit/${payment.email}`} passHref>
-                <DropdownMenuItem>View Deposit History</DropdownMenuItem>
+                <DropdownMenuItem className="py-3">
+                  View Deposit History
+                </DropdownMenuItem>
               </Link>
 
               <Link
@@ -184,11 +191,14 @@ export function DataTableDemo({ data, setData }) {
                 passHref
               >
                 {" "}
-                <DropdownMenuItem>View Withdrawal History</DropdownMenuItem>
+                <DropdownMenuItem className="py-3">
+                  View Withdrawal History
+                </DropdownMenuItem>
               </Link>
+              <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => handleDelete(payment.email)}
-                className="bg-re-50 font-bold hover:text-red-600 text-red-700"
+                className="bg-re-50 font-bold hover:text-red-600 text-red-700 py-3"
               >
                 Delete User
               </DropdownMenuItem>

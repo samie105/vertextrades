@@ -38,6 +38,7 @@ import {
 import { useState } from "react";
 import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
+import axios from "axios";
 
 async function deleteUser(email) {
   try {
@@ -61,66 +62,7 @@ async function deleteUser(email) {
   }
 }
 
-// export const data = [
-//   {
-//     id: 1,
-//     transactionStatus: "Completed",
-//     amount: 5000.75,
-//     depositMethod: "Credit Card",
-//     dateAdded: "2023-09-01",
-//   },
-//   {
-//     id: 2,
-//     transactionStatus: "Pending",
-//     amount: 2500.5,
-//     depositMethod: "Bank Transfer",
-//     dateAdded: "2023-09-02",
-//   },
-//   {
-//     id: 3,
-//     transactionStatus: "Completed",
-//     amount: 10000.0,
-//     depositMethod: "PayPal",
-//     dateAdded: "2023-09-03",
-//   },
-//   {
-//     id: 4,
-//     transactionStatus: "Failed",
-//     amount: 750.25,
-//     depositMethod: "Bitcoin",
-//     dateAdded: "2023-09-04",
-//   },
-//   {
-//     id: 5,
-//     transactionStatus: "Completed",
-//     amount: 3000.0,
-//     depositMethod: "Credit Card",
-//     dateAdded: "2023-09-05",
-//   },
-//   {
-//     id: 6,
-//     transactionStatus: "Pending",
-//     amount: 6000.0,
-//     depositMethod: "Bank Transfer",
-//     dateAdded: "2023-09-06",
-//   },
-//   {
-//     id: 7,
-//     transactionStatus: "Completed",
-//     amount: 4500.75,
-//     depositMethod: "PayPal",
-//     dateAdded: "2023-09-07",
-//   },
-//   {
-//     id: 8,
-//     transactionStatus: "Failed",
-//     amount: 800.0,
-//     depositMethod: "Bitcoin",
-//     dateAdded: "2023-09-08",
-//   },
-// ];
-
-export default function WTTable({ data, setData, email }) {
+export default function DPTable({ data, setData, email }) {
   const columns = [
     {
       id: "select",
@@ -177,13 +119,13 @@ export default function WTTable({ data, setData, email }) {
       },
     },
     {
-      accessorKey: "withdrawMethod",
-      header: "Withdrawal Method",
-      cell: ({ row }) => <div>{row.getValue("withdrawMethod")}</div>,
+      accessorKey: "depositMethod",
+      header: "Deposit Method",
+      cell: ({ row }) => <div>{row.getValue("depositMethod")}</div>,
     },
     {
       accessorKey: "dateAdded",
-      header: "Date Added",
+      header: "Date",
       cell: ({ row }) => <div>{row.getValue("dateAdded")}</div>,
     },
     {
@@ -200,18 +142,26 @@ export default function WTTable({ data, setData, email }) {
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
               <DropdownMenuSeparator />
 
               <DropdownMenuItem
-                className="bg-re-50 text-green-800   py-2"
+                className="bg-re-50 cursor-pointer py-2"
+                onClick={() => handleSendMail(payment.amount)}
+              >
+                Send Confirmed email
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="bg-re-50 text-green-800  cursor-pointer  py-2"
                 onClick={() => updateTransactionStatus(payment.id, "success")}
               >
                 Approve Transaction
               </DropdownMenuItem>
               <DropdownMenuItem
-                className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
+                className="bg-re-50 fot-bold hover:text-red-600 cursor-pointer text-red-700 py-2"
                 onClick={() => updateTransactionStatus(payment.id, "failed")}
               >
                 Reject Transaction
@@ -222,10 +172,29 @@ export default function WTTable({ data, setData, email }) {
       },
     },
   ];
+
+  const handleSendMail = async (amount) => {
+    try {
+      // Send a POST request to the /db/sendEmail/api endpoint with the email and amount data
+      const response = await axios.post("/db/sendEmail/api", { email, amount });
+
+      // Check if the response status is OK (200)
+      if (response.status === 200) {
+        // Email sent successfully, you can handle the response data if needed
+        console.log("Email sent successfully");
+      } else {
+        // Handle other status codes or errors here
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      // Handle network errors or exceptions here
+      console.error("Error while sending email:", error);
+    }
+  };
   const updateTransactionStatus = async (transactionId, newStatus) => {
     try {
       // Make a POST request to your backend API to update the transaction status
-      const response = await fetch(`/db/history/updateWithdrawal/api`, {
+      const response = await fetch(`/db/history/updateDeposit/api`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
