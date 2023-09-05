@@ -31,6 +31,7 @@ export async function POST(request) {
       dep: user.depositHistory,
     });
     user.depositHistory.push({
+      id: crypto.randomUUID(),
       dateAdded: currentDate,
       depositMethod,
       amount,

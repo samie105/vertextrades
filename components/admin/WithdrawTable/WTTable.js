@@ -15,8 +15,8 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
-import { Button } from "../../components/ui/button";
-import { Checkbox } from "../../components/ui/checkbox";
+import { Button } from "../../../components/ui/button";
+import { Checkbox } from "../../../components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -25,8 +25,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu";
-import { Input } from "../../components/ui/input";
+} from "../../../components/ui/dropdown-menu";
+import { Input } from "../../../components/ui/input";
 import {
   Table,
   TableBody,
@@ -34,9 +34,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/ui/table";
+} from "../../../components/ui/table";
 import { useState } from "react";
-import { ScrollArea } from "../../components/ui/scroll-area";
+import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
 
 async function deleteUser(email) {
@@ -61,7 +61,66 @@ async function deleteUser(email) {
   }
 }
 
-export function DataTableDemo({ data, setData }) {
+// export const data = [
+//   {
+//     id: 1,
+//     transactionStatus: "Completed",
+//     amount: 5000.75,
+//     depositMethod: "Credit Card",
+//     dateAdded: "2023-09-01",
+//   },
+//   {
+//     id: 2,
+//     transactionStatus: "Pending",
+//     amount: 2500.5,
+//     depositMethod: "Bank Transfer",
+//     dateAdded: "2023-09-02",
+//   },
+//   {
+//     id: 3,
+//     transactionStatus: "Completed",
+//     amount: 10000.0,
+//     depositMethod: "PayPal",
+//     dateAdded: "2023-09-03",
+//   },
+//   {
+//     id: 4,
+//     transactionStatus: "Failed",
+//     amount: 750.25,
+//     depositMethod: "Bitcoin",
+//     dateAdded: "2023-09-04",
+//   },
+//   {
+//     id: 5,
+//     transactionStatus: "Completed",
+//     amount: 3000.0,
+//     depositMethod: "Credit Card",
+//     dateAdded: "2023-09-05",
+//   },
+//   {
+//     id: 6,
+//     transactionStatus: "Pending",
+//     amount: 6000.0,
+//     depositMethod: "Bank Transfer",
+//     dateAdded: "2023-09-06",
+//   },
+//   {
+//     id: 7,
+//     transactionStatus: "Completed",
+//     amount: 4500.75,
+//     depositMethod: "PayPal",
+//     dateAdded: "2023-09-07",
+//   },
+//   {
+//     id: 8,
+//     transactionStatus: "Failed",
+//     amount: 800.0,
+//     depositMethod: "Bitcoin",
+//     dateAdded: "2023-09-08",
+//   },
+// ];
+
+export default function WTTable({ data, setData, email }) {
   const columns = [
     {
       id: "select",
@@ -83,12 +142,16 @@ export function DataTableDemo({ data, setData }) {
       enableHiding: false,
     },
     {
-      accessorKey: "name",
-      header: "Name",
-      cell: ({ row }) => <div className="px-4">{row.getValue("name")}</div>,
+      accessorKey: "transactionStatus",
+      header: "Transaction Status",
+      cell: ({ row }) => (
+        <div className="px-4 capitalize">
+          {row.getValue("transactionStatus")}
+        </div>
+      ),
     },
     {
-      accessorKey: "email",
+      accessorKey: "amount",
       header: ({ column }) => {
         return (
           <Button
@@ -96,40 +159,13 @@ export function DataTableDemo({ data, setData }) {
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             className="font-bold"
           >
-            Email
+            Amount
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         );
       },
-      cell: ({ row }) => (
-        <div className="lowercase">{row.getValue("email")}</div>
-      ),
-    },
-    {
-      accessorKey: "phone",
-      header: "Phone",
-      cell: ({ row }) => <div>{row.getValue("phone")}</div>,
-    },
-    {
-      accessorKey: "password",
-      header: "Password",
-      cell: ({ row }) => <div>{row.getValue("password")}</div>,
-    },
-    {
-      accessorKey: "withdrawalPin",
-      header: "Withdrawal Pin",
-      cell: ({ row }) => <div>{row.getValue("withdrawalPin")}</div>,
-    },
-    {
-      accessorKey: "taxCodePin",
-      header: "Tax Code Pin",
-      cell: ({ row }) => <div>{row.getValue("taxCodePin")}</div>,
-    },
-    {
-      accessorKey: "tradeBalance",
-      header: () => <div className="text-right">Trading Balance</div>,
       cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("tradeBalance"));
+        const amount = parseFloat(row.getValue("amount"));
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
@@ -137,8 +173,18 @@ export function DataTableDemo({ data, setData }) {
           currency: "USD",
         }).format(amount);
 
-        return <div className="text-right font-medium">{formatted}</div>;
+        return <div className="lowercase">{formatted}</div>;
       },
+    },
+    {
+      accessorKey: "withdrawMethod",
+      header: "Withdrawal Method",
+      cell: ({ row }) => <div>{row.getValue("withdrawMethod")}</div>,
+    },
+    {
+      accessorKey: "dateAdded",
+      header: "Date Added",
+      cell: ({ row }) => <div>{row.getValue("dateAdded")}</div>,
     },
     {
       id: "actions",
@@ -156,41 +202,18 @@ export function DataTableDemo({ data, setData }) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
               <DropdownMenuItem
-                onClick={() =>
-                  navigator.clipboard.writeText(payment.taxCodePin)
-                }
+                className="bg-re-50 text-green-800  "
+                onClick={() => updateTransactionStatus(payment.id, "success")}
               >
-                Copy Tax Code Pin
+                Approve Transaction
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() =>
-                  navigator.clipboard.writeText(payment.withdrawalPin)
-                }
+                className="bg-re-50 fot-bold hover:text-red-600 text-red-700"
+                onClick={() => updateTransactionStatus(payment.id, "failed")}
               >
-                Copy Withdrawal Pin
-              </DropdownMenuItem>
-
-              <DropdownMenuSeparator />
-              <Link href={`/admin/${payment.email}`} passHref>
-                <DropdownMenuItem>Edit User Details</DropdownMenuItem>
-              </Link>
-              <Link href={`/admin/history/deposit/${payment.email}`} passHref>
-                <DropdownMenuItem>View Deposit History</DropdownMenuItem>
-              </Link>
-
-              <Link
-                href={`/admin/history/withdrawal/${payment.email}`}
-                passHref
-              >
-                {" "}
-                <DropdownMenuItem>View Withdrawal History</DropdownMenuItem>
-              </Link>
-              <DropdownMenuItem
-                onClick={() => handleDelete(payment.email)}
-                className="bg-re-50 font-bold hover:text-red-600 text-red-700"
-              >
-                Delete User
+                Reject Transaction
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -198,27 +221,46 @@ export function DataTableDemo({ data, setData }) {
       },
     },
   ];
-  const [sorting, setSorting] = useState([]);
-  const [columnFilters, setColumnFilters] = useState([]);
-  const [columnVisibility, setColumnVisibility] = useState({
-    email: true,
-    phone: true,
-    withdrawalPin: true,
-    taxCodePin: true,
-    password: true,
-  });
-  const [rowSelection, setRowSelection] = React.useState({});
-  const handleDelete = async (email) => {
-    const userDeleted = await deleteUser(email);
+  const updateTransactionStatus = async (transactionId, newStatus) => {
+    try {
+      // Make a POST request to your backend API to update the transaction status
+      const response = await fetch(`/db/history/updateWithdrawal/api`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          transactionId,
+          newStatus,
+        }),
+      });
 
-    if (userDeleted) {
-      // Remove the deleted user from the table
-      // You might need to identify the row by email and update the state accordingly
-      // table.toggleRowSelected(email);
-      const updatedData = data.filter((user) => user.email !== email);
-      setData(updatedData);
+      if (response.ok) {
+        // Transaction status updated successfully on the backend, update the frontend
+        const updatedData = data.map((transaction) => {
+          if (transaction.id === transactionId) {
+            // Update the transaction status
+            return { ...transaction, transactionStatus: newStatus };
+          }
+          return transaction;
+        });
+
+        // Update the state with the new data
+        setData(updatedData);
+      } else {
+        // Handle error cases when the backend update fails
+        console.error("Failed to update transaction status on the backend");
+      }
+    } catch (error) {
+      console.error("Error while updating transaction status:", error);
     }
   };
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnVisibility, setColumnVisibility] = useState({});
+  const [rowSelection, setRowSelection] = React.useState({});
+
   const table = useReactTable({
     data,
     columns,
@@ -242,10 +284,10 @@ export function DataTableDemo({ data, setData }) {
     <div className="w-full">
       <div className="flex items-center gap-x-2 py-4">
         <Input
-          placeholder="Search emails..."
-          value={table.getColumn("email")?.getFilterValue() ?? ""}
+          placeholder="Search by dates..."
+          value={table.getColumn("dateAdded")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("dateAdded")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

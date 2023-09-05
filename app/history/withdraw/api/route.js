@@ -23,6 +23,7 @@ export async function POST(request) {
 
     // Create a new withdrawal entry object
     const withdrawalEntry = {
+      id: crypto.randomUUID(),
       dateAdded: currentDate,
       withdrawMethod,
       amount,

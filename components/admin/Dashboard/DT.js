@@ -6,7 +6,6 @@ export default function DT({ data, setData }) {
   return (
     <>
       <div className="px-3 mx-auto mt-8 rounded-md border">
-        {console.log(data)}
         <DataTableDemo data={data} setData={setData} />
       </div>
     </>
