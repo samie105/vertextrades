@@ -18,7 +18,7 @@ export default function FAQ() {
   return (
     <div
       id="FAQ"
-      className="my-20 bg-gradient-to-b from-red-50 via-white to-white py-5"
+      className="my-20 bg-gradient-to-b from-red50 via-white to-white py-5"
     >
       <div className="inner-cont mx-10 mb-10 lg:w-1/2 md:w-2/3">
         <div className="smallertex">

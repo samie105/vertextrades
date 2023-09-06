@@ -42,7 +42,7 @@ export default function CounterRating() {
               />
               <span className="font-extrabold text-ed-700">K+</span>
             </div>
-            <div className="count-res uppercase text-sm font-bold">
+            <div className="count-res uppercase text-sm font-bod">
               <p>
                 Successfull <span className="text-rd-700">Trades</span>{" "}
               </p>
@@ -81,7 +81,7 @@ export default function CounterRating() {
               />
               <spzn className="font-extrabold text-gren-700">K+</spzn>
             </div>
-            <div className="count-res uppercase text-sm font-bold">
+            <div className="count-res uppercase text-sm font-bld">
               <p>
                 <span className="text-rd-700">Happy</span> Customers
               </p>
@@ -116,7 +116,7 @@ export default function CounterRating() {
                 enableScrollSpy
               />
             </div>
-            <div className="count-res uppercase text-sm font-bold">
+            <div className="count-res uppercase text-sm font-bld">
               <p>
                 Trading <span className="text-re-700">Since</span>{" "}
               </p>
@@ -150,7 +150,7 @@ export default function CounterRating() {
               />
               <spzn className="font-extrabold text-red-70">%</spzn>
             </div>
-            <div className="count-res  uppercase text-sm font-bold">
+            <div className="count-res  uppercase text-sm font-bod">
               <p>
                 Client <span className="text-rd-700">Satisfaction</span>
               </p>

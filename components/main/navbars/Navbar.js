@@ -50,7 +50,7 @@ export default function Navbar() {
     <>
       <div
         className={`nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors ${
-          isScrolled ? "bg-gray-950" : "bg-transparent"
+          isScrolled ? "bg-[#0a0a0a]" : "bg-transparent"
         }`}
       >
         <div className="logo-area">

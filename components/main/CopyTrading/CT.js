@@ -1,25 +1,27 @@
 import Image from "next/image";
 import React from "react";
+import { Dialog, DialogTrigger } from "../../ui/dialog";
+import AuthUi from "../AuthUi/AuthUi";
 
-export default function MT() {
+export default function CT() {
   return (
-    <div>
+    <div className="py-10">
       <div className="mt-container grid grid-cols-1 md:grid-cols-2 md:px-10 px-5 py-8 md:py-5">
-        <section className="image_section flex w-full h-full items-center justify-center">
+        {" "}
+        <section className="image_section flex w-full h-full items-center pt-6 justify-center">
           <div className="img_container px-4">
             <Image
-              src="/assets/trade.png"
+              src="/assets/fpimg1.png"
               alt=""
               width={1000}
               height={1000}
               data-aos="fade-down"
+              data-aos-delay=""
             />
             <div
               className="flex items-center justify-center w-full"
               data-aos="fade-up"
-            >
-              <div className=" py-1 w-40 mt-4 h-[1px]  bg-gray-400 blur-md rounded-[100%] shadow-2xl shadow-gray-100 "></div>
-            </div>
+            ></div>
           </div>
         </section>
         <section className="text_section md:px-8 px-2 pt-7">
@@ -29,14 +31,11 @@ export default function MT() {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              Advanced{" "}
+              Follow{" "}
               <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                Trading
+                Top-performing
               </span>{" "}
-              <br /> Platforms &{" "}
-              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                Financial Technology
-              </span>
+              traders
             </div>
             <div className="listtext font-seibold text-sm text-gray-800">
               <div
@@ -51,7 +50,7 @@ export default function MT() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 mr-2 text-gren-600 mt-0.5"
+                    className="w-6 h-6 mr-2 text-gren-600 "
                   >
                     <path
                       strokeLinecap="round"
@@ -61,27 +60,11 @@ export default function MT() {
                   </svg>
                 </div>
                 <div className="message">
-                  <span
-                    className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
-                  >
-                    MetaTrader 4{" "}
-                  </span>
-                  (MT4) &{" "}
-                  <span
-                    className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
-                  >
-                    MetaTrader 5{" "}
+                  Follow & copy{" "}
+                  <span className="font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                    top-performing
                   </span>{" "}
-                  (MT5) , IRESS,{" "}
-                  <span
-                    className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
-                  >
-                    cTrader
-                  </span>{" "}
-                  and WebTrader & mobile apps for iPhone and Android devices
+                  traders
                 </div>
               </div>
               <div
@@ -96,7 +79,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 mr-2 text-gren-600 mt-0.5"
+                    className="w-6 h-6 mr-2 text-gren-600 "
                   >
                     <path
                       strokeLinecap="round"
@@ -106,7 +89,8 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                   </svg>
                 </div>
                 <div className="message">
-                  Advanced client portal to track your trading in real-time
+                  Forex, Indices, Shares, Commodities, Metals, Digital
+                  Currencies, Bonds & ETFs
                 </div>
               </div>
               <div
@@ -121,7 +105,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 mr-2 text-geen-600 mt-0.5"
+                    className="w-6 h-6 mr-2 text-geen-600 "
                   >
                     <path
                       strokeLinecap="round"
@@ -131,18 +115,41 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                   </svg>
                 </div>
                 <div className="message">
-                  Superior{" "}
-                  <span
-                    className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
-                  >
-                    Virtual Private Servers (VPS)
-                  </span>{" "}
-                  solutions for Expert Advisors (EAs) , scalping and
-                  auto-trading
+                  No need to develop your own{" "}
+                  <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold">
+                    trading plan
+                  </span>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="btn-container">
+            <Dialog>
+              <DialogTrigger>
+                <div
+                  className="btn ml-2 mt-5 md:mt-12 mb-5 lg:block"
+                  data-aos="fade-up"
+                  data-aos-delay="500"
+                >
+                  <div className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
+                    <p>Start Copy-Trading</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-6 h-6 ml-4"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </DialogTrigger>
+              <AuthUi />
+            </Dialog>
           </div>
         </section>
       </div>

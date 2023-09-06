@@ -9,7 +9,7 @@ export default function Sponsors() {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 2000,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     swipeToSlide: true,
     initialSlide: 0,
@@ -19,7 +19,7 @@ export default function Sponsors() {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 2000,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     swipeToSlide: true,
     initialSlide: 0,
@@ -59,17 +59,17 @@ export default function Sponsors() {
     <>
       <div
         id="Partners"
-        className="spons-cont items-center lg:flex bg-gray50 py-14  my-12 w-full relative"
+        className="spons-cont items-center  bg-gray50 py-6  w-full relative"
       >
-        <div className="absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+        {/* <div className="absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
           <Image
             width={500}
             height={500}
             alt=""
             src="/assets/map-pattern.png"
           />
-        </div>
-        <div className="spons-message-cont mx-10 lg:w-1/2">
+        </div> */}
+        <div className="spons-message-cont mx-10 lg:w-2/3">
           <div className="message">
             <div className="message-little flex items-center font-bold uppercase">
               <svg
@@ -84,20 +84,25 @@ export default function Sponsors() {
               <p className="text-sm">Honoured Sponsors</p>
             </div>
             <div className="message-head capitalize">
-              <p className="text-2xl md:text-3xl lg:text-4xl font-bold my-3">
+              <p className="text-xl md:text-2xl lg:text-3xl font-bold my-3">
                 Top <span className="text-red-700">Companies</span> and{" "}
-                <span className="text-red-700">Trade</span>{" "}
-                <br className="hidden md:block lg:hidden" /> Partners !!!
+                <span className="text-red-700">Trade</span> Partners 🤝
               </p>
             </div>
             <div className="message-text text-sm ">
-              Companies and agencies as well as industries being a tester and
-              validator of <br className="hidden md:block lg:hidden" /> [broker
-              name] has given a support to partnership
+              Companies and agencies from various industries have not only
+              recognized [Broker Name] as a trusted and reliable entity but have
+              also extended their support in forming strong partnerships. This
+              collaborative effort reflects the high level of trust and
+              credibility that [Broker Name] has garnered within the financial
+              sector. Our commitment to excellence in testing and validation has
+              earned us the respect and endorsement of key players in the
+              industry, further solidifying our position as a leader in the
+              field.
             </div>
           </div>
         </div>
-        <div className="spons-sides my-10 mx-10 lg:w-1/2 lg:my-0 items-center ">
+        <div className="spons-sides pt-10 mx-auto w-[90%]  lg:my-0 items-center ">
           <div>
             <Slider {...settings}>
               <div className="slide1">
@@ -106,7 +111,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor1.png"
+                    src="/assets/fpslideimg.png"
                   />
                 </div>
               </div>
@@ -116,7 +121,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor2.png"
+                    src="/assets/fpslideimg2.png"
                   />
                 </div>
               </div>
@@ -126,7 +131,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor3.png"
+                    src="/assets/fpslideimg4.png"
                   />
                 </div>
               </div>
@@ -136,7 +141,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor4.png"
+                    src="/assets/fpslideimg7.png"
                   />
                 </div>
               </div>
@@ -146,23 +151,23 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor2.png"
+                    src="/assets/fpslideimg8.png"
                   />
                 </div>
               </div>
-              <div className="slide5 hidden md:block lg:block">
+              <div className="slide6 hidden md:block lg:block">
                 <div className="img-holder mx-2">
                   <Image
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor3.png"
+                    src="/assets/fpslideimg5.png"
                   />
                 </div>
               </div>
             </Slider>
           </div>
-          <div className="my-4 hidden lg:block">
+          <div className="my-4  lg:block">
             <Slider {...settings2}>
               <div className="slide1">
                 <div className="img-holder mx-2">
@@ -170,7 +175,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor1.png"
+                    src="/assets/fpslideimg.png"
                   />
                 </div>
               </div>
@@ -180,7 +185,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor2.png"
+                    src="/assets/fpslideimg2.png"
                   />
                 </div>
               </div>
@@ -190,7 +195,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor3.png"
+                    src="/assets/fpslideimg4.png"
                   />
                 </div>
               </div>
@@ -200,7 +205,7 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor4.png"
+                    src="/assets/fpslideimg7.png"
                   />
                 </div>
               </div>
@@ -210,17 +215,17 @@ export default function Sponsors() {
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor2.png"
+                    src="/assets/fpslideimg8.png"
                   />
                 </div>
               </div>
-              <div className="slide5 hidden md:block lg:block">
+              <div className="slide6 hidden md:block lg:block">
                 <div className="img-holder mx-2">
                   <Image
                     alt=""
                     width={100}
                     height={100}
-                    src="/assets/sponsor3.png"
+                    src="/assets/fpslideimg5.png"
                   />
                 </div>
               </div>

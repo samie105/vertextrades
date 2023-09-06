@@ -4,7 +4,7 @@ import React from "react";
 
 export default function MT() {
   return (
-    <div>
+    <div className="pt-10">
       <div className="mt-container grid grid-cols-1 md:grid-cols-2 md:px-10 px-5 py-8 md:py-5">
         <section className="image_section flex w-full h-full items-center justify-center">
           <div className="img_container ">

@@ -56,10 +56,10 @@ export default function Testimonials() {
     <>
       <div
         id="Testimonials"
-        className="wwd-container flex flex-col bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-gray-900 to-gray-600 mt-10 pb-24"
+        className="wwd-container flex flex-col bg-gradient-to-r from-gray-50 to-gray-100  pb-24"
       >
         <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/2 mx-10">
-          <div className="inner-cont text-white">
+          <div className="inner-cont text-whte">
             <div className="smallertex">
               <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
                 <svg

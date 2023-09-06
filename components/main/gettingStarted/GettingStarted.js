@@ -10,6 +10,8 @@ import { useUserData } from "../../../contexts/userrContext";
 
 /* eslint-disable react/no-unescaped-entities */
 export default function GettingStarted() {
+  const defaultOpen = true;
+
   //   const [defaultOpen] = useState(
   //   localStorage.getItem("defaultOpen")
   // );

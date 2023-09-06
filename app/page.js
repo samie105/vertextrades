@@ -11,12 +11,17 @@ import FAQ from "../components/main/Faq/FAQ";
 import Footer from "../components/main/footer/Footer";
 import Commodities from "../components/main/commodities/Commodities";
 import MT from "../components/main/MetaTrader/MT";
+import CT from "../components/main/CopyTrading/CT";
 import Stock from "../components/main/Stocks/Stocks";
 import Navbar from "../components/main/navbars/Navbar";
+import LoadingScreen from "../components/main/LoadingScreen";
 
 export default function Home() {
   return (
-    <>
+    <main className="relative">
+      <div className="z-50 w-full">
+        <LoadingScreen />
+      </div>
       <div className="fixed top-0 left-0 w-full text-white z-30 ">
         <Navbar />
       </div>
@@ -35,12 +40,13 @@ export default function Home() {
         <MT />
         <Commodities />
         <Stock />
-        <Sponsors />
         <Wcy />
+        <CT />
+        <Sponsors />
         <Testimonials />
         <FAQ />
         <Footer />
       </main>
-    </>
+    </main>
   );
 }
