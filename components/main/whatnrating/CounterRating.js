@@ -2,23 +2,35 @@ import { Poppins } from "next/font/google";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import CountUp from "react-countup";
+import { useTheme } from "../../../contexts/themeContext";
 export default function CounterRating() {
+  const { isDarkMode, baseColor } = useTheme();
   useEffect(() => {
     AOS.init();
   }, []);
   return (
-    <div className="bg-white md lg:-translate-y-16 mx-auto lg:w-[80vw] rounded-xl lg:shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden">
+    <div
+      className={`${
+        isDarkMode ? `${baseColor} text-white` : "bg-white"
+      } lg:-translate-y-16 mx-auto lg:w-[80vw] rounded-xl lg:shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden`}
+    >
       <div
         className="flexed-container grid lg:grid-cols-4 md:grid-cols-4 grid-cols-2  w-full h-full"
         data-aos="fade-up"
       >
         <div
-          className="item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  dient-to-t from-red-50 via-white to-white"
+          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+            isDarkMode ? "border-gray-900" : ""
+          }`}
           data-aos="fade-up"
         >
           <div className="inner w-full h-full ">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-red-50">
+              <div
+                className={`p-4 rounded-full  ${
+                  isDarkMode ? "bg-red-800/10" : "bg-red-50/8"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -42,7 +54,11 @@ export default function CounterRating() {
               />
               <span className="font-extrabold text-ed-700">K+</span>
             </div>
-            <div className="count-res uppercase text-sm font-bod">
+            <div
+              className={`count-res uppercase text-sm font-bld ${
+                isDarkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
               <p>
                 Successfull <span className="text-rd-700">Trades</span>{" "}
               </p>
@@ -50,13 +66,19 @@ export default function CounterRating() {
           </div>
         </div>
         <div
-          className="item flex w-full h-full b-gradient-to-t from-green-50 via-white to-white justify-center items-center p-4 border-r border-b text-center"
+          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+            isDarkMode ? "border-gray-900" : ""
+          }`}
           data-aos="fade-up"
           data-aos-delay="200"
         >
           <div className="inner w-full h-full">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-red-50/80">
+              <div
+                className={`p-4 rounded-full  ${
+                  isDarkMode ? "bg-red-800/10" : "bg-red-50/8"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -81,9 +103,13 @@ export default function CounterRating() {
               />
               <spzn className="font-extrabold text-gren-700">K+</spzn>
             </div>
-            <div className="count-res uppercase text-sm font-bld">
+            <div
+              className={`count-res uppercase text-sm font-bld ${
+                isDarkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
               <p>
-                <span className="text-rd-700">Happy</span> Customers
+                <span>Happy</span> Customers
               </p>
             </div>
           </div>
@@ -91,11 +117,17 @@ export default function CounterRating() {
         <div
           data-aos="fade-up"
           data-aos-delay="400"
-          className="item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  dient-to-t from-blue-50 via-white to-white"
+          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+            isDarkMode ? "border-gray-900" : ""
+          }`}
         >
           <div className="inner w-full h-full ">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-red-50/80">
+              <div
+                className={`p-4 rounded-full  ${
+                  isDarkMode ? "bg-red-800/10" : "bg-red-50/8"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -116,7 +148,11 @@ export default function CounterRating() {
                 enableScrollSpy
               />
             </div>
-            <div className="count-res uppercase text-sm font-bld">
+            <div
+              className={`count-res uppercase text-sm font-bld ${
+                isDarkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
               <p>
                 Trading <span className="text-re-700">Since</span>{" "}
               </p>
@@ -126,11 +162,17 @@ export default function CounterRating() {
         <div
           data-aos="fade-up"
           data-aos-delay="600"
-          className="item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  dient-to-t from-red-50 via-white to-white"
+          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+            isDarkMode ? "border-gray-900" : ""
+          }`}
         >
           <div className="inner w-full h-full ">
             <div className="icon-cont  flex justify-center items-center ">
-              <div className="p-4 rounded-full bg-red-50/80">
+              <div
+                className={`p-4 rounded-full  ${
+                  isDarkMode ? "bg-red-800/10" : "bg-red-50/8"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -150,7 +192,11 @@ export default function CounterRating() {
               />
               <spzn className="font-extrabold text-red-70">%</spzn>
             </div>
-            <div className="count-res  uppercase text-sm font-bod">
+            <div
+              className={`count-res uppercase text-sm font-bld ${
+                isDarkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
               <p>
                 Client <span className="text-rd-700">Satisfaction</span>
               </p>

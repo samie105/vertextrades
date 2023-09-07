@@ -10,17 +10,23 @@ export const useTheme = () => {
 };
 
 // ThemeProvider component
+// ThemeProvider component
+// ThemeProvider component
 export const ThemeProvider = ({ children }) => {
-  const baseColor = "bg-[#0a0a0a]";
-  // Initialize the theme state from localStorage if available, or default to 'light'
-  const [isDarkMode, setIsDarkMode] = useState(() => {
+  // Function to get the initial theme preference from local storage
+  const getInitialTheme = () => {
     if (typeof localStorage !== "undefined") {
       const storedTheme = localStorage.getItem("theme");
-      return storedTheme === "dark";
+      if (storedTheme !== null) {
+        return storedTheme === "dark";
+      }
     }
-    return true; // Fallback to 'light' if localStorage is not available
-  });
+    return true; // Fallback to 'light' if localStorage is not available or no stored value found
+  };
 
+  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
+  const [systemTheme, setSystemTheme] = useState(false); // Initialize as false
+  console.log(isDarkMode);
   // Function to toggle between light and dark themes
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => {
@@ -43,7 +49,7 @@ export const ThemeProvider = ({ children }) => {
 
       // Function to handle changes in system dark mode preference
       const handleSystemThemeChange = (e) => {
-        setIsDarkMode(e.matches);
+        setSystemTheme(e.matches);
       };
 
       mediaQuery.addEventListener("change", handleSystemThemeChange);
@@ -55,8 +61,27 @@ export const ThemeProvider = ({ children }) => {
     }
   }, []);
 
+  // Determine the initial theme based on system preference and local storage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Only set systemTheme if 'window' is defined (client-side)
+      setSystemTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
+
+  // Set the initial theme based on systemTheme and local storage
+  useEffect(() => {
+    setIsDarkMode(systemTheme);
+  }, [systemTheme]);
+
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleTheme, baseColor }}>
+    <ThemeContext.Provider
+      value={{
+        isDarkMode,
+        toggleTheme,
+        baseColor: isDarkMode ? "bg-[#0a0a0a]" : "bg-white",
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

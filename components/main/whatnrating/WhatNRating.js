@@ -6,8 +6,10 @@ import AOS from "aos";
 
 import Image from "next/image";
 import CounterRating from "../whatnrating/CounterRating";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function WhatNRating() {
+  const { isDarkMode, baseColor } = useTheme();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
@@ -15,10 +17,12 @@ export default function WhatNRating() {
     AOS.init();
   }, []);
   return (
-    <>
+    <div className={isDarkMode ? baseColor : "bg-white"}>
       <section
         id="About Us"
-        className="lg:h-[70vh] md:h-[60vh] sm:h-[60] h-[50vh] my-3 relative w-full"
+        className={`lg:h-[70vh] md:h-[60vh] sm:h-[60] h-[50vh] py-3 relative w-full ${
+          isDarkMode ? baseColor : "bg-white"
+        }`}
       >
         {isLargeScreen ? (
           <Parallax
@@ -75,6 +79,6 @@ export default function WhatNRating() {
         </div>
       </section>
       <CounterRating />
-    </>
+    </div>
   );
 }

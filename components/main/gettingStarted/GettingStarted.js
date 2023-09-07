@@ -7,9 +7,11 @@ import AuthUi from "../AuthUi/AuthUi";
 import { Dialog } from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
 import { useUserData } from "../../../contexts/userrContext";
+import { useTheme } from "../../../contexts/themeContext";
 
 /* eslint-disable react/no-unescaped-entities */
 export default function GettingStarted() {
+  const { isDarkMode, baseColor } = useTheme();
   const defaultOpen = true;
 
   //   const [defaultOpen] = useState(
@@ -20,16 +22,24 @@ export default function GettingStarted() {
     <>
       <section
         id="Getting Started"
-        className="stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-24 md:pt-28 mt-10 px-3 relative max-w[100vw]"
+        className={`stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-24 md:pt-28 mt-10 px-3 relative max-w[100vw] ${
+          isDarkMode ? `${baseColor} text-gray-100` : "bg-white text-black"
+        }`}
       >
         <div className="absolute w-full h-full" data-aos="fade-right">
           {" "}
-          <div className="w-40 h-40 absolute opacity-30">
+          <div
+            className={`w-40 h-40 absolute  ${
+              isDarkMode ? "opacity-30" : "opacity-5"
+            }`}
+          >
             <Image
               src="/assets/dot.png"
               fill
               alt=""
-              className="top-0 lg:left-0 right-0 md:left-0  w-full h-full"
+              className={`top-0 lg:left-0 right-0 md:left-0  w-full h-full opacity-5 ${
+                isDarkMode ? "opacity-5" : ""
+              }`}
             />
           </div>
         </div>
@@ -131,7 +141,11 @@ export default function GettingStarted() {
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm px-3 text-gray-500">
+                <div
+                  className={`body-cont text-sm px-3  ${
+                    isDarkMode ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     Getting started with us is really easy. Fill in the
                     requested fields regarding your personal information and
@@ -166,7 +180,11 @@ export default function GettingStarted() {
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm  px-3 text-gray-500">
+                <div
+                  className={`body-cont text-sm px-3  ${
+                    isDarkMode ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     You have an unlimited access to our wide range of profitable
                     assets to investon. Once your contract is started, your
@@ -206,7 +224,11 @@ export default function GettingStarted() {
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm px-3 text-gray-500">
+                <div
+                  className={`body-cont text-sm px-3  ${
+                    isDarkMode ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     Getting started with us is really easy. Fill in the
                     requested fields regarding your personal information and
@@ -242,7 +264,11 @@ export default function GettingStarted() {
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm  px-3 text-gray-500">
+                <div
+                  className={`body-cont text-sm px-3  ${
+                    isDarkMode ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     Once earnings has been collected or claimed, you can
                     confidently head straight for the withdrawal section to
