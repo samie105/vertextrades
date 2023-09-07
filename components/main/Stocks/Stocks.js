@@ -10,14 +10,17 @@ export default function MT() {
     <div className={`pt-10 ${isDarkMode ? `${baseColor} text-white` : ""}`}>
       <div className="mt-container grid grid-cols-1 md:grid-cols-2 md:px-10 px-5 py-8 md:py-5">
         <section className="image_section flex w-full h-full items-center justify-center">
-          <div className="img_container ">
+          <div className="img_container " data-aos="fade-down">
             <Image src="/assets/fpimg.png" alt="" width={1000} height={1000} />
             <div className="flex items-center justify-center w-full"></div>
           </div>
         </section>
         <section className="text_section md:px-8 px-2 pt-7">
           <div className="textcontaier">
-            <div className="maintext text-xl md:text-2xl lg:text-3xl font-bold mb-12">
+            <div
+              className="maintext text-xl md:text-2xl lg:text-3xl font-bold mb-12"
+              data-aos="fade-up"
+            >
               Enhancing{" "}
               <span
                 className="
@@ -34,6 +37,8 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
               </span>
             </div>
             <div
+              data-aos="fade-up"
+              data-aos-delay="100"
               className={`listtext font-semibld  text-sm ${
                 isDarkMode ? "text-gray-400" : "text-gray-800"
               }`}

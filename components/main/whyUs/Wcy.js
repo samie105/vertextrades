@@ -82,7 +82,13 @@ export default function Wcy() {
             data-aos="fade-up"
             className="row-one grid lg:grid-cols-3 md:grid-cols-2 gap-4"
           >
-            <div className="stepOne shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
+            <div
+              className={`stepOne ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }   py-6 px-3 rounded-xl`}
+            >
               <div className="stepHead ">
                 <div
                   className={`small-text ${
@@ -136,7 +142,11 @@ export default function Wcy() {
             <div
               data-aos="fade-up"
               data-aos-delay="100"
-              className="stepTwo shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
+              className={`stepOne ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }   py-6 px-3 rounded-xl`}
             >
               <div className="stepHead ">
                 <div
@@ -190,7 +200,11 @@ export default function Wcy() {
             <div
               data-aos="fade-up"
               data-aos-delay="200"
-              className="stepThree shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
+              className={`stepOne ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }   py-6 px-3 rounded-xl`}
             >
               <div className="stepHead ">
                 <div
@@ -244,7 +258,11 @@ export default function Wcy() {
             <div
               data-aos="fade-up"
               data-aos-delay="300"
-              className="stepFour shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
+              className={`stepOne ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }   py-6 px-3 rounded-xl`}
             >
               <div className="stepHead ">
                 <div
@@ -299,7 +317,11 @@ export default function Wcy() {
             <div
               data-aos="fade-up"
               data-aos-delay="400"
-              className="stepFive shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
+              className={`stepOne ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }   py-6 px-3 rounded-xl`}
             >
               <div className="stepHead ">
                 <div
@@ -353,7 +375,11 @@ export default function Wcy() {
             <div
               data-aos="fade-up"
               data-aos-delay="500"
-              className="stepSix shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
+              className={`stepOne ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }   py-6 px-3 rounded-xl`}
             >
               <div className="stepHead ">
                 <div

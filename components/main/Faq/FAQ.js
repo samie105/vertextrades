@@ -7,8 +7,11 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../../ui/accordion";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function FAQ() {
+  const { isDarkMode, baseColor } = useTheme();
+
   const [showMore, setShowMore] = useState(false);
 
   const handleShowMore = () => {
@@ -16,12 +19,9 @@ export default function FAQ() {
   };
 
   return (
-    <div
-      id="FAQ"
-      className="my-20 bg-gradient-to-b from-red50 via-white to-white py-5"
-    >
+    <div id="FAQ" className={`my-20 ${isDarkMode ? "text-white" : ""} py-5 `}>
       <div className="inner-cont mx-10 mb-10 lg:w-1/2 md:w-2/3">
-        <div className="smallertex">
+        <div className="smallertex" data-aos="fade-up">
           <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,11 +40,14 @@ export default function FAQ() {
             <p>queries</p>
           </div>
         </div>
-        <div className="larger-text text-2xl font-bold capitalize">
+        <div
+          className="larger-text text-2xl font-bold capitalize"
+          data-aos="fade-left"
+        >
           You Got <span className="text-red-700">questions?</span> we got{" "}
           <span className="text-red-700">answers!</span>
         </div>
-        <div className="text-writeUp text-sm my-3">
+        <div className="text-writeUp text-sm my-3" data-aos="fade-left">
           <p>
             Immerse yourself in an unparalleled experience of exceptional
             service. Our dedicated team is committed to exceeding your
@@ -60,7 +63,12 @@ export default function FAQ() {
           collapsible
           className="grid  grid-cols-1 transition-all sadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-xl md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          <AccordionItem value="item-1" className=" ">
+          <AccordionItem
+            value="item-1"
+            className=" "
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
               How can I get started with your platform?
             </AccordionTrigger>
@@ -70,7 +78,12 @@ export default function FAQ() {
               features and tools.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-2" className=" ">
+          <AccordionItem
+            value="item-2"
+            className=" "
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
               What payment methods do you support?
             </AccordionTrigger>
@@ -80,7 +93,12 @@ export default function FAQ() {
               Stripe.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-3" className=" ">
+          <AccordionItem
+            value="item-3"
+            className=" "
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
               Are my funds safe with your platform?
             </AccordionTrigger>
@@ -90,7 +108,12 @@ export default function FAQ() {
               protected by advanced encryption and authentication protocols.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-4" className=" ">
+          <AccordionItem
+            value="item-4"
+            className=" "
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
               Do you provide customer support?
             </AccordionTrigger>
@@ -100,7 +123,12 @@ export default function FAQ() {
               questions or issues you may have.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-5" className=" ">
+          <AccordionItem
+            value="item-5"
+            className=" "
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
               Can I trade on mobile devices?
             </AccordionTrigger>
@@ -110,7 +138,12 @@ export default function FAQ() {
               can trade anytime, anywhere.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-6" className=" ">
+          <AccordionItem
+            value="item-6"
+            className=" "
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
             <AccordionTrigger className="font-bold text-sm hover:no-underline">
               How can I withdraw my profits?
             </AccordionTrigger>
@@ -123,7 +156,12 @@ export default function FAQ() {
           </AccordionItem>
           {showMore && (
             <>
-              <AccordionItem value="item-7" className=" ">
+              <AccordionItem
+                value="item-7"
+                className=" "
+                data-aos="fade-up"
+                data-aos-delay="700"
+              >
                 <AccordionTrigger className="font-bold text-sm hover:no-underline">
                   What should I do if I forgot my password?
                 </AccordionTrigger>
@@ -133,7 +171,12 @@ export default function FAQ() {
                   reset your password and regain access to your account.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-8" className=" ">
+              <AccordionItem
+                value="item-8"
+                className=" "
+                data-aos="fade-up"
+                data-aos-delay="800"
+              >
                 <AccordionTrigger className="font-bold text-sm hover:no-underline">
                   Is there a minimum deposit amount?
                 </AccordionTrigger>
@@ -143,7 +186,12 @@ export default function FAQ() {
                   mentioned during the account registration process.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-9" className=" ">
+              <AccordionItem
+                value="item-9"
+                className=" "
+                data-aos="fade-up"
+                data-aos-delay="900"
+              >
                 <AccordionTrigger className="font-bold text-sm hover:no-underline">
                   What trading tools do you offer?
                 </AccordionTrigger>
@@ -155,7 +203,12 @@ export default function FAQ() {
                   maximizing their trading potential.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-10" className=" ">
+              <AccordionItem
+                value="item-10"
+                className=" "
+                data-aos="fade-up"
+                data-aos-delay="1000"
+              >
                 <AccordionTrigger className="font-bold text-sm hover:no-underline">
                   Are there any trading fees?
                 </AccordionTrigger>
@@ -166,7 +219,12 @@ export default function FAQ() {
                   provide competitive and fair pricing for our traders.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-11" className=" ">
+              <AccordionItem
+                value="item-11"
+                className=" "
+                data-aos="fade-up"
+                data-aos-delay="1100"
+              >
                 <AccordionTrigger className="font-bold text-sm hover:no-underline">
                   Can I use automated trading strategies?
                 </AccordionTrigger>
@@ -177,7 +235,12 @@ export default function FAQ() {
                   for seamless automated trading.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-12" className=" ">
+              <AccordionItem
+                value="item-12"
+                className=" "
+                data-aos="fade-up"
+                data-aos-delay="1200"
+              >
                 <AccordionTrigger className="font-bold text-sm hover:no-underline">
                   Is there a demo account available?
                 </AccordionTrigger>
@@ -191,9 +254,15 @@ export default function FAQ() {
             </>
           )}
         </Accordion>
-        <div className="flex w-full justify-center">
+        <div
+          className="flex w-full justify-center"
+          data-aos="fade-up"
+          data-aos-delay="1300"
+        >
           <button
-            className="text-black my-5 flex items-center text-sm md:text-base  rounded-lg x-6 py-4 font-bold mt-4"
+            className={` my-5 flex items-center text-sm md:text-base  rounded-lg x-6 py-4 font-bold mt-4 ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
             onClick={handleShowMore}
           >
             <p>{showMore ? "Show less" : "Show more"}</p>

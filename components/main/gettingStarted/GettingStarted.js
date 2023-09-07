@@ -38,7 +38,7 @@ export default function GettingStarted() {
               fill
               alt=""
               className={`top-0 lg:left-0 right-0 md:left-0  w-full h-full opacity-5 ${
-                isDarkMode ? "opacity-5" : ""
+                isDarkMode ? "opacity-10" : ""
               }`}
             />
           </div>
@@ -115,7 +115,13 @@ export default function GettingStarted() {
             className="stepRowOne lg:flex lg:flex-col md:flex md:mx-4 md:flex-col w-full"
             data-aos="fade-right"
           >
-            <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
+            <div
+              className={`stepOne  py-6 px-3 rounded-xl ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+              }`}
+            >
               <div className="stepHead ">
                 <div className="small-text">
                   <div className="cont flex items-center uppercase font-semibold opacit-70 text-xs">
@@ -154,7 +160,13 @@ export default function GettingStarted() {
                 </div>
               </div>
             </div>
-            <div className="stepTwo  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] h-full py-6 px-3 rounded-xl my-2">
+            <div
+              className={`stepOne my-2  py-6 px-3 rounded-xl ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+              }`}
+            >
               <div className="stepHead ">
                 <div className="small-text">
                   <div className="cont flex items-center uppercase font-semibold opacit-70 text-xs">
@@ -198,7 +210,13 @@ export default function GettingStarted() {
             className="stepRowTwo lg:flex lg:flex-col md:flex md:flex-col w-full"
             data-aos="fade-left"
           >
-            <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
+            <div
+              className={`stepOne  py-6 px-3 rounded-xl ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+              }`}
+            >
               <div className="stepHead ">
                 <div className="small-text">
                   <div className="cont flex items-center uppercase font-semibold  text-xs">
@@ -237,7 +255,13 @@ export default function GettingStarted() {
                 </div>
               </div>
             </div>
-            <div className="stepTwo  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl my-2">
+            <div
+              className={`stepOne my-2 py-6 px-3 rounded-xl ${
+                isDarkMode
+                  ? "bg-[#111]"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+              }`}
+            >
               <div className="stepHead ">
                 <div className="small-text">
                   <div className="cont flex items-center uppercase font-semibold opacit-0 text-xs">

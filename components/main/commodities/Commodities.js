@@ -60,7 +60,11 @@ export default function Commodities() {
         <div className="commodities grid md:grid-cols-4 gap-2 grid-cols-2 px-2">
           <div
             data-aos="fade-up"
-            className="cm1 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -83,7 +87,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="100"
-            className="cm2 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -106,7 +114,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="200"
-            className="cm3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -129,7 +141,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="300"
-            className="cm4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -150,7 +166,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="400"
-            className="cm5 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -172,7 +192,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="500"
-            className="cm6 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -193,7 +217,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="600"
-            className="cm7 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -211,7 +239,11 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="700"
-            className="cm8 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
+            className={`cm1 s   rounded-md p-3 8 flex items-center ${
+              isDarkMode
+                ? "bg-[#111]"
+                : "hadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg

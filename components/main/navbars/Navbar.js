@@ -13,10 +13,12 @@ import {
 import AuthUi from "../AuthUi/AuthUi";
 import { DialogTrigger } from "../../ui/dialog";
 import { Dialog } from "@radix-ui/react-dialog";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Navbar() {
   const [activeNavItem, setActiveNavItem] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isDarkMode, toggleTheme, baseColor } = useTheme();
 
   const handleNavItemClick = (navItem) => {
     setActiveNavItem(navItem);
@@ -50,7 +52,7 @@ export default function Navbar() {
     <>
       <div
         className={`nav-container flex justify-between duration-300 items-center py-6 px-5 transition-colors ${
-          isScrolled ? "bg-[#111111]" : "bg-transparent"
+          isScrolled ? `${baseColor}` : "bg-transparent"
         }`}
       >
         <div className="logo-area">
@@ -87,20 +89,80 @@ export default function Navbar() {
             ))}
           </div>
         </div>
-        <Dialog>
-          <DialogTrigger>
-            <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden">
-              <div
-                className="btn1 px-4 cursor-pointer flex py-3 bg-clip-tet text-transprent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-500 rounded-xl"
-                // style={{ backgroundColor: "#ffffff10" }}
+        <div className=" items-center hidden lg:flex">
+          {" "}
+          <button
+            className="theme-toggler text-white mx-4 p-3 bg-white/10 rounded-md"
+            onClick={toggleTheme}
+          >
+            {isDarkMode ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
               >
-                <p className="px-0.5 opacity-90">Get started trading</p>
+                <path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zM10 15a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zM10 7a3 3 0 100 6 3 3 0 000-6zM15.657 5.404a.75.75 0 10-1.06-1.06l-1.061 1.06a.75.75 0 001.06 1.06l1.06-1.06zM6.464 14.596a.75.75 0 10-1.06-1.06l-1.06 1.06a.75.75 0 001.06 1.06l1.06-1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zM14.596 15.657a.75.75 0 001.06-1.06l-1.06-1.061a.75.75 0 10-1.06 1.06l1.06 1.06zM5.404 6.464a.75.75 0 001.06-1.06l-1.06-1.06a.75.75 0 10-1.061 1.06l1.06 1.06z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            )}
+          </button>
+          <Dialog>
+            <DialogTrigger>
+              <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden items-center">
+                <div
+                  className="btn1 px-4 cursor-pointer flex py-3 bg-clip-tet text-transprent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-500 rounded-xl"
+                  // style={{ backgroundColor: "#ffffff10" }}
+                >
+                  <p className="px-0.5 opacity-90">Sign In</p>
+                </div>
               </div>
-            </div>
-          </DialogTrigger>
-          <AuthUi />
-        </Dialog>
-        <div className="menu-bar cursor-pointer lg:hidden">
+            </DialogTrigger>
+            <AuthUi />
+          </Dialog>
+        </div>
+
+        <div className="menu-bar cursor-pointer lg:hidden flex items-center">
+          <button
+            className="theme-toggler text-white mr-7  /bg-white/10 rounded-md"
+            onClick={toggleTheme}
+          >
+            {isDarkMode ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            )}
+          </button>
           <Sheet>
             <SheetTrigger>
               <svg

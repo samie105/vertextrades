@@ -93,7 +93,13 @@ export default function AboutUs() {
             data-aos-delay="100"
           >
             <div className="card1">
-              <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
+              <div
+                className={`stepOne  py-6 px-3 rounded-xl ${
+                  isDarkMode
+                    ? "bg-[#111]"
+                    : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+                }`}
+              >
                 <div className="stepHead ">
                   <div className="small-text">
                     <div className="cont flex items-center uppercase font-semibold opaity-70 text-xs">
@@ -137,7 +143,13 @@ export default function AboutUs() {
               </div>
             </div>
             <div className="card2">
-              <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
+              <div
+                className={`stepOne my-2 py-6 px-3 rounded-xl ${
+                  isDarkMode
+                    ? "bg-[#111]"
+                    : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+                }`}
+              >
                 <div className="stepHead ">
                   <div className="small-text">
                     <div className="cont flex items-center uppercase font-semibold opaity-70 text-xs">
@@ -188,7 +200,13 @@ export default function AboutUs() {
             data-aos-delay="200"
           >
             <div className="card1 my-2 md:my-0">
-              <div className="stepOne shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
+              <div
+                className={`stepOne  py-6 px-3 rounded-xl ${
+                  isDarkMode
+                    ? "bg-[#111]"
+                    : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+                }`}
+              >
                 <div className="stepHead ">
                   <div className="small-text">
                     <div className="cont flex items-center uppercase font-semibold opacty-70 text-xs">
@@ -231,7 +249,13 @@ export default function AboutUs() {
               </div>
             </div>
             <div className="card2">
-              <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
+              <div
+                className={`stepOne my-2 py-6 px-3 rounded-xl ${
+                  isDarkMode
+                    ? "bg-[#111]"
+                    : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] "
+                }`}
+              >
                 <div className="stepHead ">
                   <div className="small-text">
                     <div className="cont flex items-center uppercase font-semibold opacit-70 text-xs">

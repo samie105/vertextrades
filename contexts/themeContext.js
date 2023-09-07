@@ -10,19 +10,18 @@ export const useTheme = () => {
 };
 
 // ThemeProvider component
-// ThemeProvider component
-// ThemeProvider component
+const getInitialTheme = () => {
+  if (typeof localStorage !== "undefined") {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme !== null) {
+      return storedTheme === "dark";
+    }
+  }
+  return false; // Fallback to 'light' if localStorage is not available or no stored value found
+};
+
 export const ThemeProvider = ({ children }) => {
   // Function to get the initial theme preference from local storage
-  const getInitialTheme = () => {
-    if (typeof localStorage !== "undefined") {
-      const storedTheme = localStorage.getItem("theme");
-      if (storedTheme !== null) {
-        return storedTheme === "dark";
-      }
-    }
-    return false; // Fallback to 'light' if localStorage is not available or no stored value found
-  };
 
   const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
   const [systemTheme, setSystemTheme] = useState(false); // Initialize as false
@@ -34,7 +33,7 @@ export const ThemeProvider = ({ children }) => {
 
       // Store the theme preference in localStorage if available
       if (typeof localStorage !== "undefined") {
-        localStorage.setItem("theme", newMode ? "dark" : "light");
+        localStorage.setItem("theme", newMode);
       }
 
       return newMode;

@@ -39,7 +39,7 @@ export default function LoadingScreen() {
           <div className="progress-cont w-4/5 md:w-1/2">
             <div
               className={`${
-                isDarkMode ? "bg-gray-900" : "bg-gray-100"
+                isDarkMode ? "bg-[#11111150]" : "bg-gray-100"
               } progressguauge w-full h-1.5 rounded-full  overflow-hidden transition-all relative`}
             >
               <div

@@ -10,6 +10,7 @@ import {
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Slider from "react-slick";
+import { useTheme } from "../../../contexts/themeContext";
 export default function Testimonials() {
   const settings = {
     infinite: true,
@@ -20,6 +21,8 @@ export default function Testimonials() {
     swipeToSlide: true,
     //centerMode: true,
     initialSlide: 0,
+    nextArrow: <></>,
+    prevArrow: <></>,
     responsive: [
       {
         breakpoint: 1024,
@@ -52,15 +55,20 @@ export default function Testimonials() {
       },
     ],
   };
+  const { isDarkMode, baseColor } = useTheme();
   return (
     <>
       <div
         id="Testimonials"
-        className="wwd-container flex flex-col bg-gradient-to-r from-gray-50 to-gray-100  pb-24"
+        className={`wwd-container flex flex-col   pb-24 ${
+          isDarkMode
+            ? `bg-[#111] text-white`
+            : "bg-gradient-to-r from-gray-50 to-gray-100"
+        }`}
       >
         <div className="second-cont mt-10 mb-3 md:w-2/3 lg:w-1/2 mx-10">
           <div className="inner-cont text-whte">
-            <div className="smallertex">
+            <div className="smallertex" data-aos="fade-up">
               <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,10 +86,18 @@ export default function Testimonials() {
                 <p>Testimonials</p>
               </div>
             </div>
-            <div className="larger-text text-2xl font-bold capitalize">
+            <div
+              className="larger-text text-2xl font-bold capitalize"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               what <span className="text-re-600">people say</span> about us.
             </div>
-            <div className="text-writeUp text-sm my-3">
+            <div
+              className="text-writeUp text-sm my-3"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
               <p>
                 Immerse yourself in an unparalleled experience of exceptional
                 service. Our dedicated team is committed to exceeding your
@@ -96,7 +112,11 @@ export default function Testimonials() {
       <div className="first-cont z-20 -translate-y-24 mx-5 h-32">
         <Slider {...settings}>
           <div className="TestimonyOne">
-            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
+            <div
+              className={`testi-card ${
+                isDarkMode ? `${baseColor} text-white` : "bg-white"
+              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+            >
               <div className="card-brand mb-4">
                 <div className="icon-container text-blue-300 flex items-center font-bold ">
                   <div className=" mr-2">
@@ -145,7 +165,11 @@ export default function Testimonials() {
             </div>
           </div>
           <div className="TestimonyTwo">
-            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
+            <div
+              className={`testi-card ${
+                isDarkMode ? `${baseColor} text-white` : "bg-white"
+              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+            >
               <div className="card-brand mb-4">
                 <div className="icon-container text-blue-700 flex items-center font-bold ">
                   <div className=" mr-2">
@@ -194,7 +218,11 @@ export default function Testimonials() {
             </div>
           </div>
           <div className="TestimonyOne">
-            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
+            <div
+              className={`testi-card ${
+                isDarkMode ? `${baseColor} text-white` : "bg-white"
+              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+            >
               <div className="card-brand mb-4">
                 <div className="icon-container text-blue-700 flex items-center font-bold ">
                   <div className=" mr-2">
@@ -243,7 +271,11 @@ export default function Testimonials() {
             </div>
           </div>
           <div className="TestimonyTwo">
-            <div className="testi-card bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2">
+            <div
+              className={`testi-card ${
+                isDarkMode ? `${baseColor} text-white` : "bg-white"
+              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+            >
               <div className="card-brand mb-4">
                 <div className="icon-container flex items-center text-orange-700 font-bold ">
                   <div className=" mr-2">

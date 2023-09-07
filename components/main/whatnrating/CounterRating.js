@@ -19,7 +19,7 @@ export default function CounterRating() {
         data-aos="fade-up"
       >
         <div
-          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+          className={`item flex w-full h-full justify-center items-center p-4    text-center  ${
             isDarkMode ? "border-gray-900" : ""
           }`}
           data-aos="fade-up"
@@ -66,7 +66,7 @@ export default function CounterRating() {
           </div>
         </div>
         <div
-          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+          className={`item flex w-full h-full justify-center items-center p-4    text-center  ${
             isDarkMode ? "border-gray-900" : ""
           }`}
           data-aos="fade-up"
@@ -117,7 +117,7 @@ export default function CounterRating() {
         <div
           data-aos="fade-up"
           data-aos-delay="400"
-          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+          className={`item flex w-full h-full justify-center items-center p-4    text-center  ${
             isDarkMode ? "border-gray-900" : ""
           }`}
         >
@@ -162,7 +162,7 @@ export default function CounterRating() {
         <div
           data-aos="fade-up"
           data-aos-delay="600"
-          className={`item flex w-full h-full justify-center items-center p-4 border-r border-b text-center  ${
+          className={`item flex w-full h-full justify-center items-center p-4    text-center  ${
             isDarkMode ? "border-gray-900" : ""
           }`}
         >

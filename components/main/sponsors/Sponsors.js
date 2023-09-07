@@ -79,7 +79,10 @@ export default function Sponsors() {
         </div> */}
         <div className="spons-message-cont mx-10 lg:w-2/3">
           <div className="message">
-            <div className="message-little flex items-center font-bold uppercase">
+            <div
+              className="message-little flex items-center font-bold uppercase"
+              data-aos="fade-up"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -91,13 +94,21 @@ export default function Sponsors() {
 
               <p className="text-sm">Honoured Sponsors</p>
             </div>
-            <div className="message-head capitalize">
+            <div
+              className="message-head capitalize"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               <p className="text-xl md:text-2xl lg:text-3xl font-bold my-3">
                 Top <span className="text-red-700">Companies</span> and{" "}
                 <span className="text-red-700">Trade</span> Partners 🤝
               </p>
             </div>
-            <div className="message-text text-sm ">
+            <div
+              className="message-text text-sm "
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
               Companies and agencies from various industries have not only
               recognized [Broker Name] as a trusted and reliable entity but have
               also extended their support in forming strong partnerships. This
@@ -111,7 +122,7 @@ export default function Sponsors() {
           </div>
         </div>
         <div className="spons-sides pt-10 mx-auto w-[90%]  lg:my-0 items-center ">
-          <div>
+          <div data-aos="fade-left">
             <Slider {...settings}>
               <div className="slide1">
                 <div className="img-holder mx-2">
@@ -175,7 +186,7 @@ export default function Sponsors() {
               </div>
             </Slider>
           </div>
-          <div className="my-4  lg:block">
+          <div className="my-4  lg:block" data-aos="fade-right">
             <Slider {...settings2}>
               <div className="slide1">
                 <div className="img-holder mx-2">
