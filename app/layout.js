@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       <body className={font.className}>
         <Script
           src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
           async
         ></Script>
         <Script src="/plugins/jquery.min.js" strategy="beforeInteractive" />
