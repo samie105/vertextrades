@@ -1,11 +1,14 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function CT() {
+  const { isDarkMode, baseColor } = useTheme();
   return (
-    <div className="py-10">
+    <div className={`py-10 ${isDarkMode ? `${baseColor} text-gray-100` : ""}`}>
       <div className="mt-container grid grid-cols-1 md:grid-cols-2 md:px-10 px-5 py-8 md:py-5">
         {" "}
         <section className="image_section flex w-full h-full items-center pt-6 justify-center">
@@ -37,7 +40,11 @@ export default function CT() {
               </span>{" "}
               traders
             </div>
-            <div className="listtext font-seibold text-sm text-gray-800">
+            <div
+              className={`listtext font-seibold text-sm ${
+                isDarkMode ? "text-gray-200" : "text-gray-800"
+              }`}
+            >
               <div
                 className="list_text1 flex pb-5 items-start"
                 data-aos="fade-up"

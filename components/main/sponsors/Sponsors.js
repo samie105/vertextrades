@@ -3,8 +3,10 @@
 import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Sponsors() {
+  const { isDarkMode, baseColor } = useTheme();
   const settings2 = {
     infinite: true,
     autoplay: true,
@@ -14,6 +16,8 @@ export default function Sponsors() {
     swipeToSlide: true,
     initialSlide: 0,
     rtl: true,
+    nextArrow: <></>,
+    prevArrow: <></>,
   };
   const settings = {
     infinite: true,
@@ -23,6 +27,8 @@ export default function Sponsors() {
     slidesToScroll: 1,
     swipeToSlide: true,
     initialSlide: 0,
+    nextArrow: <></>,
+    prevArrow: <></>,
     responsive: [
       {
         breakpoint: 1024,
@@ -59,7 +65,9 @@ export default function Sponsors() {
     <>
       <div
         id="Partners"
-        className="spons-cont items-center  bg-gray50 py-6  w-full relative"
+        className={`spons-cont items-center  bg-gray50 py-6  w-full relative ${
+          isDarkMode ? `${baseColor} text-gray-200` : ""
+        }`}
       >
         {/* <div className="absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
           <Image

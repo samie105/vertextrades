@@ -1,9 +1,13 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function MT() {
+  const { isDarkMode, baseColor } = useTheme();
+
   return (
-    <div>
+    <div className={`${isDarkMode ? `${baseColor} text-white` : ""}`}>
       <div className="mt-container grid grid-cols-1 md:grid-cols-2 md:px-10 px-5 py-8 md:py-5">
         <section className="image_section flex w-full h-full items-center justify-center">
           <div className="img_container px-4">
@@ -18,7 +22,11 @@ export default function MT() {
               className="flex items-center justify-center w-full"
               data-aos="fade-up"
             >
-              <div className=" py-1 w-40 mt-4 h-[1px]  bg-gray-400 blur-md rounded-[100%] shadow-2xl shadow-gray-100 "></div>
+              <div
+                className={`py-1 w-40 mt-4 h-[1px]  ${
+                  isDarkMode ? "bg-gray-700" : "bg-gray-400"
+                } blur-md rounded-[100%] shadow-2xl shadow-gray-100 `}
+              ></div>
             </div>
           </div>
         </section>
@@ -38,7 +46,11 @@ export default function MT() {
                 Financial Technology
               </span>
             </div>
-            <div className="listtext font-seibold text-sm text-gray-800">
+            <div
+              className={`listtext font-seibold text-sm ${
+                isDarkMode ? "text-gray-200" : "text-gray-800"
+              }`}
+            >
               <div
                 className="list_text1 flex pb-5 items-start"
                 data-aos="fade-up"
@@ -85,7 +97,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                 </div>
               </div>
               <div
-                className="list_text2 flex pb-5"
+                className="list_text2 flex pb-5 items-center"
                 data-aos="fade-up"
                 data-aos-delay="300"
               >
@@ -121,7 +133,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 mr-2 text-geen-600 mt-0.5"
+                    className="w-6 h-6 mr-2 text-geen-600 "
                   >
                     <path
                       strokeLinecap="round"

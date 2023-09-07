@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
+"use client";
 import Image from "next/image";
 import React from "react";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function MT() {
+  const { isDarkMode, baseColor } = useTheme();
   return (
-    <div className="pt-10">
+    <div className={`pt-10 ${isDarkMode ? `${baseColor} text-white` : ""}`}>
       <div className="mt-container grid grid-cols-1 md:grid-cols-2 md:px-10 px-5 py-8 md:py-5">
         <section className="image_section flex w-full h-full items-center justify-center">
           <div className="img_container ">
@@ -30,7 +33,11 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                 CFD Trading
               </span>
             </div>
-            <div className="listtext font-semibld text-gray-800 text-sm">
+            <div
+              className={`listtext font-semibld  text-sm ${
+                isDarkMode ? "text-gray-400" : "text-gray-800"
+              }`}
+            >
               Although trading Forex is a key component of our business,
               [BrokerName] also offers a diverse range of CFD trading options.
               With [BrokerName], you can engage in CFD trading across various

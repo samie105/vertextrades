@@ -3,21 +3,19 @@
 import React from "react";
 import Slider from "react-slick";
 import AOS from "aos";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Wcy() {
-  const settings = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 500,
-    autoplaySpeed: 2000,
-  };
+  const { isDarkMode, baseColor } = useTheme();
   return (
-    <div className="relative w-full bg-gradient-to-b from-re-50/80 via-white to-white">
+    <div
+      className={`relative w-full ${
+        isDarkMode ? `${baseColor} text-gray-200` : ""
+      }`}
+    >
       <div
         id="Advantages"
-        className="wcy-container   w-full mt-20 px-5 md:px-10 "
+        className="wcy-container   w-full pt-20 px-5 md:px-10 "
       >
         <div className="inner-cont w-full md:ext-center ">
           <div className="smallertex  md:jusify-center ">
@@ -39,21 +37,37 @@ export default function Wcy() {
           </div>
           <div
             data-aos="fade-right"
-            className="text-xl md:text-2xl lg:text-3xl text-gray-800 font-bold mb-4"
+            className={`text-xl md:text-2xl lg:text-3xl  font-bold mb-4 ${
+              isDarkMode ? "text-gray-100" : "text-gray-800"
+            }`}
           >
             Reasons{" "}
-            <span className="bg-clip-text text-transparent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-300">
+            <span
+              className={`${
+                isDarkMode
+                  ? "text-red-500"
+                  : "bg-clip-text text-transparent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-300"
+              }`}
+            >
               Why
             </span>{" "}
-            ,You Need
-            <span className=" unerline bg-clip-text text-transparent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-300">
+            You Need
+            <span
+              className={`${
+                isDarkMode
+                  ? "text-red-500"
+                  : "bg-clip-text text-transparent bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-300"
+              }`}
+            >
               {" "}
               Choose Us??
             </span>
           </div>
           <div
             data-aos="fade-left"
-            className="text-writeUp text-sm my-5 w-full md:w-[60%] md:m text-gray-600"
+            className={`text-writeUp text-sm my-5 w-full md:w-[60%] md:m ${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            }`}
           >
             <p>
               With years of industry experience, our team comprises highly
@@ -66,11 +80,15 @@ export default function Wcy() {
         <div className="cardcontainer  ">
           <div
             data-aos="fade-up"
-            className="row-one grid lg:grid-cols-3 md:grid-cols-2 gap-4 bg-white"
+            className="row-one grid lg:grid-cols-3 md:grid-cols-2 gap-4"
           >
             <div className="stepOne shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
               <div className="stepHead ">
-                <div className="small-text text-amber-700">
+                <div
+                  className={`small-text ${
+                    isDarkMode ? "text-amber-500" : "text-amber-700"
+                  }`}
+                >
                   <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -90,12 +108,24 @@ export default function Wcy() {
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                   <p>
-                    safe & <span className="text-amber-700"> secure</span>
+                    safe &{" "}
+                    <span
+                      className={`text-amber-700 ${
+                        isDarkMode ? "text-amber-500" : "text-amber-700"
+                      }`}
+                    >
+                      {" "}
+                      secure
+                    </span>
                   </p>
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                <div
+                  className={`body-cont text-sm pl-3 pr-6 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     Trade with 100% peace of mind as we have the best system
                     security team onboard.
@@ -109,7 +139,11 @@ export default function Wcy() {
               className="stepTwo shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
             >
               <div className="stepHead ">
-                <div className="small-text text-green-700">
+                <div
+                  className={`small-text ${
+                    isDarkMode ? "text-green-500" : "text-green-700"
+                  }`}
+                >
                   <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -129,12 +163,23 @@ export default function Wcy() {
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                   <p>
-                    Instant <span className="text-green-700">trading</span>
+                    Instant{" "}
+                    <span
+                      className={`${
+                        isDarkMode ? "text-green-500" : "text-green-700"
+                      }`}
+                    >
+                      Trading
+                    </span>
                   </p>
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                <div
+                  className={`body-cont text-sm pl-3 pr-6 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     With our lightning speed servers, you are sure to get the
                     best out of your investments.
@@ -148,7 +193,11 @@ export default function Wcy() {
               className="stepThree shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
             >
               <div className="stepHead ">
-                <div className="small-text text-yellow-700">
+                <div
+                  className={`small-text ${
+                    isDarkMode ? "text-yellow-500" : "text-yellow-700"
+                  }`}
+                >
                   <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -168,12 +217,23 @@ export default function Wcy() {
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                   <p>
-                    progressive <span className="text-yellow-700">revenue</span>{" "}
+                    progressive{" "}
+                    <span
+                      className={`small-text ${
+                        isDarkMode ? "text-yellow-500" : "text-yellow-700"
+                      }`}
+                    >
+                      Revenue
+                    </span>{" "}
                   </p>
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                <div
+                  className={`body-cont text-sm pl-3 pr-6 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     Watch your accruals grow in real time and monitor how much
                     revenue is being generated for you..
@@ -187,7 +247,11 @@ export default function Wcy() {
               className="stepFour shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
             >
               <div className="stepHead ">
-                <div className="small-text text-red-700">
+                <div
+                  className={`small-text ${
+                    isDarkMode ? "text-red-500" : "text-red-700"
+                  }`}
+                >
                   <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -208,12 +272,23 @@ export default function Wcy() {
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                   <p>
-                    investment for <span className="text-red-700">all</span>{" "}
+                    investment for{" "}
+                    <span
+                      className={`small-text ${
+                        isDarkMode ? "text-red-500" : "text-red-700"
+                      }`}
+                    >
+                      All
+                    </span>{" "}
                   </p>
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                <div
+                  className={`body-cont text-sm pl-3 pr-6 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     With different packages, Our system is modelled to
                     accommodate everyone no matter how much you have to invest..
@@ -227,7 +302,11 @@ export default function Wcy() {
               className="stepFive shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
             >
               <div className="stepHead ">
-                <div className="small-text text-green-800">
+                <div
+                  className={`small-text ${
+                    isDarkMode ? "text-green-500" : "text-green-700"
+                  }`}
+                >
                   <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -247,12 +326,23 @@ export default function Wcy() {
                 </div>
                 <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                   <p>
-                    covered by <span className="text-green-600">insurance</span>{" "}
+                    covered by{" "}
+                    <span
+                      className={`small-text ${
+                        isDarkMode ? "text-green-500" : "text-green-700"
+                      }`}
+                    >
+                      Insurance
+                    </span>{" "}
                   </p>
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                <div
+                  className={`body-cont text-sm pl-3 pr-6 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     You have zero chances of losing your investments as all our
                     assets are duly covered by inssurance..
@@ -266,7 +356,11 @@ export default function Wcy() {
               className="stepSix shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl "
             >
               <div className="stepHead ">
-                <div className="small-text text-orange-40">
+                <div
+                  className={`small-text ${
+                    isDarkMode ? "text-orange-500" : ""
+                  }`}
+                >
                   <div className="cont flex items-center uppercase font-semibold opacity-70 text-xs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -292,7 +386,11 @@ export default function Wcy() {
                 </div>
               </div>
               <div className="stepBody">
-                <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                <div
+                  className={`body-cont text-sm pl-3 pr-6 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
                   <p>
                     Invest in the world's most popular cryptocurrency and enjoy
                     all the benefits that come with it.

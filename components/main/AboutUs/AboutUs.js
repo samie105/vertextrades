@@ -1,20 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
+"use client";
 import React from "react";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function AboutUs() {
+  const { isDarkMode, baseColor } = useTheme();
   return (
     <>
       <div
         id="Features & Benefits"
-        className="wwd-container pt-5 md:flex flex flex-col max-w-[100vw] md:py-8 py-4 px-6 md:px-10 lg:flex-row md:bg-graient-to-r bg-graient-to-b from-red-50/80 via-white to-white"
+        className={`wwd-container pt-5 md:flex flex flex-col max-w-[100vw] md:py-8 py-4 px-6 md:px-10 lg:flex-row md:bg-graient-to-r bg-graient-to-b from-red-50/80 via-white to-white ${
+          isDarkMode ? `${baseColor} text-white` : "bg-white"
+        }`}
       >
         <div className="second-cont pt-8 md:pt-0 mb-1 md:w-2/3 mr-10">
           <div className="inner-cont">
             <div className="smallertex">
-              <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm">
+              <div
+                className="inner-smaller-text flex items-center font-semibold my-2 uppercase text-sm"
+                data-aos="fade-up"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -31,14 +39,17 @@ export default function AboutUs() {
                 <p>Features & Benefits</p>
               </div>
             </div>
-            <div className="larger-text text-2xl font-bold">
+            <div
+              className="larger-text text-xl md:text-2xl lg:text-3xl font-bold"
+              data-aos="fade-left"
+            >
               Get{" "}
-              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-red-600 to-orange-700 bg-clip-text text-transparent">
                 Exceptional
               </span>{" "}
               Services!!
             </div>
-            <div className="text-writeUp text-sm my-3">
+            <div className="text-writeUp text-sm my-3" data-aos="fade-left">
               <p>
                 Immerse yourself in an unparalleled experience of exceptional
                 service. Our dedicated team is committed to exceeding your
@@ -49,7 +60,10 @@ export default function AboutUs() {
             </div>
             <Dialog>
               <DialogTrigger>
-                <div className="btn mt-5 md:mt-12 mb-5 lg:block">
+                <div
+                  className="btn mt-5 md:mt-12 mb-5 lg:block"
+                  data-aos="fade-up"
+                >
                   <div className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
                     <p>Start enjoying benefits</p>
                     <svg
@@ -73,7 +87,11 @@ export default function AboutUs() {
         </div>{" "}
         <div className="first-cont  md:flex md:w-full flex-grow">
           {" "}
-          <div className="card-container1 md:mr-5 w-full">
+          <div
+            className="card-container1 md:mr-5 w-full"
+            data-aos="fade-left"
+            data-aos-delay="100"
+          >
             <div className="card1">
               <div className="stepOne  shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl">
                 <div className="stepHead ">
@@ -104,7 +122,11 @@ export default function AboutUs() {
                   </div>
                 </div>
                 <div className="stepBody">
-                  <div className="body-cont text-sm px-3 text-gray-500">
+                  <div
+                    className={`body-cont text-sm px-3  ${
+                      isDarkMode ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
                     <p>
                       This platform is built and maintained with maximum
                       security in order to retain the ability to keep the trust
@@ -145,7 +167,11 @@ export default function AboutUs() {
                   </div>
                 </div>
                 <div className="stepBody">
-                  <div className="body-cont text-sm px-3 text-gray-500">
+                  <div
+                    className={`body-cont text-sm px-3  ${
+                      isDarkMode ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
                     <p>
                       All assets enlisted on this platform have been tested and
                       found to be really profitable to make any sort of
@@ -156,7 +182,11 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
-          <div className="card-container2 w-full">
+          <div
+            className="card-container2 w-full"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             <div className="card1 my-2 md:my-0">
               <div className="stepOne shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   py-6 px-3 rounded-xl ">
                 <div className="stepHead ">
@@ -187,7 +217,11 @@ export default function AboutUs() {
                   </div>
                 </div>
                 <div className="stepBody">
-                  <div className="body-cont text-sm pl-3 pr-6 text-gray-500">
+                  <div
+                    className={`body-cont text-sm px-3  ${
+                      isDarkMode ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
                     <p>
                       Each user's wallet is safe and secured, as all asset,
                       funds are stored in a secured offline storage system.
@@ -227,7 +261,11 @@ export default function AboutUs() {
                   </div>
                 </div>
                 <div className="stepBody">
-                  <div className="body-cont text-sm px-3 text-gray-500">
+                  <div
+                    className={`body-cont text-sm px-3  ${
+                      isDarkMode ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
                     <p>
                       Choose the amount to withdraw and receive it instantly, to
                       your preferred crypto wallet in your account, instantly.

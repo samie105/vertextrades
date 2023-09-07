@@ -1,8 +1,15 @@
+"use client";
 import React from "react";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Commodities() {
+  const { isDarkMode, baseColor } = useTheme();
   return (
-    <div className="px-2 py-4 mt-2">
+    <div
+      className={`px-2 py-4 mt- ${
+        isDarkMode ? `${baseColor} text-gray-300` : ""
+      }`}
+    >
       <div className="inner-cont w-full md:ext-center px-5">
         <div className="smallertex">
           <div className="inner-smaller-text flex items-center font-semibold my-2 uppercase  text-sm">
@@ -19,12 +26,16 @@ export default function Commodities() {
               />
             </svg>
 
-            <p className="text-gray-700">Products</p>
+            <p className={`${isDarkMode ? "text-gray-200" : "text-gray-700"}`}>
+              Products
+            </p>
           </div>
         </div>
         <div
           data-aos="fade-right"
-          className="larger-text text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-gray-700 "
+          className={`larger-text text-xl md:text-2xl lg:text-3xl font-bold mb-4  ${
+            isDarkMode ? "text-gray-200" : "text-gray-700"
+          }`}
         >
           Trade with world-wide accepted{" "}
           <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
@@ -33,7 +44,9 @@ export default function Commodities() {
         </div>
         <div
           data-aos="fade-left"
-          className="text-writeUp text-sm my-5 w-full md:w-[60%] md:m text-gray-600"
+          className={`text-writeUp text-sm my-5 w-full md:w-[60%] md:m ${
+            isDarkMode ? "text-gray-400" : "text-gray-600"
+          }`}
         >
           <p>
             With years of industry experience, our team comprises highly skilled
@@ -47,8 +60,7 @@ export default function Commodities() {
         <div className="commodities grid md:grid-cols-4 gap-2 grid-cols-2 px-2">
           <div
             data-aos="fade-up"
-            d
-            className="cm1 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm1 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -71,7 +83,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="100"
-            className="cm2 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm2 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -94,7 +106,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="200"
-            className="cm3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm3 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -117,7 +129,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="300"
-            className="cm4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm4 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -138,7 +150,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="400"
-            className="cm5 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm5 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -160,7 +172,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="500"
-            className="cm6 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm6 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -181,7 +193,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="600"
-            className="cm7 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm7 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
@@ -199,7 +211,7 @@ export default function Commodities() {
           <div
             data-aos="fade-up"
             data-aos-delay="700"
-            className="cm8 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] bg-white rounded-md p-3 8 flex items-center"
+            className="cm8 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]   rounded-md p-3 8 flex items-center"
           >
             <div className="innercont p-3 rounded-md mr-2 bg-gradient-to-br from-orange-400 to-rose-400">
               <svg
