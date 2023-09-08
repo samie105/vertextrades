@@ -13,14 +13,14 @@ export default function LoadingScreen() {
       // Increment the progress by a certain amount
       setProgress((prevProgress) => {
         if (prevProgress < 100) {
-          return prevProgress + 5; // Increase by 10% (adjust as needed)
+          return prevProgress + 1; // Increase by 10% (adjust as needed)
         } else {
           clearInterval(interval); // Stop the interval when progress reaches 100%
           setIsVisible(false);
           return prevProgress;
         }
       });
-    }, 500);
+    }, 200);
   }, []);
 
   return isVisible ? (
@@ -82,15 +82,15 @@ export default function LoadingScreen() {
               Hey👋 Nice seeing you
             </div>
           )}
-          {progress > 40 && progress <= 80 && (
+          {progress > 40 && progress <= 85 && (
             <div
               className={`text-sm md:text-base rounded-full animate__faster animate__animated py-3 px-4 font-bold ${
                 isDarkMode
                   ? `bg-[#111] text-white shadw-[0px_2px_20px_10px_#f7fafc09]`
                   : "bg-white shadow-[0px_0px_15px_10px_#00000009]"
               }  ${
-                progress > 40 && progress <= 75 ? "animate__slideInUp" : ""
-              } ${progress >= 75 ? "animate__slideOutDown" : ""}`}
+                progress > 40 && progress <= 82 ? "animate__slideInUp" : ""
+              } ${progress >= 82 ? "animate__slideOutDown" : ""}`}
             >
               🌟 Setting up the page...
             </div>

@@ -23,7 +23,7 @@ const getInitialTheme = () => {
 export const ThemeProvider = ({ children }) => {
   // Function to get the initial theme preference from local storage
 
-  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [systemTheme, setSystemTheme] = useState(false); // Initialize as false
   console.log(isDarkMode);
   // Function to toggle between light and dark themes
