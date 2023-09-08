@@ -73,7 +73,7 @@ export default function LoadingScreen() {
             <div
               className={`text-sm md:text-base rounded-full animate__faster animate__animated py-3 px-4 font-bold ${
                 isDarkMode
-                  ? `${baseColor} text-white shadow-[0px_2px_20px_10px_#f7fafc09]`
+                  ? `bg-[#111] text-white shadw-[0px_2px_20px_10px_#f7fafc09]`
                   : "bg-white shadow-[0px_0px_15px_10px_#00000009]"
               }  ${
                 progress > 10 && progress <= 35 ? "animate__slideInUp" : ""
@@ -86,7 +86,7 @@ export default function LoadingScreen() {
             <div
               className={`text-sm md:text-base rounded-full animate__faster animate__animated py-3 px-4 font-bold ${
                 isDarkMode
-                  ? `${baseColor} text-white shadow-[0px_2px_20px_10px_#f7fafc09]`
+                  ? `bg-[#111] text-white shadw-[0px_2px_20px_10px_#f7fafc09]`
                   : "bg-white shadow-[0px_0px_15px_10px_#00000009]"
               }  ${
                 progress > 40 && progress <= 75 ? "animate__slideInUp" : ""
@@ -99,7 +99,7 @@ export default function LoadingScreen() {
             <div
               className={`text-sm md:text-base flex items-center rounded-full animate__faster animate__animated py-3 px-4 font-bold ${
                 isDarkMode
-                  ? `${baseColor} text-white shadow-[0px_2px_20px_10px_#f7fafc09]`
+                  ? `bg-[#111] text-white shadw-[0px_2px_20px_10px_#f7fafc09]`
                   : "bg-white shadow-[0px_0px_15px_10px_#00000009]"
               }  ${
                 progress > 85 && progress <= 95 ? "animate__slideInUp" : ""

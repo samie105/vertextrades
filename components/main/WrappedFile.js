@@ -21,7 +21,11 @@ import { ThemeProvider, useTheme } from "../../contexts/themeContext";
 export default function WrappedFile() {
   const { isDarkMode, baseColor } = useTheme();
   return (
-    <main className={`relative ${isDarkMode ? baseColor : ""}`}>
+    <main
+      className={`relative transition-all duration-1000 ${
+        isDarkMode ? baseColor : ""
+      }`}
+    >
       <div className="z-50 w-full">
         <LoadingScreen />
       </div>
