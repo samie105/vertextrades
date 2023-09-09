@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { InfinitySpin } from "react-loader-spinner";
 import { z } from "zod";
@@ -8,6 +8,8 @@ import { Button } from "../../ui/button";
 import { Label } from "../../ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import VerificationPage from "./VerificationPagetwo";
+import { useTheme } from "../../../contexts/themeContext";
+import { useFormContext } from "../../../contexts/formContext";
 
 const loginFormSchema = z.object({
   email: z
@@ -21,18 +23,25 @@ const loginFormSchema = z.object({
 });
 
 const Login = () => {
-  const [formDatas, setFormData] = useState(null);
   const [cookieVar, setCookieVar] = useState(null);
   const [cookieVar1, setCookieVar1] = useState(null);
   const [cookieVar2, setCookieVar2] = useState(null);
-  const [showVerificationPage, setShowVerificationPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Add this line
   const {
+    showVerificationPage,
+    setShowVerificationPage,
+    formDatas,
+    setFormDatas,
+  } = useFormContext();
+  const [isLoading, setIsLoading] = useState(false); // Add this line
+  const { isDarkMode, baseColor } = useTheme();
+
+  const {
+    setValue,
     control: loginControl,
     handleSubmit: loginHandleSubmit,
     setError, // Don't forget to destructure setError
     formState: loginFormState,
-  } = useForm({ resolver: zodResolver(loginFormSchema) });
+  } = useForm({ mode: "onChange", resolver: zodResolver(loginFormSchema) });
 
   const handleLoginSubmit = async (data) => {
     setIsLoading(true);
@@ -55,7 +64,7 @@ const Login = () => {
         setCookieVar1(result.email);
         setCookieVar2(result.role);
         localStorage.setItem("email", result.email);
-        setFormData(data);
+
         setShowVerificationPage(true);
       } else {
         setError("password", {
@@ -72,7 +81,11 @@ const Login = () => {
       console.error(error);
     }
   };
-
+  useEffect(() => {
+    setValue("email", formDatas.email);
+    setValue("password", formDatas.password);
+  }, [formDatas, setValue]);
+  console.log(formDatas);
   return (
     <>
       {showVerificationPage ? (
@@ -86,17 +99,26 @@ const Login = () => {
       ) : (
         <form onSubmit={loginHandleSubmit(handleLoginSubmit)} className="">
           <div className="message mb-5">
-            <div className="text-black font-bold">Sign-In to your account</div>
-            <p className="text-sm font-normal text-gray-800 mt-3">
-              Continue where you left off by logging in, we keep track of your
-              every progress.
+            <div className=" font-bold">
+              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-black">
+                Sign-In
+              </span>{" "}
+              to your account
+            </div>
+            <p
+              className={`text-sm font-normal  mt-3 ${
+                isDarkMode ? "text-gray-200" : "text-gray-800"
+              }`}
+            >
+              Continue where you left off by logging in, we keep{" "}
+              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-black">
+                track
+              </span>{" "}
+              of your every progress.
             </p>
           </div>
           <div className=" mt-6 mb-2">
-            <Label
-              htmlFor="email"
-              className="block text-black font-bold text-sm mb-2"
-            >
+            <Label htmlFor="email" className="block  font-bold text-sm mb-2">
               Email
             </Label>
             <Controller
@@ -107,9 +129,20 @@ const Login = () => {
                   <Input
                     type="email"
                     id="email"
+                    value={formDatas.email}
+                    onChange={(event) => {
+                      setFormDatas({
+                        ...formDatas,
+                        email: event.target.value,
+                      });
+                    }}
                     placeholder="johndoe@example.com"
                     error={fieldState.error?.message}
-                    className="w-full px-4 py-3 bg-gray-100 text-black rounded-lg text-sm border-none"
+                    className={`w-full px-4 py-1 bg-gra-50 ${
+                      isDarkMode
+                        ? "bg-[#111111] text-gray-200 border-none"
+                        : "border text-black"
+                    }  h-11 focus:border-none transition-all rounded-lg text-sm`}
                     {...field}
                   />
                   {fieldState.error && (
@@ -122,10 +155,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-2">
-            <Label
-              htmlFor="password"
-              className="block text-black font-bold text-sm mb-2"
-            >
+            <Label htmlFor="password" className="block  font-bold text-sm mb-2">
               Password
             </Label>
             <Controller
@@ -136,9 +166,21 @@ const Login = () => {
                   <Input
                     type="password"
                     id="password"
+                    value={formDatas.password} // Set the value from formData
+                    onChange={(event) => {
+                      // Update the formData when the input changes
+                      setFormDatas({
+                        ...formDatas,
+                        password: event.target.value,
+                      });
+                    }}
                     placeholder="Enter your password"
                     error={fieldState.error?.message}
-                    className="w-full px-4 py-1 bg-gray-100 lowercase text-black rounded-lg text-sm border-none"
+                    className={`w-full px-4 py-1 bg-gra-50 ${
+                      isDarkMode
+                        ? "bg-[#111111] text-gray-200 border-none"
+                        : "border text-black"
+                    }  h-11 focus:border-none transition-all rounded-lg text-sm`}
                     {...field}
                   />
                   {fieldState.error && (
@@ -150,19 +192,19 @@ const Login = () => {
               )}
             />
           </div>
-          <div className="flex justify-end w-full text-right items-center mb-5 text-xs">
+          {/* <div className="flex justify-end w-full text-right items-center mb-5 text-xs">
             <a
               href="/forgot-password"
               className="text-green-500 font-bold text-sm underline"
             >
               Forgot Password?
             </a>
-          </div>
+          </div> */}
 
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-green-800 disabled:bg-green-800 hover:bg-green-700 text-white py-3 px-4 rounded-lg"
+            className="w-full h-11 font-bold mt-5 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white py-3 px-4 rounded-lg"
           >
             {isLoading ? (
               <InfinitySpin width="100" color="#ffffff" />

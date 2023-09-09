@@ -22,7 +22,7 @@ export default function WrappedFile() {
   const { isDarkMode, baseColor } = useTheme();
   return (
     <main
-      className={`relative transition-all duration-1000 ${
+      className={`relative transition-all /duration-1000 ${
         isDarkMode ? baseColor : ""
       }`}
     >

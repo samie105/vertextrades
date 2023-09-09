@@ -1,7 +1,11 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
+import { subYears } from "date-fns";
+const oneHundredYearsAgo = subYears(new Date(), 100);
+const eighteenYearsAgo = subYears(new Date(), 16);
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { Label } from "../../ui/label";
@@ -22,6 +26,8 @@ import {
 } from "../../ui/select";
 import { countryList } from "./countries";
 import { FlagIcon } from "react-flag-kit";
+import { useTheme } from "../../../contexts/themeContext";
+import { useFormContext } from "../../../contexts/formContext";
 
 const stepValidationSchemas = [
   z.object({
@@ -29,12 +35,26 @@ const stepValidationSchemas = [
     email: z.string().email("Invalid email").nonempty("Email is required"),
   }),
   z.object({
-    phoneNumber: z.string().nonempty("Phone number is required"),
+    phoneNumber: z
+      .string()
+      .min(6, "Phone number must be at least 6 numbers")
+      .nonempty("Phone number is required"),
     country: z.string().nonempty("Country is required"),
   }),
   z.object({
     gender: z.string().nonempty("Gender is required"),
-    dob: z.string().nonempty("Date of Birth is required"),
+    dob: z
+      .string()
+      .nonempty("Date of Birth is required")
+      .refine(
+        (value) => {
+          const dobDate = new Date(value);
+          return dobDate <= eighteenYearsAgo && dobDate >= oneHundredYearsAgo;
+        },
+        {
+          message: "You must be 18 years or older to sign up",
+        }
+      ),
   }),
   z.object({
     password: z
@@ -82,16 +102,32 @@ const Signup = () => {
   const [cookieVar1, setCookieVar1] = useState(null);
   const [cookieVar2, setCookieVar2] = useState(null);
 
-  const [isVerificationStep, setIsVerificationStep] = useState(false);
-  const [formData, setFormData] = useState({});
+  const { formData, setFormData } = useFormContext();
+  const {
+    isVerificationStep,
+    setIsVerificationStep,
+    currentStep,
+    setCurrentStep,
+  } = useFormContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const [currentStep, setCurrentStep] = useState(0);
-  const { control, handleSubmit, getValues, setError, formState } = useForm({
-    mode: "onChange",
-    resolver: zodResolver(stepValidationSchemas[currentStep]),
-  });
-
+  const { control, handleSubmit, getValues, setError, formState, setValue } =
+    useForm({
+      mode: "onChange",
+      reValidateMode: "onChange",
+      resolver: zodResolver(stepValidationSchemas[currentStep]),
+    });
+  useEffect(() => {
+    // Populate the form fields with values from formData when the component mounts
+    setValue("name", formData.name);
+    setValue("email", formData.email);
+    setValue("phoneNumber", formData.phoneNumber);
+    setValue("country", formData.country);
+    setValue("gender", formData.gender);
+    setValue("dob", formData.dob);
+    setValue("password", formData.password);
+    setValue("confirmPassword", formData.confirmPassword);
+  }, [formData, setValue]);
   const [selectedCountry, setSelectedCountry] = useState("us");
   const checkPhoneNumberExists = async (phoneNumber) => {
     try {
@@ -105,7 +141,6 @@ const Signup = () => {
       const data = await response.json();
       return data.exists;
     } catch (error) {
-      console.error(error);
       return false;
     }
   };
@@ -122,11 +157,9 @@ const Signup = () => {
       const data = await response.json();
       return data.exists;
     } catch (error) {
-      console.error(error);
       return false;
     }
   };
-
   const handleSignupSubmit = async (data) => {
     setIsLoading(true);
     const { confirmPassword, ...finalData } = {
@@ -164,14 +197,11 @@ const Signup = () => {
         setCookieVar2(result.role);
       } else {
         // Handle any errors from the backend
-        console.error(result.error);
       }
     } catch (error) {
       // Handle any network or other errors
-      console.error(error);
     }
     setIsLoading(false);
-    console.log("data", finalData);
   };
 
   const handleCountryChange = (event) => {
@@ -235,6 +265,7 @@ const Signup = () => {
   const handlePreviousStep = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
+  const { isDarkMode, baseColor } = useTheme();
 
   const renderFormStep = (step) => {
     switch (step) {
@@ -244,7 +275,7 @@ const Signup = () => {
             <div className="mb-5 mt-6">
               <Label
                 htmlFor="name"
-                className="block text-black font-bold text-sm mb-2 capitalize"
+                className="block text-red-00 font-bold text-sm mb-2 capitalize"
               >
                 Legal Full Name
               </Label>
@@ -256,13 +287,25 @@ const Signup = () => {
                     <Input
                       type="text"
                       id="name"
+                      value={formData.name} // Set the value from formData
+                      onChange={(event) => {
+                        // Update the formData when the input changes
+                        setFormData({
+                          ...formData,
+                          name: event.target.value,
+                        });
+                      }}
                       placeholder="John Doe"
                       error={fieldState.error?.message}
-                      className="w-full px-4 py-1 bg-gray-200 text-black capitalize rounded-lg text-sm border-none"
+                      className={`w-full px-4 py-1 bg-gra-50 ${
+                        isDarkMode
+                          ? "bg-[#111111] text-gray-200 border-none"
+                          : "border text-black"
+                      }  h-11 focus:border-none transition-all  capitalize rounded-lg text-sm`}
                       {...field}
                     />
                     {fieldState.error && (
-                      <p className="text-sm text-red-500 my-1 font-semibold">
+                      <p className={`text-sm text-red-500 my-1 font-semiold`}>
                         {fieldState.error?.message}
                       </p>
                     )}
@@ -271,7 +314,10 @@ const Signup = () => {
               />
             </div>
             <div className="mb-5">
-              <Label htmlFor="email" className="block font-bold text-sm mb-2">
+              <Label
+                htmlFor="email"
+                className="block font-bold text-red-00 text-sm mb-2"
+              >
                 Email Address
               </Label>
               <Controller
@@ -282,13 +328,24 @@ const Signup = () => {
                     <Input
                       type="email"
                       id="email"
+                      value={formData.email} // Set the value from formData
+                      onChange={(event) => {
+                        // Update the formData when the input changes
+                        setFormData({
+                          ...formData,
+                          email: event.target.value,
+                        });
+                      }}
                       placeholder="johndoe@example.com"
-                      error={fieldState.error?.message}
-                      className="w-full px-4 py-1 bg-gray-200 lowercase text-black rounded-lg text-sm border-none"
+                      className={`w-full px-4 py-1 bg-gra-50 ${
+                        isDarkMode
+                          ? "bg-[#111111] text-gray-200 border-none"
+                          : "border text-black"
+                      }  h-11 focus:border-none transition-all rounded-lg text-sm`}
                       {...field}
                     />
                     {fieldState.error && (
-                      <p className="text-sm text-red-500 my-1 font-semibold">
+                      <p className={`text-sm text-red-500 my-1 font-semiold`}>
                         {fieldState.error?.message}
                       </p>
                     )}
@@ -310,14 +367,26 @@ const Signup = () => {
                 control={control}
                 render={({ field }) => (
                   <div className="flex items-center">
-                    <div className="w-full pr-4 py-3 bg-gray-200 text-black  text-sm rounded-lg border-none">
+                    <div
+                      className={`w-full pr-4 py-3  ${
+                        isDarkMode
+                          ? "bg-[#111111] text-gray-200"
+                          : "bg-gray-50 text-black border"
+                      }  text-sm rounded-lg`}
+                    >
                       <select
                         id="country"
-                        className=" bg-gray-200 text-black w-full ml-1 mr-3"
-                        value={field.value}
+                        className={`bg-inherit ${
+                          isDarkMode ? "text-white" : "text-black"
+                        } w-full ml-1 mr-3`}
+                        value={formData.country} // Set the value from formData
                         onChange={(event) => {
-                          field.onChange(event);
                           handleCountryChange(event);
+                          // Update the formData when the input changes
+                          setFormData({
+                            ...formData,
+                            country: event.target.value,
+                          });
                         }}
                       >
                         <option value="" disabled>
@@ -325,19 +394,21 @@ const Signup = () => {
                         </option>
                         {countryList.map((country) => (
                           <option key={country.value} value={country.value}>
-                            <div className="flex items-center">
-                              {country.label}
-                            </div>{" "}
+                            {country.label}
                           </option>
                         ))}
                       </select>
                     </div>
-                    <div className="flag ml-2 p-4 bg-gray-200 rounded-lg">
+                    <div
+                      className={`flag ml-2 p-4 ${
+                        isDarkMode ? "bg-[#111111]" : "bg-gray-50"
+                      }  rounded-lg`}
+                    >
                       {" "}
                       <FlagIcon
                         code={selectedCountry.toUpperCase()}
                         size={21}
-                        className="mr-1"
+                        className={`mr-1 `}
                       />
                     </div>
                   </div>
@@ -352,14 +423,25 @@ const Signup = () => {
                   <>
                     <PhoneInput
                       country={selectedCountry.toLocaleLowerCase()}
-                      value={field.value}
+                      value={formData.phoneNumber} // Set the value from formData
+                      onChange={(event) => {
+                        // Update the formData when the input changes
+                        setFormData({
+                          ...formData,
+                          phoneNumber: event.target.value,
+                        });
+                      }}
                       {...field}
                       className="w-full"
                       containerClass="w-full"
-                      inputClass="w-full px-4 py-3 bg-gray-200 text-black text-sm rounded-lg border-none"
+                      inputClass={`w-full px-4 py-3  ${
+                        isDarkMode
+                          ? "bg-[#111111] text-gray-200"
+                          : "bg-gray-50  text-black border"
+                      }  text-sm rounded-lg `}
                     />
                     {fieldState.error && (
-                      <p className="text-sm text-red-500 my-1 font-semibold">
+                      <p className={`text-sm text-red-500 my-1 font-semiold`}>
                         {fieldState.error?.message}
                       </p>
                     )}
@@ -380,19 +462,36 @@ const Signup = () => {
                 name="gender"
                 control={control}
                 render={({ field }) => (
-                  <select
-                    {...field}
-                    className="w-full px-4 py-1 bg-gray-200 text-black rounded-lg border-0 "
+                  <div
+                    className={`w-full pr-4 py-3 ${
+                      isDarkMode
+                        ? " bg-[#111111] text-gray-200"
+                        : "border bg-gray-50 text-black"
+                    }  text-sm rounded-lg`}
                   >
-                    <option value="" disabled>
-                      Select Gender
-                    </option>
-                    {genderOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
+                    {" "}
+                    <select
+                      {...field}
+                      // Set the value from formData
+                      onChange={(event) => {
+                        // Update the formData when the input changes
+                        setFormData({
+                          ...formData,
+                          gender: event.target.value,
+                        });
+                      }}
+                      className={`bg-inherit  w-full ml-1 mr-3`}
+                    >
+                      <option value="" disabled>
+                        Select Gender
                       </option>
-                    ))}
-                  </select>
+                      {genderOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 )}
               />
             </div>
@@ -404,14 +503,22 @@ const Signup = () => {
                 name="dob"
                 control={control}
                 render={({ field }) => (
-                  <input
+                  <Input
+                    // Set the value from formData
+                    onChange={(event) => {
+                      // Update the formData when the input changes
+                      setFormData({
+                        ...formData,
+                        dob: event.target.value,
+                      });
+                    }}
                     type="date"
                     {...field}
-                    className="w-full px-4 py-3 bg-gray-200 text-black rounded-lg  border-0 "
-                    onChange={(e) => {
-                      field.onChange(e);
-                      setSelectedDate(e.target.value);
-                    }}
+                    className={`w-full px-4 py-1 bg-gra-50 ${
+                      isDarkMode
+                        ? "bg-[#111111] text-gray-200 border-none"
+                        : "border text-black"
+                    }  h-11 focus:border-none transition-all rounded-lg text-sm`}
                   />
                 )}
               />
@@ -436,13 +543,24 @@ const Signup = () => {
                     <Input
                       type="password"
                       id="password"
-                      placeholder="Create a password"
-                      error={fieldState.error?.message}
-                      className="w-full px-4 py-1 bg-gray-200 text-black text-sm rounded-lg border-none"
                       {...field}
+                      value={formData.password} // Set the value from formData
+                      onChange={(event) => {
+                        // Update the formData when the input changes
+                        setFormData({
+                          ...formData,
+                          password: event.target.value,
+                        });
+                      }}
+                      placeholder="Create a password"
+                      className={`w-full px-4 py-1 bg-gra-50 ${
+                        isDarkMode
+                          ? "bg-[#111111] text-gray-200 border-none"
+                          : "border text-black"
+                      }  h-11 focus:border-none transition-all rounded-lg text-sm`}
                     />
                     {fieldState.error && (
-                      <p className="text-sm text-red-500 my-1 font-semibold">
+                      <p className={`text-sm text-red-500 my-1 font-semiold`}>
                         {fieldState.error?.message}
                       </p>
                     )}
@@ -465,13 +583,24 @@ const Signup = () => {
                     <Input
                       type="password"
                       id="confirmPassword"
-                      placeholder="Confirm password"
-                      error={fieldState.error?.message}
-                      className="w-full px-4 py-1 bg-gray-200 text-black text-sm rounded-lg border-none"
                       {...field}
+                      value={formData.confirmPassword} // Set the value from formData
+                      onChange={(event) => {
+                        // Update the formData when the input changes
+                        setFormData({
+                          ...formData,
+                          confirmPassword: event.target.value,
+                        });
+                      }}
+                      placeholder="Confirm password"
+                      className={`w-full px-4 py-1 bg-gra-50 ${
+                        isDarkMode
+                          ? "bg-[#111111] text-gray-200 border-none"
+                          : "border text-black"
+                      }  h-11 focus:border-none transition-all rounded-lg text-sm`}
                     />
                     {fieldState.error && (
-                      <p className="text-sm text-red-500 my-1 font-semibold">
+                      <p className={`text-sm text-red-500 my-1 font-semiold`}>
                         {fieldState.error?.message}
                       </p>
                     )}
@@ -503,11 +632,48 @@ const Signup = () => {
       ) : (
         <form onSubmit={handleSubmit(handleSignupSubmit)} className="">
           <div className="message mb-5">
-            <div className="text-gray-950 font-bold">Create a new account</div>
-            <p className="text-sm font-normal text-gray-800 mt-3">
-              Continue where you left off by logging in, we keep track of your
-              every progress.
+            <div
+              className={`${
+                isDarkMode ? "text-gray-200" : "text-gray-950"
+              } font-bold text-lg`}
+            >
+              <span
+                className={`text-red-700  font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent`}
+              >
+                Create
+              </span>{" "}
+              a new account
+            </div>
+            <p
+              className={`text-sm font-normal ${
+                isDarkMode ? "text-gray-200" : "text-gray-800"
+              } mt-3`}
+            >
+              Create a new{" "}
+              <span
+                className={`bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] bord  fonttb from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-bold`}
+              >
+                account
+              </span>{" "}
+              to enjoy immense benefits and financial freedom, it's easy, it's{" "}
+              <span
+                className={` bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-bold`}
+              >
+                simple
+              </span>
             </p>
+          </div>
+          <div className="progress w-full mt-2 mb-8">
+            <div
+              className={`progress-cont w-full h-1 rounded-full ${
+                isDarkMode ? "bg-[#11111180]" : "bg-red-50/80"
+              } relative`}
+            >
+              <div
+                className={`progress-bar h-full w-1/2 transition-all duration-500 absolute bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 rounded-full top-0 left-0`}
+                style={{ width: `${currentStep * (100 / 3)}%` }}
+              ></div>
+            </div>
           </div>
           <div className="">{renderFormStep(currentStep)}</div>
           <div className="flex justify-between">
@@ -515,7 +681,12 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handlePreviousStep}
-                className=" mr-2 bg-gray-200 hover:bg-slate-300 text-black py-3 px-4 rounded-lg"
+                disabled={!formState.isValid}
+                className={`mr-2 ${
+                  isDarkMode
+                    ? "bg-[#111] text-gray-200 hover:bg-[#11111180]"
+                    : "bg-gray-100 hover:bg-slate-200 text-black"
+                } h-12 rounded-lg`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -535,13 +706,15 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handleNextStep}
-                className="w-full flex items-center justify-center text-white py-4 px-4 roundd-lg"
+                className="w-full flex items-center justify-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white h-12 font-bold roundd-lg"
                 disabled={!formState.isValid}
               >
-                <div className="py-2">
+                <div className="py-2 flex items-center justify-center">
                   {" "}
                   {isLoading ? (
-                    <InfinitySpin width="100" color="#ffffff" />
+                    <div className="flex items-center w-full">
+                      <InfinitySpin width="100" color="#ffffff" />
+                    </div>
                   ) : (
                     "Proceed"
                   )}
@@ -551,10 +724,10 @@ const Signup = () => {
             {currentStep === totalSteps - 1 && (
               <Button
                 type="submit"
-                className="w-full  flex items-center justify-center text-white py-4 px-4 rounded-lg"
-                disabled={!formState.isValid}
+                className="w-full  flex items-center justify-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white h-12 font-bold rounded-lg"
+                //disabled={!formState.isValid}
               >
-                <div className="py-2">
+                <div className="py-2 flex items-center justify-center">
                   {isLoading ? (
                     <InfinitySpin width="100" color="#ffffff" />
                   ) : (

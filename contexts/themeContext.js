@@ -25,7 +25,6 @@ export const ThemeProvider = ({ children }) => {
 
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [systemTheme, setSystemTheme] = useState(false); // Initialize as false
-  console.log(isDarkMode);
   // Function to toggle between light and dark themes
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => {
