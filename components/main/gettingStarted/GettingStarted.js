@@ -22,7 +22,7 @@ export default function GettingStarted() {
     <>
       <section
         id="Getting Started"
-        className={`stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-24 md:pt-28 mt-10 px-3 relative max-w[100vw] ${
+        className={`stepContainer w-full flex flex-col lg:flex-row md:flex-col pt-16 md:pt-16 px-3 relative max-w[100vw] ${
           isDarkMode ? `${baseColor} text-gray-100` : "bg-white text-black"
         }`}
       >

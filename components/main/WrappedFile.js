@@ -16,6 +16,7 @@ import CT from "./CopyTrading/CT";
 import Stock from "./Stocks/Stocks";
 import Navbar from "./navbars/Navbar";
 import LoadingScreen from "./LoadingScreen";
+import { Toaster } from "react-hot-toast";
 import { ThemeProvider, useTheme } from "../../contexts/themeContext";
 
 export default function WrappedFile() {
@@ -53,6 +54,7 @@ export default function WrappedFile() {
         <Testimonials />
         <FAQ />
         <Footer />
+        <Toaster />
       </main>
     </main>
   );

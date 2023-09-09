@@ -6,6 +6,7 @@ import { InfinitySpin } from "react-loader-spinner"; // Make sure to import the 
 import { setCookie } from "nookies";
 import { useTheme } from "../../../contexts/themeContext";
 import { useFormContext } from "../../../contexts/formContext";
+import { toast } from "react-hot-toast";
 
 export default function VerificationPage({
   Label,
@@ -46,6 +47,8 @@ export default function VerificationPage({
         },
         body: JSON.stringify({ email: formData.email }),
       });
+
+      if (response.status === 200) toast.success("code sent");
     } catch (error) {
       console.error(error);
     }
@@ -70,8 +73,10 @@ export default function VerificationPage({
       const result = await response.json();
 
       if (result.success) {
-        console.log(cookieVar, cookieVar1, cookieVar2);
         // Handle successful verification
+        if (response.status === 200)
+          toast.success("Sign up successful, redirecting...");
+
         setCookie(null, "token", cookieVar, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
@@ -114,6 +119,8 @@ export default function VerificationPage({
       });
 
       if (response.status === 200) {
+        toast.success("code sent");
+
         setCountdown(120);
         setIsResendDisabled(true);
       }

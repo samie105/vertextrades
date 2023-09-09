@@ -9,6 +9,7 @@ import { Label } from "../../ui/label";
 import { setCookie } from "nookies";
 import { useTheme } from "../../../contexts/themeContext";
 import { useFormContext } from "../../../contexts/formContext";
+import { toast } from "react-hot-toast";
 
 export default function VerificationPage({
   formDatas,
@@ -25,7 +26,6 @@ export default function VerificationPage({
   const [isLoading, setIsLoading] = useState(false);
   const { lalreadysent, lsetSent, countdown, setCountdown } = useFormContext();
 
-  console.log(cookieVar, cookieVar1, cookieVar2);
   useEffect(() => {
     const sendInitialCode = async () => {
       if (lalreadysent) return;
@@ -37,6 +37,7 @@ export default function VerificationPage({
           },
           body: JSON.stringify({ email: formDatas.email }),
         });
+        if (response.status === 200) toast.success("code sent");
 
         if (response.status !== 200) {
           // Handle error (optional)
@@ -77,6 +78,8 @@ export default function VerificationPage({
       });
 
       if (response.status === 200) {
+        if (response.status === 200) toast.success("code sent");
+
         setCountdown(120);
         setIsResendDisabled(true);
       }
@@ -103,6 +106,7 @@ export default function VerificationPage({
 
       if (response.status === 200) {
         // Handle successful verification
+        toast.success("Sign in successful, redirecting...");
         setCookie(null, "token", cookieVar, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
@@ -121,6 +125,7 @@ export default function VerificationPage({
           path: "/", // Adjust the path if needed
           maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
         });
+
         router.push("/dashboard");
       }
       if (response.status !== 200) {

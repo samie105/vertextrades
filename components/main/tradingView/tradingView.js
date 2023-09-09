@@ -1,10 +1,9 @@
-"use client";
 import { TickerTape } from "react-tradingview-embed";
 
 export default function TradingView() {
   return (
-    <div className="mb-4">
-      <div className="tradingview-widget-container w-full">
+    <div className="mb-4 ">
+      <div className="tradingview-widget-container w-full h-[108vh]">
         <TickerTape
           widgetPropsAny={{
             symbols: [

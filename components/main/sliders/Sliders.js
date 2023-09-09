@@ -61,8 +61,8 @@ export default function Slider() {
                     <p>Master the Art of Wealth Creation</p>
                   </div>
                   <div className="larger-text lg:text-5xl text-2xl sm:text-2xl md:text-3xl font-bold opacity-95 animate__fast animate__animated animate__fadeInLeft">
-                    Discover a World, 🌟{" "}
-                    <p className="font-black">of Financial Freedom. 🙌</p>
+                    Discover a World,{" "}
+                    <p className="font-black">of Financial Freedom. </p>
                   </div>
                 </div>
                 <div className="textcontexts my-5  opacity-90 animate__animated animate__fadeInLeft text-sm flex-wrap lg:text-base">
@@ -78,7 +78,7 @@ export default function Slider() {
                   <DialogTrigger>
                     <div className="calltoactionBtn  mt-10">
                       <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md  px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
-                        <p className="">Start Your Epic Journey 🎉</p>
+                        <p className="">Start Your Epic Journey </p>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
@@ -133,8 +133,8 @@ export default function Slider() {
                     <p>Keeping Track Of Every Detail</p>
                   </div>
                   <div className="larger-text lg:text-5xl text-xl sm:text-2xl md:text-3xl font-bold opacity-95 animate__fast animate__animated animate__fadeInLeft">
-                    Continue Trading.📈
-                    <p className="font-black">Pick Up Where'd Left Off.🥂</p>
+                    Continue Trading.
+                    <p className="font-black">Pick Up Where'd Left Off.</p>
                   </div>
                 </div>
                 <div className="textcontexts my-5  opacity-90 animate__animated animate__fadeInLeft text-sm flex-wrap lg:text-base">
@@ -207,8 +207,8 @@ export default function Slider() {
                     <p>Security & Safety A Priority</p>
                   </div>
                   <div className="larger-text lg:text-5xl text-xl sm:text-2xl md:text-3xl font-bold opacity-95 animate__fast animate__animated animate__fadeInLeft">
-                    Secure Investments.🔒
-                    <p className="font-black">Trade with Confidence.💪</p>
+                    Secure Investments.
+                    <p className="font-black">Trade with Confidence.</p>
                   </div>
                 </div>
                 <div className="textcontexts my-5  opacity-90 animate__animated animate__fadeInLeft text-sm flex-wrap lg:text-base">
