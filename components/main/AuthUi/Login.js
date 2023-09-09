@@ -26,12 +26,8 @@ const Login = () => {
   const [cookieVar, setCookieVar] = useState(null);
   const [cookieVar1, setCookieVar1] = useState(null);
   const [cookieVar2, setCookieVar2] = useState(null);
-  const {
-    showVerificationPage,
-    setShowVerificationPage,
-    formDatas,
-    setFormDatas,
-  } = useFormContext();
+  const { showVerificationPage, setShowVerificationPage } = useFormContext();
+  const { formDatas, setFormDatas } = useFormContext();
   const [isLoading, setIsLoading] = useState(false); // Add this line
   const { isDarkMode, baseColor } = useTheme();
 
@@ -44,6 +40,7 @@ const Login = () => {
   } = useForm({ mode: "onChange", resolver: zodResolver(loginFormSchema) });
 
   const handleLoginSubmit = async (data) => {
+    setFormDatas(data);
     setIsLoading(true);
 
     try {
@@ -85,7 +82,6 @@ const Login = () => {
     setValue("email", formDatas.email);
     setValue("password", formDatas.password);
   }, [formDatas, setValue]);
-  console.log(formDatas);
   return (
     <>
       {showVerificationPage ? (

@@ -30,6 +30,7 @@ export const FormProvider = ({ children }) => {
   const [isInitialSend, setIsInitialSend] = useState(true);
   const [alreadysent, setSent] = useState(false);
   const [lalreadysent, lsetSent] = useState(false); //login
+  const [countdown, setCountdown] = useState(60);
 
   const [isVerificationStep, setIsVerificationStep] = useState(false); //signup
   return (
@@ -49,6 +50,10 @@ export const FormProvider = ({ children }) => {
         setIsInitialSend,
         alreadysent,
         setSent,
+        lalreadysent,
+        lsetSent,
+        countdown,
+        setCountdown,
       }}
     >
       {children}

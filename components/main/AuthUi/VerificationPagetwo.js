@@ -8,6 +8,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import { Label } from "../../ui/label";
 import { setCookie } from "nookies";
 import { useTheme } from "../../../contexts/themeContext";
+import { useFormContext } from "../../../contexts/formContext";
 
 export default function VerificationPage({
   formDatas,
@@ -17,14 +18,17 @@ export default function VerificationPage({
 }) {
   const router = useRouter();
   const [error, setError] = useState("");
-  const [countdown, setCountdown] = useState(60);
   const { isDarkMode, baseColor } = useTheme();
 
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [verificationCode, setVerificationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { lalreadysent, lsetSent, countdown, setCountdown } = useFormContext();
+
+  console.log(cookieVar, cookieVar1, cookieVar2);
   useEffect(() => {
     const sendInitialCode = async () => {
+      if (lalreadysent) return;
       try {
         const response = await fetch("/verifyemail/sendcode/api", {
           method: "POST",
@@ -44,6 +48,7 @@ export default function VerificationPage({
     };
 
     sendInitialCode();
+    lsetSent(true);
   }, []);
   useEffect(() => {
     if (isResendDisabled && countdown > 0) {
@@ -131,7 +136,7 @@ export default function VerificationPage({
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `:${String(seconds).padStart(2, "0")}s`;
+    return `${String(seconds).padStart(2, "0")}s`;
   };
 
   return (

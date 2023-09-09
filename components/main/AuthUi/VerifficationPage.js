@@ -16,10 +16,15 @@ export default function VerificationPage({
   cookieVar1,
   cookieVar2,
 }) {
-  const [countdown, setCountdown] = useState(60);
   const { isDarkMode, baseColor } = useTheme();
-  const { isInitialSend, setIsInitialSend, alreadysent, setSent } =
-    useFormContext();
+  const {
+    isInitialSend,
+    setIsInitialSend,
+    alreadysent,
+    setSent,
+    countdown,
+    setCountdown,
+  } = useFormContext();
 
   const [error, setError] = useState("");
   const [isResendDisabled, setIsResendDisabled] = useState(true);
@@ -65,6 +70,7 @@ export default function VerificationPage({
       const result = await response.json();
 
       if (result.success) {
+        console.log(cookieVar, cookieVar1, cookieVar2);
         // Handle successful verification
         setCookie(null, "token", cookieVar, {
           httpOnly: false,
@@ -97,9 +103,24 @@ export default function VerificationPage({
 
   const handleResendCode = async () => {
     setError("");
-    await sendCode();
-    setCountdown(120);
-    setIsResendDisabled(true);
+    setIsLoading(true);
+    try {
+      const response = await fetch("/verifyemail/sendcode/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: formData.email }),
+      });
+
+      if (response.status === 200) {
+        setCountdown(120);
+        setIsResendDisabled(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    setIsLoading(false);
   };
 
   useEffect(() => {

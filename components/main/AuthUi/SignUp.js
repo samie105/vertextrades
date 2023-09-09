@@ -681,7 +681,7 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handlePreviousStep}
-                disabled={!formState.isValid}
+                //  disabled={!formState.isValid}
                 className={`mr-2 ${
                   isDarkMode
                     ? "bg-[#111] text-gray-200 hover:bg-[#11111180]"
