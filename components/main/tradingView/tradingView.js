@@ -2,8 +2,8 @@ import { TickerTape } from "react-tradingview-embed";
 
 export default function TradingView() {
   return (
-    <div className="mb-4 ">
-      <div className="tradingview-widget-container w-full h-[108vh]">
+    <div className=" w-full">
+      <div className="tradingview-widget-container w-full ">
         <TickerTape
           widgetPropsAny={{
             symbols: [
@@ -30,7 +30,7 @@ export default function TradingView() {
             ],
             showSymbolLogo: true,
             colorTheme: "dark",
-            isTransparent: false,
+            isTransparent: true,
             displayMode: "adaptive",
             locale: "en",
           }}

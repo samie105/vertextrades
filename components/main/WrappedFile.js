@@ -33,14 +33,16 @@ export default function WrappedFile() {
       <div className="fixed top-0 left-0 w-full text-white z-30 ">
         <Navbar />
       </div>
-      <main className=" w-full relative overflow-hidden">
-        <div className="relative w-full  animate__animated animate__slideInUp">
+      <div className=" w-full relative overflow-hidden">
+        <div className="w-full ">
           <Slider />
         </div>
-        <div className="my-2">
+      </div>
+      <div></div>
+      <div className=" w-full relative overflow-hidden">
+        <section className="relative w-full h-auto">
           <TradingView />
-        </div>
-
+        </section>
         <GettingStarted />
         <WhatNRating />
         <AboutUs />
@@ -55,7 +57,7 @@ export default function WrappedFile() {
         <FAQ />
         <Footer />
         <Toaster />
-      </main>
+      </div>
     </main>
   );
 }

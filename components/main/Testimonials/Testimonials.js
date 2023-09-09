@@ -62,7 +62,7 @@ export default function Testimonials() {
         id="Testimonials"
         className={`wwd-container flex flex-col   pb-24 ${
           isDarkMode
-            ? `bg-[#111] text-white`
+            ? `bg-[#171717] text-white`
             : "bg-gradient-to-r from-gray-50 to-gray-100"
         }`}
       >
@@ -114,7 +114,7 @@ export default function Testimonials() {
           <div className="TestimonyOne">
             <div
               className={`testi-card ${
-                isDarkMode ? `${baseColor} text-white` : "bg-white"
+                isDarkMode ? `bg-[#111] text-white` : "bg-white"
               } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
@@ -167,7 +167,7 @@ export default function Testimonials() {
           <div className="TestimonyTwo">
             <div
               className={`testi-card ${
-                isDarkMode ? `${baseColor} text-white` : "bg-white"
+                isDarkMode ? `bg-[#111] text-white` : "bg-white"
               } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
@@ -220,7 +220,7 @@ export default function Testimonials() {
           <div className="TestimonyOne">
             <div
               className={`testi-card ${
-                isDarkMode ? `${baseColor} text-white` : "bg-white"
+                isDarkMode ? `bg-[#111] text-white` : "bg-white"
               } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
@@ -273,7 +273,7 @@ export default function Testimonials() {
           <div className="TestimonyTwo">
             <div
               className={`testi-card ${
-                isDarkMode ? `${baseColor} text-white` : "bg-white"
+                isDarkMode ? `bg-[#111] text-white` : "bg-white"
               } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
