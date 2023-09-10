@@ -98,11 +98,8 @@ export function DatePickerDemo({ selected, onSelect }) {
 }
 
 const Signup = () => {
-  const [cookieVar, setCookieVar] = useState(null);
-  const [cookieVar1, setCookieVar1] = useState(null);
-  const [cookieVar2, setCookieVar2] = useState(null);
-
-  const { formData, setFormData } = useFormContext();
+  const { formData, setFormData, setCookieVar, setCookieVar1, setCookieVar2 } =
+    useFormContext();
   const {
     isVerificationStep,
     setIsVerificationStep,

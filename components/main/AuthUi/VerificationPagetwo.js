@@ -11,12 +11,7 @@ import { useTheme } from "../../../contexts/themeContext";
 import { useFormContext } from "../../../contexts/formContext";
 import { toast } from "react-hot-toast";
 
-export default function VerificationPage({
-  formDatas,
-  cookieVar,
-  cookieVar1,
-  cookieVar2,
-}) {
+export default function VerificationPage({ formDatas }) {
   const router = useRouter();
   const [error, setError] = useState("");
   const { isDarkMode, baseColor } = useTheme();
@@ -24,7 +19,15 @@ export default function VerificationPage({
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [verificationCode, setVerificationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { lalreadysent, lsetSent, countdown, setCountdown } = useFormContext();
+  const {
+    lalreadysent,
+    lsetSent,
+    countdown,
+    setCountdown,
+    cookieVar,
+    cookieVar1,
+    cookieVar2,
+  } = useFormContext();
 
   useEffect(() => {
     const sendInitialCode = async () => {
@@ -126,7 +129,8 @@ export default function VerificationPage({
           maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
         });
 
-        router.push("/dashboard");
+        if (cookieVar2 == "admin") router.push("/admin");
+        if (cookieVar2 == "user") router.push("/dashboard");
       }
       if (response.status !== 200) {
         // Handle successful verification

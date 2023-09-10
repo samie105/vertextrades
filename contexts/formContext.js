@@ -22,7 +22,9 @@ export const FormProvider = ({ children }) => {
     password: "",
     confirmPassword: "",
   });
-
+  const [cookieVar, setCookieVar] = useState(null);
+  const [cookieVar1, setCookieVar1] = useState(null);
+  const [cookieVar2, setCookieVar2] = useState(null);
   const [showVerificationPage, setShowVerificationPage] = useState(false); //login
 
   const [formDatas, setFormDatas] = useState({ email: "", password: "" });
@@ -54,6 +56,12 @@ export const FormProvider = ({ children }) => {
         lsetSent,
         countdown,
         setCountdown,
+        cookieVar,
+        setCookieVar,
+        cookieVar1,
+        setCookieVar1,
+        cookieVar2,
+        setCookieVar2,
       }}
     >
       {children}

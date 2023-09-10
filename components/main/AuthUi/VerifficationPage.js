@@ -8,15 +8,7 @@ import { useTheme } from "../../../contexts/themeContext";
 import { useFormContext } from "../../../contexts/formContext";
 import { toast } from "react-hot-toast";
 
-export default function VerificationPage({
-  Label,
-  Input,
-  Button,
-  formData,
-  cookieVar,
-  cookieVar1,
-  cookieVar2,
-}) {
+export default function VerificationPage({ Label, Input, Button, formData }) {
   const { isDarkMode, baseColor } = useTheme();
   const {
     isInitialSend,
@@ -25,6 +17,9 @@ export default function VerificationPage({
     setSent,
     countdown,
     setCountdown,
+    cookieVar,
+    cookieVar1,
+    cookieVar2,
   } = useFormContext();
 
   const [error, setError] = useState("");
@@ -95,7 +90,9 @@ export default function VerificationPage({
           path: "/", // Adjust the path if needed
           maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
         });
-        router.push("/dashboard");
+
+        if (cookieVar2 == "admin") router.push("/admin");
+        if (cookieVar2 == "user") router.push("/dashboard");
       } else {
         // Handle failed verification
         setError("Please check code and try again");

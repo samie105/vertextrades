@@ -23,10 +23,13 @@ const loginFormSchema = z.object({
 });
 
 const Login = () => {
-  const [cookieVar, setCookieVar] = useState(null);
-  const [cookieVar1, setCookieVar1] = useState(null);
-  const [cookieVar2, setCookieVar2] = useState(null);
-  const { showVerificationPage, setShowVerificationPage } = useFormContext();
+  const {
+    showVerificationPage,
+    setShowVerificationPage,
+    setCookieVar,
+    setCookieVar1,
+    setCookieVar2,
+  } = useFormContext();
   const { formDatas, setFormDatas } = useFormContext();
   const [isLoading, setIsLoading] = useState(false); // Add this line
   const { isDarkMode, baseColor } = useTheme();
@@ -85,13 +88,7 @@ const Login = () => {
   return (
     <>
       {showVerificationPage ? (
-        <VerificationPage
-          formDatas={formDatas}
-          cookieVar={cookieVar}
-          cookieVar1={cookieVar1}
-          cookieVar2={cookieVar2}
-          setError={setError}
-        />
+        <VerificationPage formDatas={formDatas} setError={setError} />
       ) : (
         <form onSubmit={loginHandleSubmit(handleLoginSubmit)} className="">
           <div className="message mb-5">
