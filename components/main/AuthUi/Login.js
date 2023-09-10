@@ -57,9 +57,9 @@ const Login = () => {
 
       if (response.status === 200) {
         // Set the authentication token as a cookie
-        setCookieVar(result.token);
-        setCookieVar1(result.email);
-        setCookieVar2(result.role);
+        await setCookieVar(result.token);
+        await setCookieVar1(result.email);
+        await setCookieVar2(result.role);
         localStorage.setItem("email", result.email);
 
         setShowVerificationPage(true);

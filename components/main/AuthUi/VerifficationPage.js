@@ -77,19 +77,19 @@ export default function VerificationPage({
         if (response.status === 200)
           toast.success("Sign up successful, redirecting...");
 
-        setCookie(null, "token", cookieVar, {
+        await setCookie(null, "token", cookieVar, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
           path: "/", // Adjust the path if needed
           maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
         });
-        setCookie(null, "email", cookieVar1, {
+        await setCookie(null, "email", cookieVar1, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
           path: "/", // Adjust the path if needed
           maxAge: 60 * 60 * 24 * 5, // Token expires in 3 days
         });
-        setCookie(null, "role", cookieVar2, {
+        await setCookie(null, "role", cookieVar2, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production", // Use 'secure' in production
           path: "/", // Adjust the path if needed

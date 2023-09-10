@@ -190,11 +190,11 @@ const Signup = () => {
 
       if (result.success) {
         // If the signup was successful, show the verification page
-        setIsVerificationStep(true);
-        localStorage.setItem("email", result.email);
-        setCookieVar(result.token);
-        setCookieVar1(result.email);
-        setCookieVar2(result.role);
+        await setIsVerificationStep(true);
+        await localStorage.setItem("email", result.email);
+        await setCookieVar(result.token);
+        await setCookieVar1(result.email);
+        await setCookieVar2(result.role);
       } else {
         // Handle any errors from the backend
       }
