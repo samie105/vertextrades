@@ -20,7 +20,7 @@ export default function LoadingScreen() {
           return prevProgress;
         }
       });
-    }, 100);
+    }, 250);
   }, []);
 
   return isVisible ? (

@@ -30,15 +30,15 @@ export default function GettingStarted() {
           {" "}
           <div
             className={`w-40 h-40 absolute  ${
-              isDarkMode ? "opacity-30" : "opacity-5"
+              isDarkMode ? "opacity-30" : "opacity-100"
             }`}
           >
             <Image
               src="/assets/dot.png"
               fill
               alt=""
-              className={`top-0 lg:left-0 right-0 md:left-0  w-full h-full opacity-5 ${
-                isDarkMode ? "opacity-10" : ""
+              className={`top-0 lg:left-0 right-0 md:left-0  w-full h-full ${
+                isDarkMode ? "opacity-10" : "opacity-50"
               }`}
             />
           </div>
