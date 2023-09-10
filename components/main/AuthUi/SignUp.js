@@ -618,13 +618,10 @@ const Signup = () => {
     <>
       {isVerificationStep ? (
         <VerificationPage
-          cookieVar1={cookieVar1}
-          cookieVar2={cookieVar2}
           Input={Input}
           Button={Button}
           Label={Label}
           formData={formData}
-          cookieVar={cookieVar}
         />
       ) : (
         <form onSubmit={handleSubmit(handleSignupSubmit)} className="">

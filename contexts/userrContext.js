@@ -127,12 +127,12 @@ export const UserDataProvider = ({ children }) => {
     };
 
     // Fetch details initially
-    // fetchDetails();
+    fetchDetails();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    const intervalId = setInterval(fetchDetails, 10000);
-    return () => clearTimeout(intervalId);
+    // const intervalId = setInterval(fetchDetails, 60000);
+    // return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 
