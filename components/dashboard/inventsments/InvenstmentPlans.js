@@ -17,11 +17,11 @@ export default function InvestmentPlans() {
     }
   };
   return (
-    <div className="p-4 grid-cols-1 grid md:grid-cols-2 gap-4">
+    <div className="p-4 grid-cols-1 grid md:grid-cols-2 gap-4 mt-20">
       {investmentPlans.map((plan, index) => (
         <div
           key={index}
-          className="bg-white p-4 rounded-xl shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+          className="bg-white p-4 rounded-xl border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
         >
           <div
             className={`text-xl font-bold mb-5 text-center flex items-center justify-center ${getColor(

@@ -5,7 +5,6 @@ import InvestmentPlan from "../../../components/dashboard/inventsments/Invenstme
 export default function page() {
   return (
     <div>
-      <Livetrade />
       <InvestmentPlan />
     </div>
   );

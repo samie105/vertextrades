@@ -10,7 +10,7 @@ export default function Purchase() {
         {deets.map((info, idx) => (
           <div
             key={idx}
-            className=" shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-xl p-4 m-2"
+            className=" border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-xl p-4 m-2"
           >
             <div className="image lg:h-40 w-full">
               <Image
@@ -24,7 +24,9 @@ export default function Purchase() {
             <div className="button flex justify-center">
               <Link href={info.link} passHref>
                 {" "}
-                <button className=" bg-slate-900 font-bold text-white rounded-full px-4 py-3 mt-6 text-sm">
+                <button
+                  className={`${info.bg} font-bold text-white rounded-full px-8 py-3 mt-6 text-sm`}
+                >
                   Purchase from {info.name}
                 </button>
               </Link>
