@@ -8,10 +8,10 @@ function Livetrades() {
   return (
     <>
       <Livetrade />
+      <AdvancedCh />
       <AccountSect />
       <Holder />
       <TradingView />
-      <AdvancedCh />
       <ActiveTraders />
     </>
   );

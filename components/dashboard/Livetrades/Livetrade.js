@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "../../ui/card";
 import CountUp from "react-countup";
 import { useUserData } from "../../../contexts/userrContext";
+import { Skeleton } from "../../ui/skeleton";
 
 const Livetrade = () => {
   const [randomNumbers, setRandomNumbers] = useState({});
@@ -156,53 +157,64 @@ const Livetrade = () => {
 
   return (
     <div className="p-4">
-      <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-3 gap-2">
-        {livess.map((items) => (
-          <div key={items.name}>
-            <Card>
-              <CardContent className="p-4 bg-gray-50">
-                <div className="cont flex justify-between rounded-xl">
-                  <div className="deets w-full">
-                    <div className="name capitalize text-sm font-bold">
-                      {items.name}
+      {details === 0 ? (
+        <div className=" my-2 w-full grid md:grid-cols-2 grid-cols-2 lg:grid-cols-3 gap-4 overflow-hidden rounded-md">
+          <Skeleton className="/  h-32 bg-gray-200/80" />
+          <Skeleton className="/  h-32 bg-gray-200/80" />
+          <Skeleton className="/  h-32 bg-gray-200/80" />
+          <Skeleton className="/  h-32 bg-gray-200/80" />
+          <Skeleton className="/  h-32 bg-gray-200/80" />
+          <Skeleton className="/  h-32 bg-gray-200/80" />
+        </div>
+      ) : (
+        <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-3 gap-2">
+          {livess.map((items) => (
+            <div key={items.name}>
+              <Card>
+                <CardContent className="p-4 bg-gray-50">
+                  <div className="cont flex justify-between rounded-xl">
+                    <div className="deets w-full">
+                      <div className="name capitalize text-sm font-bold">
+                        {items.name}
+                      </div>
+                      <div
+                        className={`bal font-bold text-xl text-black my-2 md:text-2xl`}
+                      >
+                        {items.name === "live" ? (
+                          <CountUp
+                            end={randomNumbers[items.name]}
+                            duration={0.5}
+                          />
+                        ) : (
+                          items.bal
+                        )}
+                      </div>
                     </div>
-                    <div
-                      className={`bal font-bold text-xl text-black my-2 md:text-2xl`}
-                    >
-                      {items.name === "live" ? (
-                        <CountUp
-                          end={randomNumbers[items.name]}
-                          duration={0.5}
-                        />
-                      ) : (
-                        items.bal
-                      )}
-                    </div>
-                  </div>
-                  <div className="icon">
-                    <div>
-                      {items.name === "live" ? (
-                        <div className="live">
-                          <div className="live-info p-1 flex items-center bg-green-700 text-xs text-white rounded-full">
-                            <div className="dot w-1 h-1 animate-ping bg-white  rounded-full"></div>{" "}
+                    <div className="icon">
+                      <div>
+                        {items.name === "live" ? (
+                          <div className="live">
+                            <div className="live-info p-1 flex items-center bg-green-700 text-xs text-white rounded-full">
+                              <div className="dot w-1 h-1 animate-ping bg-white  rounded-full"></div>{" "}
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        items.icon
-                      )}
+                        ) : (
+                          items.icon
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="extra font-semibold text-xs text-green-700">
-                  {items.name === "live"
-                    ? `${changePercent.toFixed(1)}% from last second`
-                    : "+0% from last month"}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        ))}
-      </div>
+                  <div className="extra font-semibold text-xs text-green-700">
+                    {items.name === "live"
+                      ? `${changePercent.toFixed(1)}% from last second`
+                      : "+0% from last month"}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

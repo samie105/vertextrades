@@ -609,7 +609,7 @@ export default function BankWire() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-16 h-16 mx-auto mb-4 text-green-500"
+            className="w-16 h-16 mx-auto mb-4 text-black/40"
           >
             <path
               fillRule="evenodd"
@@ -618,16 +618,15 @@ export default function BankWire() {
             />
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
-          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-24">
-            Your wire transfer is underway and may take several hours to 3
-            business days, subject to standard banking procedures. For
-            transaction status or assistance, please refer to your online
-            banking portal or contact our support team. Thank you for choosing
-            our services.
+          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-32">
+            Your Bitcoin (BTC) withdrawal is in the confirmation phase within
+            the blockchain network. Transaction times may vary from 5 minutes to
+            2 hours. Monitor the transaction through your history panel. Contact
+            us for further assistance.
           </p>
           <Link href="/dashboard" passHref>
             {" "}
-            <button className="bg-slate-800 py-3 px-6 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
+            <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 py-3 px-10 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
               Back to Dashboard
             </button>
           </Link>

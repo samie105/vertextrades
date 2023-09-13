@@ -69,7 +69,7 @@ export default function InvestmentPlans() {
           </div>
 
           <div className="button-container flex justify-center">
-            <button className="rounded-full bg-slate-900 px-7 text-white my-4 py-3 text-sm font-bold">
+            <button className="rounded-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 px-7 text-white my-4 py-3 text-sm font-bold">
               Purchase Plan
             </button>
           </div>

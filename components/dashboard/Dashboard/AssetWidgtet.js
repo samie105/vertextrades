@@ -11,7 +11,7 @@ export default function AssetWidgtet() {
         <Link href="dashboard/deposits" passHref>
           {" "}
           <div>
-            <button className="bg-slate-800 rounded-full py-3 px-5 text-white font-bold text-xs md:text-sm">
+            <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 rounded-full py-3 px-5 text-white font-bold text-xs md:text-sm">
               Deposit
             </button>
           </div>
@@ -29,15 +29,15 @@ export default function AssetWidgtet() {
           showFloatingTooltip: true,
           width: "100%",
           height: "660",
-          plotLineColorGrowing: "rgba(28, 69, 135, 1)",
-          plotLineColorFalling: "rgba(41, 98, 255, 1)",
-          gridLineColor: "rgba(42, 46, 57, 0)",
-          scaleFontColor: "rgba(106, 109, 120, 1)",
-          belowLineFillColorGrowing: "rgba(41, 98, 255, 0.12)",
-          belowLineFillColorFalling: "rgba(41, 98, 255, 0.12)",
-          belowLineFillColorGrowingBottom: "rgba(41, 98, 255, 0)",
-          belowLineFillColorFallingBottom: "rgba(41, 98, 255, 0)",
-          symbolActiveColor: "rgba(41, 98, 255, 0.12)",
+          plotLineColorGrowing: "rgba(204, 0, 0, 1)",
+          plotLineColorFalling: "rgba(153, 0, 0, 1)",
+          gridLineColor: "rgba(240, 243, 250, 0)",
+          scaleFontColor: "rgba(204, 0, 0, 1)",
+          belowLineFillColorGrowing: "rgba(244, 204, 204, 0.12)",
+          belowLineFillColorFalling: "rgba(244, 204, 204, 0.12)",
+          belowLineFillColorGrowingBottom: "rgba(234, 153, 153, 0)",
+          belowLineFillColorFallingBottom: "rgba(234, 153, 153, 0)",
+          symbolActiveColor: "rgba(234, 153, 153, 0.12)",
           tabs: [
             {
               title: "Your Assets",

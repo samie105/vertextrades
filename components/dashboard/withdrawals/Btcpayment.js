@@ -264,7 +264,7 @@ export default function Btcpayment({
               <button
                 disabled={loading}
                 type="submit"
-                className="w-full disabled:bg-red-400 px-4 mt-4 text-sm rounded-lg flex items-center justify-center bg-red-500 text-white font-bold hover:bg-red-600 focus:outline-none focus:bg-red-600"
+                className="w-full  px-4 mt-4 text-sm rounded-lg flex items-center justify-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white font-bold hover:bg-red-600 focus:outline-none focus:bg-red-600"
               >
                 {loading ? (
                   <InfinitySpin width="100" color="#ffffff" />
@@ -290,7 +290,7 @@ export default function Btcpayment({
               <div className="progress-movements w-full">
                 <div className="holder w-full h-2 relative overflow-hidden rounded-full bg-red-50">
                   <div
-                    className="mover absolute h-full rounded-full transition-all bg-red-800"
+                    className="mover absolute h-full rounded-full transition-all bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500"
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
@@ -320,7 +320,7 @@ export default function Btcpayment({
                 <button
                   disabled={loading}
                   type="submit"
-                  className="bg-red-600 py- mt-2 w-full flex justify-center items-center rounded-lg text-sm text-white font-bold"
+                  className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 py- mt-2 w-full flex justify-center items-center rounded-lg text-sm text-white font-bold"
                 >
                   {loading ? (
                     <InfinitySpin width="100" color="#ffffff" />
@@ -352,7 +352,7 @@ export default function Btcpayment({
                 )}
                 <button
                   type="submit"
-                  className="bg-red-600 mt-2 w-full flex items-center justify-center rounded-lg text-sm text-white font-bold"
+                  className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 mt-2 w-full flex items-center justify-center rounded-lg text-sm text-white font-bold"
                 >
                   {loading ? (
                     <InfinitySpin width="100" color="#ffffff" />
@@ -371,7 +371,7 @@ export default function Btcpayment({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-16 h-16 mx-auto mb-4 text-green-500"
+            className="w-16 h-16 mx-auto mb-4 text-black/40"
           >
             <path
               fillRule="evenodd"
@@ -383,12 +383,12 @@ export default function Btcpayment({
           <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-32">
             Your Bitcoin (BTC) withdrawal is in the confirmation phase within
             the blockchain network. Transaction times may vary from 5 minutes to
-            2 hours. Monitor the transaction through your preferred blockchain
-            explorer. Contact us for further assistance.
+            2 hours. Monitor the transaction through your history panel. Contact
+            us for further assistance.
           </p>
           <Link href="/dashboard" passHref>
             {" "}
-            <button className="bg-slate-800 py-3 px-6 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
+            <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 py-3 px-10 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
               Back to Dashboard
             </button>
           </Link>

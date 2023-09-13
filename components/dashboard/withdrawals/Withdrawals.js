@@ -99,25 +99,30 @@ export default function Withdrawals() {
       {!isVerified && (
         <>
           <div className="flex w-full md:w-1/2 md:mx-auto h-[80vh] justify-center items-center">
-            <div className="not-verified-container rounded-xl p-6 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-              <div className="header-text text-lg uppercase font-bold mb-4 flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5 mr-2"
-                >
-                  <path d="M13.92 3.845a19.361 19.361 0 01-6.3 1.98C6.765 5.942 5.89 6 5 6a4 4 0 00-.504 7.969 15.974 15.974 0 001.271 3.341c.397.77 1.342 1 2.05.59l.867-.5c.726-.42.94-1.321.588-2.021-.166-.33-.315-.666-.448-1.004 1.8.358 3.511.964 5.096 1.78A17.964 17.964 0 0015 10c0-2.161-.381-4.234-1.08-6.155zM15.243 3.097A19.456 19.456 0 0116.5 10c0 2.431-.445 4.758-1.257 6.904l-.03.077a.75.75 0 001.401.537 20.902 20.902 0 001.312-5.745 1.999 1.999 0 000-3.545 20.902 20.902 0 00-1.312-5.745.75.75 0 00-1.4.537l.029.077z" />
-                </svg>
-                Verification Required
+            <div className="not-verified-container rounded-xl p-6 /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+              <div className="header-text text-lg  uppe/rcase font-bold w-full text-center">
+                <div className="flex justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-10 h-10 mb-1 text-black/60"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div className="font-bold">Verification Required</div>
               </div>
-              <div className="message py-1 text-sm my-3 font-bold text-gray-600">
-                You need to be verified to make a withdrawal. Please complete
-                the verification process to continue.
+              <div className="message py-1 text-sm font-bold text-black/60 text-center">
+                You need to be verified to make a withdrawal.
               </div>
-              <div className="cta pt-2">
+              <div className="cta pt-2 flex justify-center">
                 <Link href="/dashboard/verify" passHref>
-                  <button className="bg-slate-800 text-white py-3 px-5 text-sm font-bold rounded-xl hover:bg-slate-600">
+                  <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white py-3 px-9 text-sm font-bold rounded-md hover:bg-slate-600">
                     Verify Now
                   </button>
                 </Link>
@@ -130,12 +135,12 @@ export default function Withdrawals() {
         <>
           <div className="">
             <div>
-              <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] sticky rounded-lg px-2 py-4  bg-white transition-all ">
+              <div className="border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] sticky rounded-lg px-2 py-4  bg-white transition-all ">
                 <div className="card-info shado-md flex items-center justify-between">
                   <div className="card-header font-bold ml-1 flex items-center ">
                     <div className="block">
                       {" "}
-                      <div className="icon-cont bg-gry-50 bg-white-700 rounded-full p-3 mr-2 border bg-slate-800">
+                      <div className="icon-cont bg-gry-50 bg-white-700 rounded-full p-3 mr-2 border bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-600 to-orange-500">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
@@ -212,7 +217,7 @@ export default function Withdrawals() {
                 </div>
 
                 <Select id="paymentOption" onValueChange={handleValueChange}>
-                  <SelectTrigger className="border-0 font-bold shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] text-sm">
+                  <SelectTrigger className="border-0/ font-bold border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] text-sm">
                     <SelectValue
                       defaultValue="Bitcoin Payment"
                       className="font-bold"
@@ -265,7 +270,7 @@ export default function Withdrawals() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-10 h-10 text-gray-400"
+                        className="w-10 h-10"
                       >
                         <path
                           fillRule="evenodd"
@@ -275,9 +280,8 @@ export default function Withdrawals() {
                         <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
                       </svg>
                     </div>
-                    <div className="message text-lg text-gray-400 text-center my-2 font-bold">
-                      Please select any of the <br />
-                      Payment method
+                    <div className="message text-lg font-bold text-black/80 text-center my-2 /font-bold">
+                      Please select any of the Payment method
                     </div>
                   </div>
                 </div>

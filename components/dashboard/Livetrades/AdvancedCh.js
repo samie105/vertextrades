@@ -49,7 +49,7 @@ export default function AdvancedCh() {
   }, []);
 
   return (
-    <div className="w-full h-auto my-2 px-4 py-2">
+    <div className="w-full h-auto my-2 py-2">
       <div className="tradingview-widget-container relative">
         <div id="tradingview_ed05f" />
       </div>

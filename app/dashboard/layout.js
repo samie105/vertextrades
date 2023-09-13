@@ -3,6 +3,7 @@ import Footer from "../../components/dashboard/Footer";
 import Nav from "../../components/dashboard/Nav";
 import Sidebar from "../../components/dashboard/Sidebar";
 import { UserDataProvider } from "../../contexts/userrContext";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Brokersite",
@@ -12,7 +13,7 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <UserDataProvider>
-      <main>
+      <main className="h-screen overflow-hidden">
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -34,14 +35,15 @@ export default function Layout({ children }) {
         <div className="fixed bottom-0 left-0 w-full text-white z-30 ">
           <Footer />
         </div>
-        <div className="content-container md:flex mt-[66px]  w-full h-auto">
-          <div className="side-bar  w-[18%] hidden md:block">
+        <div className="content-container md:flex mt-[66px]  w-full ">
+          <div className="side-bar  w-[300px] hidden md:block h-[calc(100vh-70px)] overflow-scroll mb-[70px]">
             <Sidebar />
           </div>
-          <div className="main-bar w-full max-h-[100vh] mb-[66px] overflow-y-scroll  ">
+          <div className="main-bar w-full h-[calc(100vh-66px)] overflow-hidden mb-[66px] overflow-y-scroll pb-16 ">
             {children}
           </div>
         </div>
+        <Toaster />
       </main>
     </UserDataProvider>
   );

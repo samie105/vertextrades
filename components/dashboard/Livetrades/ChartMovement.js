@@ -84,15 +84,15 @@ const ChartMovement = () => {
     series.interpolationDuration = 500;
     series.defaultState.transitionDuration = 0;
     series.tensionX = 0.8;
-    series.stroke = am4core.color("rgba(20, 0, 71, 1)");
+    series.stroke = am4core.color("rgba(8, 153, 129, 1)");
     series.fillOpacity = 0.1; // Adjust the opacity as needed
-    series.fill = am4core.color("rgba(20, 0, 71, 1)");
+    series.fill = am4core.color("rgba(8, 153, 129, 0.5)");
 
     let bullet = series.createChild(am4charts.CircleBullet);
     bullet.circle.radius = 5;
     bullet.fillOpacity = 1;
     bullet.fill = chart.colors.getIndex(0);
-    bullet.circle.fill = am4core.color("rgba(20, 0, 71, 1)");
+    bullet.circle.fill = am4core.color("rgba(8, 153, 129, 1)");
     bullet.isMeasured = false;
 
     series.events.on("validated", function () {
@@ -158,7 +158,7 @@ const ChartMovement = () => {
     <div className="my-4 card rounded-lg shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
       <div className="p-2">
         <div className="flex my-2 ecn-cont w-full justify-center">
-          <div className=" bg-slate-800 hover:bg-slate-600 flex items-center p-3 rounded-lg text-white font-bold text-sm">
+          <div className=" bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 flex items-center p-3 rounded-lg text-white font-bold text-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
