@@ -10,9 +10,11 @@ import Link from "next/link";
 import { Card, CardContent } from "../../ui/card";
 import { useUserData } from "../../../contexts/userrContext";
 import { Skeleton } from "../../ui/skeleton";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Dash() {
   const { details } = useUserData();
+  const { isDarkMode, baseColor } = useTheme();
 
   const dashhh = [
     {
@@ -94,20 +96,24 @@ export default function Dash() {
   ];
   return (
     <>
-      <div className="dash-cont p-4">
+      <div className={`dash-cont p-4 ${isDarkMode ? `${baseColor}` : ""}`}>
         {/* <div className="dash-header font-bold text-xl mt-3">Dashboard</div> */}
         <div className="account-boards w-full my-3 text-sm">
           {details === 0 ? (
             <div className="w-full px-3">
               {" "}
-              <Skeleton className="/  h-20 bg-gray-200/80" />
+              <Skeleton
+                className={`  h-20 ${
+                  isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
+                } `}
+              />
             </div>
           ) : (
             <div
               className={` sticky rounded-lg px-2 py-4 border /shadow-[0px_0px_17px_3px_#00000010]  text-black`}
             >
               <div className="card-info shado-md flex items-center justify-between">
-                <div className="card-header font-bold ml-1 flex items-center text-white">
+                <div className="card-header font-bold ml-1 flex items-center /text-white">
                   <div className="block">
                     {" "}
                     <div

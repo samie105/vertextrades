@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { FlagIcon } from "react-flag-kit";
+import { useTheme } from "../../contexts/themeContext";
 
 export default function Footer() {
+  const { isDarkMode, baseColor } = useTheme();
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
@@ -33,7 +35,11 @@ export default function Footer() {
   }, []);
 
   return (
-    <div className="nav-container flex flex-col md:flex-row w-full duration-300 text-slate-900 items-center border transition-colors border-b bg-white">
+    <div
+      className={`nav-container flex flex-col md:flex-row w-full duration-300 items-center border transition-colors border-b ${
+        isDarkMode ? `${baseColor} text-gray-200` : "bg-white text-black/80 "
+      }`}
+    >
       <div className="flex items-center text-sm bg-gren-100 order px-4">
         <div className="auto-trade-text font-bold text-700 py-3">
           Auto-Trade:

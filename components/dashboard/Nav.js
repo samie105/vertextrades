@@ -125,17 +125,17 @@ export default function Nav() {
             {" "}
             <Skeleton
               className={`md:w-52 md:h-10 rounded-md  ${
-                isDarkMode ? "bg-[#111]" : "bg-gray-200/80"
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
               }  w-24 h-10`}
             />
             <Skeleton
               className={`md:w-52 md:h-10 md:rounded-sm  ${
-                isDarkMode ? "bg-[#111]" : "bg-gray-200/80"
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
               } w-10 h-10 rounded-full`}
             />
             <Skeleton
               className={`md:w-10 md:h-10 rounded-full ${
-                isDarkMode ? "bg-[#111]" : "bg-gray-200/80"
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
               } w-10 h-10`}
             />
           </div>
