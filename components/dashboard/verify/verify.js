@@ -169,7 +169,7 @@ export default function Verify() {
 
   return (
     <div className="p-4">
-      <div className="p-4 rounded-xl shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+      <div className="p-4 rounded-md border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         <div className="mb-4 py-3">
           <div className="flex items-center mb-4">
             <div className="text-xl font-bold">ID Verification</div>
@@ -177,7 +177,7 @@ export default function Verify() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-5 h-5 ml-2"
+              className="w-5 h-5 ml-2 text-green-600"
             >
               <path
                 fillRule="evenodd"
@@ -275,7 +275,7 @@ export default function Verify() {
 
           <button
             type="submit"
-            className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded-lg bg-slate-800 my-3 text-white font-bold hover:bg-slate-800 focus:outline-none focus:bg-slate-700"
+            className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded-lg bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 my-3 text-white font-bold  focus:outline-none "
           >
             {loading ? (
               <InfinitySpin width="100" color="#ffffff" />

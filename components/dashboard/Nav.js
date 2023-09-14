@@ -23,9 +23,11 @@ import { useUserData } from "../../contexts/userrContext";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
 import { DropdownMenuSeparator } from "../ui/dropdown-menu";
+import { useTheme } from "../../contexts/themeContext";
 
 export default function Nav() {
   const router = useRouter();
+  const { isDarkMode, baseColor } = useTheme();
   const { coinPrices, setCoinPrices } = useUserData();
   const { details } = useUserData();
   const deposits = [
@@ -82,7 +84,11 @@ export default function Nav() {
 
   return (
     <>
-      <div className="nav-container flex justify-between duration-300 text-slate-900 items-center py-3 px-5 transition-colors border-b bg-white">
+      <div
+        className={`nav-container flex justify-between ${
+          isDarkMode ? `${baseColor} text-white` : "text-slate-900 bg-white"
+        } duration-300  items-center py-3 px-5 transition-colors border-b `}
+      >
         <div className="burger md:hidden cursor-pointer">
           <Sheet className="p-0">
             <SheetTrigger>
@@ -101,7 +107,12 @@ export default function Nav() {
                 </svg>
               </div>
             </SheetTrigger>
-            <SheetContent side="left" className="px-4">
+            <SheetContent
+              side="left"
+              className={`px-4 ${
+                isDarkMode ? `${baseColor} text-gray-200 border-0` : ""
+              }`}
+            >
               <Sheeet />
             </SheetContent>
           </Sheet>
@@ -113,22 +124,34 @@ export default function Nav() {
           <div className="flex items-center gap-x-3">
             {" "}
             <Skeleton
-              className={`md:w-52 md:h-10 rounded-md   bg-gray-200/80 w-24 h-10`}
+              className={`md:w-52 md:h-10 rounded-md  ${
+                isDarkMode ? "bg-[#111]" : "bg-gray-200/80"
+              }  w-24 h-10`}
             />
             <Skeleton
-              className={`md:w-52 md:h-10 md:rounded-sm   bg-gray-200/80 w-10 h-10 rounded-full`}
+              className={`md:w-52 md:h-10 md:rounded-sm  ${
+                isDarkMode ? "bg-[#111]" : "bg-gray-200/80"
+              } w-10 h-10 rounded-full`}
             />
             <Skeleton
-              className={`md:w-10 md:h-10 rounded-full bg-gray-200/80 w-10 h-10`}
+              className={`md:w-10 md:h-10 rounded-full ${
+                isDarkMode ? "bg-[#111]" : "bg-gray-200/80"
+              } w-10 h-10`}
             />
           </div>
         ) : (
           <div className="nav-tools text-sm flex items-center">
             <Select defaultValue="Bitcoin">
-              <SelectTrigger className="">
+              <SelectTrigger
+                className={`${isDarkMode ? "border border-[#222]" : "border"}`}
+              >
                 <SelectValue className="outline-none " />
               </SelectTrigger>
-              <SelectContent className={`outline-none focus:outline-none`}>
+              <SelectContent
+                className={`outline-none focus:outline-none ${
+                  isDarkMode ? `${baseColor} text-white border-0` : ""
+                }`}
+              >
                 {deposits.map((deps, index) => (
                   <div key={deps.coinName}>
                     <SelectItem key={deps.coinName} value={deps.coinName}>
@@ -164,7 +187,11 @@ export default function Nav() {
 
             <Popover>
               <PopoverTrigger>
-                <div className="mx-3 flex font-bold text-green-700 bg-green-50 rounded-full md:rounded-lg px-3 py-3">
+                <div
+                  className={`mx-3 flex font-bold text-green-700 ${
+                    isDarkMode ? `bg-green-800/30` : "bg-green-50"
+                  } rounded-full md:rounded-lg px-3 py-3`}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -182,7 +209,11 @@ export default function Nav() {
                   </div>
                 </div>
               </PopoverTrigger>
-              <PopoverContent className="w-[200px] mx-3">
+              <PopoverContent
+                className={`w-[200px] mx-3 ${
+                  isDarkMode ? "bg-[#111] border-0 text-gray-200" : ""
+                }`}
+              >
                 <div className="cont ">
                   <div className="icon flex justify-center">
                     <svg
@@ -202,7 +233,11 @@ export default function Nav() {
             </Popover>
             <Popover>
               <PopoverTrigger>
-                <div className=" flex font-bold text-red-600 rounded-full p-3 bg-red-50 md:mr-5 text-sm">
+                <div
+                  className={`flex font-bold text-red-600 rounded-full p-3 ${
+                    isDarkMode ? "bg-red-600/10" : "bg-red-50"
+                  } md:mr-5 text-sm`}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -217,7 +252,11 @@ export default function Nav() {
                   </svg>
                 </div>
               </PopoverTrigger>
-              <PopoverContent className="w-[250px] mx-3">
+              <PopoverContent
+                className={`w-[250px] mx-3 ${
+                  isDarkMode ? "bg-[#111] text-gray-200 border-0" : ""
+                }`}
+              >
                 <div className="content">
                   <Link href="/dashboard/deposits" passHref>
                     <div className="deposit flex items-center text-sm py-2 rounded-lg px-2 font-bold text-slate-800/ bg-slate-50/">
@@ -252,7 +291,11 @@ export default function Nav() {
                   </Link>
 
                   <div
-                    className="logout flex items-center text-sm py-3 rounded-md text-red-600 bg-red-50 px-2 font-bold cursor-pointer"
+                    className={`logout flex items-center text-sm py-3 rounded-md text-red-600 ${
+                      isDarkMode
+                        ? "bg-red-700/10 border border-red-600 font-bold"
+                        : "bg-red-50"
+                    } px-2 font-bold cursor-pointer`}
                     onClick={handleLogout}
                   >
                     <svg
