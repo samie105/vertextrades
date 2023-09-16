@@ -8,11 +8,6 @@ import { Toaster } from "react-hot-toast";
 import { ThemeProvider, useTheme } from "../../contexts/themeContext";
 import { ScrollArea } from "../../components/ui/scroll-area";
 
-export const metadata = {
-  title: "Brokersite",
-  description: "Experience new immense way of trading",
-};
-
 export default function Layout({ children }) {
   const { isDarkMode, baseColor } = useTheme();
   return (
