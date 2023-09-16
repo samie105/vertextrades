@@ -9,6 +9,9 @@ import {
   TableRow,
 } from "../../ui/table";
 import dynamic from "next/dynamic";
+import { useTheme } from "../../../contexts/themeContext";
+import { useUserData } from "../../../contexts/userrContext";
+import { Skeleton } from "../../ui/skeleton";
 
 // List of names for simulation
 const names = [
@@ -448,54 +451,108 @@ const ActiveTraders = () => {
 
     return () => clearInterval(interval);
   }, []);
+  const { isDarkMode } = useTheme();
+  const { details } = useUserData();
 
   return (
     <div className=" w-full my-2 px-2 rounded-lg ">
-      <div className=" py-5 shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-        {" "}
-        <div className="heading text-lg font-bold text-slate-800 px-3 my-2 rounded-lg">
-          Latest Trades{" "}
-          <span className="text-green-700 text-sm">(Highest Gainers)</span>
+      {details === 0 ? (
+        <Skeleton
+          className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+        />
+      ) : (
+        <div className=" py-5 shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+          {" "}
+          <div
+            className={`heading text-lg font-bold  px-3 my-2 rounded-lg ${
+              isDarkMode ? "text-white" : ""
+            }`}
+          >
+            Latest Trades{" "}
+            <span className="text-green-700 text-sm">(Highest Gainers)</span>
+          </div>
+          <Table className=" ">
+            <TableRow className="[&_tr]:border-0 border-0">
+              <TableHead
+                className={`font-bold ${
+                  isDarkMode ? "text-white/80" : "text-black"
+                }`}
+              >
+                Transaction ID
+              </TableHead>
+              <TableHead
+                className={`font-bold ${
+                  isDarkMode ? "text-white/80" : "text-black"
+                }`}
+              >
+                Name
+              </TableHead>
+              <TableHead
+                className={`font-bold ${
+                  isDarkMode ? "text-white/80" : "text-black"
+                }`}
+              >
+                Profit
+              </TableHead>
+              <TableHead
+                className={`font-bold ${
+                  isDarkMode ? "text-white/80" : "text-black"
+                }`}
+              >
+                Market
+              </TableHead>
+              <TableHead
+                className={`font-bold ${
+                  isDarkMode ? "text-white/80" : "text-black"
+                }`}
+              >
+                Auto-Trade
+              </TableHead>
+            </TableRow>
+            <TableBody>
+              {trades.map((trade, index) => (
+                <TableRow key={index} className="border-0">
+                  <TableCell
+                    className={`border-0 ${
+                      isDarkMode ? "text-white/70 font-old" : "font-old"
+                    }`}
+                  >
+                    {trade.transactionId}
+                  </TableCell>
+                  <TableCell
+                    className={`border-0 ${
+                      isDarkMode ? "text-white/70 font-bld" : "font-old"
+                    }`}
+                  >
+                    {trade.name}
+                  </TableCell>
+                  <TableCell
+                    className={`border-0 ${
+                      isDarkMode ? "text-white/70 font-bold" : "font-bold"
+                    }`}
+                  >
+                    {trade.profit}
+                  </TableCell>
+                  <TableCell
+                    className={`border-0 ${isDarkMode ? "text-white/70" : ""}`}
+                  >
+                    {trade.market}
+                  </TableCell>
+                  <TableCell
+                    className={`border-0 ${
+                      trade.autoTrade === "Active"
+                        ? "text-green-600 font-bold"
+                        : "text-red-600 font-bold"
+                    }`}
+                  >
+                    {trade.autoTrade}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
-        <Table className=" ">
-          <TableRow>
-            <TableHead className="font-bold text-black">
-              Transaction ID
-            </TableHead>
-            <TableHead className="font-bold text-black">Name</TableHead>
-            <TableHead className="font-bold text-black">Profit</TableHead>
-            <TableHead className="font-bold text-black">Market</TableHead>
-            <TableHead className="font-bold text-black">Auto-Trade</TableHead>
-          </TableRow>
-          <TableBody>
-            {trades.map((trade, index) => (
-              <TableRow key={index} className="border-0">
-                <TableCell className="border-0 font-bold/ text--800">
-                  {trade.transactionId}
-                </TableCell>
-                <TableCell className="border-0 font-bold/ /text-red-900">
-                  {trade.name}
-                </TableCell>
-                <TableCell className="border-0 /text-green-600 font-bold">
-                  {trade.profit}
-                </TableCell>
-                <TableCell className="border-0 font-bold/">
-                  {trade.market}
-                </TableCell>
-                <TableCell
-                  className={`border-0 ${
-                    trade.autoTrade === "Active"
-                      ? "text-green-600 font-bold"
-                      : "/text-red-600 font-bold"
-                  }`}
-                >
-                  {trade.autoTrade}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+      )}
     </div>
   );
 };

@@ -86,8 +86,10 @@ export default function Nav() {
     <>
       <div
         className={`nav-container flex justify-between ${
-          isDarkMode ? `${baseColor} text-white` : "text-slate-900 bg-white"
-        } duration-300  items-center py-3 px-5 transition-colors border-b `}
+          isDarkMode
+            ? `${baseColor} text-white border border-white/5`
+            : "text-slate-900 border-b bg-white"
+        } duration-300  items-center py-3 px-5 transition-colors  `}
       >
         <div className="burger md:hidden cursor-pointer">
           <Sheet className="p-0">
@@ -188,8 +190,10 @@ export default function Nav() {
             <Popover>
               <PopoverTrigger>
                 <div
-                  className={`mx-3 flex font-bold text-green-700 ${
-                    isDarkMode ? `bg-green-800/30` : "bg-green-50"
+                  className={`mx-3 flex font-bold  ${
+                    isDarkMode
+                      ? `bg-green-800/30 text-green-600`
+                      : "bg-green-50 text-green-700"
                   } rounded-full md:rounded-lg px-3 py-3`}
                 >
                   <svg
@@ -204,7 +208,11 @@ export default function Nav() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <div className="hidden md:block text-green-800">
+                  <div
+                    className={`hidden md:block  ${
+                      isDarkMode ? "text-green-600" : "text-green-800"
+                    }`}
+                  >
                     Notifications
                   </div>
                 </div>

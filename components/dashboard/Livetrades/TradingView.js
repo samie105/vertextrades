@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { TickerTape } from "react-tradingview-embed";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function TradingView() {
+  const { isDarkMode } = useTheme();
   return (
     <div>
       <TickerTape
@@ -30,7 +32,7 @@ export default function TradingView() {
             },
           ],
           showSymbolLogo: true,
-          colorTheme: "light",
+          colorTheme: isDarkMode ? "dark" : "light",
           isTransparent: true,
           displayMode: "adaptive",
           locale: "en",

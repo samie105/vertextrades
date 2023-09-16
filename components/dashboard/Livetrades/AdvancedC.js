@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import { MiniChart } from "react-tradingview-embed";
+import { useTheme } from "../../../contexts/themeContext";
 
 function AssetWidgetFive() {
+  const { isDarkMode } = useTheme();
+
   const height = 250;
   return (
     <div className="h-full w-full flex flex-col flex-grow justify-stretch">
@@ -17,7 +20,7 @@ function AssetWidgetFive() {
             underLineBottomColor: "rgba(8, 153, 129, 0)",
             locale: "en",
             dateRange: "12M",
-            colorTheme: "light",
+            colorTheme: isDarkMode ? "dark" : "light",
             isTransparent: true,
             autosize: true,
             autosize: false,
@@ -35,7 +38,7 @@ function AssetWidgetFive() {
             underLineBottomColor: "rgba(8, 153, 129, 0)",
             locale: "en",
             dateRange: "12M",
-            colorTheme: "light",
+            colorTheme: isDarkMode ? "dark" : "light",
             isTransparent: true,
             autosize: false,
           }}

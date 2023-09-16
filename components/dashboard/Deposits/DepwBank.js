@@ -9,6 +9,7 @@ import {
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useUserData } from "../../../contexts/userrContext";
 import { Skeleton } from "../../ui/skeleton";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function DepwBank() {
   const { details } = useUserData();
@@ -17,23 +18,37 @@ export default function DepwBank() {
   const handleAmountChange = (e) => {
     setAmountForTransfer(e.target.value);
   };
+  const { isDarkMode, baseColor } = useTheme();
 
   return (
     <div className="p-4">
       {details === 0 ? (
         <div className="w-full px-3">
-          <Skeleton className="h-52 bg-gray-200/80" />
+          <Skeleton
+            className={`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
         </div>
       ) : (
-        <div className="deposits-cont shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-3 rounded-lg transition-all">
-          <div className="heading pb-1 flex items-center mt-3 justify-center">
+        <div
+          className={`deposits-cont  p-3 rounded-lg transition-all ${
+            isDarkMode
+              ? "border border-white/5 /bg-[#111] text-white/90"
+              : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+          }`}
+        >
+          {" "}
+          <div
+            className={`heading pb-1 flex items-center mt-3 justify-center ${
+              isDarkMode ? "text-white/60" : "text-black/80"
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-5 h-5 mr-1 text-gray-600"
+              className="w-5 h-5 mr-1"
             >
               <path
                 strokeLinecap="round"
@@ -47,7 +62,6 @@ export default function DepwBank() {
           <div className="header-text font-bold capitalize text-lg pb-4 w-full text-center">
             Deposit using Bank Wire
           </div>
-
           <div className="input my-3 flex  items-center">
             <div className="w-full">
               <input
@@ -55,7 +69,9 @@ export default function DepwBank() {
                 min="0"
                 value={amountForTransfer}
                 onChange={handleAmountChange}
-                className="w-full px-4 py-3 text-sm rounded-lg bg-gray-50 font-bold border"
+                className={`w-full px-4 py-4 text-sm rounded-lg /bg-gray-50 font-bold  ${
+                  isDarkMode ? "bg-[#111]" : "border"
+                }`}
                 placeholder="Enter amount in USD"
               />
             </div>
@@ -74,17 +90,25 @@ export default function DepwBank() {
                 </div>
               )}
             </DialogTrigger>
-            <DialogContent className="w-[90%] rounded-lg">
+            <DialogContent
+              className={`w-[90%] rounded-lg overflow-hidden ${
+                isDarkMode ? `${baseColor} text-white/80 border-0` : ""
+              }`}
+            >
               <DialogHeader className="font-bold">
                 Deposit Using Bank Wire
               </DialogHeader>
               <div className="my-2 p-2">
-                <div className="message-cont border flex border-yellow-600 text-sm font-bold bg-yellow-50 text-yellow-700 rounded-lg p-2">
+                <div
+                  className={`message-cont border flex gap-x-2 items-center border-yellow-600 text-sm font-bold ${
+                    isDarkMode ? "bg-yellow-500/10" : "bg-yellow-50"
+                  } text-yellow-700 rounded-lg p-2`}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="w-10 h-10 mr-3"
+                    className="w-12 h-12"
                   >
                     <path
                       fillRule="evenodd"
@@ -105,7 +129,7 @@ export default function DepwBank() {
               <DialogClose>
                 {" "}
                 <div
-                  className={`flex-cont"bg-slate-800 text-white bg-slate-800 py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+                  className={`flex-cont"bg-slate-800 text-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                 >
                   <button className="capitalize">Continue</button>
                 </div>

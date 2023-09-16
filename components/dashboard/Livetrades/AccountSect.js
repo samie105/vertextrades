@@ -4,6 +4,7 @@ import { Switch } from "../../ui/switch";
 import { usePathname } from "next/navigation";
 import { useUserData } from "../../../contexts/userrContext";
 import { Skeleton } from "../../ui/skeleton";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function AccountSect() {
   const { details } = useUserData();
@@ -19,11 +20,14 @@ export default function AccountSect() {
 
     return () => clearInterval(timer); // Clear the interval when the component unmounts
   }, []);
+  const { isDarkMode } = useTheme();
   return (
     <div className="p-4">
       {details === 0 ? (
-        <div className="w-full px-2">
-          <Skeleton className=" h-60 bg-gray-200/80" />
+        <div className="w-full px-7">
+          <Skeleton
+            className={`  h-60 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
         </div>
       ) : (
         <div

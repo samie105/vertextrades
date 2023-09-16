@@ -36,8 +36,10 @@ export default function Footer() {
 
   return (
     <div
-      className={`nav-container flex flex-col md:flex-row w-full duration-300 items-center border transition-colors border-b ${
-        isDarkMode ? `${baseColor} text-gray-200` : "bg-white text-black/80 "
+      className={`nav-container flex flex-col md:flex-row w-full duration-300 items-center  transition-colors  ${
+        isDarkMode
+          ? `${baseColor} text-gray-200 border-t border-white/5`
+          : "bg-white text-black/80 border"
       }`}
     >
       <div className="flex items-center text-sm bg-gren-100 order px-4">

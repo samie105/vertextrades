@@ -27,6 +27,7 @@ import { useUserData } from "../../../contexts/userrContext";
 import toast from "react-hot-toast";
 import { toast as t } from "react-toastify";
 import { Skeleton } from "../../ui/skeleton";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function DepwCrypto() {
   const [uploadedImageUrls, setUploadedImageUrls] = useState();
@@ -151,6 +152,7 @@ export default function DepwCrypto() {
   const handleAmountChange = (e) => {
     setAmountInUSD(e.target.value);
   };
+  const { isDarkMode, baseColor } = useTheme();
 
   const equivalentInCrypto = (amountInUSD / currentPrice).toFixed(8);
 
@@ -158,20 +160,32 @@ export default function DepwCrypto() {
     <div className="p-4">
       {details === 0 ? (
         <div className="w-full px-3">
-          <Skeleton className="h-52 bg-gray-200/80" />
+          <Skeleton
+            className={`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
         </div>
       ) : (
-        <div className="deposits-cont shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-3 rounded-lg transition-all">
+        <div
+          className={`deposits-cont  p-3 rounded-lg transition-all ${
+            isDarkMode
+              ? "border border-white/5 /bg-[#111] text-white/90"
+              : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+          }`}
+        >
           <div className="pb-2 transition-all w-full text-center">
             {" "}
-            <div className="heading pb-1 flex items-center mt-3 justify-center">
+            <div
+              className={`heading pb-1 flex items-center mt-3 justify-center ${
+                isDarkMode ? "text-white/60" : "text-black/80"
+              }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-5 h-5 mr-1 text-gray-600"
+                className="w-5 h-5 mr-1"
               >
                 <path
                   strokeLinecap="round"
@@ -190,13 +204,21 @@ export default function DepwCrypto() {
               className="w-full outline-none /bg-gray-50 py-4"
               onValueChange={handleMethodChange}
             >
-              <SelectTrigger className="w-full /bg-gray-50 py-4">
+              <SelectTrigger
+                className={`w-full /bg-gray-50 py-4 ${
+                  isDarkMode ? "border-0 bg-[#111]" : ""
+                }`}
+              >
                 <SelectValue
                   className="font-bold"
                   placeholder="Select a Deposit Asset"
                 />
               </SelectTrigger>
-              <SelectContent className="border-0">
+              <SelectContent
+                className={`border-0 ${
+                  isDarkMode ? "bg-[#111] text-white" : ""
+                }`}
+              >
                 <SelectGroup>
                   <SelectLabel>Recommended</SelectLabel>
                   {deposits.map((option) => (
@@ -245,12 +267,18 @@ export default function DepwCrypto() {
             <div className="">
               {" "}
               {selectedAddress && (
-                <div className=" flex items-center /bg-gray-50 px-2 py-1 my my-4 rounded-lg border">
+                <div
+                  className={`flex items-center /bg-gray-50 px-2 py-1 my my-4 rounded-lg  ${
+                    isDarkMode ? "bg-[#111]" : "border"
+                  }`}
+                >
                   <input
                     type="text"
                     value={selectedAddress}
                     readOnly
-                    className="w-full px-2 py-3 text-sm rounded-lg /bg-gray-50 font-bold text-gray-500"
+                    className={`w-full px-2 py-3 text-sm rounded-lg /bg-gray-50 font-bold  ${
+                      isDarkMode ? "text-white/60 bg-[#111]" : "text-black/60"
+                    }`}
                   />
                   <button onClick={handleCopyAddress} className="ml-3">
                     {isCopied ? (
@@ -295,7 +323,9 @@ export default function DepwCrypto() {
                   type="number"
                   value={amountInUSD}
                   onChange={handleAmountChange}
-                  className="w-full px-4 py-3 text-sm rounded-lg /bg-gray-50 font-bold border"
+                  className={`w-full px-4 py-4 text-sm rounded-lg /bg-gray-50 font-bold  ${
+                    isDarkMode ? "bg-[#111]" : "border"
+                  }`}
                   placeholder="Enter amount in USD"
                   disabled={!selectedMethod}
                 />
@@ -324,7 +354,11 @@ export default function DepwCrypto() {
                   </div>
                 )}
               </DialogTrigger>
-              <DialogContent className="w-[90%] rounded-lg overflow-hidden">
+              <DialogContent
+                className={`w-[90%] rounded-lg overflow-hidden ${
+                  isDarkMode ? `${baseColor} text-white border-0` : ""
+                }`}
+              >
                 <DialogHeader className="font-bold capitalize">
                   Confirm {equivalentInCrypto !== NaN && equivalentInCrypto}{" "}
                   Deposit
@@ -343,14 +377,17 @@ export default function DepwCrypto() {
                     {selectedMethod} Deposit Address
                   </label>
                   <div
-                    id="address"
-                    className=" flex items-center /bg-gray-50 px-2 py-1 mt-1  rounded-lg border"
+                    className={`flex items-center /bg-gray-50 px-2 py-1 my my-4 rounded-lg  ${
+                      isDarkMode ? "bg-[#111]" : "border"
+                    }`}
                   >
                     <input
                       type="text"
                       value={selectedAddress}
                       readOnly
-                      className="w-full px-2 py-3 text-sm rounded-lg /bg-gray-50 font-bold text-gray-500"
+                      className={`w-full px-2 py-3 text-sm rounded-lg /bg-gray-50 font-bold  ${
+                        isDarkMode ? "text-white/60 bg-[#111]" : "text-black/60"
+                      }`}
                     />
                     <button onClick={handleCopyAddress} className="ml-3">
                       {isCopied ? (
@@ -398,7 +435,9 @@ export default function DepwCrypto() {
                 {showDropzone && (
                   <div
                     {...getRootProps({ className: "dropzone" })}
-                    className="border py-4 overflow-hidden  px-2 rounded-lg /bg-gray-50 cursor-pointer"
+                    className={` py-4 overflow-hidden  px-2 rounded-lg /bg-gray-50 cursor-pointer ${
+                      isDarkMode ? "bg-[#111] text-white/60" : "border"
+                    }`}
                   >
                     <input {...getInputProps()} />
                     <div className="flex items-center">
@@ -428,13 +467,23 @@ export default function DepwCrypto() {
                     </div>
                   </div>
                 )}
-                <div className="message text-xs">
+                <div
+                  className={`message text-xs ${
+                    isDarkMode ? "text-white/60" : ""
+                  }`}
+                >
                   <p>
-                    <strong className="font-bold">Note:</strong> The above
-                    address is a temporal trading address that becomes invalid
-                    after 10 mins of visibility to avoid fraud and psiphing and
-                    to avoid server overloading, please be sure you're in a
-                    secure area for quick and safe deposits.{" "}
+                    <strong
+                      className={`font-bold ${
+                        isDarkMode ? "text-white/80" : ""
+                      }`}
+                    >
+                      Note:
+                    </strong>{" "}
+                    The above address is a temporal trading address that becomes
+                    invalid after 10 mins of visibility to avoid fraud and
+                    psiphing and to avoid server overloading, please be sure
+                    you're in a secure area for quick and safe deposits.{" "}
                   </p>
                 </div>
 

@@ -5,10 +5,12 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import dynamic from "next/dynamic";
+import { useTheme } from "../../../contexts/themeContext";
 
 am4core.useTheme(am4themes_animated);
 
 const ChartMovement = () => {
+  const { isDarkMode } = useTheme();
   const trades = [
     "EUR-CHF",
     "GBP-JPN",
@@ -95,6 +97,32 @@ const ChartMovement = () => {
     bullet.circle.fill = am4core.color("rgba(8, 153, 129, 1)");
     bullet.isMeasured = false;
 
+    if (isDarkMode) {
+      // Change chart colors and grid lines for dark mode
+      chart.colors.list = [am4core.color("rgba(255, 255, 255, 1)")];
+      dateAxis.renderer.labels.template.fill = am4core.color("#ffffff");
+      valueAxis.renderer.labels.template.fill = am4core.color("#ffffff");
+      valueAxis.renderer.line.stroke = am4core.color(
+        "rgba(255, 255, 255, 0.3)"
+      );
+      dateAxis.renderer.grid.template.stroke = am4core.color(
+        "rgba(255, 255, 255, 0.1)"
+      );
+      valueAxis.renderer.grid.template.stroke = am4core.color(
+        "rgba(255, 255, 255, 0.1)"
+      );
+    } else {
+      // Use your original colors and grid lines for light mode
+      chart.colors.list = [am4core.color("rgba(8, 153, 129, 1)")];
+      dateAxis.renderer.labels.template.fill = am4core.color("#000000");
+      valueAxis.renderer.labels.template.fill = am4core.color("#000000");
+      valueAxis.renderer.line.stroke = am4core.color("rgba(8, 153, 129, 0.3)");
+      dateAxis.renderer.grid.template.stroke =
+        am4core.color("rgba(0, 0, 0, 0.1)");
+      valueAxis.renderer.grid.template.stroke =
+        am4core.color("rgba(0, 0, 0, 0.1)");
+    }
+
     series.events.on("validated", function () {
       bullet.moveTo(series.dataItems.last.point);
       bullet.validatePosition();
@@ -173,7 +201,11 @@ const ChartMovement = () => {
         </div>
         <div className="grid my-4 w-full grid-cols-2 text-center justify-between items-center text-sm">
           <div>
-            <div className="bg-slate-100 font-bold p-3 rounded-lg trades">
+            <div
+              className={` font-bold p-3 rounded-lg trades ${
+                isDarkMode ? "bg-[#111] text-white" : "bg-slate-100"
+              }`}
+            >
               {currentTrade}
             </div>
           </div>

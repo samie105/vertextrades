@@ -110,14 +110,20 @@ export default function Dash() {
             </div>
           ) : (
             <div
-              className={` sticky rounded-lg px-2 py-4 border /shadow-[0px_0px_17px_3px_#00000010]  text-black`}
+              className={` sticky rounded-lg px-2 py-4  /shadow-[0px_0px_17px_3px_#00000010] ${
+                isDarkMode ? "bg-[#111] text-white" : "border"
+              }`}
             >
               <div className="card-info shado-md flex items-center justify-between">
                 <div className="card-header font-bold ml-1 flex items-center /text-white">
                   <div className="block">
                     {" "}
                     <div
-                      className={`icon-cont bg-gry-50 bg-black/5 border  rounded-full p-3 mr-2 text-black`}
+                      className={`icon-cont bg-gry-50   ${
+                        isDarkMode
+                          ? "text-white bg-[#222]"
+                          : "border bg-black/5 text-black"
+                      } rounded-full p-3 mr-2 `}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +141,13 @@ export default function Dash() {
                   </div>
                   <div className="flex flex-col md:flex-row md:items-center text-xs ml-2">
                     <div className="flex items-center">
-                      <p className="text-black">Trading Balance</p>{" "}
+                      <p
+                        className={`${
+                          isDarkMode ? "text-white/70" : "text-black"
+                        }`}
+                      >
+                        Trading Balance
+                      </p>{" "}
                       <div className="live md:hidden">
                         <div className="live-info p-1 flex items-center bg-green-700 text-xs mx-3 text-white rounded-full">
                           <div className="dot w-1 h-1 animate-ping bg-white  rounded-full"></div>{" "}
@@ -143,7 +155,11 @@ export default function Dash() {
                       </div>
                     </div>
 
-                    <div className="mt-2 md:mt-0 bg-gay-200 rounded-lg md:ml-2 text-lg md:text-sm text-left text-black ">
+                    <div
+                      className={`mt-2 md:mt-0 bg-gay-200 rounded-lg md:ml-2 text-lg md:text-sm text-left  ${
+                        isDarkMode ? "text-white" : "text-black"
+                      }`}
+                    >
                       {`$${
                         details && details.tradingBalance.toLocaleString()
                       }.00`}
@@ -160,7 +176,11 @@ export default function Dash() {
                   <Link href="/dashboard/withdrawals" passHref>
                     {" "}
                     <div
-                      className={`mx-1 bg-black/5 text-black flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg`}
+                      className={`mx-1 ${
+                        isDarkMode
+                          ? "text-white bg-[#222]"
+                          : "bg-black/5 text-black"
+                      }  flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -198,24 +218,54 @@ export default function Dash() {
         </div>{" "}
         {details === 0 ? (
           <div className=" my-2 w-full grid md:grid-cols-2 grid-cols-2 lg:grid-cols-4 gap-4 overflow-hidden rounded-md">
-            <Skeleton className="/  h-32 bg-gray-200/80" />
-            <Skeleton className="/  h-32 bg-gray-200/80" />
-            <Skeleton className="/  h-32 bg-gray-200/80" />
-            <Skeleton className="/  h-32 bg-gray-200/80" />
+            <Skeleton
+              className={`  h-32 ${
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
+              }`}
+            />
+            <Skeleton
+              className={`  h-32 ${
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
+              }`}
+            />
+            <Skeleton
+              className={`  h-32 ${
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
+              }`}
+            />
+            <Skeleton
+              className={`  h-32 ${
+                isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
+              }`}
+            />
           </div>
         ) : (
           <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-4 gap-2">
             {dashhh.map((items) => (
               <div key={items.name}>
-                <Card>
-                  <CardContent className="p-4 bg-gray-50">
-                    <div className="cont flex justify-between rounded-xl">
+                <Card
+                  className={`rounded-xl ${
+                    isDarkMode ? "border-0 bg-[#111]" : ""
+                  }`}
+                >
+                  <CardContent
+                    className={`p-4 rounded-xl overflow-hidden /border-0 ${
+                      isDarkMode ? "bg-[#111]  text-white" : "bg-gray-50"
+                    }`}
+                  >
+                    <div className="cont flex justify-between /rounded-xl">
                       <div className="deets w-full">
-                        <div className="name capitalize text-sm font-bold">
+                        <div
+                          className={`name capitalize text-sm font-bold ${
+                            isDarkMode ? `text-white/70` : ""
+                          }`}
+                        >
                           {items.name}
                         </div>
                         <div
-                          className={`bal font-bold text-xl text-black my-2 md:text-2xl`}
+                          className={`bal font-bold text-xl  my-2 md:text-2xl  ${
+                            isDarkMode ? `text-white` : "text-black"
+                          }`}
                         >
                           {items.bal}
                         </div>
@@ -224,7 +274,11 @@ export default function Dash() {
                         <div>{items.icon}</div>
                       </div>
                     </div>
-                    <div className="extra font-semibold text-xs text-green-700">
+                    <div
+                      className={`extra font-semibold text-xs ${
+                        isDarkMode ? "text-green-600" : "text-green-700"
+                      }`}
+                    >
                       +0 from last month
                     </div>
                   </CardContent>
@@ -237,7 +291,11 @@ export default function Dash() {
           {details === 0 ? (
             <div className="px-3 mt-4">
               {" "}
-              <Skeleton className="/  h-52 bg-gray-200/80" />
+              <Skeleton
+                className={`  h-52 ${
+                  isDarkMode ? "bg-[#333]" : "bg-gray-200/80"
+                }`}
+              />
             </div>
           ) : (
             <AssetWidget />
@@ -247,7 +305,8 @@ export default function Dash() {
             {details === 0 ? (
               <div className="px-3 mt-4">
                 {" "}
-                <Skeleton className="/  h-52 bg-gray-200/80" />
+                className=
+                {`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
               </div>
             ) : (
               <AssetWidgetTwo />
@@ -257,7 +316,8 @@ export default function Dash() {
           {details === 0 ? (
             <div className="px-3 mt-4">
               {" "}
-              <Skeleton className="/  h-52 bg-gray-200/80" />
+              className=
+              {`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
             </div>
           ) : (
             <AssetWidgetThree />
@@ -266,7 +326,7 @@ export default function Dash() {
         {details === 0 ? (
           <div className="px-3 mt-4">
             {" "}
-            <Skeleton className="/  h-52 bg-gray-200/80" />
+            className={`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
           </div>
         ) : (
           <AssetWidgetFour />
@@ -274,12 +334,22 @@ export default function Dash() {
         {details === 0 ? (
           <div className="px-3 mt-4">
             {" "}
-            <Skeleton className="/  h-52 bg-gray-200/80" />
+            className={`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
           </div>
         ) : (
           <div className="latest-trades mt-5">
-            <div className="shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
-              <div className="header text-lg font-bold mb-3 px-4 pt-3">
+            <div
+              className={` rounded-lg ${
+                isDarkMode
+                  ? "border border-white/5"
+                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }`}
+            >
+              <div
+                className={`header text-lg font-bold mb-3 px-4 pt-3 ${
+                  isDarkMode ? "text-white" : ""
+                }`}
+              >
                 Latest Trades
               </div>
               <LatestTrades />

@@ -5,11 +5,13 @@ import { Card, CardContent } from "../../ui/card";
 import CountUp from "react-countup";
 import { useUserData } from "../../../contexts/userrContext";
 import { Skeleton } from "../../ui/skeleton";
+import { useTheme } from "../../../contexts/themeContext";
 
 const Livetrade = () => {
   const [randomNumbers, setRandomNumbers] = useState({});
   const [changePercent, setChangePercent] = useState(0); // Store the change percentage for "live" only
   const { details } = useUserData();
+  const { isDarkMode } = useTheme();
   const livess = [
     {
       name: "live",
@@ -159,26 +161,52 @@ const Livetrade = () => {
     <div className="p-4">
       {details === 0 ? (
         <div className=" my-2 w-full grid md:grid-cols-2 grid-cols-2 lg:grid-cols-3 gap-4 overflow-hidden rounded-md">
-          <Skeleton className="/  h-32 bg-gray-200/80" />
-          <Skeleton className="/  h-32 bg-gray-200/80" />
-          <Skeleton className="/  h-32 bg-gray-200/80" />
-          <Skeleton className="/  h-32 bg-gray-200/80" />
-          <Skeleton className="/  h-32 bg-gray-200/80" />
-          <Skeleton className="/  h-32 bg-gray-200/80" />
+          <Skeleton
+            className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
+          <Skeleton
+            className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
+          <Skeleton
+            className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
+          <Skeleton
+            className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
+          <Skeleton
+            className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
+          <Skeleton
+            className={`  h-32 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
         </div>
       ) : (
         <div className="dash-boards w-full my-2 text-sm grid md:grid-cols-2 grid-cols-2 lg:grid-cols-3 gap-2">
           {livess.map((items) => (
             <div key={items.name}>
-              <Card>
-                <CardContent className="p-4 bg-gray-50">
+              <Card
+                className={`rounded-xl ${
+                  isDarkMode ? "border-0 bg-[#111]" : ""
+                }`}
+              >
+                <CardContent
+                  className={`p-4 rounded-xl overflow-hidden /border-0 ${
+                    isDarkMode ? "bg-[#111]  text-white" : "bg-gray-50"
+                  }`}
+                >
                   <div className="cont flex justify-between rounded-xl">
                     <div className="deets w-full">
-                      <div className="name capitalize text-sm font-bold">
+                      <div
+                        className={`name capitalize text-sm font-bold ${
+                          isDarkMode ? `text-white/70` : ""
+                        }`}
+                      >
                         {items.name}
                       </div>
                       <div
-                        className={`bal font-bold text-xl text-black my-2 md:text-2xl`}
+                        className={`bal font-bold text-xl  my-2 md:text-2xl  ${
+                          isDarkMode ? `text-white` : "text-black"
+                        }`}
                       >
                         {items.name === "live" ? (
                           <CountUp
@@ -204,7 +232,11 @@ const Livetrade = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="extra font-semibold text-xs text-green-700">
+                  <div
+                    className={`extra font-semibold text-xs ${
+                      isDarkMode ? "text-green-600" : "text-green-700"
+                    }`}
+                  >
                     {items.name === "live"
                       ? `${changePercent.toFixed(1)}% from last second`
                       : "+0% from last month"}

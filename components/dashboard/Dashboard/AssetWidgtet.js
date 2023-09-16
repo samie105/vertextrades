@@ -2,12 +2,16 @@
 import Link from "next/link";
 import React from "react";
 import { MarketOverview } from "react-tradingview-embed";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function AssetWidgtet() {
+  const { isDarkMode, baseColor } = useTheme();
   return (
     <div className="shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg my-4 ">
       <div className="header p-5 flex w-full items-center justify-between">
-        <h2 className="text-lg font-bold">My Assets</h2>
+        <h2 className={`text-lg font-bold ${isDarkMode ? "text-white" : ""}`}>
+          My Assets
+        </h2>
         <Link href="dashboard/deposits" passHref>
           {" "}
           <div>
@@ -19,7 +23,7 @@ export default function AssetWidgtet() {
       </div>
       <MarketOverview
         widgetPropsAny={{
-          colorTheme: "light",
+          colorTheme: isDarkMode ? "dark" : "light",
           dateRange: "12M",
           showChart: true,
           locale: "en",
@@ -29,15 +33,7 @@ export default function AssetWidgtet() {
           showFloatingTooltip: true,
           width: "100%",
           height: "660",
-          plotLineColorGrowing: "rgba(204, 0, 0, 1)",
-          plotLineColorFalling: "rgba(153, 0, 0, 1)",
-          gridLineColor: "rgba(240, 243, 250, 0)",
-          scaleFontColor: "rgba(204, 0, 0, 1)",
-          belowLineFillColorGrowing: "rgba(244, 204, 204, 0.12)",
-          belowLineFillColorFalling: "rgba(244, 204, 204, 0.12)",
-          belowLineFillColorGrowingBottom: "rgba(234, 153, 153, 0)",
-          belowLineFillColorFallingBottom: "rgba(234, 153, 153, 0)",
-          symbolActiveColor: "rgba(234, 153, 153, 0.12)",
+
           tabs: [
             {
               title: "Your Assets",

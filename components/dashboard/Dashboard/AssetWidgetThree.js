@@ -2,12 +2,17 @@
 import Link from "next/link";
 import React from "react";
 import { MiniChart, SymbolOverview } from "react-tradingview-embed";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function AssetWidgetThree() {
+  const { isDarkMode } = useTheme();
+
   return (
     <div className="shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
       <div className="header p-5 flex w-full items-center justify-between">
-        <h2 className="text-lg font-bold">Trendy Stock Markets</h2>
+        <h2 className={`text-lg font-bold ${isDarkMode ? "text-white" : ""}`}>
+          Trendy Stock Markets
+        </h2>
         <Link href="dashboard/deposits" passHref>
           <div>
             <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 rounded-full py-3 px-5 text-white font-bold text-xs md:text-sm">
@@ -28,7 +33,7 @@ export default function AssetWidgetThree() {
           width: "100%",
           height: 500,
           locale: "en",
-          colorTheme: "light",
+          colorTheme: isDarkMode ? "dark" : "light",
           autosize: false,
           showVolume: false,
           showMA: false,

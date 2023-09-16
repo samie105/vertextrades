@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
+import { ThemeProvider } from "../contexts/themeContext";
 const font = Poppins({ subsets: ["latin"], weight: ["300"] });
 
 export const metadata = {
@@ -18,24 +19,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={font.className}>
-        <Script
-          src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
-          strategy="afterInteractive"
-          async
-        ></Script>
-        <Script src="/plugins/jquery.min.js" strategy="beforeInteractive" />
-        <Script
-          src="/plugins/jquery.easing.1.3.js"
-          strategy="beforeInteractive"
-        />
+      <ThemeProvider>
+        <body className={font.className}>
+          <Script
+            src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
+            strategy="afterInteractive"
+            async
+          ></Script>
+          <Script src="/plugins/jquery.min.js" strategy="beforeInteractive" />
+          <Script
+            src="/plugins/jquery.easing.1.3.js"
+            strategy="beforeInteractive"
+          />
 
-        <Script
-          src="/plugins/jquery.mobile.customized.min.js"
-          strategy="beforeInteractive"
-        />
-        {children}
-      </body>
+          <Script
+            src="/plugins/jquery.mobile.customized.min.js"
+            strategy="beforeInteractive"
+          />
+          {children}
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

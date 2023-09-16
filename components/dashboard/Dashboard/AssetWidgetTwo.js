@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { Ticker } from "react-tradingview-embed";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function AssetWidgetTwo() {
+  const { isDarkMode } = useTheme();
   return (
     <>
       <div className="mb-3 shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-lg">
@@ -23,7 +25,7 @@ export default function AssetWidgetTwo() {
                 title: "Ethereum",
               },
             ],
-            colorTheme: "light",
+            colorTheme: isDarkMode ? "dark" : "light",
             isTransparent: true,
             showSymbolLogo: true,
             locale: "en",
@@ -55,7 +57,7 @@ export default function AssetWidgetTwo() {
                 title: "Ethereum",
               },
             ],
-            colorTheme: "light",
+            colorTheme: isDarkMode ? "dark" : "light",
             isTransparent: true,
             showSymbolLogo: true,
             locale: "en",

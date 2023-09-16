@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useTheme } from "../../../contexts/themeContext";
 let tvScriptLoadingPromise;
 export default function AdvancedCh() {
+  const { isDarkMode } = useTheme();
   const onLoadScriptRef = useRef();
 
   useEffect(() => {
@@ -36,20 +38,25 @@ export default function AdvancedCh() {
           symbol: "NASDAQ:AAPL",
           interval: "D",
           timezone: "Etc/UTC",
-          isTransparent: true,
-          theme: "light",
+          transparent: true,
+          theme: isDarkMode ? "dark" : "light",
           style: "1",
           locale: "en",
+          hide_top_toolbar: true,
+          backgroundColor: isDarkMode
+            ? "rgba(10, 10, 10,1)"
+            : "rgb(255,255,255,1)",
+
           enable_publishing: false,
           allow_symbol_change: true,
           container_id: "tradingview_ed05f",
         });
       }
     }
-  }, []);
+  }, [isDarkMode]);
 
   return (
-    <div className="w-full h-auto my-2 py-2">
+    <div className="w-full h-auto my-2 py-2 px-4">
       <div className="tradingview-widget-container relative">
         <div id="tradingview_ed05f" />
       </div>

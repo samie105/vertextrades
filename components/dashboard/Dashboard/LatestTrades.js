@@ -7,8 +7,10 @@ import {
   TableHeader,
   TableRow,
 } from "../../ui/table";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function LatestTrades() {
+  const { isDarkMode } = useTheme();
   const trades = [
     // Add your recent trade data here, if available
     // Example:
@@ -17,15 +19,57 @@ export default function LatestTrades() {
 
   return (
     <Table>
-      <TableHeader>
+      <TableHeader className="[&_tr]:border-0">
         <TableRow>
-          <TableHead className="font-bold text-gray-600">Type</TableHead>
-          <TableHead className="font-bold text-gray-600">Pair</TableHead>
-          <TableHead className="font-bold text-gray-600">Action</TableHead>
-          <TableHead className="font-bold text-gray-600">Entry</TableHead>
-          <TableHead className="font-bold text-gray-600">SL</TableHead>
-          <TableHead className="font-bold text-gray-600">TP</TableHead>
-          <TableHead className="font-bold text-gray-600">Result</TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            Type
+          </TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            Pair
+          </TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            Action
+          </TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            Entry
+          </TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            SL
+          </TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            TP
+          </TableHead>
+          <TableHead
+            className={`font-bold ${
+              isDarkMode ? "text-white/70" : "text-gray-600"
+            }`}
+          >
+            Result
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -45,7 +89,9 @@ export default function LatestTrades() {
           <TableRow>
             <TableCell
               colSpan="8"
-              className="text-center font-bold text-gray-500"
+              className={`text-center font-bold  ${
+                isDarkMode ? "text-white/40" : "text-gray-500"
+              }`}
             >
               No Recent Trade Activity
             </TableCell>
