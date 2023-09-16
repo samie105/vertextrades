@@ -40,14 +40,23 @@ export default function Layout({ children }) {
               <Sidebar />
             </ScrollArea>
           </div>
-          <div className="main-bar w-full mb-[66px] /overflow-y-scroll  ">
+          <div
+            className={`main-bar w-full mb-[66px] /overflow-y-scroll hidden md:block ${
+              isDarkMode ? `${baseColor}` : ""
+            }`}
+          >
             <ScrollArea
-              className={`h-[calc(100vh-66px)] pb-[5rem] md:pb-11 ${
-                isDarkMode ? `${baseColor}` : ""
-              }`}
+              className={`h-[calc(100vh-66px)] pb-[5rem] md:pb-11 block`}
             >
               {children}
             </ScrollArea>
+          </div>
+          <div
+            className={`main-bar w-full mb-[66px] /overflow-y-scroll h-[calc(100vh-66px)] md:hidden pb-[5rem] md:pb-11 ${
+              isDarkMode ? `${baseColor}` : ""
+            }`}
+          >
+            {children}
           </div>
         </div>
         <Toaster />
