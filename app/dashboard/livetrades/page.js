@@ -6,14 +6,14 @@ import ActiveTraders from "../../../components/dashboard/Livetrades/ActiveTrader
 import AccountSect from "../../../components/dashboard/Livetrades/AccountSect";
 function Livetrades() {
   return (
-    <>
+    <div className="max-w-[100vw]">
       <Livetrade />
       <AdvancedCh />
       <AccountSect />
       <Holder />
       <TradingView />
       <ActiveTraders />
-    </>
+    </div>
   );
 }
 

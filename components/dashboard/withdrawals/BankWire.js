@@ -16,6 +16,8 @@ import { ScrollArea } from "../../ui/scroll-area";
 import { useUserData } from "../../../contexts/userrContext";
 import { InfinitySpin } from "react-loader-spinner";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function BankWire() {
   const { details, coinPrices } = useUserData();
@@ -154,6 +156,8 @@ export default function BankWire() {
 
       if (response.data.success) {
         // Perform action when login is successful
+        toast.success("Pin Correct");
+
         setIsProgressing(true);
         setLoading(false);
       } else {
@@ -177,6 +181,7 @@ export default function BankWire() {
 
       if (response.data.success) {
         // Perform action when login is successful
+        toast.success("Pin Correct");
         setWaitingForPin(false);
         setLoading(false);
       } else {
@@ -261,6 +266,7 @@ export default function BankWire() {
     // Form submission logic here
     // ...
   };
+  const { isDarkMode } = useTheme();
 
   return (
     <>
@@ -279,7 +285,11 @@ export default function BankWire() {
             <form onSubmit={handleSubmit}>
               {/* Bank Location */}
               <div className="mb-3 mt-3">
-                <label className="font-bold text-sm py-3">
+                <label
+                  className={`font-bold text-sm py-3 mb-2 ${
+                    isDarkMode ? "text-white/80" : ""
+                  }`}
+                >
                   Select Your Bank Location
                 </label>
                 {/* <input
@@ -289,15 +299,23 @@ export default function BankWire() {
                   placeholder="United States of America"
                   value={formData.bankLocation}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground rounded-lg bg-gry-50 font-bold focus:outline-none ${
                     formErrors.bankLocation ? "border-red-500 border" : "border"
                   }`}
                 /> */}
                 <Select defaultValue="United States" className="outline-none">
-                  <SelectTrigger className="outline-none font-bold">
+                  <SelectTrigger
+                    className={`outline-none font-bold ${
+                      isDarkMode ? "bg-[#111] text-white border-0" : ""
+                    }`}
+                  >
                     <SelectValue placeholder="Select country" />
                   </SelectTrigger>
-                  <SelectContent className="font-bold">
+                  <SelectContent
+                    className={`font-bold ${
+                      isDarkMode ? "bg-[#222] text-white border-0" : ""
+                    }`}
+                  >
                     <ScrollArea className="h-[300px]">
                       {countryList.map((list) => (
                         <SelectItem key={list.label} value={list.label}>
@@ -311,7 +329,12 @@ export default function BankWire() {
 
               {/* Bank Name */}
               <div className="mb-3">
-                <label htmlFor="bankName" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="bankName"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Bank Name
                 </label>
                 <input
@@ -321,8 +344,10 @@ export default function BankWire() {
                   placeholder="Bank Name"
                   value={formData.bankName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.bankName ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.bankName ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.bankName && (
@@ -334,7 +359,12 @@ export default function BankWire() {
 
               {/* Account Name */}
               <div className="mb-3">
-                <label htmlFor="accountName" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="accountName"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Account Name
                 </label>
                 <input
@@ -344,8 +374,10 @@ export default function BankWire() {
                   placeholder="Account Name"
                   value={formData.accountName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.accountName ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground  rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.accountName ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.accountName && (
@@ -357,7 +389,12 @@ export default function BankWire() {
 
               {/* Account No */}
               <div className="mb-3">
-                <label htmlFor="accountNo" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="accountNo"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Account No
                 </label>
                 <input
@@ -367,8 +404,10 @@ export default function BankWire() {
                   placeholder="Account No"
                   value={formData.accountNo}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.accountNo ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.accountNo ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.accountNo && (
@@ -380,7 +419,12 @@ export default function BankWire() {
 
               {/* Swiss Code */}
               <div className="mb-3">
-                <label htmlFor="swissCode" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="swissCode"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Swiss Code
                 </label>
                 <input
@@ -391,8 +435,10 @@ export default function BankWire() {
                   placeholder="Your Bank Swiss Code"
                   value={formData.swissCode}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.swissCode ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground  rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.swissCode ? "border-red-500 border" : ""
                   }`}
                 />
 
@@ -401,7 +447,11 @@ export default function BankWire() {
                     {formErrors.swissCode}
                   </p>
                 )}
-                <p className="text-xs text-muted-foreground my-1 bg-slate-50 border p-3 font-old rounded-lg">
+                <p
+                  className={`text-xs text-muted-foreground my-1 mt-2  border p-3 font-old rounded-md ${
+                    isDarkMode ? "bg-[#111] border-white/20" : "bg-slate-50"
+                  }`}
+                >
                   <strong className="font-bold">
                     The Swift Code (Or "BIC Code"){" "}
                   </strong>{" "}
@@ -413,7 +463,12 @@ export default function BankWire() {
 
               {/* City */}
               <div className="mb-3">
-                <label htmlFor="city" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="city"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   City
                 </label>
                 <input
@@ -423,8 +478,10 @@ export default function BankWire() {
                   placeholder="Precise Location Of Bank"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.city ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.city ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.city && (
@@ -434,7 +491,12 @@ export default function BankWire() {
 
               {/* Postal Code */}
               <div className="mb-3">
-                <label htmlFor="zipCode" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="zipCode"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Postal Code
                 </label>
                 <input
@@ -444,8 +506,10 @@ export default function BankWire() {
                   placeholder="Zip Code / Postal Code"
                   value={formData.zipCode}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.zipCode ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground  rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  }g bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.zipCode ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.zipCode && (
@@ -457,7 +521,12 @@ export default function BankWire() {
 
               {/* Amount */}
               <div className="mb-3">
-                <label htmlFor="amount" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="amount"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Amount to withdraw (USD)
                 </label>
                 <input
@@ -467,8 +536,10 @@ export default function BankWire() {
                   placeholder="Enter Amount"
                   value={formData.amount}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.amount ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground  rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.amount ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.amount && (
@@ -480,7 +551,12 @@ export default function BankWire() {
 
               {/* Password */}
               <div className="mb-3">
-                <label htmlFor="password" className="font-bold text-sm py-3">
+                <label
+                  htmlFor="password"
+                  className={`font-bold text-sm py-3 ${
+                    isDarkMode ? "text-white/90" : ""
+                  }`}
+                >
                   Password Verification
                 </label>
                 <input
@@ -490,8 +566,10 @@ export default function BankWire() {
                   placeholder="Enter Password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.password ? "border-red-500 border" : "border"
+                  className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white" : ""
+                  } bg-gry-50 font-bold focus:outline-none ${
+                    formErrors.password ? "border-red-500 border" : ""
                   }`}
                 />
                 {formErrors.password && (
@@ -504,7 +582,7 @@ export default function BankWire() {
               <button
                 disabled={loading}
                 type="submit"
-                className="w-full disabled:bg-blue-300 px-4 flex justify-center items-center mt-4 text-sm rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:bg-blue-600"
+                className="w-full disabled:bg-blue-900 px-4 flex justify-center items-center mt-4 text-sm rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:bg-blue-600"
               >
                 {loading ? (
                   <InfinitySpin width="100" color="#ffffff" />
@@ -528,9 +606,13 @@ export default function BankWire() {
                 </div>
               </div>
               <div className="progress-movements w-full">
-                <div className="holder w-full h-2 relative overflow-hidden rounded-full bg-blue-50">
+                <div
+                  className={`${
+                    isDarkMode ? "bg-blue-500/10" : "bg-blue-50"
+                  } holder w-full h-2 relative overflow-hidden rounded-full `}
+                >
                   <div
-                    className="mover absolute h-full rounded-full transition-all bg-blue-600"
+                    className={`mover absolute h-full rounded-full transition-all bg-blue-600`}
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
@@ -548,7 +630,11 @@ export default function BankWire() {
                   placeholder="Enter Tax Code Pin"
                   value={taxCodePin}
                   onChange={handlePinChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none border ${
+                  className={`w-full px-4 py-3 text-xs ${
+                    isDarkMode
+                      ? "bg-[#111] border-0 /border-muted-foreground text-white"
+                      : ""
+                  } placeholder:text-muted-foreground rounded-md bg-gry-50 font-bold focus:outline-none border ${
                     taxCodePinError ? "border-red-500" : ""
                   }`}
                 />
@@ -578,7 +664,11 @@ export default function BankWire() {
                   placeholder="Enter Withdrawal Pin"
                   value={WithdrawalPin}
                   onChange={handleWTPinChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none border ${
+                  className={`w-full px-4 py-3  ${
+                    isDarkMode
+                      ? "bg-[#111] border-0 /border-muted-foreground text-white"
+                      : ""
+                  }  text-xs placeholder:text-muted-foreground rounded-lg bg-gry-50 font-bold focus:outline-none border ${
                     WtPinError ? "border-red-500" : ""
                   }`}
                 />
@@ -604,12 +694,18 @@ export default function BankWire() {
         </div>
       )}
       {showSucces && (
-        <div className="flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 bg-white rounded-lg shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+        <div
+          className={`flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 /bg-white rounded-lg ${
+            isDarkMode ? "textwhite border border-white/10" : ""
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-16 h-16 mx-auto mb-4 text-black/40"
+            className={`w-16 h-16 mx-auto mb-4 ${
+              isDarkMode ? "text-white/50" : "text-black/40"
+            }`}
           >
             <path
               fillRule="evenodd"
@@ -618,7 +714,11 @@ export default function BankWire() {
             />
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
-          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-32">
+          <p
+            className={` mb-6 text-center text-sm px-5 md:px-20 lg:px-32 ${
+              isDarkMode ? "text-white/80" : "text-gray-600"
+            }`}
+          >
             Your Bitcoin (BTC) withdrawal is in the confirmation phase within
             the blockchain network. Transaction times may vary from 5 minutes to
             2 hours. Monitor the transaction through your history panel. Contact

@@ -280,7 +280,7 @@ export default function Withdrawals() {
                       </SelectTrigger>
                       <SelectContent
                         className={`font-bold ${
-                          isDarkMode ? "bg-[#111] text-white/90" : ""
+                          isDarkMode ? "bg-[#111] text-white/90 border-0" : ""
                         }`}
                       >
                         <SelectItem value="Bitcoin Payment" className="">

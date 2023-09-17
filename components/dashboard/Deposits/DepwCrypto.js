@@ -168,7 +168,7 @@ export default function DepwCrypto() {
         <div
           className={`deposits-cont  p-3 rounded-lg transition-all ${
             isDarkMode
-              ? "border border-white/5 /bg-[#111] text-white/90"
+              ? "border border-white/10 bg-[#111] text-white/90"
               : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
           }`}
         >
@@ -206,7 +206,7 @@ export default function DepwCrypto() {
             >
               <SelectTrigger
                 className={`w-full /bg-gray-50 py-4 ${
-                  isDarkMode ? "border-0 bg-[#111]" : ""
+                  isDarkMode ? "border-0 bg-[#222]" : ""
                 }`}
               >
                 <SelectValue
@@ -216,7 +216,7 @@ export default function DepwCrypto() {
               </SelectTrigger>
               <SelectContent
                 className={`border-0 ${
-                  isDarkMode ? "bg-[#111] text-white" : ""
+                  isDarkMode ? "bg-[#222] text-white" : ""
                 }`}
               >
                 <SelectGroup>
@@ -269,7 +269,7 @@ export default function DepwCrypto() {
               {selectedAddress && (
                 <div
                   className={`flex items-center /bg-gray-50 px-2 py-1 my my-4 rounded-lg  ${
-                    isDarkMode ? "bg-[#111]" : "border"
+                    isDarkMode ? "bg-[#222]" : "border"
                   }`}
                 >
                   <input
@@ -277,7 +277,7 @@ export default function DepwCrypto() {
                     value={selectedAddress}
                     readOnly
                     className={`w-full px-2 py-3 text-sm rounded-lg /bg-gray-50 font-bold  ${
-                      isDarkMode ? "text-white/60 bg-[#111]" : "text-black/60"
+                      isDarkMode ? "text-white/60 bg-[#222]" : "text-black/60"
                     }`}
                   />
                   <button onClick={handleCopyAddress} className="ml-3">
@@ -323,8 +323,8 @@ export default function DepwCrypto() {
                   type="number"
                   value={amountInUSD}
                   onChange={handleAmountChange}
-                  className={`w-full px-4 py-4 text-sm rounded-lg /bg-gray-50 font-bold  ${
-                    isDarkMode ? "bg-[#111]" : "border"
+                  className={`w-full px-4 py-4 text-sm placeholder:text-muted-foreground rounded-lg /bg-gray-50 font-bold  ${
+                    isDarkMode ? "bg-[#222]" : "border"
                   }`}
                   placeholder="Enter amount in USD"
                   disabled={!selectedMethod}

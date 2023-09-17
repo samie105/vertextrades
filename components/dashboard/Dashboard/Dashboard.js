@@ -96,7 +96,11 @@ export default function Dash() {
   ];
   return (
     <>
-      <div className={`dash-cont p-4 ${isDarkMode ? `${baseColor}` : ""}`}>
+      <div
+        className={`dash-cont p-4 ${
+          isDarkMode ? `${baseColor}` : ""
+        } max-w-[100vw]`}
+      >
         {/* <div className="dash-header font-bold text-xl mt-3">Dashboard</div> */}
         <div className="account-boards w-full my-3 text-sm">
           {details === 0 ? (
@@ -337,7 +341,7 @@ export default function Dash() {
             className={`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
           </div>
         ) : (
-          <div className="latest-trades mt-5">
+          <div className="latest-trades mt-5 ">
             <div
               className={` rounded-lg ${
                 isDarkMode

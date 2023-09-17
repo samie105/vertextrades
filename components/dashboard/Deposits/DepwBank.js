@@ -32,7 +32,7 @@ export default function DepwBank() {
         <div
           className={`deposits-cont  p-3 rounded-lg transition-all ${
             isDarkMode
-              ? "border border-white/5 /bg-[#111] text-white/90"
+              ? "border border-white/10 bg-[#111] text-white/90"
               : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
           }`}
         >
@@ -69,8 +69,8 @@ export default function DepwBank() {
                 min="0"
                 value={amountForTransfer}
                 onChange={handleAmountChange}
-                className={`w-full px-4 py-4 text-sm rounded-lg /bg-gray-50 font-bold  ${
-                  isDarkMode ? "bg-[#111]" : "border"
+                className={`w-full px-4 py-4 text-sm placeholder:text-muted-foreground rounded-lg /bg-gray-50 font-bold  ${
+                  isDarkMode ? "bg-[#222]" : "border"
                 }`}
                 placeholder="Enter amount in USD"
               />

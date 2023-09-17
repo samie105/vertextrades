@@ -25,6 +25,7 @@ import {
 import { useUserData } from "../../../contexts/userrContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Skeleton } from "../../ui/skeleton";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function History() {
   const { details } = useUserData();
@@ -42,26 +43,38 @@ export default function History() {
 
   const history = hist.find((h) => h.name === selectedHistory);
   const currentHistory = [...history.data].reverse();
+  const { isDarkMode } = useTheme();
 
   return (
     <>
       {details === 0 ? (
         <div className="p-4">
-          <Skeleton className="h-60 bg-gray-200/80" />
+          <Skeleton
+            className={`  h-60 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+          />
         </div>
       ) : (
-        <div className="p-4">
+        <div className="p-4 overflow-x-scroll max-w-[100vw]">
           <Select
+            defaultValue="deposit"
             onValueChange={(value) => setSelectedHistory(value)}
             className="font-bold"
           >
-            <SelectTrigger className="">
-              <SelectValue className="font-bold">
+            <SelectTrigger
+              className={`font-bold ${
+                isDarkMode ? "bg-[#111] text-white border-0" : ""
+              }`}
+            >
+              <SelectValue>
                 {selectedHistory.charAt(0).toUpperCase() +
                   selectedHistory.slice(1)}
               </SelectValue>
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent
+              className={`font-bold ${
+                isDarkMode ? "bg-[#222] text-white border-0" : ""
+              }`}
+            >
               <SelectItem value="deposit" className="font-bold">
                 Deposit
               </SelectItem>
@@ -70,7 +83,13 @@ export default function History() {
               </SelectItem>
             </SelectContent>
           </Select>
-          <div className="rounded-xl shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] my-4 py-3">
+          <div
+            className={`rounded-xl my-4 py-3 ${
+              isDarkMode
+                ? "border border-white/10 bg-[#111]"
+                : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+            }`}
+          >
             {" "}
             <Table>
               <TableCaption>
@@ -79,34 +98,70 @@ export default function History() {
                 History
               </TableCaption>
               <TableHeader>
-                <TableRow>
+                <TableRow
+                  className={`border-none ${
+                    isDarkMode ? "hover:bg-transparent" : ""
+                  }`}
+                >
                   {selectedHistory === "deposit" ? (
                     <>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Date Added
                       </TableHead>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Deposit Method
                       </TableHead>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Amount
                       </TableHead>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Transaction Status
                       </TableHead>
                     </>
                   ) : (
                     <>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Date
                       </TableHead>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Withdrawal Method
                       </TableHead>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Amount
                       </TableHead>
-                      <TableHead className="font-bold text-slate-800">
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
                         Transaction Status
                       </TableHead>
                     </>
@@ -115,14 +170,23 @@ export default function History() {
               </TableHeader>
               <TableBody>
                 {currentHistory.length === 0 ? (
-                  <TableRow>
+                  <TableRow
+                    className={`border-none ${
+                      isDarkMode ? "hover:bg-transparent" : ""
+                    }`}
+                  >
                     <TableCell colSpan={4} className="text-center font-bold">
                       No {selectedHistory} history
                     </TableCell>
                   </TableRow>
                 ) : (
                   currentHistory.map((item, index) => (
-                    <TableRow key={index}>
+                    <TableRow
+                      className={`border-none ${
+                        isDarkMode ? "hover:bg-transparent text-white/50" : ""
+                      }`}
+                      key={index}
+                    >
                       {selectedHistory === "deposit" ? (
                         <>
                           <TableCell>{item.dateAdded}</TableCell>
@@ -144,7 +208,9 @@ export default function History() {
                           </TableCell>
                           <TableCell
                             className={
-                              item.transactionStatus === "Pending" ||
+                              `${isDarkMode ? "text-white/50 " : ""}` +
+                                item.transactionStatus ===
+                                "Pending" ||
                               item.transactionStatus === "pending"
                                 ? "text-orange-500 capitalize font/-bold"
                                 : item.transactionStatus === "failed" ||

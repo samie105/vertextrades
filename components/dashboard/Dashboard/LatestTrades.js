@@ -20,7 +20,7 @@ export default function LatestTrades() {
   return (
     <Table>
       <TableHeader className="[&_tr]:border-0">
-        <TableRow>
+        <TableRow className="hover:bg-transparent">
           <TableHead
             className={`font-bold ${
               isDarkMode ? "text-white/70" : "text-gray-600"
@@ -75,7 +75,7 @@ export default function LatestTrades() {
       <TableBody>
         {trades.length > 0 ? (
           trades.map((trade, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} className="hover:bg-transparent">
               <TableCell>{trade.Type}</TableCell>
               <TableCell>{trade.Pair}</TableCell>
               <TableCell>{trade.Action}</TableCell>
@@ -86,7 +86,7 @@ export default function LatestTrades() {
             </TableRow>
           ))
         ) : (
-          <TableRow>
+          <TableRow className="hover:bg-transparent">
             <TableCell
               colSpan="8"
               className={`text-center font-bold  ${
