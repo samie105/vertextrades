@@ -34,3 +34,8 @@ div.camera_pie {
 .Toastify__toast-container {
   border-radius: 50%;
 }
+div[style*="display: table"] {
+  display: block !important;
+  width: 100% !important; /* Adjust width as needed */
+  /* Add any other styles you want for the block display */
+}

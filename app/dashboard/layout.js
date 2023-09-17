@@ -12,7 +12,11 @@ export default function Layout({ children }) {
   const { isDarkMode, baseColor } = useTheme();
   return (
     <UserDataProvider>
-      <main className="h-screen overflow-hidden">
+      <main
+        className={`h-screen overflow-hidden /overflow-y-scroll w-screen ${
+          isDarkMode ? `${baseColor}` : ""
+        }`}
+      >
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -41,22 +45,15 @@ export default function Layout({ children }) {
             </ScrollArea>
           </div>
           <div
-            className={`main-bar w-full mb-[66px] /overflow-y-scroll hidden md:block ${
+            className={`main-bar w-full mb-[66px] /overflow-y-scroll ${
               isDarkMode ? `${baseColor}` : ""
             }`}
           >
             <ScrollArea
-              className={`h-[calc(100vh-66px)] pb-[5rem] md:pb-11 block`}
+              className={`h-[calc(100vh-66px)] pb-[5rem] md:pb-11 /w-screen /md:w-full`}
             >
-              {children}
+              <div className="">{children}</div>
             </ScrollArea>
-          </div>
-          <div
-            className={`main-bar w-full mb-[66px] overflow-x-hidden overflow-y-scroll h-[calc(100vh-66px)] md:hidden pb-[5rem] md:pb-11 ${
-              isDarkMode ? `${baseColor}` : ""
-            }`}
-          >
-            {children}
           </div>
         </div>
         <Toaster />
