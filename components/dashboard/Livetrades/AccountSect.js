@@ -112,7 +112,7 @@ export default function AccountSect() {
                 <div className="ml-2 font-bold">Investment:</div>
               </div>
               <div className="plan font-bold mx-2 capitalize">
-                ${details.tradingBalance.toLocaleString()}
+                ${details && details.tradingBalance.toLocaleString()}
               </div>
             </div>
             <div className="email-cont my-4 flex items-center text-sm py-1">
