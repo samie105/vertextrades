@@ -100,7 +100,7 @@ export default function Dash() {
   ];
   useEffect(() => {
     if (details !== 0) {
-      if (details.tradingBalance == 0) {
+      if (details?.tradingBalance === 0) {
         toast({
           variant: "outline",
           duration: 20000,
@@ -123,10 +123,9 @@ export default function Dash() {
         });
       }
     }
-  }, []);
+  }, [details, toast]);
   return (
     <>
-      <Toaster />
       <div
         className={`dash-cont p-4 ${
           isDarkMode ? `${baseColor}` : ""
