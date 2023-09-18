@@ -79,7 +79,7 @@ export default function Nav() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
     // Redirect to the logout page or any other desired action
-    router.replace("/"); // Replace "/logout" with your actual logout route
+    router.replace("/auth"); // Replace "/logout" with your actual logout route
   };
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
+import { Link as Lk } from "react-scroll";
+import Link from "next/link";
 import {
   Sheet,
   SheetContent,
@@ -83,7 +84,7 @@ export default function Navbar() {
         <div className="Navigation-Items">
           <div className="itemcontainer lg:flex hidden text-black text-sm">
             {navItems.map((item) => (
-              <Link
+              <Lk
                 key={item.label}
                 to={item.label}
                 spy={true}
@@ -115,7 +116,7 @@ export default function Navbar() {
                 >
                   {item.label}
                 </div>
-              </Link>
+              </Lk>
             ))}
           </div>
         </div>
@@ -261,7 +262,7 @@ export default function Navbar() {
               </SheetHeader>
               <div className="nav-menus mt-10 flex-col w-full flex">
                 {navItems.map((item) => (
-                  <Link
+                  <Lk
                     key={item.label}
                     to={item.label}
                     spy={true}
@@ -284,21 +285,18 @@ export default function Navbar() {
                         <p>{item.label}</p>
                       </div>
                     </SheetClose>
-                  </Link>
+                  </Lk>
                 ))}
               </div>
-              <Dialog>
-                <DialogTrigger>
-                  <SheetClose>
-                    <div className="cta-button justify-center text-sm flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
-                      <div className="w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-rose-700 to-orange-700  text-white px-7 py-4 rounded-xl font-bold">
-                        Login or Sign up
-                      </div>
+              <Link href="/auth" passHref>
+                <SheetClose>
+                  <div className="cta-button justify-center text-sm flex items-center pr-12 cursor-pointer w-full absolute bottom-5">
+                    <div className="w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-rose-700 to-orange-500  text-white px-7 py-4 rounded-xl font-bold">
+                      Login or Sign up
                     </div>
-                  </SheetClose>
-                </DialogTrigger>
-                <AuthUi />
-              </Dialog>
+                  </div>
+                </SheetClose>
+              </Link>
             </SheetContent>
           </Sheet>
         </div>

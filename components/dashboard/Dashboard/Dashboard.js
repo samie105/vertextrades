@@ -102,18 +102,18 @@ export default function Dash() {
     if (details !== 0) {
       if (details?.tradingBalance === 0) {
         toast({
-          variant: "outline",
+          variant: "default",
           duration: 20000,
           className: isDarkMode
-            ? "bg-[#111] text-white border-0"
+            ? "bg-[#111] text-white border border-white/10"
             : "bg-white text-black",
           title: "No or Low trading balance??",
           description:
             "Why not get started by making a deposit to enjoy all trading benefits",
           action: (
             <ToastAction
-              altText="Try again"
-              className={`bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] h-11 border-0  from-red-800 via-red-600 to-orange-500 text-white`}
+              altText="Deposit"
+              className={`font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] h-11 border-0/  from-red-800 via-red-600 to-orange-500 text-white`}
             >
               <Link href="/dashboard/deposits" passHref>
                 Deposit
