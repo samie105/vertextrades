@@ -275,9 +275,9 @@ export default function Navbar() {
                   >
                     <SheetClose key={item.label} className="w-full">
                       <div
-                        className={`menu-item mb-1 py-2 hover:opacity-90 text-gray-500 duration-200 cursor-pointer hover:bg-gray-100 px-1 //rounded-md flex items-center ${
+                        className={`menu-item py-3  /my-2 hover:opacity-90 text-gray-500 duration-200 cursor-pointer hover:bg-gray-100 px-2 //rounded-md flex items-center ${
                           activeNavItem === item.label
-                            ? " opacity-100 border-black border-b-2 text-black font-bold //rounded-md hover:bg-green-50"
+                            ? " opacity-100 bg-gray-100  text-black font-bold rounded-md hover:bg-green-50"
                             : ""
                         }`}
                         onClick={() => handleNavItemClick(item.label)}

@@ -123,7 +123,7 @@ export default function Dash() {
         });
       }
     }
-  }, [details, toast]);
+  }, [details]);
   return (
     <>
       <div
