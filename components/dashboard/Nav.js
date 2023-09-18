@@ -27,7 +27,7 @@ import { useTheme } from "../../contexts/themeContext";
 
 export default function Nav() {
   const router = useRouter();
-  const { isDarkMode, baseColor } = useTheme();
+  const { isDarkMode, baseColor, toggleTheme } = useTheme();
   const { coinPrices, setCoinPrices } = useUserData();
   const { details } = useUserData();
   const deposits = [
@@ -190,11 +190,11 @@ export default function Nav() {
             <Popover>
               <PopoverTrigger>
                 <div
-                  className={`mx-3 flex font-bold  ${
+                  className={` flex font-bold ml-3 ${
                     isDarkMode
-                      ? `bg-green-800/30 text-green-600`
-                      : "bg-green-50 text-green-700"
-                  } rounded-full md:rounded-lg px-3 py-3`}
+                      ? `md:bg-green-800/30 text-green-600`
+                      : "md:bg-green-50 text-green-700"
+                  } rounded-full md:rounded-lg md:px-3 md:py-3`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -239,11 +239,45 @@ export default function Nav() {
                 </div>
               </PopoverContent>
             </Popover>
+            <button
+              className={`theme-toggler  md:p-3  ${
+                isDarkMode
+                  ? "md:bg-white/10 text-white "
+                  : "md:bg-black/5 text-black"
+              } rounded-full mx-5 md:mx-2`}
+              onClick={toggleTheme}
+            >
+              {isDarkMode ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className={`w-5 h-5 
+                          }`}
+                >
+                  <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className={`w-5 h-5 
+                          }`}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </button>
             <Popover>
               <PopoverTrigger>
                 <div
-                  className={`flex font-bold text-red-600 rounded-full p-3 ${
-                    isDarkMode ? "bg-red-600/10" : "bg-red-50"
+                  className={`flex font-bold text-red-600 rounded-full md:p-3 ${
+                    isDarkMode ? "md:bg-red-600/10" : "md:bg-red-50"
                   } md:mr-5 text-sm`}
                 >
                   <svg

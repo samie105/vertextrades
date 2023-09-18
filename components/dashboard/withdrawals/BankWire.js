@@ -275,7 +275,7 @@ export default function BankWire() {
           <div className="bitcoin-payment image-cont">
             <Image
               alt=""
-              src="/assets/bankwire.jpg"
+              src="/assets/bankwire.png"
               width={1000}
               height={1000}
               className="md:w-1/2 w-full mx-auto"

@@ -11,10 +11,14 @@ import { Card, CardContent } from "../../ui/card";
 import { useUserData } from "../../../contexts/userrContext";
 import { Skeleton } from "../../ui/skeleton";
 import { useTheme } from "../../../contexts/themeContext";
+import { Toaster } from "../../ui/toaster";
+import { useToast } from "../../ui/use-toast";
+import { ToastAction } from "../../ui/toast";
 
 export default function Dash() {
   const { details } = useUserData();
   const { isDarkMode, baseColor } = useTheme();
+  const { toast } = useToast();
 
   const dashhh = [
     {
@@ -94,8 +98,35 @@ export default function Dash() {
       ),
     },
   ];
+  useEffect(() => {
+    if (details !== 0) {
+      if (details.tradingBalance == 0) {
+        toast({
+          variant: "outline",
+          duration: 20000,
+          className: isDarkMode
+            ? "bg-[#111] text-white border-0"
+            : "bg-white text-black",
+          title: "No or Low trading balance??",
+          description:
+            "Why not get started by making a deposit to enjoy all trading benefits",
+          action: (
+            <ToastAction
+              altText="Try again"
+              className={`bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] h-11 border-0  from-red-800 via-red-600 to-orange-500 text-white`}
+            >
+              <Link href="/dashboard/deposits" passHref>
+                Deposit
+              </Link>
+            </ToastAction>
+          ),
+        });
+      }
+    }
+  }, []);
   return (
     <>
+      <Toaster />
       <div
         className={`dash-cont p-4 ${
           isDarkMode ? `${baseColor}` : ""
