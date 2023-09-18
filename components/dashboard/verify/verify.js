@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUserData } from "../../../contexts/userrContext";
 import { InfinitySpin } from "react-loader-spinner";
+import toast from "react-hot-toast";
+import { useTheme } from "../../../contexts/themeContext";
+import { Input } from "../../ui/input";
 
 export default function Verify() {
   const { email } = useUserData();
@@ -42,6 +45,7 @@ export default function Verify() {
         );
 
         if (response.status === 200) {
+          toast.success("File Uploaded");
           setFrontIDFile(file);
           setFrontIDSecureUrl(response.data.secure_url); // Update the Cloudinary secure URL
         } else {
@@ -70,6 +74,7 @@ export default function Verify() {
         );
 
         if (response.status === 200) {
+          toast.success("File Uploaded");
           setBackIDFile(file);
           setBackIDSecureUrl(response.data.secure_url); // Update the Cloudinary secure URL
         } else {
@@ -136,6 +141,10 @@ export default function Verify() {
         });
 
         if (response.status === 200) {
+          toast.success(
+            "Verification Submitted. We're reviewing your verification details, we'll give you feedback soon",
+            { duration: 4000 }
+          );
           console.log("Form submitted successfully to backend.");
           isloading(false);
           setFormData({
@@ -166,11 +175,20 @@ export default function Verify() {
     }
     isloading(false);
   };
+  const { isDarkMode } = useTheme();
 
   return (
     <div className="p-4">
-      <div className="p-4 rounded-md border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-        <div className="mb-4 py-3">
+      <div
+        className={`p-4 rounded-md border ${
+          isDarkMode ? "bg-[#111] border-white/10 text-white/90" : ""
+        }`}
+      >
+        <div
+          className={`mb-4 py-3 ${
+            isDarkMode ? "bg-[#222] px-3 rounded-md border-white/10 border" : ""
+          }`}
+        >
           <div className="flex items-center mb-4">
             <div className="text-xl font-bold">ID Verification</div>
             <svg
@@ -186,7 +204,9 @@ export default function Verify() {
               />
             </svg>
           </div>
-          <p className="font-bold text-sm">
+          <p
+            className={`font-bold text-sm ${isDarkMode ? "text-white/60" : ""}`}
+          >
             Your Personal info/ID for verification will be processed and
             verified
           </p>
@@ -204,7 +224,7 @@ export default function Verify() {
                   {key.charAt(0).toUpperCase() +
                     key.slice(1).replace(/([A-Z])/g, " $1")}
                 </label>
-                <input
+                <Input
                   type="text"
                   id={key}
                   name={key}
@@ -213,7 +233,9 @@ export default function Verify() {
                     .replace(/([A-Z])/g, " $1")
                     .toLowerCase()}`}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 text-xs rounded-lg bg-gray-50 font-bold focus:outline-none border ${
+                  className={`w-full px-4 py-3 placeholder:text-muted-foreground ${
+                    isDarkMode ? "bg-[#222] text-white border-none" : "border"
+                  } text-xs rounded-md  font-bold focus:outline-none  ${
                     formErrors[key]
                       ? "border-red-500"
                       : "focus:border-slate-500"
@@ -235,7 +257,9 @@ export default function Verify() {
           </label>
           <div
             {...getRootPropsFront()}
-            className={`w-full px-4 py-3 text-sm rounded-lg bg-gray-50 font-bold border focus:outline-none ${
+            className={`w-full px-4 py-3 text-sm rounded-md ${
+              isDarkMode ? "bg-[#222]" : "border"
+            } font-bold  focus:outline-none ${
               isDragActiveFront ? "border-slate-500" : ""
             } ${formErrors.frontID ? "border-red-500" : ""}`}
           >
@@ -245,7 +269,7 @@ export default function Verify() {
             ) : frontIDFile ? (
               <p>{frontIDFile.name}</p>
             ) : (
-              <p>No file chosen</p>
+              <p className="text-sm">Click/Drag-in to upload a file</p>
             )}
           </div>
           {formErrors.frontID && (
@@ -256,7 +280,9 @@ export default function Verify() {
           </label>
           <div
             {...getRootPropsBack()}
-            className={`w-full px-4 py-3 text-sm rounded-lg bg-gray-50 font-bold border focus:outline-none ${
+            className={`w-full px-4 py-3 text-sm rounded-md ${
+              isDarkMode ? "bg-[#222]" : "border"
+            }  font-bold  focus:outline-none ${
               isDragActiveBack ? "border-slate-500" : ""
             } ${formErrors.backID ? "border-red-500" : ""}`}
           >
@@ -266,7 +292,7 @@ export default function Verify() {
             ) : backIDFile ? (
               <p>{backIDFile.name}</p>
             ) : (
-              <p>No file chosen</p>
+              <p className="text-sm">Click/Drag-in to upload a file</p>
             )}
           </div>
           {formErrors.backID && (

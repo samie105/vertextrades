@@ -1,16 +1,21 @@
+"use client";
 import React from "react";
 import { deets } from "./purchasedeets";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "../../../contexts/themeContext";
 
 export default function Purchase() {
+  const { isDarkMode } = useTheme();
   return (
     <div>
       <div className="md:grid-cols-3 grid grid-cols-1 p-4">
         {deets.map((info, idx) => (
           <div
             key={idx}
-            className=" border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-xl p-4 m-2"
+            className={` border rounded-xl p-4 m-2 ${
+              isDarkMode ? "border-white/10 bg-[#111]" : ""
+            }`}
           >
             <div className="image lg:h-40 w-full">
               <Image

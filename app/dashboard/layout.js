@@ -45,7 +45,7 @@ export default function Layout({ children }) {
             </ScrollArea>
           </div>
           <div
-            className={`main-bar w-full mb-[66px] /overflow-y-scroll ${
+            className={`main-bar w-full /mb-[66px] /overflow-y-scroll ${
               isDarkMode ? `${baseColor}` : ""
             }`}
           >

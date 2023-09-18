@@ -31,24 +31,39 @@ export default function AccountSect() {
         </div>
       ) : (
         <div
-          className={`card-container bg-[#fdfcfc] p-4 border /shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] ${
+          className={`card-container ${
+            isDarkMode
+              ? "bg-[#111] border-white/10 text-white/90"
+              : "bg-[#fdfcfc]"
+          } p-4 border ${
             path.includes("livetrades")
               ? ""
               : "grid grid-cols-1 lg:grid-cols-2 gap-2"
           }  rounded-xl`}
         >
           <div
-            className={`accoutsect font-medium my-2 ${
-              path.includes("livetrades") ? "hidden" : ""
-            }`}
+            className={`accoutsect ${
+              isDarkMode
+                ? "bg-[#222] p-3 rounded-md border-white/10 border"
+                : ""
+            } font-medium my-2 ${path.includes("livetrades") ? "hidden" : ""}`}
           >
+            <div
+              className={`title ${
+                isDarkMode ? "text-white" : ""
+              } my-4 pb-3 text-sm/ font-bold text-lg`}
+            >
+              Account Information
+            </div>
             <div className="name-cont flex items-center text-sm py-1">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-                className="w-5 h-5 mr-1 text-slate-700"
+                className={`w-5 h-5 mr-1  ${
+                  isDarkMode ? "text-white/80" : "text-slate-700"
+                }`}
               >
                 <path
                   fillRule="evenodd"
@@ -66,7 +81,9 @@ export default function AccountSect() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="w-5 h-5 mr-1 text-slate-700"
+                  className={`w-5 h-5 mr-1  ${
+                    isDarkMode ? "text-white/80" : "text-slate-700"
+                  }`}
                 >
                   <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
                   <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
@@ -81,7 +98,9 @@ export default function AccountSect() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="w-5 h-5 mr-1 text-slate-700"
+                  className={`w-5 h-5 mr-1  ${
+                    isDarkMode ? "text-white/80" : "text-slate-700"
+                  }`}
                 >
                   <path
                     fillRule="evenodd"
@@ -92,7 +111,9 @@ export default function AccountSect() {
 
                 <div className="ml-2 font-bold">Investment:</div>
               </div>
-              <div className="plan font-bold mx-2 capitalize">$0.00</div>
+              <div className="plan font-bold mx-2 capitalize">
+                ${details.tradingBalance.toLocaleString()}
+              </div>
             </div>
             <div className="email-cont my-4 flex items-center text-sm py-1">
               <div className="flex items-center">
@@ -100,7 +121,9 @@ export default function AccountSect() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="w-5 h-5 mr-1 text-slate-800"
+                  className={`w-5 h-5 mr-1  ${
+                    isDarkMode ? "text-white/80" : "text-slate-700"
+                  }`}
                 >
                   <path d="M14 6H6v8h8V6z" />
                   <path
@@ -130,12 +153,22 @@ export default function AccountSect() {
                 // onCheckedChange={setAutoTrades(!autoTrades)}
               />
             </div>
-            <div className="slider-container flex items-center my-8 justify-between w-full">
+            <div
+              className={`slider-container flex items-center my-8 justify-between w-full ${
+                isDarkMode
+                  ? "p-3 border border-white/10 bg-[#222] rounded-md"
+                  : ""
+              }`}
+            >
               <label className="slider-label capitalize w-ull font-bold">
                 signal strength
               </label>
               <div className="progress-cont w-2/3">
-                <div className="progress-underlay h-2 w-full rounded-full relative bg-slate-200 overflow-hidden">
+                <div
+                  className={`progress-underlay h-2 w-full rounded-full relative  overflow-hidden ${
+                    isDarkMode ? "bg-red-500/10" : "bg-slate-200"
+                  }`}
+                >
                   <div
                     className={`progress-line h-full transition-all top-0 left-0 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 rounded-full`}
                     style={{ width: `${signalStrength}%` }}
@@ -147,12 +180,23 @@ export default function AccountSect() {
               </div>
             </div>
 
-            <div className="slider-container flex items-center my-4 justify-between w-full">
+            <div
+              className={`slider-container flex items-center my-8 justify-between w-full ${
+                isDarkMode
+                  ? "p-3 border border-white/10 bg-[#222] rounded-md"
+                  : ""
+              }`}
+            >
+              {" "}
               <label className="slider-label capitalize font-bold w-ull">
                 mainten. gauge
               </label>
               <div className="progress-cont w-2/3">
-                <div className="progress-underlay h-2 w-full transition rounded-full relative bg-slate-200 overflow-hidden">
+                <div
+                  className={`progress-underlay h-2 w-full rounded-full relative  overflow-hidden ${
+                    isDarkMode ? "bg-red-500/10" : "bg-slate-200"
+                  }`}
+                >
                   <div
                     className={`progress-line h-full transition-all top-0 left-0 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 rounded-full`}
                     style={{ width: `${maintenanceGauge}%` }}
