@@ -6,6 +6,7 @@ import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
 import dynamic from "next/dynamic";
 import Script from "next/script";
+import Link from "next/link";
 
 export default function Slider() {
   return (
@@ -74,28 +75,25 @@ export default function Slider() {
                     infinite potential.
                   </p>
                 </div>
-                <Dialog>
-                  <DialogTrigger>
-                    <div className="calltoactionBtn  mt-10">
-                      <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md  px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
-                        <p className="">Start Your Epic Journey </p>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className="w-5 h-5 ml-1"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
+                <Link href="/auth" passHref className="flex">
+                  <div className="calltoactionBtn  mt-10">
+                    <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md  px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
+                      <p className="">Start Your Epic Journey </p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5 ml-1"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
                     </div>
-                  </DialogTrigger>
-                  <AuthUi />
-                </Dialog>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -146,28 +144,25 @@ export default function Slider() {
                     span You can resume trading without interruption
                   </p>
                 </div>
-                <Dialog>
-                  <DialogTrigger>
-                    <div className="calltoactionBtn text-center  mt-10">
-                      <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
-                        <p className="">Cool? Start Trading</p>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className="w-5 h-5 ml-2"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
+                <Link href="/auth" passHref className="flex">
+                  <div className="calltoactionBtn text-center  mt-10">
+                    <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between/ items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
+                      <p className="">Cool? Start Trading</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5 ml-2"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
                     </div>
-                  </DialogTrigger>
-                  <AuthUi />
-                </Dialog>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -220,28 +215,25 @@ export default function Slider() {
                     us today and explore a world of opportunities
                   </p>
                 </div>
-                <Dialog>
-                  <DialogTrigger>
-                    <div className="calltoactionBtn text-center   mt-10">
-                      <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
-                        <p className="">Aye! Get Going</p>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className="w-5 h-5 ml-2"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
+                <Link href="/auth" passHref className="flex">
+                  <div className="calltoactionBtn text-center   mt-10">
+                    <div className="cursor-pointer  animate__animated animate__fadeInUp animate__delay-2s rounded-md w-auto px-3 flex justify-between items-center py-3 bg-white text-black font-bold text-sm lg:text-base md:text-base">
+                      <p className="">Aye! Get Going</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5 ml-2"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
                     </div>
-                  </DialogTrigger>
-                  <AuthUi />
-                </Dialog>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

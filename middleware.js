@@ -8,16 +8,37 @@ export function middleware(request) {
   const role = cookies.role;
 
   if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/auth", request.url));
   }
   if (!token && request.nextUrl.pathname.startsWith("/admin")) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/auth", request.url));
+  }
+  if (!role && request.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/auth", request.url));
+  }
+  if (!role && request.nextUrl.pathname.startsWith("/admin")) {
+    return NextResponse.redirect(new URL("/auth", request.url));
   }
 
-  if (token && role === "user" && request.nextUrl.pathname === "/") {
+  if (
+    token &&
+    role === "user" &&
+    request.nextUrl.pathname.startsWith("/auth")
+  ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-  if (token && role === "user" && request.nextUrl.pathname === "/admin") {
+  if (
+    token &&
+    role === "admin" &&
+    request.nextUrl.pathname.startsWith("/auth")
+  ) {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
+  if (
+    token &&
+    role === "user" &&
+    request.nextUrl.pathname.startsWith("/auth")
+  ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 

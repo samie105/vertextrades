@@ -114,8 +114,10 @@ export default function Testimonials() {
           <div className="TestimonyOne">
             <div
               className={`testi-card ${
-                isDarkMode ? `bg-[#111] text-white` : "bg-white"
-              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+                isDarkMode
+                  ? `bg-[#111] text-white border-white/10 border`
+                  : "bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }  p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
                 <div className="icon-container text-blue-300 flex items-center font-bold ">
@@ -167,8 +169,10 @@ export default function Testimonials() {
           <div className="TestimonyTwo">
             <div
               className={`testi-card ${
-                isDarkMode ? `bg-[#111] text-white` : "bg-white"
-              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+                isDarkMode
+                  ? `bg-[#111] text-white border-white/10 border`
+                  : "bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }  p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
                 <div className="icon-container text-blue-700 flex items-center font-bold ">
@@ -220,8 +224,10 @@ export default function Testimonials() {
           <div className="TestimonyOne">
             <div
               className={`testi-card ${
-                isDarkMode ? `bg-[#111] text-white` : "bg-white"
-              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+                isDarkMode
+                  ? `bg-[#111] text-white border-white/10 border`
+                  : "bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }  p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
                 <div className="icon-container text-blue-700 flex items-center font-bold ">
@@ -273,8 +279,10 @@ export default function Testimonials() {
           <div className="TestimonyTwo">
             <div
               className={`testi-card ${
-                isDarkMode ? `bg-[#111] text-white` : "bg-white"
-              } shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5 rounded-xl mx-2 my-2`}
+                isDarkMode
+                  ? `bg-[#111] text-white border-white/10 border`
+                  : "bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
+              }  p-5 rounded-xl mx-2 my-2`}
             >
               <div className="card-brand mb-4">
                 <div className="icon-container flex items-center text-orange-700 font-bold ">

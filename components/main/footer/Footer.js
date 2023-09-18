@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
 import AuthUi from "../AuthUi/AuthUi";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -71,29 +72,26 @@ export default function Footer() {
                 );
               })}
             </div>
-            <Dialog>
-              <DialogTrigger>
-                <div className="flex items-center justify-center ">
-                  <div className="flex w-2/3 items-center justify-center md:w-full my-5 px-6 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-600 rounded-lg">
-                    {" "}
-                    <p className="text-sm text-white">Create account</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="w-5 h-5 ml-2 text-white"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
+            <Link href="/auth" passHref>
+              <div className="flex items-center justify-center ">
+                <div className="flex w-2/3 items-center justify-center md:w-full my-5 px-6 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-600 rounded-lg">
+                  {" "}
+                  <p className="text-sm text-white">Create account</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-5 h-5 ml-2 text-white"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </div>
-              </DialogTrigger>
-              <AuthUi></AuthUi>
-            </Dialog>
+              </div>
+            </Link>
           </div>
           <div className="grid3">
             <h2 className="text-xl my-9">
