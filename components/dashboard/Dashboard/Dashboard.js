@@ -105,7 +105,7 @@ export default function Dash() {
           variant: "default",
           duration: 20000,
           className: isDarkMode
-            ? "bg-[#111] text-white border border-white/10"
+            ? "bg-[#111] text-white border border-white/10 md:top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5"
             : "bg-white text-black",
           title: "No or Low trading balance??",
           description:

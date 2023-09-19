@@ -21,11 +21,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ThemeProvider>
         <body className={font.className}>
-          <Script
-            src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
-            strategy="afterInteractive"
-            async
-          ></Script>
           <Script src="/plugins/jquery.min.js" strategy="beforeInteractive" />
           <Script
             src="/plugins/jquery.easing.1.3.js"

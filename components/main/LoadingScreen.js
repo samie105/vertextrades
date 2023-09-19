@@ -13,14 +13,14 @@ export default function LoadingScreen() {
       // Increment the progress by a certain amount
       setProgress((prevProgress) => {
         if (prevProgress < 100) {
-          return prevProgress + 2; // Increase by 10% (adjust as needed)
+          return prevProgress + 1.4; // Increase by 10% (adjust as needed)
         } else {
           clearInterval(interval); // Stop the interval when progress reaches 100%
           setIsVisible(false);
           return prevProgress;
         }
       });
-    }, 250);
+    }, 100);
   }, []);
 
   return isVisible ? (

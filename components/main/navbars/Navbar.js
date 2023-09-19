@@ -168,19 +168,18 @@ export default function Navbar() {
               </svg>
             )}
           </button>
-          <Dialog>
-            <DialogTrigger>
-              <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden items-center">
-                <div
-                  className="btn1 px-4 cursor-pointer flex py-3 bg-clip-tet text-transprent bg-green-600 b-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-500 rounded-xl"
-                  // style={{ backgroundColor: "#ffffff10" }}
-                >
-                  <p className="px-0.5 opacity-90 text-white">Sign In</p>
-                </div>
+          <Link href="/auth" passHref>
+            <div className="ctaButtons lg:flex justify-between text-sm font-bold hidden items-center">
+              <div
+                className="btn1 px-4 cursor-pointer flex py-3 bg-clip-tet text-transprent bg-green-600 b-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-700 to-orange-500 rounded-xl"
+                // style={{ backgroundColor: "#ffffff10" }}
+              >
+                <p className="px-0.5 opacity-90 text-white">
+                  Create an account
+                </p>
               </div>
-            </DialogTrigger>
-            <AuthUi />
-          </Dialog>
+            </div>
+          </Link>
         </div>
 
         <div className="menu-bar cursor-pointer lg:hidden flex items-center">

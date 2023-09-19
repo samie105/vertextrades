@@ -42,12 +42,12 @@ export default function Auth() {
             }`}
           >
             <div className="text text- font-bold  text-center">
-              Continue trading or Create an account with us
+              Login or Create an account with us
             </div>
           </div>
           <div className={`form-cont flex items-center justify-center`}>
             {" "}
-            <Dialog>
+            <Dialog defaultOpen>
               <DialogTrigger className="w-full px-2">
                 <div className="btn w-full">
                   <div className="px-4 py-3 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center justify-center rounded-md flex">

@@ -7,11 +7,17 @@ import { UserDataProvider } from "../../contexts/userrContext";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider, useTheme } from "../../contexts/themeContext";
 import { ScrollArea } from "../../components/ui/scroll-area";
+import Script from "next/script";
 
 export default function Layout({ children }) {
   const { isDarkMode, baseColor } = useTheme();
   return (
     <UserDataProvider>
+      <Script
+        src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
+        strategy="afterInteractive"
+        async
+      ></Script>
       <main
         className={`h-screen overflow-hidden /overflow-y-scroll w-screen ${
           isDarkMode ? `${baseColor}` : ""
