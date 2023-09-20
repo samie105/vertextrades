@@ -135,10 +135,10 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  I can't thank my broker enough for their outstanding service.
-                  From the moment I signed up, they have provided exceptional
-                  support and guidance. Their platform is intuitive and packed
-                  with powerful and experiences
+                  I can't thank capital nexus enough for their outstanding
+                  service. From the moment I signed up, they have provided
+                  exceptional support and guidance. Their platform is intuitive
+                  and packed with powerful and experiences
                   <sup>
                     <FontAwesomeIcon
                       icon={faQuoteRight}
@@ -190,7 +190,7 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  Choosing this broker was a game-changer for me. Their
+                  Choosing capital nexus was a game-changer for me. Their
                   dedication to customer satisfaction is unmatched. Whenever I
                   have a question or need assistance, their support team is
                   always there to help.{" "}
@@ -245,7 +245,7 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  Trading with this broker has been a game-changer for my
+                  Trading with capital nexus has been a game-changer for my
                   investment portfolio. Their user-friendly platform and
                   extensive range of financial instruments have allowed me to
                   diversify my trading strategies effectively{" "}
@@ -300,7 +300,7 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  I have been a loyal client of this broker for several years,
+                  I have been a loyal client of capital nexus for several years,
                   and I have never been disappointed. Their professionalism,
                   reliability, and personalized approach have made them my go-to
                   choice anytime.{" "}

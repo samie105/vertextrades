@@ -28,7 +28,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
               >
                 Investment
               </span>{" "}
-              Opportunities with [BrokerName]'s Versatile{" "}
+              Opportunities with Capital Nexus's Versatile{" "}
               <span
                 className="
 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent"
@@ -43,10 +43,10 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                 isDarkMode ? "text-gray-400" : "text-gray-800"
               }`}
             >
-              Although trading Forex is a key component of our business,
-              [BrokerName] also offers a diverse range of CFD trading options.
-              With [BrokerName], you can engage in CFD trading across various
-              asset classes, including{" "}
+              Although trading Forex is a key component of our business, Capital
+              Nexus also offers a diverse range of CFD trading options. With
+              Capital Nexus, you can engage in CFD trading across various asset
+              classes, including{" "}
               <span
                 className="
 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"

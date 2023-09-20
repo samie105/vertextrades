@@ -23,7 +23,7 @@ export default function AuthUi() {
     <>
       <DialogContent
         className={`border-0 transition-all focus:outline-none text-gray-900 rounded-xl w-[90%] md:w-[60%] lg:w:-[20%] ${
-          isDarkMode ? `${baseColor} text-gray-200` : ""
+          isDarkMode ? `${baseColor} text-gray-200 border-white/10 /border` : ""
         }`}
       >
         <DialogHeader className="text-white">
