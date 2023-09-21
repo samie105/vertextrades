@@ -541,8 +541,10 @@ const ActiveTraders = () => {
                   <TableCell
                     className={`border-0 ${
                       trade.autoTrade === "Active"
-                        ? "text-green-600 font-bold"
-                        : "text-red-600 font-bold"
+                        ? "text-green-500 font-bold"
+                        : isDarkMode
+                        ? "text-white/70"
+                        : ""
                     }`}
                   >
                     {trade.autoTrade}

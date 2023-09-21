@@ -131,8 +131,8 @@ export const UserDataProvider = ({ children }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    // const intervalId = setInterval(fetchDetails, 60000);
-    // return () => clearInterval(intervalId);
+    const intervalId = setInterval(fetchDetails, 60000);
+    return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 

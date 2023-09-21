@@ -175,7 +175,12 @@ export default function History() {
                       isDarkMode ? "hover:bg-transparent" : ""
                     }`}
                   >
-                    <TableCell colSpan={4} className="text-center font-bold">
+                    <TableCell
+                      colSpan={4}
+                      className={`text-center font-bold ${
+                        isDarkMode ? "text-white/80" : "text-black/75"
+                      }`}
+                    >
                       No {selectedHistory} history
                     </TableCell>
                   </TableRow>
@@ -208,15 +213,13 @@ export default function History() {
                           </TableCell>
                           <TableCell
                             className={
-                              `${isDarkMode ? "text-white/50 " : ""}` +
-                                item.transactionStatus ===
-                                "Pending" ||
+                              item.transactionStatus === "Pending" ||
                               item.transactionStatus === "pending"
-                                ? "text-orange-500 capitalize font/-bold"
+                                ? "text-orange-500 capitalize font-/bold"
                                 : item.transactionStatus === "failed" ||
                                   item.transactionStatus === "Failed"
-                                ? "text-red-500 capitalize font/-bold"
-                                : "text-green-500 capitalize font-/bold"
+                                ? "text-red-500 capitalize font-/bold"
+                                : "text-green-500 capitalize font/-bold"
                             }
                           >
                             {item.transactionStatus === "Pending" ||

@@ -18,58 +18,31 @@ export default function Layout({ children }) {
   const [loadingToastId, setLoadingToastId] = useState(null);
 
   useEffect(() => {
-    if (!isOnline) {
-      // User is offline, show a loading toast with a retry counter
+    const showLoadingToast = () => {
+      const message = "You are currently offline. Retrying...";
       if (!loadingToastId) {
-        setLoadingToastId(
-          toast.loading(
-            `You are currently offline. Retrying(${retryCounter + 1})...`,
-            {
-              duration: 10000, // Display for 10 seconds
-              position: "top-center",
-            }
-          )
-        );
-      } else {
-        // Update the existing loading toast with the retry counter
-        toast.loading(
-          `You are currently offline. Retrying (${retryCounter + 1})...`,
-          {
-            duration: 10000, // Display for 10 seconds
-            position: "top-center",
-            id: loadingToastId, // Specify the ID to update the existing toast
-          }
-        );
+        const id = toast.loading(message, {
+          duration: Infinity, // Display until manually dismissed
+          position: "top-center",
+        });
+        setLoadingToastId(id);
       }
+    };
 
-      // Start retrying after 10 seconds
-      const retryTimer = setTimeout(() => {
-        setRetryCounter((prevCounter) => prevCounter + 1);
-        setRetrying(true);
-      }, 10000);
-
-      return () => {
-        clearTimeout(retryTimer);
-      };
+    if (!isOnline) {
+      showLoadingToast();
     } else {
-      // User is online, close the loading toast and reset retry counter
-      if (isOnline) {
+      if (loadingToastId) {
         toast.success("You are back online!", {
-          duration: 5000, // Display success message for 5 seconds
+          duration: 2000, // Display success message for 2 seconds
           position: "top-center",
           id: loadingToastId,
         });
+        // toast.dismiss(loadingToastId);
+        setLoadingToastId(null);
       }
-
-      if (loadingToastId) {
-        toast.dismiss(loadingToastId); // Dismiss the loading toast
-      }
-
-      setRetryCounter(0);
-      setRetrying(false);
-      setLoadingToastId(null);
     }
-  }, [isOnline, loadingToastId, retryCounter, retrying]);
+  }, [isOnline, loadingToastId]);
 
   // Rest of your Layout component code...
 
@@ -105,21 +78,21 @@ export default function Layout({ children }) {
         <div className="fixed bottom-0 left-0 w-full text-white z-30">
           <Footer />
         </div>
-        <div className="content-container md:flex mt-[66px] w-full">
+        <div className="content-container fixed md:flex pt-16 w-full">
           <div className="side-bar hidden md:block /overflow-scroll">
             <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
               <Sidebar />
             </ScrollArea>
           </div>
           <div
-            className={`main-bar w-full mb-[66px] /overflow-y-scroll ${
+            className={`main-bar w-full mb-[66px] overflow-hidden /overflow-y-scroll ${
               isDarkMode ? `${baseColor}` : ""
             }`}
           >
             <ScrollArea
-              className={`h-[calc(100vh-66px)] pb-[5rem] md:pb-11 w-screen md:w-full`}
+              className={`h-[calc(100vh-66px)] pb-[5rem] overflow-hidden md:pb-11 w-screen md:w-full`}
             >
-              <div className="">{children}</div>
+              {children}
             </ScrollArea>
           </div>
         </div>
