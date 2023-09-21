@@ -41,7 +41,7 @@ async function sendVerificationEmail(email, code) {
   });
 
   await transporter.sendMail({
-    from: '"BrokerName" <no-reply@brokertest.vercel.app>',
+    from: '"Capital Nexus Authentication" <no-reply@brokertest.vercel.app>',
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,
