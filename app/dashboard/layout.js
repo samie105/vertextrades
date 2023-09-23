@@ -16,12 +16,7 @@ export default function Layout({ children }) {
   const pathname = usePathname();
   const { isDarkMode, baseColor } = useTheme();
   const { isOnline } = useIsOnline();
-  const [retrying, setRetrying] = useState(false);
-  const [retryCounter, setRetryCounter] = useState(0);
   const [loadingToastId, setLoadingToastId] = useState(null);
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
 
   useEffect(() => {
     const showLoadingToast = () => {
@@ -98,9 +93,7 @@ export default function Layout({ children }) {
             <ScrollArea
               className={`h-[calc(100vh-66px)] pb-[5rem] overflow-hidden md:pb-11 w-screen md:w-full`}
             >
-              <AnimatePresence>
-                <div key={pathname}>{children}</div>
-              </AnimatePresence>
+              {children}
             </ScrollArea>
           </div>
         </div>

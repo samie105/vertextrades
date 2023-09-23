@@ -130,9 +130,9 @@ export default function Dash() {
   return (
     <m.div
       key={pathname}
-      initial={{ x: -1000 }}
-      animate={{ x: 0 }}
-      exit={{ x: 1000 }}
+      initial={{ y: -1000 }}
+      animate={{ y: 0 }}
+      exit={{ y: 1000 }}
       transition={{ type: "spring" }}
     >
       <div
