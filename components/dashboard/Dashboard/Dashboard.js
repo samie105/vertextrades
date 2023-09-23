@@ -14,11 +14,14 @@ import { useTheme } from "../../../contexts/themeContext";
 import { Toaster } from "../../ui/toaster";
 import { useToast } from "../../ui/use-toast";
 import { ToastAction } from "../../ui/toast";
+import { motion as m } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Dash() {
   const { details } = useUserData();
   const { isDarkMode, baseColor } = useTheme();
   const { toast } = useToast();
+  const pathname = usePathname();
 
   const dashhh = [
     {
@@ -125,7 +128,13 @@ export default function Dash() {
     }
   }, [details]);
   return (
-    <>
+    <m.div
+      key={pathname}
+      initial={{ x: -1000 }}
+      animate={{ x: 0 }}
+      exit={{ x: 1000 }}
+      transition={{ type: "spring" }}
+    >
       <div
         className={`dash-cont p-4 ${
           isDarkMode ? `${baseColor}` : ""
@@ -391,6 +400,6 @@ export default function Dash() {
           </div>
         )}
       </div>
-    </>
+    </m.div>
   );
 }

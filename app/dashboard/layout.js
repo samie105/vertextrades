@@ -9,13 +9,19 @@ import { ScrollArea } from "../../components/ui/scroll-area";
 import Script from "next/script";
 import { useIsOnline } from "react-use-is-online";
 import toast, { Toaster } from "react-hot-toast";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion as m } from "framer-motion";
 
 export default function Layout({ children }) {
+  const pathname = usePathname();
   const { isDarkMode, baseColor } = useTheme();
   const { isOnline } = useIsOnline();
   const [retrying, setRetrying] = useState(false);
   const [retryCounter, setRetryCounter] = useState(0);
   const [loadingToastId, setLoadingToastId] = useState(null);
+  useEffect(() => {
+    console.log(pathname);
+  }, [pathname]);
 
   useEffect(() => {
     const showLoadingToast = () => {
@@ -92,7 +98,9 @@ export default function Layout({ children }) {
             <ScrollArea
               className={`h-[calc(100vh-66px)] pb-[5rem] overflow-hidden md:pb-11 w-screen md:w-full`}
             >
-              {children}
+              <AnimatePresence>
+                <div key={pathname}>{children}</div>
+              </AnimatePresence>
             </ScrollArea>
           </div>
         </div>
