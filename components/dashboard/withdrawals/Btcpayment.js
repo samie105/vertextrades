@@ -295,7 +295,11 @@ export default function Btcpayment({
         <div className="py-20">
           <div className="flex w-full justify-center items-center ">
             <div className="progress-cont w-full px-5 md:px-14">
-              <div className="progress-messages text-sm font-bold mb-1 flex items-center justify-between">
+              <div
+                className={` ${
+                  isDarkMode ? "text-white/90" : ""
+                } progress-messages text-sm font-bold mb-1 flex items-center justify-between`}
+              >
                 <div>{progressMessage}</div>
                 <div className="percentage font-bold text-sm">
                   {progress.toFixed()}%
@@ -308,7 +312,7 @@ export default function Btcpayment({
                   }`}
                 >
                   <div
-                    className="mover absolute h-full rounded-full transition-all bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500"
+                    className={`mover absolute h-full  rounded-full transition-all bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500`}
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
@@ -410,7 +414,7 @@ export default function Btcpayment({
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
           <p
             className={` mb-6 text-center text-sm px-5 md:px-20 lg:px-32 ${
-              isDarkMode ? "text-white/80" : "text-gray-600"
+              isDarkMode ? "text-white/80" : "text-muted-foreground"
             }`}
           >
             Your Bitcoin (BTC) withdrawal is in the confirmation phase within

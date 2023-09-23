@@ -599,7 +599,11 @@ export default function BankWire() {
         <div className="py-20">
           <div className="flex w-full justify-center items-center ">
             <div className="progress-cont w-full px-5 md:px-14">
-              <div className="progress-messages text-sm font-bold mb-1 flex items-center justify-between">
+              <div
+                className={`${
+                  isDarkMode ? "text-white/90" : ""
+                } progress-messages text-sm font-bold mb-1 flex items-center justify-between`}
+              >
                 <div>{progressMessage}</div>
                 <div className="percentage font-bold text-sm">
                   {progress.toFixed()}%
@@ -716,13 +720,14 @@ export default function BankWire() {
           <h1 className="text-xl font-bold mb-2">Withdrawal Successful</h1>
           <p
             className={` mb-6 text-center text-sm px-5 md:px-20 lg:px-32 ${
-              isDarkMode ? "text-white/80" : "text-gray-600"
+              isDarkMode ? "text-white/80" : "text-muted-foreground"
             }`}
           >
-            Your Bitcoin (BTC) withdrawal is in the confirmation phase within
-            the blockchain network. Transaction times may vary from 5 minutes to
-            2 hours. Monitor the transaction through your history panel. Contact
-            us for further assistance.
+            Your bank wire withdrawal has been successfully processed. Please
+            allow up to 2 business days for the funds to be reflected in your
+            account. You can review the transaction details in your transaction
+            history. If you require any further assistance, don't hesitate to
+            contact us
           </p>
           <Link href="/dashboard" passHref>
             {" "}
