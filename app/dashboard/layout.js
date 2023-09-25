@@ -79,19 +79,19 @@ export default function Layout({ children }) {
         <div className="fixed bottom-0 left-0 w-full text-white z-30">
           <Footer />
         </div>
-        <div className="content-container fixed md:flex pt-16 w-full">
+        <div className="content-container relative md:flex pt-16 w-full">
           <div className="side-bar hidden md:block /overflow-scroll">
             <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
               <Sidebar />
             </ScrollArea>
           </div>
           <div
-            className={`main-bar w-full mb-[66px] overflow-hidden /overflow-y-scroll ${
+            className={`main-bar w-full mb-[66px] relative overflow-hidden /overflow-y-scroll ${
               isDarkMode ? `${baseColor}` : ""
             }`}
           >
             <ScrollArea
-              className={`h-[calc(100vh-66px)] pb-[5rem] overflow-hidden md:pb-11 w-screen md:w-full`}
+              className={`h-[calc(100vh-66px)] pb-[5rem] relative overflow-hidden md:pb-11 w-screen md:w-full`}
             >
               {children}
             </ScrollArea>

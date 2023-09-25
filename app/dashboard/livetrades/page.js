@@ -8,20 +8,14 @@ import AccountSect from "../../../components/dashboard/Livetrades/AccountSect";
 import { motion as m } from "framer-motion";
 function Livetrades() {
   return (
-    <m.div
-      initial={{ y: -1000 }}
-      animate={{ y: 0 }}
-      exit={{ y: 1000 }}
-      transition={{ type: "spring" }}
-      className="max-w-[100vw]"
-    >
+    <div className="max-w-[100vw]">
       <Livetrade />
       <AdvancedCh />
       <AccountSect />
       <Holder />
       <TradingView />
       <ActiveTraders />
-    </m.div>
+    </div>
   );
 }
 

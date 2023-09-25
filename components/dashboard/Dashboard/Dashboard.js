@@ -108,7 +108,7 @@ export default function Dash() {
           variant: "default",
           duration: 20000,
           className: isDarkMode
-            ? "bg-[#111] text-white border border-white/10 md:top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5"
+            ? "bg-[#111] text-white border border-white/10 top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5"
             : "bg-white text-black",
           title: "No or Low trading balance??",
           description:
@@ -128,15 +128,11 @@ export default function Dash() {
     }
   }, [details]);
   return (
-    <m.div
-      key={pathname}
-      initial={{ y: -1000 }}
-      animate={{ y: 0 }}
-      exit={{ y: 1000 }}
-      transition={{ type: "spring" }}
-    >
+    <div>
+      {" "}
+      <Toaster />
       <div
-        className={`dash-cont p-4 ${
+        className={`dash-cont p-4 relative ${
           isDarkMode ? `${baseColor}` : ""
         } max-w-[100vw]`}
       >
@@ -400,6 +396,6 @@ export default function Dash() {
           </div>
         )}
       </div>
-    </m.div>
+    </div>
   );
 }

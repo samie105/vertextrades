@@ -5,7 +5,6 @@ export default function Dashboard() {
   return (
     <div>
       <Dash />
-      <Toaster />
     </div>
   );
 }
