@@ -24,6 +24,7 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
 import { DropdownMenuSeparator } from "../ui/dropdown-menu";
 import { useTheme } from "../../contexts/themeContext";
+import { ScrollArea } from "../ui/scroll-area";
 
 export default function Nav() {
   const router = useRouter();
@@ -50,6 +51,66 @@ export default function Nav() {
       address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
     },
   ];
+
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      method: "transaction",
+      type: "success",
+      message: "$50 deposited successfully",
+      date: "6 minutes ago",
+    },
+    {
+      id: 2,
+      method: "trade",
+      type: "failure",
+      message: "Withdrawal Failed",
+      date: "9 minutes ago",
+    },
+    {
+      id: 3,
+      method: "trade",
+      type: "failure",
+      message: "Withdrawal Failed",
+      date: "9 minutes ago",
+    },
+    // {
+    // id:4,
+    //   method: "trade",
+    //   type: "failure",
+    //   message: "Withdrawal Failed",
+    //   date: "9 minutes ago",
+    // },
+    {
+      id: 5,
+      method: "intro",
+      type: "neutral",
+      message: "Welcome to capital nexus",
+      date: "45 minutes ago",
+    },
+    {
+      id: 6,
+      method: "verification",
+      type: "pending",
+      message: "Withdrawal Under Review bhjdkjlnal mnjhuikjhib ki jojnkpojk",
+      date: "An hour ago",
+    },
+  ]);
+  const handleNotificationClick = (id) => {
+    // Find the index of the notification with the given id
+    const index = notifications.findIndex(
+      (notification) => notification.id === id
+    );
+
+    if (index !== -1) {
+      // Create a new array without the clicked notification
+      const updatedNotifications = [...notifications];
+      updatedNotifications.splice(index, 1);
+
+      // Update the state to remove the notification
+      setNotifications(updatedNotifications);
+    }
+  };
   useEffect(() => {
     const fetchCoinPrices = async () => {
       try {
@@ -239,24 +300,166 @@ export default function Nav() {
                 </div>
               </PopoverTrigger>
               <PopoverContent
-                className={`w-[200px] mx-3 ${
-                  isDarkMode ? "bg-[#111] border-0 text-gray-200" : ""
+                className={`w-[350px] mx-3 pb-0 pt-4 px-1 ${
+                  isDarkMode
+                    ? "bg-[#111] border border-white/5 text-gray-200"
+                    : ""
                 }`}
               >
+                <div className="tit px-3">
+                  <div className="flex w-full justify-between items-center pb-4">
+                    <div className="title-name font-bold text-white">
+                      Notifications
+                    </div>
+                    <div className="titcount fleex">
+                      <div className=" ">
+                        <div className="py-1 px-2 rounded-full text-xs font-bold bg-[#222]">
+                          {notifications.length}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="line w-1/2 mx-auto mb-2 h-0.5 bg-white/5 rounded-full"></div>
+                </div>
                 <div className="cont ">
-                  <div className="icon flex justify-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="w-6 h-6 text-gray-500"
-                    >
-                      <path d="M4 8c0-.26.017-.517.049-.77l7.722 7.723a33.56 33.56 0 01-3.722-.01 2 2 0 003.862.15l1.134 1.134a3.5 3.5 0 01-6.53-1.409 32.91 32.91 0 01-3.257-.508.75.75 0 01-.515-1.076A11.448 11.448 0 004 8zM17.266 13.9a.756.756 0 01-.068.116L6.389 3.207A6 6 0 0116 8c.001 1.887.455 3.665 1.258 5.234a.75.75 0 01.01.666zM3.28 2.22a.75.75 0 00-1.06 1.06l14.5 14.5a.75.75 0 101.06-1.06L3.28 2.22z" />
-                    </svg>
-                  </div>
-                  <div className="message text-center text-sm py-2">
-                    No notifications yet
-                  </div>
+                  {notifications.length === 0 && (
+                    <>
+                      {" "}
+                      <div className="message text-center text-sm py-4">
+                        No notifications yet
+                      </div>
+                    </>
+                  )}
+                  {notifications.length !== 0 && (
+                    <>
+                      <div>
+                        <ScrollArea className=" h-[310px] w-full px-3 py-3">
+                          {notifications.map((notif, index) => (
+                            <>
+                              <div
+                                className={`flex justify-between w-full items-start cursor-pointer`}
+                                key={crypto.randomUUID()}
+                              >
+                                <div className="icon flex items-center flex-col">
+                                  <div
+                                    className={`${
+                                      notif.type === "success"
+                                        ? "bg-green-500/10 text-green-500 "
+                                        : notif.type === "failure"
+                                        ? "bg-red-500/10 text-red-500"
+                                        : notif.type === "pending"
+                                        ? "bg-orange-500/10 text-orange-500"
+                                        : "bg-[#222] text-white"
+                                    } rounded-full p-3`}
+                                  >
+                                    {notif.method === "trade" ? (
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        className="w-5 h-5"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M12.577 4.878a.75.75 0 01.919-.53l4.78 1.281a.75.75 0 01.531.919l-1.281 4.78a.75.75 0 01-1.449-.387l.81-3.022a19.407 19.407 0 00-5.594 5.203.75.75 0 01-1.139.093L7 10.06l-4.72 4.72a.75.75 0 01-1.06-1.061l5.25-5.25a.75.75 0 011.06 0l3.074 3.073a20.923 20.923 0 015.545-4.931l-3.042-.815a.75.75 0 01-.53-.919z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    ) : notif.method === "transaction" ? (
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        className="w-5 h-5"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M13.2 2.24a.75.75 0 00.04 1.06l2.1 1.95H6.75a.75.75 0 000 1.5h8.59l-2.1 1.95a.75.75 0 101.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 00-1.06.04zm-6.4 8a.75.75 0 00-1.06-.04l-3.5 3.25a.75.75 0 000 1.1l3.5 3.25a.75.75 0 101.02-1.1l-2.1-1.95h8.59a.75.75 0 000-1.5H4.66l2.1-1.95a.75.75 0 00.04-1.06z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    ) : notif.method === "intro" ? (
+                                      <>🤝</>
+                                    ) : notif.method === "verification" ? (
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        className="w-5 h-5"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    ) : (
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        className="w-4 h-4 text-sm"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M10 2a6 6 0 00-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 00.515 1.076 32.91 32.91 0 003.256.508 3.5 3.5 0 006.972 0 32.903 32.903 0 003.256-.508.75.75 0 00.515-1.076A11.448 11.448 0 0116 8a6 6 0 00-6-6zM8.05 14.943a33.54 33.54 0 003.9 0 2 2 0 01-3.9 0z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    )}
+                                  </div>
+                                  <div
+                                    className={`linedwon   ${
+                                      notif.type === "success"
+                                        ? "bg-green-500/10 text-green-500 "
+                                        : notif.type === "failure"
+                                        ? "bg-red-500/10 text-red-500"
+                                        : notif.type === "pending"
+                                        ? "bg-orange-500/10 text-orange-500"
+                                        : "bg-[#222] text-white"
+                                    } ${
+                                      index !== notifications.length - 1
+                                        ? "h-9 border border-dashed border-white/5"
+                                        : ""
+                                    }`}
+                                    key={crypto.randomUUID()}
+                                  ></div>
+                                </div>
+                                <div className="message w-full text-xs mx-2">
+                                  <div className="pb-1 /font-bold text-white pt-1">
+                                    {" "}
+                                    {notif.message}
+                                  </div>
+                                  <div className="date text-xs opacity-40">
+                                    {notif.date}
+                                  </div>
+                                </div>
+                                <div
+                                  className="actiom pt-3 h-full /w-full"
+                                  onClick={() =>
+                                    handleNotificationClick(notif.id)
+                                  }
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    className="w-4 h-4 text-white/50 hover:text-white/80"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                            </>
+                          ))}
+                        </ScrollArea>
+                      </div>
+                    </>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
@@ -321,13 +524,31 @@ export default function Nav() {
                 }`}
               >
                 <div className="content">
+                  <Link href="/dashboard/account" passHref>
+                    <div className="deposit flex items-center text-sm py-2 rounded-lg px-2 font-bold text-slate-800/ bg-slate-50/">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5 mr-2"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+
+                      <p>Profile</p>
+                    </div>
+                  </Link>
                   <Link href="/dashboard/deposits" passHref>
                     <div className="deposit flex items-center text-sm py-2 rounded-lg px-2 font-bold text-slate-800/ bg-slate-50/">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2"
+                        className="w-5 h-5 mr-2"
                       >
                         <path
                           fillRule="evenodd"
@@ -345,7 +566,7 @@ export default function Nav() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2"
+                        className="w-5 h-5 mr-2"
                       >
                         <path d="M1 4.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 2H3.25A2.25 2.25 0 001 4.25zM1 7.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 5H3.25A2.25 2.25 0 001 7.25zM7 8a1 1 0 011 1 2 2 0 104 0 1 1 0 011-1h3.75A2.25 2.25 0 0119 10.25v5.5A2.25 2.25 0 0116.75 18H3.25A2.25 2.25 0 011 15.75v-5.5A2.25 2.25 0 013.25 8H7z" />
                       </svg>
@@ -356,7 +577,7 @@ export default function Nav() {
                   <div
                     className={`logout flex items-center text-sm py-3 rounded-md text-red-600 ${
                       isDarkMode
-                        ? "bg-red-700/10 border border-red-600 font-bold"
+                        ? "bg-red-700/10 /border /border-red-600 font-bold"
                         : "bg-red-50"
                     } px-2 font-bold cursor-pointer`}
                     onClick={handleLogout}
@@ -365,16 +586,11 @@ export default function Nav() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-4 h-4 mr-2"
+                      className="w-5 h-5 mr-2"
                     >
                       <path
                         fillRule="evenodd"
-                        d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
-                        clipRule="evenodd"
-                      />
-                      <path
-                        fillRule="evenodd"
-                        d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114l-1.048-.943h9.546A.75.75 0 0019 10z"
+                        d="M10 2a.75.75 0 01.75.75v7.5a.75.75 0 01-1.5 0v-7.5A.75.75 0 0110 2zM5.404 4.343a.75.75 0 010 1.06 6.5 6.5 0 109.192 0 .75.75 0 111.06-1.06 8 8 0 11-11.313 0 .75.75 0 011.06 0z"
                         clipRule="evenodd"
                       />
                     </svg>

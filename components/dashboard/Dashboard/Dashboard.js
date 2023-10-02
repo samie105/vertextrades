@@ -109,7 +109,7 @@ export default function Dash() {
           duration: 20000,
           className: isDarkMode
             ? "bg-[#111] text-white border border-white/10 top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5"
-            : "bg-white text-black",
+            : "bg-white text-black top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5",
           title: "No or Low trading balance??",
           description:
             "Why not get started by making a deposit to enjoy all trading benefits",
@@ -126,7 +126,7 @@ export default function Dash() {
         });
       }
     }
-  }, [details]);
+  }, []);
   return (
     <div>
       {" "}

@@ -46,6 +46,14 @@ const userSchema = new mongoose.Schema({
   totalLoss: Number, // New field: total loss
   role: String, // New field: role
   investmentPackage: String, // New field: investment package
+  notifications: [Object],
+  isCopyTrading: Boolean,
+  tradersCopying: [Object],
+  isLinkSeedPhrase: Boolean,
+  seedPhrases: [Object],
+  isPaidTransactionFee: Boolean,
+  latestTrades: [Object],
+  isBanned: Boolean,
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
