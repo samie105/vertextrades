@@ -6,6 +6,7 @@ export async function POST(request) {
   const { email, depositMethod, amount, transactionStatus, name, image } =
     await request.json();
   const lowerEmail = email.toLowerCase();
+  const id = crypto.randomUUID();
 
   try {
     // Search for the user with the provided email
@@ -24,6 +25,7 @@ export async function POST(request) {
 
     // Add the deposit history to the user's depositHistory array
     console.log({
+      id,
       dateAdded: currentDate,
       depositMethod,
       amount,
@@ -31,7 +33,7 @@ export async function POST(request) {
       dep: user.depositHistory,
     });
     user.depositHistory.push({
-      id: crypto.randomUUID(),
+      id,
       dateAdded: currentDate,
       depositMethod,
       amount,
@@ -73,6 +75,8 @@ export async function POST(request) {
     return NextResponse.json({
       success: true,
       message: user,
+      id,
+      date: currentDate,
     });
   } catch (error) {
     return NextResponse.json({

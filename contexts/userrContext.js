@@ -12,6 +12,7 @@ export const UserDataProvider = ({ children }) => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(0);
   const [coinPrices, setCoinPrices] = useState({});
+
   let email = ""; // Initialize email
 
   if (typeof document !== "undefined") {
@@ -135,6 +136,41 @@ export const UserDataProvider = ({ children }) => {
     // return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
+  const setNotification = async (message, type, method) => {
+    try {
+      // Prepare the notification data
+      const newNotification = {
+        id: crypto.randomUUID(), // Generate a unique ID
+        message,
+        type,
+        method,
+        date: new Date().toISOString(), // Get the current date in ISO format
+      };
+
+      // Send the notification data to the backend
+      const response = await axios.post("/notifs/setNotifs/api", {
+        newNotification,
+        email,
+      }); // Replace with your actual backend endpoint
+
+      if (response.status === 200) {
+        // Notification sent successfully to the backend
+
+        // Now, update the frontend state (details.notifications) with the new notification
+        setDetails((prevDetails) => ({
+          ...prevDetails,
+          notifications: [...prevDetails.notifications, newNotification],
+          isReadNotification: false,
+        }));
+      } else {
+        // Handle any errors or display an error message to the user
+        console.error("Failed to send notification:", response.data);
+      }
+    } catch (error) {
+      // Handle network errors or other unexpected errors
+      console.error("Error sending notification:", error);
+    }
+  };
 
   return (
     <UserDataContext.Provider
@@ -150,6 +186,7 @@ export const UserDataProvider = ({ children }) => {
         email,
         defaultOpen,
         setDefaultOPen,
+        setNotification,
       }}
     >
       {children}

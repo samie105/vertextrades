@@ -31,7 +31,7 @@ import { useTheme } from "../../../contexts/themeContext";
 
 export default function DepwCrypto() {
   const [uploadedImageUrls, setUploadedImageUrls] = useState();
-  const { details } = useUserData();
+  const { details, setDetails, setNotification } = useUserData();
 
   const { selectedMethod, setSelectedMethod } = useUserData();
   const [amountInUSD, setAmountInUSD] = useState("");
@@ -113,6 +113,25 @@ export default function DepwCrypto() {
         name: details.name,
       });
       if (response.data.success) {
+        setDetails((prevDeets) => ({
+          ...prevDeets,
+          depositHistory: [
+            ...prevDeets.depositHistory,
+            {
+              id: response.data.id,
+              dateAdded: response.data.date,
+              depositMethod: selectedMethod + " Deposit",
+              amount: amountInUSD,
+              transactionStatus: "Pending",
+            },
+          ],
+        }));
+        setNotification(
+          `Deposit of $${amountInUSD} under review`,
+          "transaction",
+          "pending"
+        );
+
         console.log("done", uploadedImageUrls);
         //dosmothing
       }
