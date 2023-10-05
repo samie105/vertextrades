@@ -105,13 +105,12 @@ export default function Nav() {
   const handleNotificationClick = (id) => {
     isloading(true);
     // Send a DELETE request to the backend API to delete the notification
+    console.log("not deleted", email, id);
     axios
       .delete(`/notifs/deleteNotifs/api/${id}/${email}`)
       .then((response) => {
-        console.log("deleted", email, id);
         if (response.status === 200) {
-          // Notification deleted successfully in the database
-          // Now, you can update the frontend state to remove the notification
+          console.log("deleted", email, id);
 
           const updatedNotifications = notifications.filter(
             (notification) => notification.id !== id
@@ -129,7 +128,6 @@ export default function Nav() {
         console.error("Error deleting notification:", error);
         isloading(false);
       });
-    isloading(false);
   };
   useEffect(() => {
     const fetchCoinPrices = async () => {

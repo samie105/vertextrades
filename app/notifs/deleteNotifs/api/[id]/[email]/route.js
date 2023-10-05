@@ -18,27 +18,27 @@ export async function DELETE(request, { params }) {
 
     // Find the index of the notification with the given ID in the notifications array
     const notificationIndex = user.notifications.findIndex(
-      (notification) => notification.id === id
+      (notification) => notification.id === Number(id) // Convert id to a number
     );
 
-    if (notificationIndex === -1) {
-      return NextResponse.json(
-        { message: "Notification not found" },
-        { success: false },
-        { status: 400 }
-      );
+    if (notificationIndex !== -1) {
+      // Remove the notification from the array using splice
+      user.notifications.splice(notificationIndex, 1);
+      console.log("deleted the notif");
+    } else {
+      // Handle the case where the notification was not found
+      console.log("Notification not found");
     }
-
-    // Use $pull to remove the notification from the notifications array
-    user.notifications.pull({ id });
-    console.log("deleted the notif");
 
     // Save the updated user document
     await user.save();
 
-    return new NextResponse.json({ success: true, status: 201 }); // Return a 204 No Content response for success
+    return NextResponse.json({ success: true, status: 204 }); // Return a 204 No Content response for success
   } catch (error) {
     console.error("Error deleting notification:", error);
-    return new NextResponse.Error("Failed to delete notification");
+    return NextResponse.json({
+      message: "Failed to delete notification",
+      status: 200,
+    });
   }
 }
