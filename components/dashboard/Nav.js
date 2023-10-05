@@ -31,7 +31,7 @@ export default function Nav() {
   const router = useRouter();
   const { isDarkMode, baseColor, toggleTheme } = useTheme();
   const { coinPrices, setCoinPrices } = useUserData();
-  const [loading, isloading] = useState(true);
+  const [loading, isloading] = useState(false);
   const { details, email, setDetails } = useUserData();
   const deposits = [
     {
@@ -103,26 +103,33 @@ export default function Nav() {
     : [];
 
   const handleNotificationClick = (id) => {
+    isloading(true);
     // Send a DELETE request to the backend API to delete the notification
     axios
       .delete(`/notifs/deleteNotifs/api/${id}/${email}`)
       .then((response) => {
+        console.log("deleted", email, id);
         if (response.status === 200) {
           // Notification deleted successfully in the database
           // Now, you can update the frontend state to remove the notification
+
           const updatedNotifications = notifications.filter(
             (notification) => notification.id !== id
           );
           setNotifications(updatedNotifications);
+          isloading(false);
         } else {
           // Handle any errors or display an error message to the user
           console.error("Failed to delete notification:", response.data);
+          isloading(false);
         }
       })
       .catch((error) => {
         // Handle network errors or other unexpected errors
         console.error("Error deleting notification:", error);
+        isloading(false);
       });
+    isloading(false);
   };
   useEffect(() => {
     const fetchCoinPrices = async () => {
@@ -363,11 +370,13 @@ export default function Nav() {
                       </div>
                     </>
                   )}
-                  <div
-                    className={`loader-overlay absolute w-full h-full ${
-                      isDarkMode ? "bg-black" : "bg-white"
-                    } opacity-60 left-0 top-0 blur-2xl z-50`}
-                  ></div>
+                  {loading && (
+                    <div
+                      className={`loader-overlay absolute w-full h-full ${
+                        isDarkMode ? "bg-black" : "bg-white"
+                      } opacity-60 left-0 top-0 blur-2xl z-50`}
+                    ></div>
+                  )}
                   {notifications.length !== 0 && (
                     <>
                       <div>
