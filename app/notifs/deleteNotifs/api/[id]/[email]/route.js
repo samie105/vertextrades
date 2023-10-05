@@ -18,7 +18,7 @@ export async function DELETE(request, { params }) {
 
     // Find the index of the notification with the given ID in the notifications array
     const notificationIndex = user.notifications.findIndex(
-      (notification) => notification.id === Number(id) // Convert id to a number
+      (notification) => notification.id === String(id) // Convert id to a string
     );
 
     if (notificationIndex !== -1) {

@@ -5,7 +5,6 @@ import History from "../../../components/dashboard/history/History";
 export default function page() {
   return (
     <div>
-      <Livetrade />
       <History />
     </div>
   );

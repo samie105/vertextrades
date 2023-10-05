@@ -96,7 +96,7 @@ export default function Nav() {
 
   // Map over notifications and format the date as relative time for each
   const formattedNotifications = notifications
-    ? notifications.map((notification) => ({
+    ? notifications.reverse().map((notification) => ({
         ...notification,
         date: formatRelativeTime(notification.date), // Format as relative time
       }))
@@ -105,13 +105,10 @@ export default function Nav() {
   const handleNotificationClick = (id) => {
     isloading(true);
     // Send a DELETE request to the backend API to delete the notification
-    console.log("not deleted", email, id);
     axios
       .delete(`/notifs/deleteNotifs/api/${id}/${email}`)
       .then((response) => {
         if (response.status === 200) {
-          console.log("deleted", email, id);
-
           const updatedNotifications = notifications.filter(
             (notification) => notification.id !== id
           );
@@ -326,7 +323,7 @@ export default function Nav() {
                 </div>
               </PopoverTrigger>
               <PopoverContent
-                className={`w-[350px] mx-3 pb-0 pt-4 px-1 relative overflow-hidden ${
+                className={`w-[350px] md:w-[400px] mx-3 pb-0 pt-4 px-1 relative overflow-hidden ${
                   isDarkMode
                     ? "bg-[#222] border border-white/5 text-gray-200"
                     : ""
@@ -392,11 +389,11 @@ export default function Nav() {
                                         ? isDarkMode
                                           ? "bg-green-500/10 text-green-500"
                                           : "bg-green-500/20 text-green-500"
-                                        : notif.type === "failure"
+                                        : notif.method === "failure"
                                         ? isDarkMode
                                           ? "bg-red-500/10 text-red-500"
                                           : "bg-red-500/20 text-red-500"
-                                        : notif.type === "pending"
+                                        : notif.method === "pending"
                                         ? isDarkMode
                                           ? "bg-orange-500/10 text-orange-500"
                                           : "bg-orange-500/20 text-orange-500"
@@ -405,7 +402,7 @@ export default function Nav() {
                                         : "bg-[#33333320] text-white"
                                     } rounded-full p-3`}
                                   >
-                                    {notif.method === "trade" ? (
+                                    {notif.type === "trade" ? (
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20"
@@ -418,7 +415,7 @@ export default function Nav() {
                                           clipRule="evenodd"
                                         />
                                       </svg>
-                                    ) : notif.method === "transaction" ? (
+                                    ) : notif.type === "transaction" ? (
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20"
@@ -431,9 +428,9 @@ export default function Nav() {
                                           clipRule="evenodd"
                                         />
                                       </svg>
-                                    ) : notif.method === "intro" ? (
+                                    ) : notif.type === "intro" ? (
                                       <>🤝</>
-                                    ) : notif.method === "verification" ? (
+                                    ) : notif.type === "verification" ? (
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20"
@@ -463,15 +460,15 @@ export default function Nav() {
                                   </div>
                                   <div
                                     className={`linedwon   ${
-                                      notif.type === "success"
+                                      notif.method === "success"
                                         ? isDarkMode
                                           ? "bg-green-500/10 text-green-500"
                                           : "bg-green-500/20 text-green-500"
-                                        : notif.type === "failure"
+                                        : notif.method === "failure"
                                         ? isDarkMode
                                           ? "bg-red-500/10 text-red-500"
                                           : "bg-red-500/20 text-red-500"
-                                        : notif.type === "pending"
+                                        : notif.method === "pending"
                                         ? isDarkMode
                                           ? "bg-orange-500/10 text-orange-500"
                                           : "bg-orange-500/20 text-orange-500"

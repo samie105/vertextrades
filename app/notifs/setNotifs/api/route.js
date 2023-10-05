@@ -20,7 +20,7 @@ export async function POST(request) {
     user.notifications.push(newNotification);
 
     // Set isReadNotification to false for the added notification
-    newNotification.isReadNotification = false;
+    user.isReadNotifications = false;
 
     // Save the updated user document
     await user.save();

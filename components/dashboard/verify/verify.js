@@ -25,6 +25,7 @@ export default function Verify() {
   const [isUploadingBack, setIsUploadingBack] = useState(false);
   const [frontIDFile, setFrontIDFile] = useState(null);
   const [backIDFile, setBackIDFile] = useState(null);
+  const { setNotification } = useUserData();
 
   const [frontIDSecureUrl, setFrontIDSecureUrl] = useState(null); // Add this line
   const [backIDSecureUrl, setBackIDSecureUrl] = useState(null); // Add this line  const [formErrors, setFormErrors] = useState({});
@@ -141,11 +142,14 @@ export default function Verify() {
         });
 
         if (response.status === 200) {
-          toast.success(
-            "Verification Submitted. We're reviewing your verification details, we'll give you feedback soon",
-            { duration: 4000 }
+          toast.success("Verification Application Successful", {
+            duration: 4000,
+          });
+          setNotification(
+            `We have recieved your verification details, we're on desk right away`,
+            "verification",
+            "pending"
           );
-          console.log("Form submitted successfully to backend.");
           isloading(false);
           setFormData({
             firstName: "",

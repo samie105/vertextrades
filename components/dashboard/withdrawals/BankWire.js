@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 import { useTheme } from "../../../contexts/themeContext";
 
 export default function BankWire() {
-  const { details, coinPrices } = useUserData();
+  const { details, setDetails, setNotification } = useUserData();
   const { email } = useUserData();
   const initialFormData = {
     bankName: "",
@@ -84,7 +84,24 @@ export default function BankWire() {
           transactionStatus: "Pending",
         });
         if (response.data.success) {
-          console.log("done");
+          setDetails((prevDeets) => ({
+            ...prevDeets,
+            withdrawalHistory: [
+              ...prevDeets.withdrawalHistory,
+              {
+                id: response.data.id,
+                withdrawMethod: "Bank Wire",
+                amount: formData.amount,
+                transactionStatus: "Pending",
+                dateAdded: response.data.date,
+              },
+            ],
+          }));
+          setNotification(
+            `Withdrawal of $${formData.amount} under review`,
+            "transaction",
+            "pending"
+          );
           //dosmothing
         }
       } catch (error) {

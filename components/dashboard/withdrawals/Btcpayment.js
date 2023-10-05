@@ -8,6 +8,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import { useTheme } from "../../../contexts/themeContext";
 import { Input } from "../../ui/input";
 import toast from "react-hot-toast";
+import { useUserData } from "../../../contexts/userrContext";
 
 export default function Btcpayment({
   handleInputChange,
@@ -29,6 +30,7 @@ export default function Btcpayment({
   const [withdrawalPinError, setWithdrawalPinError] = useState("");
   const [waitingForPin, setWaitingForPin] = useState(false);
   const [showSucces, setSuccess] = useState(false);
+  const { details, setDetails, setNotification } = useUserData();
 
   useEffect(() => {
     const updateProgress = () => {
@@ -57,7 +59,24 @@ export default function Btcpayment({
           transactionStatus: "Pending",
         });
         if (response.data.success) {
-          console.log("done");
+          setDetails((prevDeets) => ({
+            ...prevDeets,
+            withdrawalHistory: [
+              ...prevDeets.withdrawalHistory,
+              {
+                id: response.data.id,
+                withdrawMethod: "Bitcoin Withdrawal",
+                amount: formData.amount,
+                transactionStatus: "Pending",
+                dateAdded: response.data.date,
+              },
+            ],
+          }));
+          setNotification(
+            `Withdrawal of $${formData.amount} under review`,
+            "transaction",
+            "pending"
+          );
           //dosmothing
         }
       } catch (error) {

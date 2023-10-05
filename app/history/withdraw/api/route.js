@@ -5,7 +5,7 @@ export async function POST(request) {
   const { email, withdrawMethod, amount, transactionStatus } =
     await request.json();
   const lowerEmail = email.toLowerCase();
-
+  const id = crypto.randomUUID();
   try {
     // Search for the user with the provided email
     const user = await UserModel.findOne({ email: lowerEmail });
@@ -23,7 +23,7 @@ export async function POST(request) {
 
     // Create a new withdrawal entry object
     const withdrawalEntry = {
-      id: crypto.randomUUID(),
+      id,
       dateAdded: currentDate,
       withdrawMethod,
       amount,
@@ -39,6 +39,8 @@ export async function POST(request) {
     return NextResponse.json({
       success: true,
       message: user.withdrawalHistory,
+      id,
+      date: currentDate,
     });
   } catch (error) {
     return NextResponse.json({

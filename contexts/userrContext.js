@@ -160,7 +160,7 @@ export const UserDataProvider = ({ children }) => {
         setDetails((prevDetails) => ({
           ...prevDetails,
           notifications: [...prevDetails.notifications, newNotification],
-          isReadNotification: false,
+          isReadNotifications: false,
         }));
       } else {
         // Handle any errors or display an error message to the user

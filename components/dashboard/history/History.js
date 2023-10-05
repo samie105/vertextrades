@@ -54,7 +54,7 @@ export default function History() {
           />
         </div>
       ) : (
-        <div className="p-4 overflow-x-scroll max-w-[100vw]">
+        <div className="p-4 overflow-x-hidden max-w-[100vw] mt-10">
           <Select
             defaultValue="deposit"
             onValueChange={(value) => setSelectedHistory(value)}
@@ -62,7 +62,7 @@ export default function History() {
           >
             <SelectTrigger
               className={`font-bold ${
-                isDarkMode ? "bg-[#111] text-white border-0" : ""
+                isDarkMode ? "bg-[#222] text-white border-0" : ""
               }`}
             >
               <SelectValue>
@@ -91,13 +91,15 @@ export default function History() {
             }`}
           >
             {" "}
-            <Table>
+            <Table className="p-0">
               <TableCaption>
                 {selectedHistory.charAt(0).toUpperCase() +
                   selectedHistory.slice(1)}{" "}
                 History
               </TableCaption>
-              <TableHeader>
+              <TableHeader
+                className={`  ${isDarkMode ? "border-b border-white/10" : ""}`}
+              >
                 <TableRow
                   className={`border-none ${
                     isDarkMode ? "hover:bg-transparent" : ""
@@ -141,7 +143,7 @@ export default function History() {
                           isDarkMode ? "text-white/80" : "text-black/80"
                         } font-bold`}
                       >
-                        Date
+                        Date Added
                       </TableHead>
                       <TableHead
                         className={` ${

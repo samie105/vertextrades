@@ -105,7 +105,7 @@ export const lists = [
     linkPath: "/dashboard/investments",
   },
   {
-    nav: "Purchase Bitcoin",
+    nav: "Purchase Crypto",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -283,7 +283,7 @@ export const navList = [
     linkPath: "/dashboard/investments",
   },
   {
-    nav: "Purchase Bitcoin",
+    nav: "Purchase Crypto",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
