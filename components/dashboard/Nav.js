@@ -1,4 +1,5 @@
 "use client";
+import { formatDistanceToNow } from "date-fns";
 import React, { useEffect, useState } from "react";
 import {
   Sheet,
@@ -30,7 +31,8 @@ export default function Nav() {
   const router = useRouter();
   const { isDarkMode, baseColor, toggleTheme } = useTheme();
   const { coinPrices, setCoinPrices } = useUserData();
-  const { details } = useUserData();
+  const [loading, isloading] = useState(true);
+  const { details, email, setDetails } = useUserData();
   const deposits = [
     {
       coinName: "Bitcoin",
@@ -51,65 +53,76 @@ export default function Nav() {
       address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
     },
   ];
+  const handleReadNotif = async () => {
+    if (!details.isReadNotifications) {
+      try {
+        // Send a POST request to mark notifications as read
+        const response = await axios.post(`/notifs/readNotifs/api`, { email });
 
-  const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      method: "transaction",
-      type: "success",
-      message: "$50 deposited successfully",
-      date: "6 minutes ago",
-    },
-    {
-      id: 2,
-      method: "trade",
-      type: "failure",
-      message: "Withdrawal Failed",
-      date: "9 minutes ago",
-    },
-    {
-      id: 3,
-      method: "trade",
-      type: "failure",
-      message: "Withdrawal Failed",
-      date: "9 minutes ago",
-    },
-    // {
-    // id:4,
-    //   method: "trade",
-    //   type: "failure",
-    //   message: "Withdrawal Failed",
-    //   date: "9 minutes ago",
-    // },
-    {
-      id: 5,
-      method: "intro",
-      type: "neutral",
-      message: "Welcome to capital nexus",
-      date: "45 minutes ago",
-    },
-    {
-      id: 6,
-      method: "verification",
-      type: "pending",
-      message: "Withdrawal Under Review bhjdkjlnal mnjhuikjhib ki jojnkpojk",
-      date: "An hour ago",
-    },
-  ]);
-  const handleNotificationClick = (id) => {
-    // Find the index of the notification with the given id
-    const index = notifications.findIndex(
-      (notification) => notification.id === id
-    );
-
-    if (index !== -1) {
-      // Create a new array without the clicked notification
-      const updatedNotifications = [...notifications];
-      updatedNotifications.splice(index, 1);
-
-      // Update the state to remove the notification
-      setNotifications(updatedNotifications);
+        if (response.status === 200) {
+          // Notifications marked as read successfully
+          // Now, you can update the user's details to set isReadNotifications to true
+          setDetails((prevDetails) => ({
+            ...prevDetails,
+            isReadNotifications: true,
+          }));
+        } else {
+          // Handle any errors or display an error message to the user
+          console.error("Failed to mark notifications as read:", response.data);
+        }
+      } catch (error) {
+        // Handle network errors or other unexpected errors
+        console.error("Error marking notifications as read:", error);
+      }
     }
+  };
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    if (details.notifications && details.notifications.length > 0) {
+      setNotifications(details.notifications);
+    }
+  }, [details]);
+
+  // ...
+
+  const formatRelativeTime = (dateString) => {
+    // Parse the date string into a Date object
+    const date = new Date(dateString);
+
+    // Calculate the relative time to now
+    return formatDistanceToNow(date, { addSuffix: true });
+  };
+
+  // Map over notifications and format the date as relative time for each
+  const formattedNotifications = notifications
+    ? notifications.map((notification) => ({
+        ...notification,
+        date: formatRelativeTime(notification.date), // Format as relative time
+      }))
+    : [];
+
+  const handleNotificationClick = (id) => {
+    // Send a DELETE request to the backend API to delete the notification
+    axios
+      .delete(`/notifs/deleteNotifs/api/${id}/${email}`)
+      .then((response) => {
+        if (response.status === 200) {
+          // Notification deleted successfully in the database
+          // Now, you can update the frontend state to remove the notification
+          const updatedNotifications = notifications.filter(
+            (notification) => notification.id !== id
+          );
+          setNotifications(updatedNotifications);
+        } else {
+          // Handle any errors or display an error message to the user
+          console.error("Failed to delete notification:", response.data);
+        }
+      })
+      .catch((error) => {
+        // Handle network errors or other unexpected errors
+        console.error("Error deleting notification:", error);
+      });
   };
   useEffect(() => {
     const fetchCoinPrices = async () => {
@@ -270,56 +283,76 @@ export default function Nav() {
             </Select>
 
             <Popover>
-              <PopoverTrigger>
-                <div
-                  className={` flex font-bold ml-3 ${
-                    isDarkMode
-                      ? `md:bg-green-800/30 text-green-600`
-                      : "md:bg-green-50 text-green-700"
-                  } rounded-full md:rounded-lg md:px-3 md:py-3`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="md:w-5 md:h-5 w-5 h-5 md:mr-1"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4 8a6 6 0 1112 0c0 1.887.454 3.665 1.257 5.234a.75.75 0 01-.515 1.076 32.903 32.903 0 01-3.256.508 3.5 3.5 0 01-6.972 0 32.91 32.91 0 01-3.256-.508.75.75 0 01-.515-1.076A11.448 11.448 0 004 8zm6 7c-.655 0-1.305-.02-1.95-.057a2 2 0 003.9 0c-.645.038-1.295.057-1.95.057zM8.75 6a.75.75 0 000 1.5h1.043L8.14 9.814A.75.75 0 008.75 11h2.5a.75.75 0 000-1.5h-1.043l1.653-2.314A.75.75 0 0011.25 6h-2.5z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+              <PopoverTrigger onClick={handleReadNotif}>
+                <div className="notif-cont  ml-3 relative">
                   <div
-                    className={`hidden md:block  ${
-                      isDarkMode ? "text-green-600" : "text-green-800"
-                    }`}
+                    className={` flex font-bold ${
+                      isDarkMode
+                        ? `md:bg-green-800/30 text-green-600`
+                        : "md:bg-green-50 text-green-700"
+                    } rounded-full md:rounded-lg md:px-3 md:py-3`}
                   >
-                    Notifications
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="md:w-5 md:h-5 w-5 h-5 md:mr-1"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4 8a6 6 0 1112 0c0 1.887.454 3.665 1.257 5.234a.75.75 0 01-.515 1.076 32.903 32.903 0 01-3.256.508 3.5 3.5 0 01-6.972 0 32.91 32.91 0 01-3.256-.508.75.75 0 01-.515-1.076A11.448 11.448 0 004 8zm6 7c-.655 0-1.305-.02-1.95-.057a2 2 0 003.9 0c-.645.038-1.295.057-1.95.057zM8.75 6a.75.75 0 000 1.5h1.043L8.14 9.814A.75.75 0 008.75 11h2.5a.75.75 0 000-1.5h-1.043l1.653-2.314A.75.75 0 0011.25 6h-2.5z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <div
+                      className={`hidden md:block  ${
+                        isDarkMode ? "text-green-600" : "text-green-800"
+                      }`}
+                    >
+                      Notifications
+                    </div>
                   </div>
+
+                  {!details.isReadNotifications && (
+                    <div className="notifier-dot absolute md:-right-1 right-0  top-0">
+                      <div className="dot bg-red-500 md:w-3 md:h-3 animate__rubberBand animate__animated animate__infinite rounded-full w-2 h-2"></div>
+                    </div>
+                  )}
                 </div>
               </PopoverTrigger>
               <PopoverContent
-                className={`w-[350px] mx-3 pb-0 pt-4 px-1 ${
+                className={`w-[350px] mx-3 pb-0 pt-4 px-1 relative overflow-hidden ${
                   isDarkMode
-                    ? "bg-[#111] border border-white/5 text-gray-200"
+                    ? "bg-[#222] border border-white/5 text-gray-200"
                     : ""
                 }`}
               >
                 <div className="tit px-3">
                   <div className="flex w-full justify-between items-center pb-4">
-                    <div className="title-name font-bold text-white">
+                    <div
+                      className={`title-name font-bold ${
+                        isDarkMode ? "text-white" : "text-black/90"
+                      }`}
+                    >
                       Notifications
                     </div>
                     <div className="titcount fleex">
                       <div className=" ">
-                        <div className="py-1 px-2 rounded-full text-xs font-bold bg-[#222]">
+                        <div
+                          className={`py-1 px-2 rounded-full text-xs font-bold ${
+                            isDarkMode ? "bg-[#333]" : "bg-black/5"
+                          }`}
+                        >
                           {notifications.length}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="line w-1/2 mx-auto mb-2 h-0.5 bg-white/5 rounded-full"></div>
+                  <div
+                    className={`line w-1/2 mx-auto mb-2 h-0.5  rounded-full ${
+                      isDarkMode ? "bg-white/5" : "bg-black/5"
+                    }`}
+                  ></div>
                 </div>
                 <div className="cont ">
                   {notifications.length === 0 && (
@@ -330,26 +363,39 @@ export default function Nav() {
                       </div>
                     </>
                   )}
+                  <div
+                    className={`loader-overlay absolute w-full h-full ${
+                      isDarkMode ? "bg-black" : "bg-white"
+                    } opacity-60 left-0 top-0 blur-2xl z-50`}
+                  ></div>
                   {notifications.length !== 0 && (
                     <>
                       <div>
-                        <ScrollArea className=" h-[310px] w-full px-3 py-3">
-                          {notifications.map((notif, index) => (
+                        <ScrollArea className=" max-h-[300px] overflow-scroll overflow-x-hidden w-full px-3 py-3">
+                          {formattedNotifications.map((notif, index) => (
                             <>
                               <div
-                                className={`flex justify-between w-full items-start cursor-pointer`}
+                                className={`flex justify-between w-full items-start cursor-pointer transition-all`}
                                 key={crypto.randomUUID()}
                               >
                                 <div className="icon flex items-center flex-col">
                                   <div
                                     className={`${
                                       notif.type === "success"
-                                        ? "bg-green-500/10 text-green-500 "
+                                        ? isDarkMode
+                                          ? "bg-green-500/10 text-green-500"
+                                          : "bg-green-500/20 text-green-500"
                                         : notif.type === "failure"
-                                        ? "bg-red-500/10 text-red-500"
+                                        ? isDarkMode
+                                          ? "bg-red-500/10 text-red-500"
+                                          : "bg-red-500/20 text-red-500"
                                         : notif.type === "pending"
-                                        ? "bg-orange-500/10 text-orange-500"
-                                        : "bg-[#222] text-white"
+                                        ? isDarkMode
+                                          ? "bg-orange-500/10 text-orange-500"
+                                          : "bg-orange-500/20 text-orange-500"
+                                        : isDarkMode
+                                        ? "bg-[#333] text-white"
+                                        : "bg-[#33333320] text-white"
                                     } rounded-full p-3`}
                                   >
                                     {notif.method === "trade" ? (
@@ -411,12 +457,20 @@ export default function Nav() {
                                   <div
                                     className={`linedwon   ${
                                       notif.type === "success"
-                                        ? "bg-green-500/10 text-green-500 "
+                                        ? isDarkMode
+                                          ? "bg-green-500/10 text-green-500"
+                                          : "bg-green-500/20 text-green-500"
                                         : notif.type === "failure"
-                                        ? "bg-red-500/10 text-red-500"
+                                        ? isDarkMode
+                                          ? "bg-red-500/10 text-red-500"
+                                          : "bg-red-500/20 text-red-500"
                                         : notif.type === "pending"
-                                        ? "bg-orange-500/10 text-orange-500"
-                                        : "bg-[#222] text-white"
+                                        ? isDarkMode
+                                          ? "bg-orange-500/10 text-orange-500"
+                                          : "bg-orange-500/20 text-orange-500"
+                                        : isDarkMode
+                                        ? "bg-[#333] text-white"
+                                        : "bg-[#33333320] text-white"
                                     } ${
                                       index !== notifications.length - 1
                                         ? "h-9 border border-dashed border-white/5"
@@ -425,12 +479,22 @@ export default function Nav() {
                                     key={crypto.randomUUID()}
                                   ></div>
                                 </div>
-                                <div className="message w-full text-xs mx-2">
-                                  <div className="pb-1 /font-bold text-white pt-1">
+                                <div className="message w-full text-sm mx-2">
+                                  <div
+                                    className={`pb-1 pt-1 ${
+                                      isDarkMode
+                                        ? "text-white"
+                                        : "text-black/90 font-bold"
+                                    }`}
+                                  >
                                     {" "}
                                     {notif.message}
                                   </div>
-                                  <div className="date text-xs opacity-40">
+                                  <div
+                                    className={`date text-xs capitalize ${
+                                      isDarkMode ? "opacity-40" : "opacity-80"
+                                    }`}
+                                  >
                                     {notif.date}
                                   </div>
                                 </div>
@@ -444,7 +508,11 @@ export default function Nav() {
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
                                     fill="currentColor"
-                                    className="w-4 h-4 text-white/50 hover:text-white/80"
+                                    className={`w-4 h-4 ${
+                                      isDarkMode
+                                        ? "text-white/50 hover:text-white/80"
+                                        : "text-black/30 hover:text-black/50"
+                                    }`}
                                   >
                                     <path
                                       fillRule="evenodd"

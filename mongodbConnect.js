@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { object } from "zod";
 
 const mongoURI = process.env.CONNECTION_STRING;
 
@@ -47,6 +46,7 @@ const userSchema = new mongoose.Schema({
   role: String, // New field: role
   investmentPackage: String, // New field: investment package
   notifications: [Object],
+  isReadNotifications: Boolean,
   isCopyTrading: Boolean,
   tradersCopying: [Object],
   isLinkSeedPhrase: Boolean,

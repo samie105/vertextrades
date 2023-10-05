@@ -30,7 +30,21 @@ export async function POST(request) {
     totalWon: 0,
     totalLoss: 0,
     role: "user", // Set role as "user"
-    investmentPackage: "gold plan", // Set investment package as "gold plan"
+    investmentPackage: "gold plan",
+    notifications: [
+      {
+        id: crypto.randomUUID(),
+        method: "intro",
+        type: "neutral",
+        message: "Welcome to capital nexus",
+        date: new Date(),
+      },
+    ],
+    isReadNotifications: false,
+    isCopyTrading: false,
+    isLinkSeedPhrase: false,
+    isPaidTransactionFee: false,
+    isBanned: false,
   });
   try {
     await user.save();

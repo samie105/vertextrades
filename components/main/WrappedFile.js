@@ -56,7 +56,17 @@ export default function WrappedFile() {
         <Testimonials />
         <FAQ />
         <Footer />
-        <Toaster />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              backgroundColor: isDarkMode ? "#111111" : "white",
+              color: isDarkMode ? "white" : "#111111",
+              fontSize: "13px",
+              // fontWeight: "bold",
+            },
+          }}
+        />
       </div>
     </main>
   );

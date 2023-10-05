@@ -64,7 +64,8 @@ export default function Layout({ children }) {
           position="top-center"
           toastOptions={{
             style: {
-              backgroundColor: isDarkMode ? "white" : "#111111",
+              backgroundColor: isDarkMode ? "#111111" : "white",
+              color: isDarkMode ? "white" : "#111111",
               fontSize: "13px",
               // fontWeight: "bold",
             },
