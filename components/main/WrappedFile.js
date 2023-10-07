@@ -28,7 +28,7 @@ export default function WrappedFile() {
         isDarkMode ? baseColor : ""
       }`}
     >
-      <GoogleTranslate />
+      <GoogleTranslate isDarkMode={isDarkMode} />
       <div className="z-50 w-full">
         <LoadingScreen />
       </div>

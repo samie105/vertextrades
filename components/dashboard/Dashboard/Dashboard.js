@@ -152,7 +152,7 @@ export default function Dash() {
               } ${details.isVerified ? "bg-green-500/10" : "bg-red-500/10"}`}
             >
               {details.isVerified ? (
-                <div className="flex items-center text-sm">
+                <div className="flex items-center text-xs md:text-sm">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -171,7 +171,7 @@ export default function Dash() {
                 <Link
                   href="/dashboard/verify"
                   passHref
-                  className="flex items-center "
+                  className="flex items-center text-xs md:text-sm"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +186,7 @@ export default function Dash() {
                     />
                   </svg>
 
-                  <p>You're not verified</p>
+                  <p className="pr-1">You're not verified</p>
                 </Link>
               )}
             </div>

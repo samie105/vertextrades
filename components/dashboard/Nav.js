@@ -596,7 +596,7 @@ export default function Nav() {
                 {/* <div className="header-title py-4 px-4 font-bold">
                   <h1 className="bgname text-lg">Menus</h1>
                 </div> */}
-                <div className="content1 grid grid-cols-3 gap-y-2 py-3 pt-5 gap-x-3 px-3">
+                <div className="content1 grid grid-cols-3 gap-y-4 py-3 pt-5 gap-x-3 px-3">
                   <Link href="/dashboard/account" passHref>
                     <div
                       className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3  ${

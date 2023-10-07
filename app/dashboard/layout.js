@@ -11,6 +11,7 @@ import { useIsOnline } from "react-use-is-online";
 import toast, { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion as m } from "framer-motion";
+import GoogleTranslate from "../../components/Translator/GoogleTranslator";
 
 export default function Layout({ children }) {
   const pathname = usePathname();
@@ -80,6 +81,7 @@ export default function Layout({ children }) {
         <div className="fixed bottom-0 left-0 w-full text-white z-30">
           <Footer />
         </div>
+        <GoogleTranslate isDarkMode={isDarkMode} />
         <div className="content-container relative md:flex pt-16 w-full">
           <div className="side-bar hidden md:block /overflow-scroll">
             <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
