@@ -15,6 +15,7 @@ import MT from "./MetaTrader/MT";
 import CT from "./CopyTrading/CT";
 import Stock from "./Stocks/Stocks";
 import Navbar from "./navbars/Navbar";
+import GoogleTranslate from "../Translator/GoogleTranslator";
 import LoadingScreen from "./LoadingScreen";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider, useTheme } from "../../contexts/themeContext";
@@ -27,6 +28,7 @@ export default function WrappedFile() {
         isDarkMode ? baseColor : ""
       }`}
     >
+      <GoogleTranslate />
       <div className="z-50 w-full">
         <LoadingScreen />
       </div>
@@ -38,7 +40,7 @@ export default function WrappedFile() {
           <Slider />
         </div>
       </div>
-      <div></div>
+
       <div className=" w-full relative overflow-hidden">
         <section className="relative w-full h-auto">
           <TradingView />

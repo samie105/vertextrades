@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
@@ -136,7 +137,61 @@ export default function Dash() {
           isDarkMode ? `${baseColor}` : ""
         } max-w-[100vw]`}
       >
-        {/* <div className="dash-header font-bold text-xl mt-3">Dashboard</div> */}
+        {details !== 0 && (
+          <div className="flex items-center gap-x-2">
+            <div
+              className={`dash-header font-bold text-sm  mt-3 capitalize p-2 rounded-md ${
+                isDarkMode ? "text-white bg-white/5" : "text-black bg-black/5"
+              }`}
+            >
+              👋 hey {details.name}
+            </div>
+            <div
+              className={`dash-header font-bold  mt-3 capitalize p-2 rounded-md ${
+                isDarkMode ? "text-white" : "text-black"
+              } ${details.isVerified ? "bg-green-500/10" : "bg-red-500/10"}`}
+            >
+              {details.isVerified ? (
+                <div className="flex items-center text-sm">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-5 h-5 text-green-600 mr-1"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p>You're verified</p>
+                </div>
+              ) : (
+                <Link
+                  href="/dashboard/verify"
+                  passHref
+                  className="flex items-center "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-5 h-5 text-red-600 mr-1"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+
+                  <p>You're not verified</p>
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
         <div className="account-boards w-full my-3 text-sm">
           {details === 0 ? (
             <div className="w-full px-3">
@@ -150,7 +205,7 @@ export default function Dash() {
           ) : (
             <div
               className={` sticky rounded-lg px-2 py-4  /shadow-[0px_0px_17px_3px_#00000010] ${
-                isDarkMode ? "bg-[#111] text-white" : "border"
+                isDarkMode ? "bg-[#111] text-white" : "bg-gray-400/10 border"
               }`}
             >
               <div className="card-info shado-md flex items-center justify-between">

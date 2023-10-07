@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
+import GoogleTranslate from "../components/Translator/GoogleTranslator";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "../contexts/themeContext";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
             src="/plugins/jquery.mobile.customized.min.js"
             strategy="beforeInteractive"
           />
+
           {children}
         </body>
       </ThemeProvider>
