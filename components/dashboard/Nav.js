@@ -324,9 +324,7 @@ export default function Nav() {
               </PopoverTrigger>
               <PopoverContent
                 className={`w-[350px] md:w-[400px] mx-3 pb-0 pt-4 px-1 relative overflow-hidden ${
-                  isDarkMode
-                    ? "bg-[#222] border border-white/5 text-gray-200"
-                    : ""
+                  isDarkMode ? "bg-[#222] border-white/5 text-gray-200" : ""
                 }`}
               >
                 <div className="tit px-3">
@@ -591,84 +589,190 @@ export default function Nav() {
                 </div>
               </PopoverTrigger>
               <PopoverContent
-                className={`w-[250px] mx-3 ${
-                  isDarkMode ? "bg-[#111] text-gray-200 border-0" : ""
+                className={`w-[300px] mx-3  p-1   ${
+                  isDarkMode ? "bg-[#111] text-white border border-white/5" : ""
                 }`}
               >
-                <div className="content">
+                {/* <div className="header-title py-4 px-4 font-bold">
+                  <h1 className="bgname text-lg">Menus</h1>
+                </div> */}
+                <div className="content1 grid grid-cols-3 gap-y-2 py-3 pt-5 gap-x-3 px-3">
                   <Link href="/dashboard/account" passHref>
-                    <div className="deposit flex items-center text-sm py-2 rounded-lg px-2 font-bold text-slate-800/ bg-slate-50/">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-5 h-5 mr-2"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                    <div
+                      className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3  ${
+                        isDarkMode
+                          ? "bg-white/5 hite/5 hover:bg-white/10"
+                          : "bg-gray-300/20 text-black/80 hover:bg-black/5"
+                      }`}
+                    >
+                      <Image
+                        alt=""
+                        src="/assets/profile.png"
+                        className="w-8 h-8"
+                        width={1000}
+                        height={1000}
+                      />
 
-                      <p>Profile</p>
+                      <p className="pt-2">Profile</p>
                     </div>
                   </Link>
                   <Link href="/dashboard/deposits" passHref>
-                    <div className="deposit flex items-center text-sm py-2 rounded-lg px-2 font-bold text-slate-800/ bg-slate-50/">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-5 h-5 mr-2"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M1 4a1 1 0 011-1h16a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4zm12 4a3 3 0 11-6 0 3 3 0 016 0zM4 9a1 1 0 100-2 1 1 0 000 2zm13-1a1 1 0 11-2 0 1 1 0 012 0zM1.75 14.5a.75.75 0 000 1.5c4.417 0 8.693.603 12.749 1.73 1.111.309 2.251-.512 2.251-1.696v-.784a.75.75 0 00-1.5 0v.784a.272.272 0 01-.35.25A49.043 49.043 0 001.75 14.5z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-
-                      <p>Deposit</p>
+                    <div
+                      className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3  ${
+                        isDarkMode
+                          ? "bg-white/5 hite/5 hover:bg-white/10"
+                          : "bg-gray-300/20 text-black/80 hover:bg-black/5"
+                      }`}
+                    >
+                      <Image
+                        alt=""
+                        src="/assets/wallet.png"
+                        className="w-8 h-8"
+                        width={1000}
+                        height={1000}
+                      />
+                      <p className="pt-2">Deposit</p>
                     </div>
                   </Link>
                   <Link href="/dashboard/withdrawals" passHref>
-                    <div className="withdrawals flex items-center text-sm py-2 rounded-lg px-2 font-bold text-slate-800/ bg-slate-50/ my-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-5 h-5 mr-2"
-                      >
-                        <path d="M1 4.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 2H3.25A2.25 2.25 0 001 4.25zM1 7.25a3.733 3.733 0 012.25-.75h13.5c.844 0 1.623.279 2.25.75A2.25 2.25 0 0016.75 5H3.25A2.25 2.25 0 001 7.25zM7 8a1 1 0 011 1 2 2 0 104 0 1 1 0 011-1h3.75A2.25 2.25 0 0119 10.25v5.5A2.25 2.25 0 0116.75 18H3.25A2.25 2.25 0 011 15.75v-5.5A2.25 2.25 0 013.25 8H7z" />
-                      </svg>
-                      <p>Withdraw</p>
+                    <div
+                      className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3  ${
+                        isDarkMode
+                          ? "bg-white/5 hite/5 hover:bg-white/10"
+                          : "bg-gray-300/20 text-black/80 hover:bg-black/5"
+                      }`}
+                    >
+                      <Image
+                        alt=""
+                        src="/assets/withdraw.png"
+                        className="w-8 h-8"
+                        width={1000}
+                        height={1000}
+                      />
+                      <p className="pt-2">Withdraw</p>
                     </div>
                   </Link>
-
-                  <div
-                    className={`logout flex items-center text-sm py-3 rounded-md text-red-600 ${
-                      isDarkMode
-                        ? "bg-red-700/10 /border /border-red-600 font-bold"
-                        : "bg-red-50"
-                    } px-2 font-bold cursor-pointer`}
-                    onClick={handleLogout}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="w-5 h-5 mr-2"
+                  <Link href="/dashboard/livetrades" passHref>
+                    <div
+                      className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3 relative ${
+                        isDarkMode
+                          ? "bg-white/5 hite/5 hover:bg-white/10"
+                          : "bg-gray-300/20 text-black/80 hover:bg-black/5"
+                      }`}
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 2a.75.75 0 01.75.75v7.5a.75.75 0 01-1.5 0v-7.5A.75.75 0 0110 2zM5.404 4.343a.75.75 0 010 1.06 6.5 6.5 0 109.192 0 .75.75 0 111.06-1.06 8 8 0 11-11.313 0 .75.75 0 011.06 0z"
-                        clipRule="evenodd"
+                      <div className="identifier absolute -top-1 -right-2">
+                        <div className="px-2  font-normal bg-green-500 rounded-md text-white  text-[10px]">
+                          Live
+                        </div>
+                      </div>
+                      <Image
+                        alt=""
+                        src="/assets/increase.png"
+                        className="w-8 h-8"
+                        width={1000}
+                        height={1000}
                       />
-                    </svg>
 
-                    <p>Logout</p>
-                  </div>
+                      <p className="pt-2">Tradings</p>
+                    </div>
+                  </Link>
+                  <Link href="/dashboard/investments" passHref>
+                    <div
+                      className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3  ${
+                        isDarkMode
+                          ? "bg-white/5 hite/5 hover:bg-white/10"
+                          : "bg-gray-300/20 text-black/80 hover:bg-black/5"
+                      }`}
+                    >
+                      <Image
+                        alt=""
+                        src="/assets/money.png"
+                        className="w-8 h-8"
+                        width={1000}
+                        height={1000}
+                      />
+
+                      <p className="pt-2">Investments</p>
+                    </div>
+                  </Link>
+                  <Link href="/dashboard/verify" passHref>
+                    <div
+                      className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3  relative ${
+                        isDarkMode
+                          ? "bg-white/5 hite/5 hover:bg-white/10"
+                          : "bg-gray-300/20 text-black/80 hover:bg-black/5"
+                      }`}
+                    >
+                      <div className="verification-identifier absolute -top-1 -right-2">
+                        {details.isVerified ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            className="w-5 h-5 text-green-500"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.403 12.652a3 3 0 000-5.304 3 3 0 00-3.75-3.751 3 3 0 00-5.305 0 3 3 0 00-3.751 3.75 3 3 0 000 5.305 3 3 0 003.75 3.751 3 3 0 005.305 0 3 3 0 003.751-3.75zm-2.546-4.46a.75.75 0 00-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            className="w-5 h-5 text-red-500"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                      <Image
+                        alt=""
+                        src="/assets/veraccount.png"
+                        className="w-8 h-8"
+                        width={1000}
+                        height={1000}
+                      />
+
+                      <p className="pt-2">Verification</p>
+                    </div>
+                  </Link>
+                </div>{" "}
+                <div className="relative w-full flex items-center justify-center pt-4">
+                  <div
+                    className={` line h-0.5 w-1/2 mx-auto top-0 left-0 ${
+                      isDarkMode ? "bg-white/5" : "bg-black/10"
+                    } rounded-full`}
+                  ></div>
+                </div>
+                <div
+                  className={`logout flex items-center text-sm py-3 mb-4 mx-3 rounded-md text-red-600 mt-4 ${
+                    isDarkMode
+                      ? "bg-red-500/10 /border /border-red-600 font-bold"
+                      : "bg-red-50"
+                  } px-2 font-bold cursor-pointer`}
+                  onClick={handleLogout}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a.75.75 0 01.75.75v7.5a.75.75 0 01-1.5 0v-7.5A.75.75 0 0110 2zM5.404 4.343a.75.75 0 010 1.06 6.5 6.5 0 109.192 0 .75.75 0 111.06-1.06 8 8 0 11-11.313 0 .75.75 0 011.06 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+
+                  <p>Logout</p>
                 </div>
               </PopoverContent>
             </Popover>
