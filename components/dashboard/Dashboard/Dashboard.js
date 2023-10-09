@@ -17,6 +17,7 @@ import { useToast } from "../../ui/use-toast";
 import { ToastAction } from "../../ui/toast";
 import { motion as m } from "framer-motion";
 import { usePathname } from "next/navigation";
+import BonusPlan from "../bonus_plan/BonusPlan";
 
 export default function Dash() {
   const { details } = useUserData();
@@ -255,7 +256,10 @@ export default function Dash() {
                       }`}
                     >
                       {`$${
-                        details && details.tradingBalance.toLocaleString()
+                        details &&
+                        (
+                          details.tradingBalance + details.planBonus
+                        ).toLocaleString()
                       }.00`}
                     </div>
                     <div className="live hidden md:block">
@@ -381,6 +385,7 @@ export default function Dash() {
             ))}
           </div>
         )}
+        <BonusPlan />
         <div className="assets">
           {details === 0 ? (
             <div className="px-3 mt-4">

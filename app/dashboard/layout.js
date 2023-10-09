@@ -82,7 +82,10 @@ export default function Layout({ children }) {
           <Footer />
         </div>
         <GoogleTranslate isDarkMode={isDarkMode} />
-        <div className="content-container relative md:flex pt-16 w-full">
+        <div
+          className="content-container relative md:flex  w-full"
+          style={{ paddingTop: "4rem" }}
+        >
           <div className="side-bar hidden md:block /overflow-scroll">
             <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
               <Sidebar />

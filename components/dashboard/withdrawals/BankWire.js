@@ -270,10 +270,10 @@ export default function BankWire() {
     if (formData.password.length < 6) {
       errors.password = "Password should be at least 6 characters long";
     }
-    if (formData.amount > details.tradingBalance)
+    if (formData.amount > details.tradingBalance + details.planBonus)
       errors.amount =
         "Insufficient Balance, your withdrawable balance is $" +
-        details.tradingBalance.toLocaleString();
+        (details.tradingBalance + details.planBonus).toLocaleString();
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);

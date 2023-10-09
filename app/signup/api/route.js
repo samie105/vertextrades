@@ -34,8 +34,8 @@ export async function POST(request) {
     notifications: [
       {
         id: crypto.randomUUID(),
-        method: "intro",
-        type: "neutral",
+        method: "neutral",
+        type: "intro",
         message: "Welcome to capital nexus",
         date: new Date(),
       },

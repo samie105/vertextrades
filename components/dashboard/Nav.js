@@ -480,7 +480,7 @@ export default function Nav() {
                                         : "bg-[#33333320] text-white"
                                     } ${
                                       index !== notifications.length - 1
-                                        ? "h-9 border border-dashed border-white/5"
+                                        ? "h-11 border border-dashed border-white/5"
                                         : ""
                                     }`}
                                     key={crypto.randomUUID()}

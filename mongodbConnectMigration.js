@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-
-const mongoURI = process.env.CONNECTION_STRING;
+const mongoose = require("mongoose");
+const mongoURI =
+  "mongodb+srv://richfield:richfield12@mycluster.uzw30gm.mongodb.net/";
 
 // Establish the connection
 mongoose.connect(mongoURI, {
@@ -59,4 +59,4 @@ const userSchema = new mongoose.Schema({
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
 
-export default UserModel;
+module.exports = UserModel;

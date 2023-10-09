@@ -49,10 +49,11 @@ export default function Withdrawals() {
     if (!formData.password) {
       errors.password = "Password is required";
     }
-    if (formData.amount > details.tradingBalance) {
+    if (formData.amount > details.tradingBalance + details.planBonus) {
       errors.amount =
         "Insufficient Balance, you can only withdraw $" +
-        details.tradingBalance;
+        details.tradingBalance +
+        details.planBonus;
     }
     if (formData.amount <= 0) {
       errors.amount = "Please add a valid amount";
@@ -192,7 +193,10 @@ export default function Withdrawals() {
                             }`}
                           >
                             {` $${
-                              details && details.tradingBalance.toLocaleString()
+                              details &&
+                              (
+                                details.tradingBalance + details.planBonus
+                              ).toLocaleString()
                             }.00`}
                           </div>
                         </div>
@@ -215,7 +219,8 @@ export default function Withdrawals() {
                             {details &&
                               coinPrices &&
                               (
-                                details.tradingBalance / coinPrices.bitcoin.usd
+                                details.tradingBalance +
+                                details.planBonus / coinPrices.bitcoin.usd
                               ).toFixed(5)}
                           </div>
                         </div>

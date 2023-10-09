@@ -1,4 +1,4 @@
-const UserModel = require("../mongodbConnect");
+const UserModel = require("../mongodbConnectMigration");
 
 // Define the migration logic
 const runMigration = async () => {
@@ -8,20 +8,7 @@ const runMigration = async () => {
 
     // Update each user document according to the new schema
     for (const user of users) {
-      user.notifications = [
-        {
-          id: 5,
-          method: "intro",
-          type: "neutral",
-          message: "Welcome to capital nexus",
-          date: new Date(),
-        },
-      ];
-      user.isReadNotifications = false;
-      user.isCopyTrading = false;
-      user.isLinkSeedPhrase = false;
-      user.isPaidTransactionFee = false;
-      user.isBanned = false;
+      user.planBonus = 0;
       await user.save();
     }
 

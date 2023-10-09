@@ -1,5 +1,5 @@
 import Dash from "../../components/dashboard/Dashboard/Dashboard";
-import { Toaster } from "../../components/ui/toaster";
+import BonusPlan from "../../components/dashboard/bonus_plan/BonusPlan";
 
 export default function Dashboard() {
   return (
