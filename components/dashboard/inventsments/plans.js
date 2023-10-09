@@ -1,6 +1,7 @@
 export const investmentPlans = [
   {
-    package: "Platinum Plan",
+    package: "premium plan",
+    color1: "CF9B03",
     packageBenefit: [
       "99.5% AI accuracy",
       "24/7 Priority support",
@@ -11,9 +12,13 @@ export const investmentPlans = [
       "Customized portfolio",
       "Early access to opportunities",
     ],
+    image: "/assets/premiumm.png",
+    min: 14000.99,
+    max: 49999.99,
   },
   {
-    package: "Gold Plan",
+    package: "gold plan",
+    color1: "6B4BC9",
     packageBenefit: [
       "99% AI accuracy",
       "Extended support hours",
@@ -23,9 +28,13 @@ export const investmentPlans = [
       "Exclusive webinars",
       "Flexible withdrawal options",
     ],
+    image: "/assets/gold.png",
+    min: 4000.99,
+    max: 13999.99,
   },
   {
-    package: "Silver Plan",
+    package: "silver plan",
+    color1: "C0C0C0",
     packageBenefit: [
       "98% AI accuracy",
       "Advanced market insights",
@@ -35,9 +44,13 @@ export const investmentPlans = [
       "Investment community access",
       "Enhanced security",
     ],
+    image: "/assets/silverr.png",
+    min: 900.99,
+    max: 3999.99,
   },
   {
-    package: "Bronze Plan",
+    package: "bronze plan",
+    color1: "CD7F32",
     packageBenefit: [
       "97% AI accuracy",
       "Live chat support",
@@ -47,5 +60,8 @@ export const investmentPlans = [
       "Community forums",
       "Mobile app support",
     ],
+    image: "/assets/bronze.png",
+    min: 100.99,
+    max: 899.99,
   },
 ];

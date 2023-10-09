@@ -5,7 +5,6 @@ import Verify from "../../../components/dashboard/verify/verify";
 export default function page() {
   return (
     <div>
-      <Livetrade />
       <Verify />
     </div>
   );

@@ -5,7 +5,6 @@ import Purchase from "../../../components/dashboard/purchasebtc/purchase";
 export default function page() {
   return (
     <div>
-      <Livetrade />
       <Purchase />
     </div>
   );

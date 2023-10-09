@@ -29,7 +29,21 @@ import { useTheme } from "../../../contexts/themeContext";
 
 export default function History() {
   const { details } = useUserData();
+  const depositHistory = Array.isArray(details.depositHistory)
+    ? details.depositHistory
+    : [];
+  const withdrawalHistory = Array.isArray(details.withdrawalHistory)
+    ? details.withdrawalHistory
+    : [];
+
+  const combinedHistory = [...depositHistory, ...withdrawalHistory];
+  combinedHistory.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+
   const hist = [
+    {
+      name: "all",
+      data: combinedHistory.reverse(),
+    },
     {
       name: "deposit",
       data: details.depositHistory || [], // Initialize as empty array if data is not available yet
@@ -39,7 +53,7 @@ export default function History() {
       data: details.withdrawalHistory || [], // Initialize as empty array if data is not available yet
     },
   ];
-  const [selectedHistory, setSelectedHistory] = useState("deposit");
+  const [selectedHistory, setSelectedHistory] = useState("all");
 
   const history = hist.find((h) => h.name === selectedHistory);
   const currentHistory = [...history.data].reverse();
@@ -55,8 +69,15 @@ export default function History() {
         </div>
       ) : (
         <div className="p-4 overflow-x-hidden max-w-[100vw] mt-10">
+          <div
+            className={`font-bold textsm mb-3 ml-2 ${
+              isDarkMode ? " text-white border-0" : ""
+            }`}
+          >
+            Select a transaction history{" "}
+          </div>
           <Select
-            defaultValue="deposit"
+            defaultValue="all"
             onValueChange={(value) => setSelectedHistory(value)}
             className="font-bold"
           >
@@ -65,16 +86,16 @@ export default function History() {
                 isDarkMode ? "bg-[#222] text-white border-0" : ""
               }`}
             >
-              <SelectValue>
-                {selectedHistory.charAt(0).toUpperCase() +
-                  selectedHistory.slice(1)}
-              </SelectValue>
+              <SelectValue />
             </SelectTrigger>
             <SelectContent
               className={`font-bold ${
                 isDarkMode ? "bg-[#222] text-white border-0" : ""
               }`}
             >
+              <SelectItem value="all" className="font-bold">
+                All Transactions
+              </SelectItem>
               <SelectItem value="deposit" className="font-bold">
                 Deposit
               </SelectItem>
@@ -136,7 +157,7 @@ export default function History() {
                         Transaction Status
                       </TableHead>
                     </>
-                  ) : (
+                  ) : selectedHistory === "withdrawal" ? (
                     <>
                       <TableHead
                         className={` ${
@@ -151,6 +172,37 @@ export default function History() {
                         } font-bold`}
                       >
                         Withdrawal Method
+                      </TableHead>
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
+                        Amount
+                      </TableHead>
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
+                        Transaction Status
+                      </TableHead>
+                    </>
+                  ) : (
+                    <>
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
+                        Date Added
+                      </TableHead>
+                      <TableHead
+                        className={` ${
+                          isDarkMode ? "text-white/80" : "text-black/80"
+                        } font-bold`}
+                      >
+                        Transaction Method
                       </TableHead>
                       <TableHead
                         className={` ${
@@ -197,7 +249,61 @@ export default function History() {
                       {selectedHistory === "deposit" ? (
                         <>
                           <TableCell>{item.dateAdded}</TableCell>
-                          <TableCell>{item.depositMethod}</TableCell>
+                          <TableCell className="capitalize">
+                            {item.depositMethod}
+                          </TableCell>
+                          <TableCell>
+                            {"$" +
+                              (typeof item.amount === "string"
+                                ? parseFloat(item.amount).toLocaleString(
+                                    undefined,
+                                    {
+                                      minimumFractionDigits: 2,
+                                      maximumFractionDigits: 2,
+                                    }
+                                  )
+                                : item.amount.toLocaleString(undefined, {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                  }))}
+                          </TableCell>
+                          <TableCell
+                            className={
+                              item.transactionStatus === "Pending" ||
+                              item.transactionStatus === "pending"
+                                ? "text-orange-500 capitalize font-/bold"
+                                : item.transactionStatus === "failed" ||
+                                  item.transactionStatus === "Failed"
+                                ? "text-red-500 capitalize font-/bold"
+                                : "text-green-500 capitalize font/-bold"
+                            }
+                          >
+                            {item.transactionStatus === "Pending" ||
+                            item.transactionStatus === "pending" ? (
+                              <div className="flex items-center gap-x-2">
+                                <FontAwesomeIcon icon={faExclamationCircle} />{" "}
+                                {item.transactionStatus}
+                              </div>
+                            ) : item.transactionStatus === "failed" ||
+                              item.transactionStatus === "Failed" ? (
+                              <div className="flex items-center gap-x-2">
+                                <FontAwesomeIcon icon={faCancel} />{" "}
+                                {item.transactionStatus}
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-x-2">
+                                <FontAwesomeIcon icon={faCheckCircle} />{" "}
+                                {item.transactionStatus}
+                              </div>
+                            )}
+                          </TableCell>
+                        </>
+                      ) : selectedHistory === "withdrawals" ? (
+                        <>
+                          <TableCell>{item.dateAdded}</TableCell>
+                          <TableCell className="capitalize">
+                            {item.withdrawMethod}
+                          </TableCell>
                           <TableCell>
                             {"$" +
                               (typeof item.amount === "string"
@@ -247,7 +353,9 @@ export default function History() {
                       ) : (
                         <>
                           <TableCell>{item.dateAdded}</TableCell>
-                          <TableCell>{item.withdrawMethod}</TableCell>
+                          <TableCell className="capitalize">
+                            {item.withdrawMethod || item.depositMethod}
+                          </TableCell>
                           <TableCell>
                             {"$" +
                               (typeof item.amount === "string"

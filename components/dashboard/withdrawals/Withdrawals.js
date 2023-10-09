@@ -117,20 +117,13 @@ export default function Withdrawals() {
                 >
                   <div className="header-text text-lg  uppe/rcase font-bold w-full text-center">
                     <div className="flex justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className={`w-10 h-10 mb-1  ${
-                          isDarkMode ? "text-white/60" : "text-black/60"
-                        }`}
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                      <Image
+                        alt=""
+                        src="/assets/veraccount.png"
+                        width={1000}
+                        height={1000}
+                        className="w-14 h-14 mb-4"
+                      />
                     </div>
                     <div className="font-bold">Verification Required</div>
                   </div>
@@ -143,7 +136,7 @@ export default function Withdrawals() {
                   </div>
                   <div className="cta pt-2 flex justify-center">
                     <Link href="/dashboard/verify" passHref>
-                      <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white py-3 px-9 text-sm font-bold rounded-md hover:bg-slate-600">
+                      <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white py-3 px-9 text-sm font-bold rounded-full hover:bg-slate-600">
                         Verify Now
                       </button>
                     </Link>
