@@ -82,7 +82,7 @@ export default function Layout({ children }) {
         <div className="fixed bottom-0 left-0 w-full text-white z-30">
           <Footer />
         </div>
-        <div className="content-container relative md:flex  w-full">
+        <div className="content-container relative md:flex  h-full">
           <div className="side-bar hidden md:block /overflow-scroll pt-16">
             <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
               <Sidebar />
