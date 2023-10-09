@@ -96,11 +96,16 @@ export default function Nav() {
 
   // Map over notifications and format the date as relative time for each
   const formattedNotifications = notifications
-    ? notifications.reverse().map((notification) => ({
+    ? notifications.map((notification) => ({
         ...notification,
         date: formatRelativeTime(notification.date), // Format as relative time
       }))
     : [];
+  const sortedNotifications = formattedNotifications.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB - dateA; // Compare dates in descending order (newest first)
+  });
 
   const handleNotificationClick = (id) => {
     isloading(true);
@@ -374,7 +379,7 @@ export default function Nav() {
                     <>
                       <div>
                         <ScrollArea className=" max-h-[300px] overflow-scroll overflow-x-hidden w-full px-3 py-3">
-                          {formattedNotifications.map((notif, index) => (
+                          {sortedNotifications.reverse().map((notif, index) => (
                             <>
                               <div
                                 className={`flex justify-between w-full items-start cursor-pointer transition-all`}
@@ -383,7 +388,7 @@ export default function Nav() {
                                 <div className="icon flex items-center flex-col">
                                   <div
                                     className={`${
-                                      notif.type === "success"
+                                      notif.method === "success"
                                         ? isDarkMode
                                           ? "bg-green-500/10 text-green-500"
                                           : "bg-green-500/20 text-green-500"

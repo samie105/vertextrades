@@ -1,12 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { investmentPlans } from "./plans";
 import { useTheme } from "../../../contexts/themeContext";
 import Image from "next/image";
 import { useUserData } from "../../../contexts/userrContext";
+import Link from "next/link";
+import { InfinitySpin } from "react-loader-spinner";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function InvestmentPlans() {
-  const { details } = useUserData();
+  const { details, setNotification, email, setDetails } = useUserData();
+  const [loadingStates, setLoadingStates] = useState(
+    Array(investmentPlans.length).fill(false)
+  );
+  const [planErrors, setPlanErrors] = useState(
+    Array(investmentPlans.length).fill(false)
+  );
+
   const getColor = (packageName) => {
     switch (packageName) {
       case "gold plan":
@@ -35,6 +46,96 @@ export default function InvestmentPlans() {
         return "#000000";
     }
   };
+  const handlePlanChange = async (min, index, plan) => {
+    // Set the loading state for the clicked plan
+    const updatedLoadingStates = [...loadingStates];
+    updatedLoadingStates[index] = true;
+    setLoadingStates(updatedLoadingStates);
+
+    try {
+      if (details.tradingBalance > min) {
+        // Make an API request to purchase the plan
+        const response = await axios.post("/plan/api", { plan, email });
+
+        // Check if the purchase was successful (you may need to adjust this based on your API response)
+        if (response.data.success) {
+          setDetails((prevDetails) => ({
+            ...prevDetails,
+
+            investmentPackage: plan,
+          }));
+          // Reset the loading state after a successful purchase
+          const updatedLoadingStates = [...loadingStates];
+          updatedLoadingStates[index] = false;
+          setLoadingStates(updatedLoadingStates);
+          toast.success(`${plan} purchase was successfull`, { duration: 4000 });
+          // Notify the user
+          setNotification(
+            `Your ${plan} purchase was successful, start enjoying trading benefits`,
+            "transaction",
+            "success"
+          );
+          const updatedErrors = [...planErrors];
+          updatedErrors[index] = false;
+          setPlanErrors(updatedErrors);
+        } else {
+          // Set the error state for the clicked plan
+          const updatedErrors = [...planErrors];
+          updatedErrors[index] = true;
+          setPlanErrors(updatedErrors);
+
+          // Reset the loading state
+          const updatedLoadingStates = [...loadingStates];
+          updatedLoadingStates[index] = false;
+          setLoadingStates(updatedLoadingStates);
+
+          // Notify the user of the error
+          setNotification(
+            ` Your ${plan} purchase was declined due to an error. Please try again later.`,
+            "transaction",
+            "failure"
+          );
+        }
+      } else {
+        // Set the error state for the clicked plan
+        const updatedErrors = [...planErrors];
+        updatedErrors[index] = true;
+        setPlanErrors(updatedErrors);
+
+        // Reset the loading state
+        const updatedLoadingStates = [...loadingStates];
+        updatedLoadingStates[index] = false;
+        setLoadingStates(updatedLoadingStates);
+
+        // Notify the user of insufficient balance
+        setNotification(
+          `Your ${plan} purchase was declined due to insufficient balance. Please deposit.`,
+          "transaction",
+          "failure"
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+
+      // Set the error state for the clicked plan
+      const updatedErrors = [...planErrors];
+      updatedErrors[index] = true;
+      setPlanErrors(updatedErrors);
+
+      // Reset the loading state
+      const updatedLoadingStates = [...loadingStates];
+      updatedLoadingStates[index] = false;
+      setLoadingStates(updatedLoadingStates);
+
+      // Notify the user of the error
+      setNotification(
+        "An error occurred while processing your plan purchase. Please try again later.",
+        "transaction",
+        "failure"
+      );
+    }
+  };
+
   const { isDarkMode } = useTheme();
   return (
     <div className="p-4 grid-cols-1 grid md:grid-cols-2 gap-4 mt-5">
@@ -44,8 +145,25 @@ export default function InvestmentPlans() {
           className={` p-4 rounded-xl border relative ${
             isDarkMode ? "bg-[#111] text-white/80" : "bg-white"
           }`}
-          style={{ border: "1px solid " + getColorRed(plan.package) }}
+          style={{ border: "2px solid " + getColorRed(plan.package) }}
         >
+          {details.investmentPackage === plan.package && (
+            <div className="absolute -top-3 -left-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+                style={{ color: getColor(plan.package) }}
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          )}
           <div className="absolute bottom-20 right-0 mb-3">
             <Image
               alt=""
@@ -112,6 +230,7 @@ export default function InvestmentPlans() {
 
           <div className="button-container flex justify-center">
             <button
+              onClick={() => handlePlanChange(plan.min, index, plan.package)}
               disabled={details.investmentPackage === plan.package}
               className={`rounded-full px-7 ${isDarkMode ? "text-white" : ""} ${
                 details.investmentPackage === plan.package
@@ -127,11 +246,21 @@ export default function InvestmentPlans() {
                     : getColor(plan.package), // Replace this with your getColor function
               }}
             >
-              {details.investmentPackage == plan.package
+              {loadingStates[index]
+                ? "Purchasing Plan..."
+                : details.investmentPackage == plan.package
                 ? "Current Running Plan"
                 : "Purchase Plan"}
             </button>
           </div>
+          {planErrors[index] && (
+            <div className="text-sm text-red-500 w-full text-center">
+              Insufficient Balance to activate this plan.{" "}
+              <span className="font-bold">
+                <Link href="/dashboard/deposits">Deposit now</Link>
+              </span>
+            </div>
+          )}
         </div>
       ))}
     </div>
