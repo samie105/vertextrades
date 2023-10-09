@@ -5,6 +5,7 @@ import Auth from "../../components/main/AuthUi/Auth";
 import { FormProvider } from "../../contexts/formContext";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import GoogleTranslate from "../../components/Translator/GoogleTranslator";
 
 export default function Page() {
   const { isDarkMode, baseColor } = useTheme();
@@ -15,6 +16,7 @@ export default function Page() {
         strategy="afterInteractive"
         async
       ></Script>
+      <GoogleTranslate isDarkMode={isDarkMode} />
       <FormProvider>
         <div
           className={`w-full h-screen flex justify-center items-center ${

@@ -7,7 +7,10 @@ export default function page() {
   return (
     <div>
       <Livetrade />
-      <BonusPlan />
+      <div className="p-4">
+        {" "}
+        <BonusPlan />
+      </div>
       <Account />
     </div>
   );

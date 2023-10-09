@@ -11,7 +11,7 @@ export default function BonusPlan() {
   const { isDarkMode } = useTheme();
   const pathname = usePathname();
   return (
-    <div className="p-4">
+    <div className="">
       {details !== 0 && (
         <div className="grid md:grid-cols-2 grid-cols-1 w-full gap-3">
           <div

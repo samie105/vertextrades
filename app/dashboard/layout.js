@@ -55,6 +55,7 @@ export default function Layout({ children }) {
         strategy="afterInteractive"
         async
       ></Script>
+      <GoogleTranslate isDarkMode={isDarkMode} />
       <main
         className={`h-screen overflow-hidden relative /overflow-y-scroll w-screen ${
           isDarkMode ? `${baseColor}` : ""
@@ -81,18 +82,14 @@ export default function Layout({ children }) {
         <div className="fixed bottom-0 left-0 w-full text-white z-30">
           <Footer />
         </div>
-        <GoogleTranslate isDarkMode={isDarkMode} />
-        <div
-          className="content-container relative md:flex  w-full"
-          style={{ paddingTop: "4rem" }}
-        >
-          <div className="side-bar hidden md:block /overflow-scroll">
+        <div className="content-container relative md:flex  w-full">
+          <div className="side-bar hidden md:block /overflow-scroll pt-16">
             <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
               <Sidebar />
             </ScrollArea>
           </div>
           <div
-            className={`main-bar w-full mb-[66px] relative overflow-hidden /overflow-y-scroll ${
+            className={`main-bar w-full mb-[66px] pt-16 relative overflow-hidden /overflow-y-scroll ${
               isDarkMode ? `${baseColor}` : ""
             }`}
           >

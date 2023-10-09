@@ -140,7 +140,7 @@ export default function InvestmentPlans() {
   const { isDarkMode } = useTheme();
   return (
     <>
-      <div className="mt-5">
+      <div className="mt-5 p-4">
         {" "}
         <BonusPlan />
       </div>
