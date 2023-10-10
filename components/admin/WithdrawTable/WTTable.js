@@ -38,6 +38,7 @@ import {
 import { useState } from "react";
 import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 async function deleteUser(email) {
   try {
@@ -206,7 +207,9 @@ export default function WTTable({ data, setData, email }) {
 
               <DropdownMenuItem
                 className="bg-re-50 text-green-800   py-2"
-                onClick={() => updateTransactionStatus(payment.id, "success")}
+                onClick={() =>
+                  updateTransactionStatus(payment.id, "success", payment.amount)
+                }
               >
                 Approve Transaction
               </DropdownMenuItem>
@@ -222,7 +225,7 @@ export default function WTTable({ data, setData, email }) {
       },
     },
   ];
-  const updateTransactionStatus = async (transactionId, newStatus) => {
+  const updateTransactionStatus = async (transactionId, newStatus, amount) => {
     try {
       // Make a POST request to your backend API to update the transaction status
       const response = await fetch(`/db/history/updateWithdrawal/api`, {
@@ -234,6 +237,7 @@ export default function WTTable({ data, setData, email }) {
           email,
           transactionId,
           newStatus,
+          amount,
         }),
       });
 
@@ -242,6 +246,7 @@ export default function WTTable({ data, setData, email }) {
         const updatedData = data.map((transaction) => {
           if (transaction.id === transactionId) {
             // Update the transaction status
+            toast.success("Changes Applied");
             return { ...transaction, transactionStatus: newStatus };
           }
           return transaction;

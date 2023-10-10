@@ -38,6 +38,7 @@ import {
 import { useState } from "react";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 async function deleteUser(email) {
   try {
@@ -159,17 +160,19 @@ export function DataTableDemo({ data, setData }) {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="py-2"
-                onClick={() =>
-                  navigator.clipboard.writeText(payment.taxCodePin)
-                }
+                onClick={() => {
+                  navigator.clipboard.writeText(payment.taxCodePin);
+                  toast.success("code copied");
+                }}
               >
                 Copy Tax Code Pin
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="py-3"
-                onClick={() =>
-                  navigator.clipboard.writeText(payment.withdrawalPin)
-                }
+                onClick={() => {
+                  navigator.clipboard.writeText(payment.withdrawalPin);
+                  toast.success("code copied");
+                }}
               >
                 Copy Withdrawal Pin
               </DropdownMenuItem>
@@ -183,6 +186,15 @@ export function DataTableDemo({ data, setData }) {
               <Link href={`/admin/history/deposit/${payment.email}`} passHref>
                 <DropdownMenuItem className="py-3">
                   View Deposit History
+                </DropdownMenuItem>
+              </Link>
+              <Link
+                href={`/admin/custom-emails/${payment.email}`}
+                passHref
+                className="cursor-pointer"
+              >
+                <DropdownMenuItem className="py-3">
+                  Send An Email
                 </DropdownMenuItem>
               </Link>
 
@@ -227,6 +239,7 @@ export function DataTableDemo({ data, setData }) {
       // table.toggleRowSelected(email);
       const updatedData = data.filter((user) => user.email !== email);
       setData(updatedData);
+      toast.success("Deleted successfully");
     }
   };
   const table = useReactTable({

@@ -2,16 +2,22 @@ import { NextResponse } from "next/server";
 import UserModel from "../../../../../mongodbConnect";
 
 export async function POST(request) {
-  const { email, transactionId, newStatus } = await request.json();
+  const { email, transactionId, newStatus, amount } = await request.json();
 
   try {
-    // Use findOneAndUpdate to update the specific field
+    // Find the user and the specific withdrawal record
     const updatedUser = await UserModel.findOneAndUpdate(
-      { email, "depositHistory.id": transactionId }, // Find the user and the specific withdrawal record
+      { email, "depositHistory.id": transactionId },
       {
         $set: {
           "depositHistory.$.transactionStatus": newStatus, // Update the transactionStatus
         },
+        ...(newStatus === "success" && {
+          $inc: {
+            tradingBalance: amount, // Increment tradingBalance by 'amount'
+            totalDeposited: amount, // Increment totalDeposited by 'amount'
+          },
+        }),
       },
       {
         new: true, // Return the updated document

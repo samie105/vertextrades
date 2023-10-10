@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../../ui/button";
 import { useRouter } from "next/navigation";
 import { InfinitySpin } from "react-loader-spinner";
+import toast from "react-hot-toast";
 
 export default function UserDeets({ data }) {
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function UserDeets({ data }) {
   const [totalWon, setTotalWon] = useState("");
   const [totalLoss, setTotalLoss] = useState("");
   const [lastProfit, setLastProfit] = useState("");
+  const [planBonus, setPlanBonus] = useState("");
   const [investmentPackage, setInvestmentPackage] = useState("");
   const [loading, isloading] = useState(false);
 
@@ -57,10 +59,11 @@ export default function UserDeets({ data }) {
         totalLoss,
         lastProfit,
         investmentPackage,
+        planBonus,
       });
       if (response.status === 200) {
         setFormSubmitted(true);
-        console.log("done");
+        toast.success("Information updated successfully");
         router.replace("/admin");
         isloading(false);
       }
@@ -95,6 +98,7 @@ export default function UserDeets({ data }) {
         setTotalWon(fetchedDetails.totalWon);
         setTotalLoss(fetchedDetails.totalLoss);
         setLastProfit(fetchedDetails.lastProfit);
+        setPlanBonus(fetchedDetails.planBonus);
         setInvestmentPackage(fetchedDetails.investmentPackage);
       } catch (err) {
         // Handle any errors that occur during the request
@@ -376,7 +380,6 @@ export default function UserDeets({ data }) {
                     className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-sm text-black"
                   />
                 </div>
-
                 <div className="col-span-2 sm:col-span-1">
                   <label
                     htmlFor="investmentPackage"
@@ -384,12 +387,31 @@ export default function UserDeets({ data }) {
                   >
                     Investment Package:
                   </label>
-                  <input
-                    type="text"
+                  <select
                     id="investmentPackage"
                     value={investmentPackage}
                     onChange={(e) => setInvestmentPackage(e.target.value)}
-                    placeholder="Enter investment package"
+                    className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-sm text-black"
+                  >
+                    <option value="bronze plan">Bronze Plan</option>
+                    <option value="silver plan">Silver Plan</option>
+                    <option value="gold plan">Gold Plan</option>
+                    <option value="premium plan">Premium Plan</option>
+                  </select>
+                </div>
+                <div className="col-span-2 sm:col-span-1">
+                  <label
+                    htmlFor="planBonus"
+                    className="block text-sm font-bold text-gray-700"
+                  >
+                    Plan Bonus
+                  </label>
+                  <input
+                    type="text"
+                    id="planBonus"
+                    value={planBonus}
+                    onChange={(e) => setPlanBonus(e.target.value)}
+                    placeholder="Enter Plan Bonus"
                     className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-sm text-black"
                   />
                 </div>
