@@ -23,6 +23,7 @@ export default function Withdrawals() {
   const [loading, setLoading] = useState(false);
   const [mssg, setMssg] = useState(false);
   const isVerified = details.isVerified;
+  const tradeBonus = Number(details.tradingBalance) + Number(details.planBonus);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [formData, setFormData] = useState({
     walletAddress: "",
@@ -49,11 +50,10 @@ export default function Withdrawals() {
     if (!formData.password) {
       errors.password = "Password is required";
     }
-    if (formData.amount > details.tradingBalance + details.planBonus) {
+    if (formData.amount > tradeBonus) {
       errors.amount =
         "Insufficient Balance, you can only withdraw $" +
-        details.tradingBalance +
-        details.planBonus;
+        tradeBonus.toLocaleString();
     }
     if (formData.amount <= 0) {
       errors.amount = "Please add a valid amount";
@@ -86,7 +86,7 @@ export default function Withdrawals() {
       }
     } catch (error) {
       // Handle any error that occurs during the request
-      console.log("An error occurred:", error.message);
+      error.password = "An error occurred, Please try again later";
     }
     setFormErrors(errors);
   }
@@ -218,10 +218,7 @@ export default function Withdrawals() {
                           <div className="font-bold">
                             {details &&
                               coinPrices &&
-                              (
-                                details.tradingBalance +
-                                details.planBonus / coinPrices.bitcoin.usd
-                              ).toFixed(5)}
+                              (tradeBonus / coinPrices.bitcoin.usd).toFixed(5)}
                           </div>
                         </div>
                         <div
@@ -241,9 +238,7 @@ export default function Withdrawals() {
                             {" "}
                             {details &&
                               coinPrices &&
-                              (
-                                details.tradingBalance / coinPrices.tether.usd
-                              ).toFixed(2)}
+                              (tradeBonus / coinPrices.tether.usd).toFixed(2)}
                           </div>
                         </div>
                       </div>
