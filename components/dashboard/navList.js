@@ -53,6 +53,7 @@ export const lists = [
       </svg>
     ),
     linkPath: "/dashboard/deposits",
+    new: true,
   },
   {
     nav: "Withdraw",
@@ -122,6 +123,7 @@ export const lists = [
       </svg>
     ),
     linkPath: "/dashboard/purchase_btc",
+    new: true,
   },
   {
     nav: "Account",
@@ -230,7 +232,9 @@ export const navList = [
         />
       </svg>
     ),
+
     linkPath: "/dashboard/deposits",
+    new: true,
   },
   {
     nav: "Withdraw",
@@ -281,6 +285,7 @@ export const navList = [
       </svg>
     ),
     linkPath: "/dashboard/investments",
+    new: true,
   },
   {
     nav: "Purchase Crypto",
@@ -300,6 +305,7 @@ export const navList = [
       </svg>
     ),
     linkPath: "/dashboard/purchase_btc",
+    new: true,
   },
 ];
 export const accountList = [
@@ -353,5 +359,6 @@ export const accountList = [
       </svg>
     ),
     linkPath: "mailto:",
+    new: true,
   },
 ];

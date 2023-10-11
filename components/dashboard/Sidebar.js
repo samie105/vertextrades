@@ -5,6 +5,7 @@ import React from "react";
 import { lists } from "./navList";
 import { ScrollArea } from "../ui/scroll-area";
 import { useTheme } from "../../contexts/themeContext";
+import Image from "next/image";
 
 export default function Sidebar() {
   const { isDarkMode, baseColor } = useTheme();
@@ -30,7 +31,18 @@ export default function Sidebar() {
                 }`}
               >
                 <div className="mx-2 font-bold ">{item.icon}</div>
-                <span className="text-xs lg:text-sm font-bol">{item.nav}</span>
+                <div className="text-xs lg:text-sm font-bol">{item.nav}</div>
+                {item.new && (
+                  <div className=" ml-2">
+                    <Image
+                      alt=""
+                      src="/assets/new.png"
+                      width={1000}
+                      height={1000}
+                      className="w-8 h-8 opacity-60"
+                    />
+                  </div>
+                )}
               </div>
             </Link>
           ))}

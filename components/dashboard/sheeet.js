@@ -5,6 +5,7 @@ import { navList, accountList } from "./navList";
 import Link from "next/link";
 import { ScrollArea } from "../ui/scroll-area";
 import { useTheme } from "../../contexts/themeContext";
+import Image from "next/image";
 
 export default function Sheeet() {
   const { isDarkMode, baseColor } = useTheme();
@@ -75,6 +76,17 @@ export default function Sheeet() {
                 <div className="w-full flex items-center py-1">
                   <div className="icon mr-2">{item.icon}</div>
                   <div className="nav">{item.nav}</div>
+                  {item.new && (
+                    <div className=" ml-2">
+                      <Image
+                        alt=""
+                        src="/assets/new.png"
+                        width={1000}
+                        height={1000}
+                        className="w-8 h-8 opacity-60"
+                      />
+                    </div>
+                  )}
                 </div>
               </SheetClose>
             </Link>
@@ -115,6 +127,17 @@ export default function Sheeet() {
                 <div className="w-full flex items-center py-1">
                   <div className="icon mr-2">{item.icon}</div>
                   <div className="nav">{item.nav}</div>
+                  {item.new && (
+                    <div className=" ml-2">
+                      <Image
+                        alt=""
+                        src="/assets/new.png"
+                        width={1000}
+                        height={1000}
+                        className="w-8 h-8 opacity-60"
+                      />
+                    </div>
+                  )}
                 </div>
               </SheetClose>
             </Link>
