@@ -34,11 +34,13 @@ export default function Copy() {
 
   // Filter traders based on the search query
   const filteredTraders = copyTraders
-    .map((trader) => {
-      return copiedTraders.includes(trader.id)
-        ? { ...trader, isCopied: true }
-        : { ...trader, isCopied: false };
-    })
+    .map((trader) => ({
+      ...trader,
+      isCopied: copiedTraders.includes(trader.id),
+    }))
+    .filter((trader) =>
+      trader.nickname.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     .sort((a, b) => (a.isCopied === b.isCopied ? 0 : a.isCopied ? -1 : 1));
 
   const handleSearchInputChange = (event) => {
