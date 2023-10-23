@@ -48,10 +48,9 @@ export default function MarketsPage() {
 
   const { isDarkMode } = useTheme();
   return (
-    <div className={`px-4 ${isDarkMode ? "text-white" : ""}`}>
+    <div className={`px-4 pb-2 ${isDarkMode ? "text-white" : ""}`}>
       <div className="rounded-xl overflow-hidden">
         <Table>
-          <TableCaption> Crypto </TableCaption>
           <TableHeader>
             <TableRow
               className={`border-none rounded-md ${

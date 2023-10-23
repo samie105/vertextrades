@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -16,43 +17,42 @@ import axios from "axios";
 
 export default function CurrencyPage() {
   const [currncyPrices, setCurrencyPrices] = useState({}); // Updated state variable name
-  const [fetchData, setFetchData] = useState(true);
-  const apiKey = "38CQ4O669BPQA99F";
-  const symbols = currencies.map((stock) => stock.symbol);
-  //   useEffect(() => {
-  //     if (fetchData) {
-  //       // Check if fetchData is true
-  //       const fetchStockPrices = async () => {
-  //         const prices = {};
+  useEffect(() => {
+    const fetchStockPrices = async () => {
+      try {
+        // Create an array of unique symbols from stocks, join them and convert to uppercase
+        // Make a single API request to fetch prices for all symbols using Polygon.io
+        const response = await axios.get(
+          `https://api.polygon.io/v2/aggs/grouped/locale/global/market/fx/2023-01-09?adjusted=true&apiKey=uBHWmV9nY9dXSxbrZJ8iiuFrcHsEiHED`
+        );
+        console.log(response);
+        if (
+          response.data &&
+          response.data.status === "OK" &&
+          response.data.results
+        ) {
+          const stockData = response.data.results;
+          const priceData = {};
 
-  //         for (const symbol of symbols) {
-  //           try {
-  //             const response = await axios.get(
-  //               `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`
-  //             );
-  //             console.log(response);
-  //             if (response.data["Time Series (5min)"]) {
-  //               prices[symbol] = response.data["Time Series (5min)"];
-  //             }
-  //           } catch (error) {
-  //             console.error(`Error fetching stock prices for ${symbol}:`, error);
-  //           }
-  //         }
+          stockData.forEach((stock) => {
+            priceData[stock.T] = stock.c;
+          });
 
-  //         setStockPrices(prices);
-  //         setFetchData(false); // Update fetchData to false to prevent continuous fetching
-  //       };
+          setCurrencyPrices(priceData);
+        }
+      } catch (error) {
+        console.error("Error fetching stock prices:", error);
+      }
+    };
 
-  //       fetchStockPrices();
-  //     }
-  //   }, [apiKey, symbols, fetchData]);
+    fetchStockPrices();
+  }, []);
 
   const { isDarkMode } = useTheme();
   return (
-    <div className={`px-4 ${isDarkMode ? "text-white" : ""}`}>
+    <div className={`px-4 pb-2 ${isDarkMode ? "text-white" : ""}`}>
       <div className="rounded-xl overflow-hidden">
         <Table>
-          <TableCaption> Currencies </TableCaption>
           <TableHeader>
             <TableRow
               className={`border-none rounded-md ${
@@ -157,7 +157,13 @@ export default function CurrencyPage() {
                       isDarkMode ? "text-white/80" : "text-black/80"
                     }`}
                   >
-                    0.00
+                    {currncyPrices[
+                      `C:${crypto.name.replace("/", "").toUpperCase()}`
+                    ]
+                      ? currncyPrices[
+                          `C:${crypto.name.replace("/", "").toUpperCase()}`
+                        ]
+                      : "0.00"}
                   </TableCell>
                   <TableCell>
                     <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">

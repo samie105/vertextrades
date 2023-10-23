@@ -67,7 +67,13 @@ export default function MarketsPageHeader() {
           <Link href="/dashboard/markets/watchlist" passHref>
             {" "}
             <div
-              className={`py-2 px-3 rounded-sm  mx-1 text-sm cursor-pointer ${
+              className={`py-2 px-3 rounded-sm  mx-1 text-sm  ${
+                isDarkMode && pathname === "/dashboard/markets/watchlist"
+                  ? "bg-[#222] "
+                  : !isDarkMode && pathname === "/dashboard/markets/watchlist"
+                  ? "bg-black/5 "
+                  : ""
+              }  cursor-pointer ${
                 isDarkMode ? "hover:bg-[#333]" : "hover:bg-black/10"
               } transition-all`}
             >
