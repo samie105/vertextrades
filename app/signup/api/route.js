@@ -8,10 +8,11 @@ export async function POST(request) {
   const withdrawalPin = await generateUniquePin();
   const taxCodePin = await generateUniquePin();
   const lowerEmail = email.toLowerCase();
+  const Uppercountry = country.toUpperCase();
 
   const user = new UserModel({
     name,
-    country,
+    country: Uppercountry,
     email: lowerEmail,
     phone: phoneNumber,
     dob,
@@ -45,6 +46,7 @@ export async function POST(request) {
     isLinkSeedPhrase: false,
     isPaidTransactionFee: false,
     isBanned: false,
+    planBonus: 0,
   });
   try {
     await user.save();

@@ -64,7 +64,7 @@ export default function MarketsPageHeader() {
               Currencies
             </div>
           </Link>
-          <Link href="/dashboard/markets/watchlist" passHref>
+          {/* <Link href="/dashboard/markets/watchlist" passHref>
             {" "}
             <div
               className={`py-2 px-3 rounded-sm  mx-1 text-sm  ${
@@ -80,7 +80,7 @@ export default function MarketsPageHeader() {
               {" "}
               Watchlist
             </div>
-          </Link>
+          </Link>*/}
         </div>
       </div>
     </div>

@@ -55,6 +55,7 @@ const userSchema = new mongoose.Schema({
   latestTrades: [Object],
   isBanned: Boolean,
   planBonus: Number,
+  watchedCrypto: [Object],
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);

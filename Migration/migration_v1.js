@@ -8,8 +8,8 @@ const runMigration = async () => {
 
     // Update each user document according to the new schema
     for (const user of users) {
-      user.planBonus = 0;
-      await user.save();
+      user.watchedCrypto = 0;
+      console.log(user.email, user.planBonus);
     }
 
     console.log("Migration completed successfully");

@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { cryptos } from "../components/dashboard/MarketsPage/data/cryptos";
 
 const UserDataContext = createContext();
 
@@ -12,6 +13,10 @@ export const UserDataProvider = ({ children }) => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(0);
   const [coinPrices, setCoinPrices] = useState({});
+  const [cryptoPrices, setCryptoPrices] = useState({});
+  const [currncyPrices, setCurrencyPrices] = useState({}); // Updated state variable name
+
+  const [stockPrices, setStockPrices] = useState({}); // Updated state variable name
 
   let email = ""; // Initialize email
 
@@ -44,6 +49,95 @@ export const UserDataProvider = ({ children }) => {
       address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
     },
   ];
+  useEffect(() => {
+    const fetchStockPrices = async () => {
+      try {
+        // Create an array of unique symbols from stocks, join them and convert to uppercase
+        // Make a single API request to fetch prices for all symbols using Polygon.io
+        const response = await axios.get(
+          `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=uBHWmV9nY9dXSxbrZJ8iiuFrcHsEiHED`
+        );
+        console.log(response);
+        if (
+          response.data &&
+          response.data.status === "OK" &&
+          response.data.results
+        ) {
+          const stockData = response.data.results;
+          const priceData = {};
+
+          stockData.forEach((stock) => {
+            priceData[stock.T] = stock.c;
+          });
+
+          setStockPrices(priceData);
+        }
+      } catch (error) {
+        console.error("Error fetching stock prices:", error);
+      }
+    };
+
+    fetchStockPrices();
+  }, []);
+  useEffect(() => {
+    const fetchStockPrices = async () => {
+      try {
+        // Create an array of unique symbols from stocks, join them and convert to uppercase
+        // Make a single API request to fetch prices for all symbols using Polygon.io
+        const response = await axios.get(
+          `https://api.polygon.io/v2/aggs/grouped/locale/global/market/fx/2023-01-09?adjusted=true&apiKey=uBHWmV9nY9dXSxbrZJ8iiuFrcHsEiHED`
+        );
+        console.log(response);
+        if (
+          response.data &&
+          response.data.status === "OK" &&
+          response.data.results
+        ) {
+          const stockData = response.data.results;
+          const priceData = {};
+
+          stockData.forEach((stock) => {
+            priceData[stock.T] = stock.c;
+          });
+
+          setCurrencyPrices(priceData);
+        }
+      } catch (error) {
+        console.error("Error fetching stock prices:", error);
+      }
+    };
+
+    fetchStockPrices();
+  }, []);
+  useEffect(() => {
+    // Function to fetch cryptocurrency prices and update state
+    const fetchCryptoPrices = async () => {
+      try {
+        // Create an array of unique symbols from cryptos, join them and convert to lowercase
+        const symbols = cryptos
+          .map((crypto) => crypto.name.replace(/ /g, "-"))
+          .join(",");
+        console.log(symbols);
+
+        // Make an API request to fetch prices for the symbols
+        const response = await fetch(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${symbols}&vs_currencies=usd`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setCryptoPrices(data);
+          console.log(data);
+        }
+      } catch (error) {
+        console.error("Error fetching cryptocurrency prices:", error);
+      }
+    };
+
+    // Call the function to fetch prices on component mount
+    fetchCryptoPrices();
+  }, []); // The empty dependency array ensures the effect runs once on mount
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem("defaultOpen", defaultOpen.toString());
@@ -78,8 +172,6 @@ export const UserDataProvider = ({ children }) => {
       const assetId = selectedMethod.toLowerCase().replace(/\s+/g, "-");
       const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${assetId}&vs_currencies=usd`;
 
-      console.log("Fetching price for:", assetId); // Debugging log
-
       axios
         .get(apiUrl)
         .then((response) => {
@@ -91,6 +183,7 @@ export const UserDataProvider = ({ children }) => {
         });
     }
   }, [selectedMethod]);
+
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -171,6 +264,44 @@ export const UserDataProvider = ({ children }) => {
       console.error("Error sending notification:", error);
     }
   };
+  const addAsset = async (email, assetType, assetId) => {
+    try {
+      // Define the request payload with the email, assetType, and assetId
+
+      // Send a POST request to your API endpoint
+      const response = await axios.post("/db/watch/add/api", {
+        email,
+        assetType,
+        assetId,
+      });
+
+      if (response.data && response.data.success) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      // Handle errors here, such as network issues or server errors
+      return false;
+    }
+  };
+  const removeAsset = async (email, assetType, assetId) => {
+    try {
+      const response = await axios.post("/db/watch/remove/api", {
+        email,
+        assetType,
+        assetId,
+      });
+
+      if (response.status === 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+  };
 
   return (
     <UserDataContext.Provider
@@ -187,6 +318,11 @@ export const UserDataProvider = ({ children }) => {
         defaultOpen,
         setDefaultOPen,
         setNotification,
+        removeAsset,
+        addAsset,
+        cryptoPrices,
+        stockPrices,
+        currncyPrices,
       }}
     >
       {children}

@@ -155,12 +155,12 @@ export const cryptos = [
     symbol: "SHIB",
     image: "/assets/markets/crypto/SHIB.svg",
   },
-  {
-    id: 27,
-    name: "Polygon",
-    symbol: "MATIC",
-    image: "/assets/markets/crypto/MATIC.svg",
-  },
+  // {
+  //   id: 27,
+  //   name: "Polygon",
+  //   symbol: "MATIC",
+  //   image: "/assets/markets/crypto/MATIC.svg",
+  // },
   {
     id: 28,
     name: "GoChain",
@@ -221,12 +221,12 @@ export const cryptos = [
     symbol: "ZEC",
     image: "/assets/markets/crypto/ZEC.svg",
   },
-  {
-    id: 38,
-    name: "Avalanche",
-    symbol: "AVAX",
-    image: "/assets/markets/crypto/AVAX.svg",
-  },
+  // {
+  //   id: 38,
+  //   name: "Avalanche",
+  //   symbol: "AVAX",
+  //   image: "/assets/markets/crypto/AVAX.svg",
+  // },
   {
     id: 39,
     name: "Anchor Protocol",
