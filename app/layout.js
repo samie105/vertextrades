@@ -10,7 +10,7 @@ import GoogleTranslate from "../components/Translator/GoogleTranslator";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "../contexts/themeContext";
-const font = Poppins({ subsets: ["latin"], weight: ["300"] });
+const font = Poppins({ subsets: ["latin-ext"], weight: ["300"] });
 
 export const metadata = {
   title: "Capital Nexus | Best Digital Currency Platform ",

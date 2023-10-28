@@ -26,8 +26,8 @@ export default function Sidebar() {
                   router === item.linkPath
                     ? "text-white font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500"
                     : isDarkMode
-                    ? "text-white/80 hover:bg-[#111] text-xs font-bold"
-                    : "text-black/70 hover:bg-gray-200 text-xs font-bold"
+                    ? "text-white/95 hover:bg-[#111] text-xs "
+                    : "text-black/70 hover:bg-gray-200 text-xs "
                 }`}
               >
                 <div className="mx-2 font-bold ">{item.icon}</div>

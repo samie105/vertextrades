@@ -13,7 +13,7 @@ export const copyTraders = [
     followers: 1200,
     maxDrawdown: 8.2,
     favoriteStock: "AAPL",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-7.jpg",
     verified: true,
   },
   {
@@ -30,7 +30,7 @@ export const copyTraders = [
     followers: 800,
     maxDrawdown: 6.5,
     favoriteStock: "GOOGL",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-14.jpg",
     verified: false,
   },
   {
@@ -47,7 +47,7 @@ export const copyTraders = [
     followers: 1500,
     maxDrawdown: 7.1,
     favoriteStock: "TSLA",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-trader-2.jpg",
     verified: true,
   },
   {
@@ -64,7 +64,7 @@ export const copyTraders = [
     followers: 1000,
     maxDrawdown: 6.8,
     favoriteStock: "MSFT",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-trader-3.jpg",
     verified: false,
   },
   {
@@ -81,7 +81,7 @@ export const copyTraders = [
     followers: 900,
     maxDrawdown: 7.5,
     favoriteStock: "BTC",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-trader-4.jpg",
     verified: true,
   },
   {
@@ -98,7 +98,7 @@ export const copyTraders = [
     followers: 1100,
     maxDrawdown: 6.2,
     favoriteStock: "GLD",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-trader-5.jpg",
     verified: true,
   },
   {
@@ -115,7 +115,7 @@ export const copyTraders = [
     followers: 850,
     maxDrawdown: 8.0,
     favoriteStock: "AMZN",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-6.jpg",
     verified: false,
   },
   {
@@ -132,7 +132,7 @@ export const copyTraders = [
     followers: 1300,
     maxDrawdown: 7.3,
     favoriteStock: "NFLX",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-trader.jpg",
     verified: true,
   },
   {
@@ -149,7 +149,7 @@ export const copyTraders = [
     followers: 950,
     maxDrawdown: 6.6,
     favoriteStock: "AAPL",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-13.jpg",
     verified: false,
   },
   {
@@ -166,7 +166,7 @@ export const copyTraders = [
     followers: 1400,
     maxDrawdown: 7.7,
     favoriteStock: "EURUSD",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy.jpg",
     verified: true,
   },
   {
@@ -183,7 +183,7 @@ export const copyTraders = [
     followers: 1100,
     maxDrawdown: 7.8,
     favoriteStock: "JPY",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-trader-1.jpg",
     verified: false,
   },
   {
@@ -200,7 +200,7 @@ export const copyTraders = [
     followers: 900,
     maxDrawdown: 6.4,
     favoriteStock: "INR",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-9.jpg",
     verified: true,
   },
   {
@@ -217,7 +217,7 @@ export const copyTraders = [
     followers: 1000,
     maxDrawdown: 7.1,
     favoriteStock: "BRL",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-10.jpg",
     verified: false,
   },
   {
@@ -234,7 +234,7 @@ export const copyTraders = [
     followers: 1200,
     maxDrawdown: 7.6,
     favoriteStock: "BTC",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-11.jpg",
     verified: true,
   },
   {
@@ -251,7 +251,7 @@ export const copyTraders = [
     followers: 1100,
     maxDrawdown: 7.0,
     favoriteStock: "MXN",
-    image: "/assets/nellyaran.jpg",
+    image: "/assets/copy-12.jpg",
     verified: true,
   },
 ];
