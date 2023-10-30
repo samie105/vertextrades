@@ -5,13 +5,16 @@ export const stakingOptions = [
     coinName: "Bitcoin",
     coinSymbol: "BTC",
     description: "Stake your Bitcoin and earn rewards.",
-    minimum: 0.1, // Minimum staking amount in BTC
-    maximum: 10, // Maximum staking amount in BTC
+    percentageRage: "5% - 12%",
+    minimum: 100, // Minimum staking amount in BTC
     cycle: "Monthly", // Staking cycle (e.g., Daily, Monthly)
     durations: [
-      { months: 1, percentage: 5 }, // 5% monthly reward for 1 month
-      { months: 3, percentage: 15 }, // 15% monthly reward for 3 months
-      { months: 6, percentage: 25 }, // 25% monthly reward for 6 months
+      { months: 1, percentage: 5 },
+      { months: 3, percentage: 6.2 },
+      { months: 4, percentage: 7.4 },
+      { months: 6, percentage: 8.8 },
+      { months: 8, percentage: 10.4 },
+      { months: 12, percentage: 12 },
     ],
     imagePath: "/assets/markets/crypto/BTC.svg",
   },
@@ -20,31 +23,116 @@ export const stakingOptions = [
     name: "Ethereum Staking",
     coinName: "Ethereum",
     coinSymbol: "ETH",
+    percentageRage: "4% - 10%",
+
     description: "Stake your Ethereum and earn rewards.",
-    minimum: 0.5, // Minimum staking amount in ETH
-    maximum: 50, // Maximum staking amount in ETH
+    minimum: 100, // Minimum staking amount in ETH
     cycle: "Monthly",
     durations: [
-      { months: 1, percentage: 4.5 },
-      { months: 3, percentage: 14 },
-      { months: 6, percentage: 24 },
-      { months: 12, percentage: 40 }, // 40% monthly reward for 12 months
+      { months: 1, percentage: 4 },
+      { months: 3, percentage: 6.7 },
+      { months: 6, percentage: 8.8 },
+      { months: 12, percentage: 10 },
     ],
     imagePath: "/assets/markets/crypto/ETH.svg",
+  },
+
+  {
+    id: "sol_stake_1",
+    name: "Solana Staking",
+    coinName: "Solana",
+    coinSymbol: "SOL",
+    percentageRage: "4% - 9%",
+
+    description: "Stake your Cardano SOL and earn rewards.",
+    minimum: 100, // Minimum staking amount in ADA
+    cycle: "Monthly",
+    durations: [
+      { months: 1, percentage: 4 },
+      { months: 3, percentage: 6.5 },
+      { months: 5, percentage: 7.6 },
+      { months: 6, percentage: 8 },
+      { months: 8, percentage: 9 },
+    ],
+    imagePath: "/assets/markets/crypto/SOL.svg",
+  },
+  {
+    id: "doge_stake_1",
+    name: "Doge Staking",
+    coinName: "Dogecoin",
+    coinSymbol: "DOGE",
+    percentageRage: "4% - 9%",
+
+    description: "Stake your Cardano DOGE and earn rewards.",
+    minimum: 100, // Minimum staking amount in ADA
+    cycle: "Monthly",
+    durations: [
+      { months: 1, percentage: 4 },
+      { months: 3, percentage: 6.5 },
+      { months: 5, percentage: 7.6 },
+      { months: 6, percentage: 8 },
+      { months: 8, percentage: 9 },
+    ],
+    imagePath: "/assets/markets/crypto/DOGE.svg",
   },
   {
     id: "ada_stake_1",
     name: "Cardano Staking",
     coinName: "Cardano",
     coinSymbol: "ADA",
+    percentageRage: "2% - 9%",
+
     description: "Stake your Cardano ADA and earn rewards.",
-    minimum: 1000, // Minimum staking amount in ADA
-    maximum: 10000, // Maximum staking amount in ADA
-    cycle: "Quarterly", // Staking cycle (e.g., Quarterly)
+    minimum: 100, // Minimum staking amount in ADA
+    cycle: "Monthly",
     durations: [
-      { months: 3, percentage: 10 }, // 10% quarterly reward for 3 months
-      { months: 9, percentage: 30 }, // 30% quarterly reward for 9 months
+      { months: 1, percentage: 2.5 },
+      { months: 3, percentage: 3.6 },
+      { months: 5, percentage: 4.4 },
+      { months: 8, percentage: 6.3 },
+      { months: 10, percentage: 7.6 },
+      { months: 12, percentage: 9 },
     ],
     imagePath: "/assets/markets/crypto/ADA.svg",
+  },
+  {
+    id: "tether_stake_1",
+    name: "Tether Staking",
+    coinName: "Tether",
+    coinSymbol: "USDT",
+    percentageRage: "2% - 9%",
+
+    description: "Stake your USDT and earn rewards.",
+    minimum: 100, // Minimum staking amount in ADA
+    cycle: "Monthly",
+    durations: [
+      { months: 1, percentage: 2.5 },
+      { months: 3, percentage: 3.6 },
+      { months: 5, percentage: 4.4 },
+      { months: 8, percentage: 6.3 },
+      { months: 10, percentage: 7.6 },
+      { months: 12, percentage: 9 },
+    ],
+    imagePath: "/assets/markets/crypto/USDT.svg",
+  },
+  {
+    id: "tron_stake_1",
+    name: "Tron Staking",
+    coinName: "Tron",
+    coinSymbol: "TRX",
+    percentageRage: "2% - 9%",
+
+    description: "Stake your TRX and earn rewards.",
+    minimum: 100, // Minimum staking amount in ADA
+    cycle: "Monthly",
+    durations: [
+      { months: 1, percentage: 2.5 },
+      { months: 3, percentage: 3.6 },
+      { months: 5, percentage: 4.4 },
+      { months: 8, percentage: 6.3 },
+      { months: 10, percentage: 7.6 },
+      { months: 12, percentage: 9 },
+    ],
+    imagePath: "/assets/markets/crypto/TRX.svg",
   },
 ];

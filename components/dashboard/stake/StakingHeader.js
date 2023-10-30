@@ -71,6 +71,23 @@ export default function StakingHeader() {
               Metals
             </div>
           </Link>
+          <Link href="/dashboard/markets/currencies" passHref>
+            {" "}
+            <div
+              className={`py-2 px-3 rounded-sm mx-1 text-sm ${
+                isDarkMode && pathname === "/dashboard/markets/currencies"
+                  ? "bg-[#222] "
+                  : !isDarkMode && pathname === "/dashboard/markets/currencies"
+                  ? "bg-black/5 "
+                  : ""
+              }  cursor-pointer ${
+                isDarkMode ? "hover:bg-[#333]" : "hover:bg-black/10"
+              } transition-all`}
+            >
+              {" "}
+              My stakings
+            </div>
+          </Link>
         </div>
       </div>
     </div>

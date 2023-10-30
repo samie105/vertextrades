@@ -86,9 +86,11 @@ export default function Staking() {
                     <div className="price">
                       {" "}
                       <div
-                        className={`${
-                          isDarkMode ? "/bg-[#222] text-white" : "/bg-black/10"
-                        } font-bold text-sm p-2 rounded-sm`}
+                        className={`border ${
+                          isDarkMode
+                            ? "bg-[#222] text-white border-white/5"
+                            : "bg-black/5"
+                        } font-bold text-sm py-1 px-2 rounded-sm`}
                       >
                         $
                         {details !== 0 &&
@@ -101,7 +103,7 @@ export default function Staking() {
                   <div className="detail-section mt-5">
                     {/* <div className="text-sm font-bold"> Details</div> */}
 
-                    <div className="deet-cont grid grid-cols-3 gap-x-3 mt-2">
+                    <div className="deet-cont grid grid-cols-3 gap-x-3 md:grid-cols-2 md:gap-3 lg:grid-cols-3  mt-2">
                       <div
                         className={`${
                           isDarkMode
@@ -111,7 +113,7 @@ export default function Staking() {
                       >
                         <p className={`font-bold text-sm `}>Minimum</p>
                         <p className="text-sm font-bold opacity-80">
-                          {stake.minimum}
+                          ${stake.minimum}
                         </p>
                       </div>
                       <div
@@ -121,9 +123,9 @@ export default function Staking() {
                             : "bg-[#00000009] border"
                         } rounded-sm p-3 /text-center`}
                       >
-                        <p className={`font-bold text-sm `}>Maximum</p>
+                        <p className={`font-bold text-sm `}>ROI</p>
                         <p className="text-sm font-bold opacity-80">
-                          {stake.maximum}
+                          {stake.percentageRage}
                         </p>
                       </div>
                       <div
@@ -157,6 +159,7 @@ export default function Staking() {
                         }`}
                       >
                         <AssetDialog
+                          minimum={stake.minimum}
                           name={stake.coinName}
                           symbol={stake.coinSymbol}
                           image={stake.imagePath}
