@@ -2,18 +2,17 @@
 import React, { useState } from "react";
 import { useTheme } from "../../../contexts/themeContext";
 import { Input } from "../../ui/input";
-import { stakingOptions } from "./stake";
+import { stakingOptions } from "./stake-currency";
 import Image from "next/image";
 import { useUserData } from "../../../contexts/userrContext";
-import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet";
 import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
 import AssetDialog from "../AssetDialog";
 
-export default function Staking() {
+export default function CurrencyStake() {
   const { isDarkMode } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { details, cryptoPrices } = useUserData();
+  const { details, currncyPrices } = useUserData();
   const filterStaking = stakingOptions.filter((trader) =>
     trader.coinName.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -35,7 +34,7 @@ export default function Staking() {
             <Input
               type="text"
               onChange={handleSearchInputChange}
-              placeholder="Search Crypto Pool"
+              placeholder="Search Currencies eg. 'usd' "
               className="bg-transparent font-bold border-0 h-12 ring-0 hover:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:ring-0"
             />
             <svg
@@ -94,9 +93,9 @@ export default function Staking() {
                       >
                         $
                         {details !== 0 &&
-                          cryptoPrices[
-                            stake.coinName.replace(/ /g, "-").toLowerCase()
-                          ].usd.toLocaleString()}
+                          currncyPrices[
+                            `C:${stake.coinName.replace("~", "").toUpperCase()}`
+                          ]}
                       </div>
                     </div>
                   </div>
@@ -164,12 +163,11 @@ export default function Staking() {
                           symbol={stake.coinSymbol}
                           image={stake.imagePath}
                           price={
-                            details !== 0 &&
-                            cryptoPrices[
-                              stake.coinName.replace(/ /g, "-").toLowerCase()
-                            ].usd
-                              .toLocaleString()
-                              .replace(/,/g, "")
+                            currncyPrices[
+                              `C:${stake.coinName
+                                .replace("~", "")
+                                .toUpperCase()}`
+                            ]
                           }
                           duration={stake.durations}
                         />

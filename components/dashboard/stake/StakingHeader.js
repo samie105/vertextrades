@@ -20,7 +20,7 @@ export default function StakingHeader() {
       </div>
       <div className={`currency-tabs-container w-full font-bold`}>
         <div className={`flex items-center mt-4`}>
-          <Link href="/dashboard/markets" passHref>
+          <Link href="/dashboard/stake" passHref>
             {" "}
             <div
               className={`py-2 px-3 e rounded-sm font-bold ${
@@ -37,13 +37,13 @@ export default function StakingHeader() {
               Crypto
             </div>
           </Link>
-          <Link href="/dashboard/markets/stock" passHref>
+          <Link href="/dashboard/stake/stock" passHref>
             {" "}
             <div
               className={`py-2 px-3 ${
-                isDarkMode && pathname === "/dashboard/markets/stock"
+                isDarkMode && pathname === "/dashboard/stake/stock"
                   ? "bg-[#222] "
-                  : !isDarkMode && pathname === "/dashboard/markets/stock"
+                  : !isDarkMode && pathname === "/dashboard/stake/stock"
                   ? "bg-black/5 "
                   : ""
               } rounded-sm mx-1 text-sm cursor-pointer ${
@@ -54,13 +54,13 @@ export default function StakingHeader() {
               Stock
             </div>
           </Link>
-          <Link href="/dashboard/markets/currencies" passHref>
+          <Link href="/dashboard/stake/currencies" passHref>
             {" "}
             <div
               className={`py-2 px-3 rounded-sm mx-1 text-sm ${
-                isDarkMode && pathname === "/dashboard/markets/currencies"
+                isDarkMode && pathname === "/dashboard/stake/currencies"
                   ? "bg-[#222] "
-                  : !isDarkMode && pathname === "/dashboard/markets/currencies"
+                  : !isDarkMode && pathname === "/dashboard/stake/currencies"
                   ? "bg-black/5 "
                   : ""
               }  cursor-pointer ${
@@ -68,16 +68,16 @@ export default function StakingHeader() {
               } transition-all`}
             >
               {" "}
-              Metals
+              Currencies
             </div>
           </Link>
-          <Link href="/dashboard/markets/currencies" passHref>
+          <Link href="/dashboard/stake/mystakings" passHref>
             {" "}
             <div
               className={`py-2 px-3 rounded-sm mx-1 text-sm ${
-                isDarkMode && pathname === "/dashboard/markets/currencies"
+                isDarkMode && pathname === "/dashboard/stake/mystakings"
                   ? "bg-[#222] "
-                  : !isDarkMode && pathname === "/dashboard/markets/currencies"
+                  : !isDarkMode && pathname === "/dashboard/stake/mystakings"
                   ? "bg-black/5 "
                   : ""
               }  cursor-pointer ${

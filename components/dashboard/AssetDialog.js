@@ -27,13 +27,11 @@ export default function AssetDialog({
   const [amount, setAmount] = useState(minimum || 0);
   const [percentage, setPercentage] = useState(0);
   const [month, setMonth] = useState(0);
-  const roi = amount + (percentage * amount) / 100;
+  const roi = amount + (percentage * month * amount) / 100;
   const amountperMonth = (roi / month).toFixed(2);
-  const stakeEquivalent = (
-    amount / parseFloat(price.replace(/,/g, ""))
-  ).toFixed(3);
+  const stakeEquivalent = (amount / parseFloat(price)).toFixed(3);
   const balance = (
-    parseFloat(details.tradingBalance) / parseFloat(price.replace(/,/g, ""))
+    parseFloat(details.tradingBalance) / parseFloat(price)
   ).toFixed(3);
   const handleChange = (value) => {
     setShowError(false);
