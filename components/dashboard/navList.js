@@ -304,7 +304,11 @@ export const navList = [
       </svg>
     ),
 
-    linkPath: "/dashboard/markets",
+    linkPath: [
+      "/dashboard/markets",
+      "/dashboard/markets/stock",
+      "/dashboard/markets/currencies",
+    ],
   },
   {
     nav: "Withdraw",

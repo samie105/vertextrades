@@ -13,6 +13,7 @@ import { useUserData } from "../../../contexts/userrContext";
 import { useTheme } from "../../../contexts/themeContext";
 import { cryptos } from "./data/cryptos";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MarketsPage() {
   const { details, removeAsset, addAsset, cryptoPrices, email } = useUserData();
@@ -138,11 +139,11 @@ export default function MarketsPage() {
               >
                 Current Price
               </TableHead>
-              {/* <TableHead
+              <TableHead
                 className={`${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
-              ></TableHead> */}
+              ></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -236,11 +237,16 @@ export default function MarketsPage() {
                         }`
                       : "$0.00"}
                   </TableCell>
-                  {/* <TableCell>
-                    <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
-                      Trade
-                    </button>
-                  </TableCell> */}
+                  <TableCell>
+                    <Link
+                      href={`/dashboard/trade/en/crypto/${crypto.symbol}/${crypto.provider}`}
+                      passHref
+                    >
+                      <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
+                        Trade
+                      </button>
+                    </Link>
+                  </TableCell>
                 </TableRow>
               </>
             ))}

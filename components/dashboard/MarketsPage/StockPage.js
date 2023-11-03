@@ -65,11 +65,11 @@ export default function StockPage() {
               >
                 Price
               </TableHead>
-              {/* <TableHead
+              <TableHead
                 className={`${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
-              ></TableHead> */}
+              ></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -147,11 +147,11 @@ export default function StockPage() {
                       ? stockPrices[crypto.symbol]
                       : "0.00"}
                   </TableCell>
-                  {/* <TableCell>
+                  <TableCell>
                     <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
                       Trade
                     </button>
-                  </TableCell> */}
+                  </TableCell>
                 </TableRow>
               </>
             ))}

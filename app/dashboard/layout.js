@@ -84,7 +84,7 @@ export default function Layout({ children }) {
         </div>
         <div className="content-container relative md:flex  h-full">
           <div className="side-bar hidden md:block /overflow-scroll pt-16">
-            <ScrollArea className="w-[300px] h-[calc(100vh-70px)] mb-[70px]">
+            <ScrollArea className="w-[250px] h-[calc(100vh-70px)] mb-[70px]">
               <Sidebar />
             </ScrollArea>
           </div>

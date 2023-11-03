@@ -61,7 +61,7 @@ export default function MarketsPageHeader() {
               } transition-all`}
             >
               {" "}
-              Currencies
+              Forex
             </div>
           </Link>
           {/* <Link href="/dashboard/markets/watchlist" passHref>
