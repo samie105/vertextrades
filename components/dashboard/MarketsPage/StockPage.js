@@ -13,6 +13,7 @@ import { useTheme } from "../../../contexts/themeContext";
 import { currencies } from "./data/stocks";
 import Image from "next/image";
 import { useUserData } from "../../../contexts/userrContext";
+import Link from "next/link";
 
 export default function StockPage() {
   const { details, stockPrices } = useUserData();
@@ -148,9 +149,16 @@ export default function StockPage() {
                       : "0.00"}
                   </TableCell>
                   <TableCell>
-                    <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
-                      Trade
-                    </button>
+                    <Link
+                      href={`/dashboard/trade/en/stock/${crypto.symbol}/BMV/${
+                        stockPrices[crypto.symbol]
+                      }`}
+                      passHref
+                    >
+                      <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
+                        Trade
+                      </button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               </>

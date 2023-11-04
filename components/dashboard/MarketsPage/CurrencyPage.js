@@ -15,6 +15,7 @@ import { currencies } from "./data/currencies";
 import Image from "next/image";
 import axios from "axios";
 import { useUserData } from "../../../contexts/userrContext";
+import Link from "next/link";
 
 export default function CurrencyPage() {
   const { currncyPrices } = useUserData();
@@ -138,9 +139,20 @@ export default function CurrencyPage() {
                       : "0.00"}
                   </TableCell>
                   <TableCell>
-                    <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
-                      Trade
-                    </button>
+                    <Link
+                      href={`/dashboard/trade/en/forex/${crypto.name
+                        .replace("/", "")
+                        .toUpperCase()}/active/${
+                        currncyPrices[
+                          `C:${crypto.name.replace("/", "").toUpperCase()}`
+                        ]
+                      }`}
+                      passHref
+                    >
+                      <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">
+                        Trade
+                      </button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               </>

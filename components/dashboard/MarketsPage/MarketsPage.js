@@ -239,7 +239,13 @@ export default function MarketsPage() {
                   </TableCell>
                   <TableCell>
                     <Link
-                      href={`/dashboard/trade/en/crypto/${crypto.symbol}/${crypto.provider}`}
+                      href={`/dashboard/trade/en/crypto/${crypto.symbol}/${
+                        crypto.provider
+                      }/${
+                        cryptoPrices[
+                          crypto.name.replace(/ /g, "-").toLowerCase()
+                        ].usd
+                      }`}
                       passHref
                     >
                       <button className="px-3 py-2 bg-green-600/10 text-green-600 rounded-sm text-sm">

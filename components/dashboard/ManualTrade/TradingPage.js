@@ -4,20 +4,44 @@ import { AdvancedChart, SymbolInfo, TickerTape } from "react-tradingview-embed";
 import { useTheme } from "../../../contexts/themeContext";
 import TradingForm from "./TradingForm";
 
-export default function TradingPage({ market, marketType, provider }) {
+export default function TradingPage({ market, marketType, provider, price }) {
   const { isDarkMode } = useTheme();
   return (
     <div className=" pr-3 flex flex-col">
       <div className={`mt-3 ${isDarkMode ? "text-white" : ""}`}>
-        <SymbolInfo
-          widgetPropsAny={{
-            symbol: `${provider}:${market}USD`,
-            width: "100%",
-            locale: "en",
-            colorTheme: `${isDarkMode ? "dark" : "light"}`,
-            isTransparent: true,
-          }}
-        />
+        {marketType === "crypto" && (
+          <SymbolInfo
+            widgetPropsAny={{
+              symbol: `${provider}:${market}USD`,
+              width: "100%",
+              locale: "en",
+              colorTheme: `${isDarkMode ? "dark" : "light"}`,
+              isTransparent: true,
+            }}
+          />
+        )}
+        {marketType === "stock" && (
+          <SymbolInfo
+            widgetPropsAny={{
+              symbol: `${market}`,
+              width: "100%",
+              locale: "en",
+              colorTheme: `${isDarkMode ? "dark" : "light"}`,
+              isTransparent: true,
+            }}
+          />
+        )}
+        {marketType === "forex" && (
+          <SymbolInfo
+            widgetPropsAny={{
+              symbol: `${market}`,
+              width: "100%",
+              locale: "en",
+              colorTheme: `${isDarkMode ? "dark" : "light"}`,
+              isTransparent: true,
+            }}
+          />
+        )}
         <TickerTape
           widgetProps={{
             symbols: [
@@ -49,41 +73,91 @@ export default function TradingPage({ market, marketType, provider }) {
             locale: "en",
           }}
         />
-        <div className=" w-full h-[610px]">
-          <AdvancedChart
-            widgetProps={{
-              isTransparent: true,
-              width: "100%",
-              height: "610px",
-              symbol: `${provider}:${market}USD`,
-              interval: "D",
-              timezone: "Etc/UTC",
-              theme: `${isDarkMode ? "dark" : "light"}`,
-              style: "1",
-              locale: "en",
-              enable_publishing: false,
-              backgroundColor: `${isDarkMode ? "#0A0A0A" : "#ffffff"}`,
-              withdateranges: true,
-              hide_side_toolbar: false,
-              allow_symbol_change: true,
-              hotlist: true,
-              calendar: true,
-              studies: [
-                "CorrelationCoefficient@tv-basicstudies",
-                "STD;Correlation_Coeff",
-                "STD;Keltner_Channels",
-                "STD;Klinger%1Oscillator",
-              ],
-              container_id: "tradingview_2c49b",
-            }}
-          />
-        </div>
+        {marketType === "crypto" && (
+          <div className=" w-full h-[610px]">
+            <AdvancedChart
+              widgetProps={{
+                isTransparent: true,
+                width: "100%",
+                height: "610px",
+                symbol: `${provider}:${market}USD`,
+                interval: "D",
+                timezone: "Etc/UTC",
+                theme: `${isDarkMode ? "dark" : "light"}`,
+                style: "1",
+                locale: "en",
+                enable_publishing: false,
+                backgroundColor: `${isDarkMode ? "#0A0A0A" : "#ffffff"}`,
+                withdateranges: true,
+                hide_side_toolbar: true,
+                allow_symbol_change: false,
+                hotlist: false,
+                calendar: false,
+                studies: ["STD;Klinger%1Oscillator"],
+                container_id: "tradingview_2c49b",
+              }}
+            />
+          </div>
+        )}
+        {marketType === "stock" && (
+          <div className=" w-full h-[610px]">
+            <AdvancedChart
+              widgetProps={{
+                isTransparent: true,
+                width: "100%",
+                height: "610px",
+                symbol: `${market}`,
+                interval: "D",
+                timezone: "Etc/UTC",
+                theme: `${isDarkMode ? "dark" : "light"}`,
+                style: "1",
+                locale: "en",
+                enable_publishing: false,
+                backgroundColor: `${isDarkMode ? "#0A0A0A" : "#ffffff"}`,
+                withdateranges: true,
+                hide_side_toolbar: true,
+                allow_symbol_change: false,
+                hotlist: false,
+                calendar: false,
+                studies: ["STD;Klinger%1Oscillator"],
+                container_id: "tradingview_2c49b",
+              }}
+            />
+          </div>
+        )}
+        {marketType === "forex" && (
+          <div className=" w-full h-[610px]">
+            <AdvancedChart
+              widgetProps={{
+                isTransparent: true,
+                width: "100%",
+                height: "610px",
+                symbol: `${market}`,
+                interval: "D",
+                timezone: "Etc/UTC",
+                theme: `${isDarkMode ? "dark" : "light"}`,
+                style: "1",
+                locale: "en",
+                enable_publishing: false,
+                backgroundColor: `${isDarkMode ? "#0A0A0A" : "#ffffff"}`,
+                withdateranges: true,
+                hide_side_toolbar: true,
+                allow_symbol_change: false,
+                hotlist: false,
+                calendar: false,
+                studies: ["STD;Klinger%1Oscillator"],
+                container_id: "tradingview_2c49b",
+              }}
+            />
+          </div>
+        )}
       </div>
       <div>
         <TradingForm
           market={market}
           marketType={marketType}
           provider={provider}
+          price={price}
         />
       </div>
     </div>

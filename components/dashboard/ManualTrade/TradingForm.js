@@ -5,22 +5,22 @@ import { useUserData } from "../../../contexts/userrContext";
 import { cryptos } from "../MarketsPage/data/cryptos";
 import { find } from "@amcharts/amcharts4/.internal/core/utils/Iterator";
 
-export default function TradingForm({ market, marketType, provider }) {
+export default function TradingForm({ market, marketType, provider, price }) {
   const { cryptoPrices, details } = useUserData();
   const [entryPrice, setEntryPrice] = useState();
   const [stopLoss, setStopLoss] = useState();
   const [takeProfit, setTakeProfit] = useState();
   const [lotSize, setLotSize] = useState();
+  const [entryPrice1, setEntryPrice1] = useState();
+  const [stopLoss1, setStopLoss1] = useState();
+  const [takeProfit1, setTakeProfit1] = useState();
+  const [lotSize1, setLotSize1] = useState();
   const { isDarkMode } = useTheme();
 
-  const coinName = cryptos.find((crypto) => crypto.symbol === market);
-  const price =
-    details !== 0 &&
-    cryptoPrices[coinName.name.replace(/ /g, "-").toLowerCase()].usd;
   return (
     <div
       className={`flex flex-col md:flex-row gap-y-2 md:gap-y-0 items-center  ${
-        isDarkMode ? " text-white" : "bg-black/5"
+        isDarkMode ? " text-white" : ""
       }`}
     >
       <div className={`buy-form  p-3 w-full`}>
@@ -36,7 +36,9 @@ export default function TradingForm({ market, marketType, provider }) {
             type="text"
             readOnly
             placeholder="Amount (USD)"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -51,7 +53,9 @@ export default function TradingForm({ market, marketType, provider }) {
             type="number"
             onChange={(e) => setLotSize(e.target.value)}
             placeholder="Lot size"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -66,7 +70,9 @@ export default function TradingForm({ market, marketType, provider }) {
             type="number"
             onChange={(e) => setEntryPrice(e.target.value)}
             placeholder="Entry Price"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -81,7 +87,9 @@ export default function TradingForm({ market, marketType, provider }) {
             type="number"
             onChange={(e) => setStopLoss(e.target.value)}
             placeholder="Stop Loss"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -96,7 +104,9 @@ export default function TradingForm({ market, marketType, provider }) {
             type="number"
             onChange={(e) => setTakeProfit(e.target.value)}
             placeholder="Take Profit"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div className="btn mt-3">
@@ -120,7 +130,9 @@ export default function TradingForm({ market, marketType, provider }) {
             type="text"
             readOnly
             placeholder="Amount (USD)"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -131,11 +143,13 @@ export default function TradingForm({ market, marketType, provider }) {
           }`}
         >
           <Input
-            value={lotSize}
+            value={lotSize1}
             type="number"
-            onChange={(e) => setLotSize(e.target.value)}
+            onChange={(e) => setLotSize1(e.target.value)}
             placeholder="Lot size"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -146,11 +160,13 @@ export default function TradingForm({ market, marketType, provider }) {
           }`}
         >
           <Input
-            value={entryPrice}
+            value={entryPrice1}
             type="number"
-            onChange={(e) => setEntryPrice(e.target.value)}
+            onChange={(e) => setEntryPrice1(e.target.value)}
             placeholder="Entry Price"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -161,11 +177,13 @@ export default function TradingForm({ market, marketType, provider }) {
           }`}
         >
           <Input
-            value={stopLoss}
+            value={stopLoss1}
             type="number"
-            onChange={(e) => setStopLoss(e.target.value)}
+            onChange={(e) => setStopLoss1(e.target.value)}
             placeholder="Stop Loss"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div
@@ -176,11 +194,13 @@ export default function TradingForm({ market, marketType, provider }) {
           }`}
         >
           <Input
-            value={takeProfit}
+            value={takeProfit1}
             type="number"
-            onChange={(e) => setTakeProfit(e.target.value)}
+            onChange={(e) => setTakeProfit1(e.target.value)}
             placeholder="Take Profit"
-            className="border-0 font-bold bg-[#22222270] h-11"
+            className={`border-0 font-bold h-11 ${
+              isDarkMode ? "bg-[#111]" : "bg-black/5"
+            }`}
           />
         </div>
         <div className="btn mt-3">
