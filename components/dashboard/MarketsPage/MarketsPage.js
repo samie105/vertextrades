@@ -242,6 +242,7 @@ export default function MarketsPage() {
                       href={`/dashboard/trade/en/crypto/${crypto.symbol}/${
                         crypto.provider
                       }/${
+                        details !== 0 &&
                         cryptoPrices[
                           crypto.name.replace(/ /g, "-").toLowerCase()
                         ].usd
