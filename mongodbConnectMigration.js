@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
   isBanned: Boolean,
   planBonus: Number,
   watchedCrypto: [Object],
+  stakings: [Object],
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);

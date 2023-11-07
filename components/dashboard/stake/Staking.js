@@ -159,6 +159,7 @@ export default function Staking() {
                         }`}
                       >
                         <AssetDialog
+                          stake={stake}
                           minimum={stake.minimum}
                           name={stake.coinName}
                           symbol={stake.coinSymbol}

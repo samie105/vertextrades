@@ -11,8 +11,13 @@ import {
 } from "../ui/select";
 import { useUserData } from "../../contexts/userrContext";
 import Link from "next/link";
+import axios from "axios";
+import { InfinitySpin } from "react-loader-spinner";
+import toast from "react-hot-toast";
+import { DialogContent } from "../ui/dialog";
 
 export default function AssetDialog({
+  stake,
   minimum,
   image,
   symbol,
@@ -21,12 +26,13 @@ export default function AssetDialog({
   duration,
 }) {
   const { isDarkMode } = useTheme();
-  const { details } = useUserData();
+  const { details, setDetails, setNotification } = useUserData();
   const [error, setError] = useState();
   const [showError, setShowError] = useState();
   const [amount, setAmount] = useState(minimum || 0);
   const [percentage, setPercentage] = useState(0);
   const [month, setMonth] = useState(0);
+  const [loading, isloading] = useState(false);
   const roi = amount + (percentage * month * amount) / 100;
   const amountperMonth = (roi / month).toFixed(2);
   const stakeEquivalent = (amount / parseFloat(price)).toFixed(3);
@@ -40,10 +46,15 @@ export default function AssetDialog({
     if (numericValue > details.tradingBalance) {
       setShowError(true);
       setError("Staking amount exceeds balance");
+    } else if (numericValue < minimum) {
+      setShowError(true);
+      setError("Staking amount is below minimum stake");
+      setAmount(numericValue);
     } else {
       setAmount(numericValue);
     }
   };
+  console.log(details.stakings);
 
   const getPercentageByMonths = (data, months) => {
     const entry = data.find((item) => item.months === months);
@@ -52,7 +63,53 @@ export default function AssetDialog({
     setMonth(entry.months);
   };
 
-  const handleStaking = () => {};
+  const handleStaking = async () => {
+    const email = details.email;
+    const stakings = {
+      id: stake.id + crypto.randomUUID(),
+      stakedAsset: stake.coinName,
+      stakedAssetImagePath: stake.imagePath,
+      stakedAssetSymbol: stake.coinSymbol,
+      stakeEquivalent,
+      dateStaked: Date.now(),
+      stakedAmount: amount,
+      monthlyReturns: amountperMonth,
+      totalReturns: roi,
+      stakedDuration: month,
+      status: "ongoing",
+    };
+    isloading(true);
+    try {
+      const response = await axios.post("/db/Staking/", {
+        email,
+        stakings,
+        amount,
+      });
+      console.log(response);
+      if (response.status === 200) {
+        setDetails((prevDeets) => ({
+          ...prevDeets,
+          tradingBalance: prevDeets.tradingBalance - amount,
+          stakings: [...prevDeets.stakings, stakings],
+        }));
+        setNotification(
+          `Your staking of ${stakeEquivalent} ${symbol} has been processed`,
+
+          "transaction",
+          "success"
+        );
+        toast.success(`${stakeEquivalent} ${symbol} staked successfully`, {
+          duration: 4000,
+        });
+        setAmount(0);
+      }
+      console.log(details.stakings);
+      isloading(false);
+    } catch (error) {
+      console.log(error);
+      isloading(false);
+    }
+  };
 
   return (
     <div className={`${isDarkMode ? "textwhite" : ""}`}>
@@ -246,13 +303,24 @@ export default function AssetDialog({
         <button
           onClick={() => handleStaking()}
           disabled={percentage === 0 || amount === 0 || showError}
-          className={`btn  font-bold disabled:cursor-not-allowed  text-sm text-white rounded-sm w-full text-center py-3 mt-3 ${
+          className={`btn  font-bold disabled:cursor-not-allowed  text-sm text-white ${
+            !loading ? "py-3" : ""
+          } rounded-sm w-full text-center  mt-3 ${
             percentage === 0 || amount === 0 || showError
               ? "bg-muted-foreground"
               : " bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700"
           }`}
         >
-          Stake {stakeEquivalent} {symbol}{" "}
+          {!loading && (
+            <>
+              Stake {stakeEquivalent} {symbol}{" "}
+            </>
+          )}
+          {loading && (
+            <div className="w-full flex items-center justify-center">
+              <InfinitySpin color="white" width="100" />
+            </div>
+          )}
         </button>
       </div>
     </div>
