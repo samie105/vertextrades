@@ -18,6 +18,7 @@ import { ToastAction } from "../../ui/toast";
 import { motion as m } from "framer-motion";
 import { usePathname } from "next/navigation";
 import BonusPlan from "../bonus_plan/BonusPlan";
+import Mystakings from "../stake/Mystakings";
 
 export default function Dash() {
   const { details } = useUserData();
@@ -386,6 +387,20 @@ export default function Dash() {
           </div>
         )}
         <BonusPlan />
+        <div className={`staking pt-6 ${isDarkMode ? "text-white" : ""}`}>
+          {details === 0 ? (
+            <div className="px-3 mt-4">
+              {" "}
+              className=
+              {`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+            </div>
+          ) : (
+            <>
+              <div className="text mt-3 mb-3 text-lg font-bold"> Stakings</div>
+              <Mystakings />
+            </>
+          )}
+        </div>
         <div className="assets">
           {details === 0 ? (
             <div className="px-3 mt-4">

@@ -137,7 +137,7 @@ export default function Mystakings() {
                         ${stake.stakedAmount}
                       </TableCell>
                       <TableCell className={`font-bold text-sm text-center`}>
-                        {stake.stakedDuration} month(s)
+                        {stake.stakedDuration}_month(s)
                         <div className="opacity-60 mt-1">
                           {Math.floor(
                             stake.stakedDuration -
