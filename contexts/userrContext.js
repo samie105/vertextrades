@@ -205,15 +205,15 @@ export const UserDataProvider = ({ children }) => {
         } else {
           // console.log(response);
           // // Remove the "token" cookie if it's not found
-          const tokenCookie = document.cookie
-            .split(";")
-            .find((cookie) => cookie.trim().startsWith("token="));
-          if (tokenCookie) {
-            document.cookie =
-              "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            console.log("Token cookie removed");
-          }
-          router.replace("/auth");
+          const tokenCookie = document.cookie;
+          //   .split(";")
+          //   .find((cookie) => cookie.trim().startsWith("token="));
+          // if (tokenCookie) {
+          //   document.cookie =
+          //     "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          //   console.log("Token cookie removed");
+          // }
+          // router.replace("/auth");
         }
       } catch (error) {
         console.error(error);

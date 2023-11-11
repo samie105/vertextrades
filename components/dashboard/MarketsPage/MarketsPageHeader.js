@@ -64,6 +64,23 @@ export default function MarketsPageHeader() {
               Forex
             </div>
           </Link>
+          <Link href="/dashboard/markets/mytrades" passHref>
+            {" "}
+            <div
+              className={`py-2 px-3 rounded-sm mx-1 text-sm ${
+                isDarkMode && pathname === "/dashboard/markets/mytrades"
+                  ? "bg-[#222] "
+                  : !isDarkMode && pathname === "/dashboard/markets/mytrades"
+                  ? "bg-black/5 "
+                  : ""
+              }  cursor-pointer ${
+                isDarkMode ? "hover:bg-[#333]" : "hover:bg-black/10"
+              } transition-all`}
+            >
+              {" "}
+              My Trades
+            </div>
+          </Link>
           {/* <Link href="/dashboard/markets/watchlist" passHref>
             {" "}
             <div

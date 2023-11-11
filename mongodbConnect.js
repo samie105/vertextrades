@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema({
   planBonus: Number,
   watchedCrypto: [Object],
   stakings: [Object],
+  trades: [Object],
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
