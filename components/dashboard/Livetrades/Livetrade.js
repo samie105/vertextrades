@@ -70,7 +70,7 @@ const Livetrade = () => {
     },
     {
       name: "trades",
-      bal: "0",
+      bal: details.trade || 0,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

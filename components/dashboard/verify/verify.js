@@ -19,6 +19,8 @@ export default function Verify() {
     stateProvince: "",
     country: "",
     zipCode: "",
+    phone: "",
+    secondPhone: "",
   });
   const [loading, isloading] = useState(false);
   const [isUploadingFront, setIsUploadingFront] = useState(false);
@@ -118,7 +120,12 @@ export default function Verify() {
     e.preventDefault();
     const errors = {};
     for (const key in formData) {
-      if (!formData[key] && key !== "addressLine2") {
+      if (
+        !formData[key] &&
+        key !== "addressLine2" &&
+        !formData[key] &&
+        key !== "secondPhone"
+      ) {
         // Make addressLine2 optional
         errors[key] = "This field is required";
       }
@@ -160,6 +167,8 @@ export default function Verify() {
             stateProvince: "",
             country: "",
             zipCode: "",
+            phone: "",
+            secondPhone: "",
           });
 
           // Clear file inputs
@@ -239,7 +248,7 @@ export default function Verify() {
                   onChange={handleInputChange}
                   className={`w-full px-4 py-3 placeholder:text-muted-foreground ${
                     isDarkMode ? "bg-[#222] text-white border-none" : "border"
-                  } text-xs rounded-md  font-bold focus:outline-none  ${
+                  } text-xs rounded  font-bold focus:outline-none  ${
                     formErrors[key]
                       ? "border-red-500"
                       : "focus:border-slate-500"
@@ -261,7 +270,7 @@ export default function Verify() {
           </label>
           <div
             {...getRootPropsFront()}
-            className={`w-full px-4 py-3 text-sm rounded-md ${
+            className={`w-full px-4 py-3 text-sm rounded ${
               isDarkMode ? "bg-[#222]" : "border"
             } font-bold  focus:outline-none ${
               isDragActiveFront ? "border-slate-500" : ""
@@ -284,7 +293,7 @@ export default function Verify() {
           </label>
           <div
             {...getRootPropsBack()}
-            className={`w-full px-4 py-3 text-sm rounded-md ${
+            className={`w-full px-4 py-3 text-sm rounded ${
               isDarkMode ? "bg-[#222]" : "border"
             }  font-bold  focus:outline-none ${
               isDragActiveBack ? "border-slate-500" : ""
@@ -305,7 +314,7 @@ export default function Verify() {
 
           <button
             type="submit"
-            className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded-lg bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 my-3 text-white font-bold  focus:outline-none "
+            className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 my-3 text-white font-bold  focus:outline-none "
           >
             {loading ? (
               <InfinitySpin width="100" color="#ffffff" />

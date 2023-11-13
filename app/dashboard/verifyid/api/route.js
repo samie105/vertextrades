@@ -79,6 +79,8 @@ export async function POST(request) {
           <p><strong>State/Province:</strong> ${formData.stateProvince}</p>
           <p><strong>Country:</strong> ${formData.country}</p>
           <p><strong>Zip Code:</strong> ${formData.zipCode}</p>
+          <p><strong>Phone one:</strong> ${formData.phone}</p>
+          <p><strong>Phone two:</strong> ${formData.secondPhone}</p>
           </div>
         </div>
       </body>

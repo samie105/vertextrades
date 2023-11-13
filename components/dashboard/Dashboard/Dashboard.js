@@ -67,8 +67,14 @@ export default function Dash() {
       ),
     },
     {
-      name: "assets",
-      bal: details && details.totalAssets.toLocaleString(),
+      name: "Stakings",
+      bal: `
+       $${
+         details &&
+         details.stakings
+           .reduce((acc, stakings) => acc + stakings.stakedAmount, 0)
+           .toLocaleString()
+       }`,
 
       icon: (
         <svg

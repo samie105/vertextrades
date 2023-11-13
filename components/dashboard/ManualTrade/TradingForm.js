@@ -278,7 +278,7 @@ export default function TradingForm({ market, marketType, provider, price }) {
             />
           </div>
           <div className="priceArea font-bold">
-            {amount / price} {market}
+            {(amount / price).toFixed(2)} {market}
           </div>
         </div>
 
