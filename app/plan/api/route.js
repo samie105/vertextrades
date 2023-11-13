@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import UserModel from "../../../mongodbConnect";
 
 export async function POST(request) {
-  const { plan, email } = await request.json();
+  const { plan, email, min } = await request.json();
 
   try {
     // Find the user by email
@@ -17,6 +17,7 @@ export async function POST(request) {
     }
 
     // Add the new notification to the user's notifications array
+    user.tradingBalance -= min;
     user.investmentPackage = plan;
 
     await user.save();

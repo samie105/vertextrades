@@ -58,6 +58,7 @@ const userSchema = new mongoose.Schema({
   watchedCrypto: [Object],
   stakings: [Object],
   trades: [Object],
+  tradingProgress: Number,
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);

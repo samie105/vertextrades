@@ -57,13 +57,13 @@ export default function InvestmentPlans() {
     try {
       if (details.tradingBalance > min) {
         // Make an API request to purchase the plan
-        const response = await axios.post("/plan/api", { plan, email });
+        const response = await axios.post("/plan/api", { plan, email, min });
 
         // Check if the purchase was successful (you may need to adjust this based on your API response)
         if (response.data.success) {
           setDetails((prevDetails) => ({
             ...prevDetails,
-
+            tradingBalance: prevDetails.tradingBalance - min,
             investmentPackage: plan,
           }));
           // Reset the loading state after a successful purchase
@@ -218,13 +218,13 @@ export default function InvestmentPlans() {
                 <div className="flex items-center justify-center cursor-pointer z-50">
                   {" "}
                   <div
-                    className={`text-x my-1 p-2 font-bold rounded-sm ${
+                    className={`text-2xl my-1 p-2 font-bold rounded-sm ${
                       isDarkMode ? `  ` : ""
                     }`}
                     style={{ backgroundColor: getColorRed(plan.package) }}
                   >
-                    <sup>$</sup> {plan.min.toLocaleString()} ~ <sup>$</sup>{" "}
-                    {plan.max.toLocaleString()}
+                    <sup>$</sup> {plan.price.toLocaleString()}
+                    <span className="text-xs"> / 6mo</span>
                   </div>
                 </div>
 
@@ -257,7 +257,7 @@ export default function InvestmentPlans() {
                 <div className="button-container flex justify-center">
                   <button
                     onClick={() =>
-                      handlePlanChange(plan.min, index, plan.package)
+                      handlePlanChange(plan.price, index, plan.package)
                     }
                     disabled={details.investmentPackage === plan.package}
                     className={`rounded-full px-7 ${

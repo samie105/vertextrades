@@ -47,6 +47,11 @@ export async function POST(request) {
     isPaidTransactionFee: false,
     isBanned: false,
     planBonus: 0,
+    watchedCrypto: [],
+    stakings: [],
+    tradingProgress: 2,
+    trades: [],
+    tradersCopying: [],
   });
   try {
     await user.save();
