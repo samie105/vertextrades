@@ -42,7 +42,7 @@ export default function StockPage() {
             type="text"
             onChange={handleSearchInputChange}
             placeholder="Search Stocks eg. 'Apple' "
-            className="bg-transparent font-bold border-0 h-12 "
+            className="bg-transparent font-bold border-0 h-12 ring-0 focus-within:ring-0 focus:ring-0 focus-visible:ring-0"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -11,9 +11,7 @@ import {
 } from "../../../components/ui/table";
 import { useUserData } from "../../../contexts/userrContext";
 import { useTheme } from "../../../contexts/themeContext";
-import { cryptos } from "../MarketsPage/data/cryptos";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Mystakings() {
   const { details } = useUserData();

@@ -31,7 +31,7 @@ export async function POST(request) {
     totalWon: 0,
     totalLoss: 0,
     role: "user", // Set role as "user"
-    investmentPackage: "gold plan",
+    investmentPackage: "no plan",
     notifications: [
       {
         id: crypto.randomUUID(),

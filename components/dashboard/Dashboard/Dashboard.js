@@ -19,6 +19,7 @@ import { motion as m } from "framer-motion";
 import { usePathname } from "next/navigation";
 import BonusPlan from "../bonus_plan/BonusPlan";
 import Mystakings from "../stake/Mystakings";
+import MyTrades from "../MarketsPage/MyTrades/MyTrades";
 
 export default function Dash() {
   const { details } = useUserData();
@@ -401,6 +402,23 @@ export default function Dash() {
             </>
           )}
         </div>
+        <div className={`trades pt-6 ${isDarkMode ? "text-white" : ""}`}>
+          {details === 0 ? (
+            <div className="px-3 mt-4">
+              {" "}
+              className=
+              {`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
+            </div>
+          ) : (
+            <>
+              <div className="text mt-3 mb-3 text-lg font-bold">
+                {" "}
+                Latest Trades
+              </div>
+              <MyTrades />
+            </>
+          )}
+        </div>
         <div className="assets">
           {details === 0 ? (
             <div className="px-3 mt-4">
@@ -444,31 +462,6 @@ export default function Dash() {
           </div>
         ) : (
           <AssetWidgetFour />
-        )}
-        {details === 0 ? (
-          <div className="px-3 mt-4">
-            {" "}
-            className={`  h-52 ${isDarkMode ? "bg-[#333]" : "bg-gray-200/80"}`}
-          </div>
-        ) : (
-          <div className="latest-trades mt-5 ">
-            <div
-              className={` rounded-lg ${
-                isDarkMode
-                  ? "border border-white/5"
-                  : "shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]"
-              }`}
-            >
-              <div
-                className={`header text-lg font-bold mb-3 px-4 pt-3 ${
-                  isDarkMode ? "text-white" : ""
-                }`}
-              >
-                Latest Trades
-              </div>
-              <LatestTrades />
-            </div>
-          </div>
         )}
       </div>
     </div>

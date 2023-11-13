@@ -3,7 +3,7 @@ import MyTrades from "../../../../components/dashboard/MarketsPage/MyTrades/MyTr
 
 export default function page() {
   return (
-    <div>
+    <div className="px-4">
       <MyTrades />
     </div>
   );

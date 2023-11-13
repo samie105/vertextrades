@@ -15,6 +15,7 @@ export async function POST(request) {
 
     // Subtract 'amount' from 'tradingBalance'
     user.tradingBalance -= amount;
+    user.trade += 1;
 
     // Add 'stakings' to the array
     user.trades.push(trade);
