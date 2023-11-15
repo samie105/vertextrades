@@ -79,9 +79,9 @@ export default function Layout({ children }) {
         <div className="fixed top-0 left-0 w-full text-white z-30">
           <Nav />
         </div>
-        <div className="fixed bottom-0 left-0 w-full text-white z-30">
+        {/* <div className="fixed bottom-0 left-0 w-full text-white z-30">
           <Footer />
-        </div>
+        </div> */}
         <div className="content-container relative md:flex  h-full">
           <div className="side-bar hidden md:block /overflow-scroll pt-16">
             <ScrollArea className="w-[250px] h-[calc(100vh-70px)] mb-[70px]">
@@ -94,7 +94,7 @@ export default function Layout({ children }) {
             }`}
           >
             <ScrollArea
-              className={`h-[calc(100vh-66px)] pb-[5rem] relative overflow-hidden md:pb-11 w-screen md:w-full`}
+              className={`h-[calc(100vh-66px)] relative overflow-hidden w-screen md:w-full`}
             >
               {children}
             </ScrollArea>

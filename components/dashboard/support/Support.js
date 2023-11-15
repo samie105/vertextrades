@@ -19,7 +19,7 @@ export default function Support() {
       </div>
       <div className="contacts mt-5">
         <div className="text font-bold text-sm mb-3">Contact us via:</div>
-        <div className="cont grid grid-cols-1 gap-3 md:grid-cols-3">
+        <div className="cont grid grid-cols-1 gap-3 md:grid-cols-2">
           <div className="whatsapp">
             <div
               className={`border ${
@@ -43,7 +43,7 @@ export default function Support() {
               </div>
               <div className="cta">
                 <Link href="#" passHref>
-                  <button className="flex items-center gap-3 justify-center rounded-full w-full py-3 px-3 font-bold text-white  text-sm bg-[#29A61A]">
+                  <button className="flex items-center gap-3 justify-center rounded-md w-full py-3 px-3 font-bold text-white  text-sm bg-[#29A61A]">
                     <div>Chat on whatsapp</div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@ export default function Support() {
               </div>
               <div className="cta">
                 <Link href="mailto:" passHref>
-                  <button className="flex items-center gap-3 justify-center rounded-full w-full py-3 px-3 font-bold text-white  text-sm bg-[#F54336]">
+                  <button className="flex items-center gap-3 justify-center rounded-md w-full py-3 px-3 font-bold text-white  text-sm bg-[#F54336]">
                     <div>Send Email</div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
