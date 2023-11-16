@@ -73,7 +73,7 @@ export default function CurrencyPage() {
               }`}
             >
               <TableHead
-                className={`${
+                className={` hidden md:flex md:items-center ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -87,7 +87,7 @@ export default function CurrencyPage() {
                 Asset
               </TableHead>
               <TableHead
-                className={`${
+                className={` ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -95,7 +95,7 @@ export default function CurrencyPage() {
               </TableHead>
 
               <TableHead
-                className={`${
+                className={` whitespace-nowrap${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -119,7 +119,7 @@ export default function CurrencyPage() {
                       : ""
                   }`}
                 >
-                  <TableCell className="font-bold">
+                  <TableCell className="font-bold hidden md:flex md:items-center">
                     {index + 1}
                     {/* <svg
                       xmlns="http://www.w3.org/2000/svg"

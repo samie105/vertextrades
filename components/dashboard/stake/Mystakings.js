@@ -40,35 +40,35 @@ export default function Mystakings() {
               }`}
             >
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Staked Asset
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Staked Amount
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Staked Duration
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Monthly Returns
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -135,8 +135,8 @@ export default function Mystakings() {
                         ${stake.stakedAmount}
                       </TableCell>
                       <TableCell className={`font-bold text-sm text-center`}>
-                        {stake.stakedDuration}_month(s)
-                        <div className="opacity-60 mt-1">
+                        {stake.stakedDuration} month(s)
+                        <div className="opacity-60 mt-1 whitespace-nowrap">
                           {Math.floor(
                             stake.stakedDuration -
                               (currentDate - new Date(stake.dateStaked)) /
@@ -144,14 +144,14 @@ export default function Mystakings() {
                           ) < 0 ? (
                             "Completed"
                           ) : (
-                            <>
+                            <div className="whitespace-nowrap">
                               {Math.floor(
                                 stake.stakedDuration -
                                   (currentDate - stake.dateStaked) /
                                     millisecondsInAMonth
                               )}{" "}
                               month(s) left
-                            </>
+                            </div>
                           )}
                         </div>
                       </TableCell>

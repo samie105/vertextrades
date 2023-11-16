@@ -69,7 +69,7 @@ export default function StockPage() {
               }`}
             >
               <TableHead
-                className={`${
+                className={`hidden md:flex md:items-center ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -83,25 +83,25 @@ export default function StockPage() {
                 Asset
               </TableHead>
               <TableHead
-                className={`${
+                className={`hidden md:flex md:items-center ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Name
               </TableHead>
               <TableHead
-                className={`${
+                className={` ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Value
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
-                Price
+                Current Price
               </TableHead>
               <TableHead
                 className={`${
@@ -121,7 +121,7 @@ export default function StockPage() {
                       : ""
                   }`}
                 >
-                  <TableCell className="font-bold">
+                  <TableCell className="font-bold hidden md:flex md:items-center">
                     {index + 1}
                     {/* <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -159,14 +159,14 @@ export default function StockPage() {
                     </div>
                   </TableCell>
                   <TableCell
-                    className={`text-sm font-bold ${
+                    className={`text-sm font-bold hidden md:flex md:items-center ${
                       isDarkMode ? "text-white/80" : "text-black/80"
                     }`}
                   >
                     {crypto.name}
                   </TableCell>
                   <TableCell
-                    className={`text-sm font-bold ${
+                    className={` whitespace-nowrap text-sm font-bold ${
                       isDarkMode ? "text-white/80" : "text-black/80"
                     }`}
                   >

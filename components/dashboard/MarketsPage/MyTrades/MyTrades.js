@@ -51,7 +51,7 @@ export default function MyTrades() {
                 Amount
               </TableHead>
               <TableHead
-                className={`${
+                className={`px-1 ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -65,28 +65,28 @@ export default function MyTrades() {
                 Type
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Entry Price
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Lot Size
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
                 Stop Loss
               </TableHead>
               <TableHead
-                className={`${
+                className={`whitespace-nowrap ${
                   isDarkMode ? "text-white/80" : "text-black/80"
                 } font-bold`}
               >
@@ -165,15 +165,15 @@ export default function MyTrades() {
                       <TableCell className={`font-bold text-sm text-center`}>
                         ${trade.amount}
                       </TableCell>
-                      <TableCell className={`font-bold text-sm text-center`}>
-                        <div className="flex items-center gap-x-2">
+                      <TableCell className={`font-bold  text-sm /text-center`}>
+                        <div className="md:flex md:items-center md:gap-x-2">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-4 h-4"
+                            className="w-4 h-4 hidden md:block"
                           >
                             <path
                               strokeLinecap="round"
@@ -181,7 +181,7 @@ export default function MyTrades() {
                               d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                             />
                           </svg>
-                          <p>{trade.duration}</p>
+                          <p className="whitespace-nowrap">{trade.duration}</p>
                         </div>
                       </TableCell>
                       <TableCell className={`font-bold text-sm text-center`}>

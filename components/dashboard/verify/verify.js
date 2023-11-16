@@ -7,6 +7,14 @@ import { InfinitySpin } from "react-loader-spinner";
 import toast from "react-hot-toast";
 import { useTheme } from "../../../contexts/themeContext";
 import { Input } from "../../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../ui/select";
+import { ScrollArea } from "../../ui/scroll-area";
 
 export default function Verify() {
   const { email } = useUserData();
@@ -28,10 +36,27 @@ export default function Verify() {
   const [frontIDFile, setFrontIDFile] = useState(null);
   const [backIDFile, setBackIDFile] = useState(null);
   const { setNotification } = useUserData();
-
+  const [idType, setIdType] = useState();
   const [frontIDSecureUrl, setFrontIDSecureUrl] = useState(null); // Add this line
   const [backIDSecureUrl, setBackIDSecureUrl] = useState(null); // Add this line  const [formErrors, setFormErrors] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  const documents = [
+    "Driver's License",
+    "Passport",
+    "Social Security Card",
+    "State ID",
+    "Military ID",
+    "Green Card",
+    "Birth Certificate",
+    "Student ID",
+    "Voter ID",
+    "Employment Authorization Document (EAD)",
+    "National ID Card",
+    "Tribal ID",
+    "Concealed Carry Permit",
+    "Health Insurance Card",
+    "Library Card",
+  ];
 
   const onDropFront = async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -146,6 +171,7 @@ export default function Verify() {
           frontIDSecureUrl,
           backIDSecureUrl,
           email,
+          idType,
         });
 
         if (response.status === 200) {
@@ -153,7 +179,7 @@ export default function Verify() {
             duration: 4000,
           });
           setNotification(
-            `We have recieved your verification details, we're on desk right away`,
+            `We have recieved your ${idType} verification details, we're on desk right away`,
             "verification",
             "pending"
           );
@@ -224,105 +250,142 @@ export default function Verify() {
             verified
           </p>
         </div>
-
-        <form onSubmit={handleSubmit} className="">
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
-            {Object.keys(formData).map((key) => (
-              <div key={key}>
-                <label
-                  key={key}
-                  htmlFor={key}
-                  className="block mt-4 font-bold text-sm mb-3"
-                >
-                  {key.charAt(0).toUpperCase() +
-                    key.slice(1).replace(/([A-Z])/g, " $1")}
-                </label>
-                <Input
-                  type="text"
-                  id={key}
-                  name={key}
-                  value={formData[key]}
-                  placeholder={`Enter ${key
-                    .replace(/([A-Z])/g, " $1")
-                    .toLowerCase()}`}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-3 placeholder:text-muted-foreground ${
-                    isDarkMode ? "bg-[#222] text-white border-none" : "border"
-                  } text-xs rounded  font-bold focus:outline-none  ${
-                    formErrors[key]
-                      ? "border-red-500"
-                      : "focus:border-slate-500"
-                  }`}
-                />
-                {formErrors[key] && (
-                  <p className="text-red-500 text-xs mt-1">{formErrors[key]}</p>
-                )}
-              </div>
-            ))}
+        <div
+          className={`EntryPrice mb-2 mt-1 rounded  text-sm ${
+            isDarkMode
+              ? "bg-[#22222270] text-white/80"
+              : "bg-black/5 text-black/80"
+          }`}
+        >
+          <Select onValueChange={(id) => setIdType(id)}>
+            <SelectTrigger className="rounded-sm border-0 font-bold">
+              <SelectValue placeholder="Select a document type" />
+            </SelectTrigger>
+            <SelectContent
+              className={` ${
+                isDarkMode ? "bg-[#222] border-white/5 text-white/80" : ""
+              }`}
+            >
+              <ScrollArea className="h-[200px] my-2">
+                {documents.map((doc) => (
+                  <>
+                    <SelectItem value={doc}>{doc}</SelectItem>
+                  </>
+                ))}
+              </ScrollArea>
+            </SelectContent>
+          </Select>
+        </div>
+        {!idType && (
+          <div className="flex justify-center items-center font-bold text-lg my-4">
+            <p> Please select an a document to upload</p>{" "}
           </div>
+        )}
+        {idType && (
+          <form onSubmit={handleSubmit} className="">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
+              {Object.keys(formData).map((key) => (
+                <div key={key}>
+                  <label
+                    key={key}
+                    htmlFor={key}
+                    className="block mt-4 font-bold text-sm mb-3"
+                  >
+                    {key.charAt(0).toUpperCase() +
+                      key.slice(1).replace(/([A-Z])/g, " $1")}
+                  </label>
+                  <Input
+                    type="text"
+                    id={key}
+                    name={key}
+                    value={formData[key]}
+                    placeholder={`Enter ${key
+                      .replace(/([A-Z])/g, " $1")
+                      .toLowerCase()}`}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 placeholder:text-muted-foreground ${
+                      isDarkMode ? "bg-[#222] text-white border-none" : "border"
+                    } text-xs rounded  font-bold focus:outline-none  ${
+                      formErrors[key]
+                        ? "border-red-500"
+                        : "focus:border-slate-500"
+                    }`}
+                  />
+                  {formErrors[key] && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {formErrors[key]}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
 
-          {/* Dropzone for Front ID */}
-          <label
-            htmlFor="frontID"
-            className="block my-4 mb-2 text-sm font-bold pt-4"
-          >
-            Verification ID (Front)
-          </label>
-          <div
-            {...getRootPropsFront()}
-            className={`w-full px-4 py-3 text-sm rounded ${
-              isDarkMode ? "bg-[#222]" : "border"
-            } font-bold  focus:outline-none ${
-              isDragActiveFront ? "border-slate-500" : ""
-            } ${formErrors.frontID ? "border-red-500" : ""}`}
-          >
-            <input {...getInputPropsFront()} />
-            {isUploadingFront ? (
-              <p>Uploading Front ID image...</p>
-            ) : frontIDFile ? (
-              <p>{frontIDFile.name}</p>
-            ) : (
-              <p className="text-sm">Click/Drag-in to upload a file</p>
+            {/* Dropzone for Front ID */}
+            <label
+              htmlFor="frontID"
+              className="block my-4 mb-2 text-sm font-bold pt-4"
+            >
+              Verification ID (Front)
+            </label>
+            <div
+              {...getRootPropsFront()}
+              className={`w-full px-4 py-3 text-sm rounded ${
+                isDarkMode ? "bg-[#222]" : "border"
+              } font-bold  focus:outline-none ${
+                isDragActiveFront ? "border-slate-500" : ""
+              } ${formErrors.frontID ? "border-red-500" : ""}`}
+            >
+              <input {...getInputPropsFront()} />
+              {isUploadingFront ? (
+                <p>Uploading Front ID image...</p>
+              ) : frontIDFile ? (
+                <p>{frontIDFile.name}</p>
+              ) : (
+                <p className="text-sm">Click/Drag-in to upload a file</p>
+              )}
+            </div>
+            {formErrors.frontID && (
+              <p className="text-red-500 text-xs mt-1">{formErrors.frontID}</p>
             )}
-          </div>
-          {formErrors.frontID && (
-            <p className="text-red-500 text-xs mt-1">{formErrors.frontID}</p>
-          )}
-          <label htmlFor="backID" className="block my-4 pt-2 text-sm font-bold">
-            Verification ID (Back)
-          </label>
-          <div
-            {...getRootPropsBack()}
-            className={`w-full px-4 py-3 text-sm rounded ${
-              isDarkMode ? "bg-[#222]" : "border"
-            }  font-bold  focus:outline-none ${
-              isDragActiveBack ? "border-slate-500" : ""
-            } ${formErrors.backID ? "border-red-500" : ""}`}
-          >
-            <input {...getInputPropsBack()} />
-            {isUploadingBack ? (
-              <p>Uploading Back ID image...</p>
-            ) : backIDFile ? (
-              <p>{backIDFile.name}</p>
-            ) : (
-              <p className="text-sm">Click/Drag-in to upload a file</p>
+            <label
+              htmlFor="backID"
+              className="block my-4 pt-2 text-sm font-bold"
+            >
+              Verification ID (Back)
+            </label>
+            <div
+              {...getRootPropsBack()}
+              className={`w-full px-4 py-3 text-sm rounded ${
+                isDarkMode ? "bg-[#222]" : "border"
+              }  font-bold  focus:outline-none ${
+                isDragActiveBack ? "border-slate-500" : ""
+              } ${formErrors.backID ? "border-red-500" : ""}`}
+            >
+              <input {...getInputPropsBack()} />
+              {isUploadingBack ? (
+                <p>Uploading Back ID image...</p>
+              ) : backIDFile ? (
+                <p>{backIDFile.name}</p>
+              ) : (
+                <p className="text-sm">Click/Drag-in to upload a file</p>
+              )}
+            </div>
+            {formErrors.backID && (
+              <p className="text-red-500 text-xs mt-1">{formErrors.backID}</p>
             )}
-          </div>
-          {formErrors.backID && (
-            <p className="text-red-500 text-xs mt-1">{formErrors.backID}</p>
-          )}
 
-          <button
-            type="submit"
-            className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 my-3 text-white font-bold  focus:outline-none "
-          >
-            {loading ? (
-              <InfinitySpin width="100" color="#ffffff" />
-            ) : (
-              <div className="py-3">Submit Verification</div>
-            )}
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full px-4 mt-4 flex justify-center items-center text-sm rounded bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 my-3 text-white font-bold  focus:outline-none "
+            >
+              {loading ? (
+                <InfinitySpin width="100" color="#ffffff" />
+              ) : (
+                <div className="py-3">Submit Verification</div>
+              )}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

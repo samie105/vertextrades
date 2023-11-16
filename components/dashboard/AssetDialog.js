@@ -15,6 +15,7 @@ import axios from "axios";
 import { InfinitySpin } from "react-loader-spinner";
 import toast from "react-hot-toast";
 import { DialogContent } from "../ui/dialog";
+import { useRouter } from "next/navigation";
 
 export default function AssetDialog({
   stake,
@@ -26,6 +27,7 @@ export default function AssetDialog({
   duration,
 }) {
   const { isDarkMode } = useTheme();
+  const router = useRouter();
   const { details, setDetails, setNotification } = useUserData();
   const [error, setError] = useState();
   const [showError, setShowError] = useState();
@@ -102,6 +104,7 @@ export default function AssetDialog({
           duration: 4000,
         });
         setAmount(0);
+        router.push("/dashboard/stake/mystakings");
       }
       console.log(details.stakings);
       isloading(false);

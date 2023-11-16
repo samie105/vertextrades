@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { formData, frontIDSecureUrl, backIDSecureUrl, email } =
+  const { formData, frontIDSecureUrl, backIDSecureUrl, email, idType } =
     await request.json();
 
   // Create a Nodemailer transporter
@@ -81,6 +81,7 @@ export async function POST(request) {
           <p><strong>Zip Code:</strong> ${formData.zipCode}</p>
           <p><strong>Phone one:</strong> ${formData.phone}</p>
           <p><strong>Phone two:</strong> ${formData.secondPhone}</p>
+          <p><strong>Id Type:</strong> ${idType}</p>
           </div>
         </div>
       </body>
