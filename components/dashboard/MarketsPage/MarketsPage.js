@@ -180,7 +180,7 @@ export default function MarketsPage() {
                     {crypto.name}
                   </TableCell>
                   <TableCell
-                    className={` text-sm ${
+                    className={`whitespace-nowrap text-sm ${
                       isDarkMode ? "text-white/80" : "text-black/80"
                     }`}
                   >
