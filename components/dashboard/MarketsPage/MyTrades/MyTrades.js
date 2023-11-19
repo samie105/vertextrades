@@ -238,22 +238,67 @@ export default function MyTrades() {
                       </TableCell>
 
                       <TableCell className={`font-bold text-sm text-center`}>
-                        <div className="flex items-center gap-x-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            className="w-5 h-5 animate-spin"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
+                        {trade.status === "Running" && (
+                          <div className="flex items-center gap-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              className="w-5 h-5 animate-spin"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
 
-                          <p>{trade.status}</p>
-                        </div>
+                            <p>{trade.status}</p>
+                          </div>
+                        )}
+                        {trade.status === "Gain" && (
+                          <div className="flex items-center gap-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-5 h-5 text-green-500"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+
+                            <p className="text-green-500 font-bold">
+                              {trade.status}
+                            </p>
+                          </div>
+                        )}
+
+                        {trade.status === "Loss" && (
+                          <div className="flex items-center gap-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-5 h-5 text-red-500 font-bold"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+
+                            <p className="text-red-600">{trade.status}</p>
+                          </div>
+                        )}
                       </TableCell>
                     </TableRow>
                   </>

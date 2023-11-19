@@ -62,65 +62,6 @@ async function deleteUser(email) {
   }
 }
 
-// export const data = [
-//   {
-//     id: 1,
-//     transactionStatus: "Completed",
-//     amount: 5000.75,
-//     depositMethod: "Credit Card",
-//     dateAdded: "2023-09-01",
-//   },
-//   {
-//     id: 2,
-//     transactionStatus: "Pending",
-//     amount: 2500.5,
-//     depositMethod: "Bank Transfer",
-//     dateAdded: "2023-09-02",
-//   },
-//   {
-//     id: 3,
-//     transactionStatus: "Completed",
-//     amount: 10000.0,
-//     depositMethod: "PayPal",
-//     dateAdded: "2023-09-03",
-//   },
-//   {
-//     id: 4,
-//     transactionStatus: "Failed",
-//     amount: 750.25,
-//     depositMethod: "Bitcoin",
-//     dateAdded: "2023-09-04",
-//   },
-//   {
-//     id: 5,
-//     transactionStatus: "Completed",
-//     amount: 3000.0,
-//     depositMethod: "Credit Card",
-//     dateAdded: "2023-09-05",
-//   },
-//   {
-//     id: 6,
-//     transactionStatus: "Pending",
-//     amount: 6000.0,
-//     depositMethod: "Bank Transfer",
-//     dateAdded: "2023-09-06",
-//   },
-//   {
-//     id: 7,
-//     transactionStatus: "Completed",
-//     amount: 4500.75,
-//     depositMethod: "PayPal",
-//     dateAdded: "2023-09-07",
-//   },
-//   {
-//     id: 8,
-//     transactionStatus: "Failed",
-//     amount: 800.0,
-//     depositMethod: "Bitcoin",
-//     dateAdded: "2023-09-08",
-//   },
-// ];
-
 export default function WTTable({ data, setData, email }) {
   const columns = [
     {

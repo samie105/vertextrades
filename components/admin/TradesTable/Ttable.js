@@ -15,8 +15,8 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
-import { Button } from "../../components/ui/button";
-import { Checkbox } from "../../components/ui/checkbox";
+import { Button } from "../../../components/ui/button";
+import { Checkbox } from "../../../components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -25,8 +25,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu";
-import { Input } from "../../components/ui/input";
+} from "../../../components/ui/dropdown-menu";
+import { Input } from "../../../components/ui/input";
 import {
   Table,
   TableBody,
@@ -34,35 +34,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/ui/table";
+} from "../../../components/ui/table";
 import { useState } from "react";
-import { ScrollArea } from "../../components/ui/scroll-area";
+import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
-async function deleteUser(email) {
-  try {
-    // Send a DELETE request to your API with the email in the request body
-    const response = await fetch(`/db/deleteUser/api/${email}`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      // User deleted successfully, perform actions here
-      console.log("deleted");
-      return true;
-    } else {
-      // Handle error cases
-      console.error("User deletion failed");
-      return false;
-    }
-  } catch (error) {
-    console.error("Error while deleting user:", error);
-    return false;
-  }
-}
-
-export function DataTableDemo({ data, setData }) {
+export default function Ttable({ data, setData, email }) {
   const columns = [
     {
       id: "select",
@@ -84,12 +62,19 @@ export function DataTableDemo({ data, setData }) {
       enableHiding: false,
     },
     {
-      accessorKey: "name",
-      header: "Name",
-      cell: ({ row }) => <div className="px-4">{row.getValue("name")}</div>,
+      accessorKey: "market",
+      header: "Asset ",
+      cell: ({ row }) => <div>{row.getValue("market")}</div>,
     },
     {
-      accessorKey: "email",
+      accessorKey: "type",
+      header: "Type",
+      cell: ({ row }) => (
+        <div className=" capitalize">{row.getValue("type")}</div>
+      ),
+    },
+    {
+      accessorKey: "amount",
       header: ({ column }) => {
         return (
           <Button
@@ -97,40 +82,14 @@ export function DataTableDemo({ data, setData }) {
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             className="font-bold"
           >
-            Email
+            Amount
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         );
       },
-      cell: ({ row }) => (
-        <div className="lowercase">{row.getValue("email")}</div>
-      ),
-    },
-    {
-      accessorKey: "phone",
-      header: "Phone",
-      cell: ({ row }) => <div>{row.getValue("phone")}</div>,
-    },
-    {
-      accessorKey: "password",
-      header: "Password",
-      cell: ({ row }) => <div>{row.getValue("password")}</div>,
-    },
-    {
-      accessorKey: "withdrawalPin",
-      header: "Withdrawal Pin",
-      cell: ({ row }) => <div>{row.getValue("withdrawalPin")}</div>,
-    },
-    {
-      accessorKey: "taxCodePin",
-      header: "Tax Code Pin",
-      cell: ({ row }) => <div>{row.getValue("taxCodePin")}</div>,
-    },
-    {
-      accessorKey: "tradeBalance",
-      header: () => <div className="text-right">Trading Balance</div>,
+
       cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("tradeBalance"));
+        const amount = parseFloat(row.getValue("amount"));
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
@@ -138,8 +97,38 @@ export function DataTableDemo({ data, setData }) {
           currency: "USD",
         }).format(amount);
 
-        return <div className="text-right font-medium">{formatted}</div>;
+        return <div className="lowercase">{formatted}</div>;
       },
+    },
+    {
+      accessorKey: "stopLoss",
+      header: "Stop Loss",
+      cell: ({ row }) => <div>{row.getValue("stopLoss")}</div>,
+    },
+    {
+      accessorKey: "takeProfit",
+      header: "Take Profit",
+      cell: ({ row }) => <div>{row.getValue("takeProfit")}</div>,
+    },
+    {
+      accessorKey: "entryPrice",
+      header: "Entry Price",
+      cell: ({ row }) => <div>{row.getValue("entryPrice")}</div>,
+    },
+    {
+      accessorKey: "lotSize",
+      header: "Lot Size",
+      cell: ({ row }) => <div>{row.getValue("lotSize")}</div>,
+    },
+    {
+      accessorKey: "duration",
+      header: "Duration",
+      cell: ({ row }) => <div>{row.getValue("duration")}</div>,
+    },
+    {
+      accessorKey: "status",
+      header: "Status",
+      cell: ({ row }) => <div>{row.getValue("status")}</div>,
     },
     {
       id: "actions",
@@ -155,106 +144,89 @@ export function DataTableDemo({ data, setData }) {
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="py-1">
+            <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="py-2"
-                onClick={() => {
-                  navigator.clipboard.writeText(payment.taxCodePin);
-                  toast.success("code copied");
-                }}
-              >
-                Copy Tax Code Pin
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="py-3"
-                onClick={() => {
-                  navigator.clipboard.writeText(payment.withdrawalPin);
-                  toast.success("code copied");
-                }}
-              >
-                Copy Withdrawal Pin
-              </DropdownMenuItem>
 
-              <DropdownMenuSeparator />
-              <Link href={`/admin/${payment.email}`} passHref>
-                <DropdownMenuItem className="py-3">
-                  Edit User Details
+              {payment.status !== "Gain" && (
+                <DropdownMenuItem
+                  className="bg-re-50 text-green-800   py-2"
+                  onClick={() =>
+                    updateTransactionStatus(payment.id, "Gain", payment.amount)
+                  }
+                >
+                  Set to Gain
                 </DropdownMenuItem>
-              </Link>
-              <Link href={`/admin/history/deposit/${payment.email}`} passHref>
-                <DropdownMenuItem className="py-3">
-                  View Deposit History
+              )}
+              {payment.status !== "Running" && (
+                <DropdownMenuItem
+                  className="bg-re-50   py-2"
+                  onClick={() =>
+                    updateTransactionStatus(
+                      payment.id,
+                      "Running",
+                      payment.amount
+                    )
+                  }
+                >
+                  Set to Running
                 </DropdownMenuItem>
-              </Link>
-              <Link
-                href={`/admin/custom-emails/${payment.email}`}
-                passHref
-                className="cursor-pointer"
-              >
-                <DropdownMenuItem className="py-3">
-                  Send An Email
+              )}
+              {payment.status !== "Loss" && (
+                <DropdownMenuItem
+                  className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
+                  onClick={() => updateTransactionStatus(payment.id, "Loss")}
+                >
+                  Set to Loss
                 </DropdownMenuItem>
-              </Link>
-
-              <Link
-                href={`/admin/history/withdrawal/${payment.email}`}
-                passHref
-              >
-                {" "}
-                <DropdownMenuItem className="py-3">
-                  View Withdrawal History
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator />
-              <Link href={`/admin/trades/${payment.email}`} passHref>
-                {" "}
-                <DropdownMenuItem className="py-3">
-                  View Trades
-                </DropdownMenuItem>
-              </Link>
-              <Link href={`/admin/stakings/${payment.email}`} passHref>
-                {" "}
-                <DropdownMenuItem className="py-3">
-                  View Stakes
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => handleDelete(payment.email)}
-                className="bg-re-50 font-bold hover:text-red-600 text-red-700 py-3"
-              >
-                Delete User
-              </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );
       },
     },
   ];
-  const [sorting, setSorting] = useState([]);
-  const [columnFilters, setColumnFilters] = useState([]);
-  const [columnVisibility, setColumnVisibility] = useState({
-    email: true,
-    phone: true,
-    withdrawalPin: true,
-    taxCodePin: true,
-    password: true,
-  });
-  const [rowSelection, setRowSelection] = React.useState({});
-  const handleDelete = async (email) => {
-    const userDeleted = await deleteUser(email);
+  const updateTransactionStatus = async (tradeId, newStatus, amount) => {
+    try {
+      // Make a POST request to your backend API to update the transaction status
+      const response = await fetch(`/db/trades/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          tradeId,
+          newStatus,
+        }),
+      });
 
-    if (userDeleted) {
-      // Remove the deleted user from the table
-      // You might need to identify the row by email and update the state accordingly
-      // table.toggleRowSelected(email);
-      const updatedData = data.filter((user) => user.email !== email);
-      setData(updatedData);
-      toast.success("Deleted successfully");
+      if (response.ok) {
+        // Transaction status updated successfully on the backend, update the frontend
+        const updatedData = data.map((trade) => {
+          if (trade.id === tradeId) {
+            // Update the transaction status
+            toast.success("Changes Applied");
+            return { ...trade, status: newStatus };
+          }
+          return trade;
+        });
+
+        // Update the state with the new data
+        setData(updatedData);
+      } else {
+        // Handle error cases when the backend update fails
+        console.error("Failed to update transaction status on the backend");
+      }
+    } catch (error) {
+      console.error("Error while updating transaction status:", error);
     }
   };
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnVisibility, setColumnVisibility] = useState({});
+  const [rowSelection, setRowSelection] = React.useState({});
+
   const table = useReactTable({
     data,
     columns,
@@ -278,10 +250,10 @@ export function DataTableDemo({ data, setData }) {
     <div className="w-full">
       <div className="flex items-center gap-x-2 py-4">
         <Input
-          placeholder="Search emails..."
-          value={table.getColumn("email")?.getFilterValue() ?? ""}
+          placeholder="Search by dates..."
+          value={table.getColumn("dateAdded")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("dateAdded")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -295,7 +267,7 @@ export function DataTableDemo({ data, setData }) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <ScrollArea className="h-[200px]">
+            <ScrollArea className="">
               {table
                 .getAllColumns()
                 .filter((column) => column.getCanHide())

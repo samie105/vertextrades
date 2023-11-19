@@ -64,9 +64,9 @@ export default function Dash() {
           </div>
           <div className="total_users_cta">
             {" "}
-            <button className="p-3 rounded-md text-sm bg-gray-50 text-black/80 text-r font-bold">
+            {/* <button className="p-3 rounded-md text-sm bg-gray-50 text-black/80 text-r font-bold">
               Check users
-            </button>
+            </button> */}
           </div>
         </div>
         {/* <div className="total_withdrawals flex mt-4 items-center justify-between p-3 rounded-md shadow-md shadow-slate-100">
