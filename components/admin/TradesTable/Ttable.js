@@ -164,7 +164,13 @@ export default function Ttable({ data, setData, email }) {
                 <DropdownMenuItem
                   className="bg-re-50 text-green-800   py-2"
                   onClick={() =>
-                    updateTransactionStatus(payment.id, "Gain", payment.market)
+                    updateTransactionStatus(
+                      payment.id,
+                      "Gain",
+                      payment.market,
+                      payment.type,
+                      payment.entryPrice
+                    )
                   }
                 >
                   Set to Gain
@@ -177,7 +183,9 @@ export default function Ttable({ data, setData, email }) {
                     updateTransactionStatus(
                       payment.id,
                       "Running",
-                      payment.market
+                      payment.market,
+                      payment.type,
+                      payment.entryPrice
                     )
                   }
                 >
@@ -188,7 +196,13 @@ export default function Ttable({ data, setData, email }) {
                 <DropdownMenuItem
                   className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
                   onClick={() =>
-                    updateTransactionStatus(payment.id, "Loss", payment.market)
+                    updateTransactionStatus(
+                      payment.id,
+                      "Loss",
+                      payment.market,
+                      payment.type,
+                      payment.entryPrice
+                    )
                   }
                 >
                   Set to Loss
@@ -200,7 +214,13 @@ export default function Ttable({ data, setData, email }) {
       },
     },
   ];
-  const updateTransactionStatus = async (tradeId, newStatus, asset) => {
+  const updateTransactionStatus = async (
+    tradeId,
+    newStatus,
+    asset,
+    type,
+    price
+  ) => {
     try {
       // Make a POST request to your backend API to update the transaction status
       const response = await fetch(`/db/trades/`, {
@@ -213,6 +233,8 @@ export default function Ttable({ data, setData, email }) {
           tradeId,
           newStatus,
           asset,
+          type,
+          price,
         }),
       });
 
@@ -265,10 +287,10 @@ export default function Ttable({ data, setData, email }) {
     <div className="w-full">
       <div className="flex items-center gap-x-2 py-4">
         <Input
-          placeholder="Search by dates..."
-          value={table.getColumn("dateAdded")?.getFilterValue() ?? ""}
+          placeholder="Search by Assets..."
+          value={table.getColumn("market")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("dateAdded")?.setFilterValue(event.target.value)
+            table.getColumn("market")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

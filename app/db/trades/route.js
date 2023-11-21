@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import UserModel from "../../../mongodbConnect";
 
 export async function POST(request) {
-  const { email, tradeId, newStatus, asset } = await request.json();
+  const { email, tradeId, newStatus, asset, type, price } =
+    await request.json();
 
   try {
     // Find the user and the specific withdrawal record
@@ -28,9 +29,9 @@ export async function POST(request) {
       updateObj.$push = {
         notifications: {
           id: crypto.randomUUID(),
-          method: "trade",
-          type: "success",
-          message: `${asset} trade hits Gain, Profit has been sent to your balance`,
+          method: "success",
+          type: "trade",
+          message: `Your ${asset} ${type} at ${price}} trade hits Gain, Profit has been sent to your balance`,
           date: Date.now(),
         },
       };
@@ -39,9 +40,9 @@ export async function POST(request) {
       updateObj.$push = {
         notifications: {
           id: crypto.randomUUID(),
-          method: "trade",
-          type: "failure",
-          message: `${asset} trade hits a Loss`,
+          method: "failure",
+          type: "trade",
+          message: `Your ${asset} ${type} at ${price} trade hits a Loss`,
           date: Date.now(),
         },
       };

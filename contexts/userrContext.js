@@ -210,14 +210,14 @@ export const UserDataProvider = ({ children }) => {
           setDefaultOPen(true);
         } else {
           // // Remove the "token" cookie if it's not found
-          const tokenCookie = document.cookie;
-          //   .split(";")
-          //   .find((cookie) => cookie.trim().startsWith("token="));
-          // if (tokenCookie) {
-          //   document.cookie =
-          //     "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          // }
-          // router.replace("/auth");
+          const tokenCookie = document.cookie
+            .split(";")
+            .find((cookie) => cookie.trim().startsWith("token="));
+          if (tokenCookie) {
+            document.cookie =
+              "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          }
+          router.replace("/auth");
         }
       } catch (error) {
         console.error(error);
@@ -229,8 +229,8 @@ export const UserDataProvider = ({ children }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    // const intervalId = setInterval(fetchDetails, 60000);
-    // return () => clearInterval(intervalId);
+    const intervalId = setInterval(fetchDetails, 60000);
+    return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
   const setNotification = async (message, type, method) => {
