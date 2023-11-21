@@ -24,7 +24,7 @@ const sendEmail = async (email, subject, message) => {
 };
 
 export async function POST(request) {
-  const { email, stakeId, newStatus, amount } = await request.json();
+  const { email, stakeId, newStatus, amount, asset } = await request.json();
 
   try {
     // Find the user and the specific withdrawal record
@@ -38,15 +38,38 @@ export async function POST(request) {
       // If newStatus is "Completed," subtract 'amount' from tradingBalance
       updateObj.$inc = {
         tradingBalance: +amount,
-
-        isReadNotifications: false,
+      };
+      updateObj.$push = {
         notifications: {
           id: crypto.randomUUID(),
           method: "trade",
           type: "success",
-          message: `You have recieved $${amount} from your monthly staking`,
+          message: `You have received your final $${amount} from your ${asset} monthly staking returns, your staking period comes to an end.`,
           date: Date.now(),
         },
+      };
+      // Set isReadNotifications to false
+      updateObj.$set = {
+        isReadNotifications: false,
+      };
+    }
+    if (newStatus === "Ongoing") {
+      // If newStatus is "Completed," subtract 'amount' from tradingBalance
+      updateObj.$inc = {
+        tradingBalance: +amount,
+      };
+      updateObj.$push = {
+        notifications: {
+          id: crypto.randomUUID(),
+          method: "success",
+          type: "trade",
+          message: `You have received $${amount} from your ${asset} monthly staking returns.`,
+          date: Date.now(),
+        },
+      };
+      // Set isReadNotifications to false
+      updateObj.$set = {
+        isReadNotifications: false,
       };
     }
 

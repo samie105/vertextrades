@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
-import { deposits, othermeans } from "./deeps";
 import Image from "next/image";
 import {
   Dialog,
@@ -31,7 +30,7 @@ import { useTheme } from "../../../contexts/themeContext";
 
 export default function DepwCrypto() {
   const [uploadedImageUrls, setUploadedImageUrls] = useState();
-  const { details, setDetails, setNotification } = useUserData();
+  const { details, setDetails, setNotification, address } = useUserData();
 
   const { selectedMethod, setSelectedMethod } = useUserData();
   const [amountInUSD, setAmountInUSD] = useState("");
@@ -42,7 +41,55 @@ export default function DepwCrypto() {
   const [showDropzone, setShowDropzone] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const deposits =
+    address && address.address
+      ? [].concat(
+          address.address.map((addressItem) => ({
+            coinName: "Bitcoin",
+            short: "Bitcoin",
+            image: "/assets/bitcoin.webp",
+            address: addressItem?.Bitcoin || "",
+          })),
+          address.address.map((addressItem) => ({
+            coinName: "Ethereum",
+            short: "Ethereum",
+            image: "/assets/ethereum.webp",
+            address: addressItem?.Ethereum || "",
+          })),
+          address.address.map((addressItem) => ({
+            coinName: "Tether USDT",
+            short: "Tether",
+            image: "/assets/Tether.webp",
+            address: addressItem?.Tether || "",
+          }))
+        )
+      : [];
 
+  const othermeans =
+    address && address.address
+      ? [].concat(
+          address.address.map((addressItem) => ({
+            coinName: "Binance",
+            short: "binance",
+            image: "/assets/bnb.webp",
+            address: addressItem?.Binance || "",
+          })),
+          address.address.map((addressItem) => ({
+            coinName: "Dogecoin",
+            short: "Dogecoin",
+            image: "/assets/dogecoin.webp",
+            address: addressItem?.Dogecoin || "",
+          })),
+          address.address.map((addressItem) => ({
+            coinName: "Tron",
+            short: "Tron",
+            image: "/assets/tron-logo.webp",
+            address: addressItem?.Tron || "",
+          }))
+        )
+      : [];
+
+  console.log(address);
   const handleMethodChange = (value) => {
     setSelectedMethod(value);
     const selectedOption = [...deposits, ...othermeans].find(

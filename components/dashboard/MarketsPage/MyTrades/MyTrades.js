@@ -16,7 +16,6 @@ import Image from "next/image";
 export default function MyTrades() {
   const { details } = useUserData();
   const { isDarkMode } = useTheme();
-  console.log(details.trades);
   return (
     <div className={` mt-3 pb-2 ${isDarkMode ? "text-white" : ""}`}>
       <div className="rounded overflow-hidden relative">

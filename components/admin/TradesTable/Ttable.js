@@ -39,6 +39,7 @@ import { useState } from "react";
 import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
 
 export default function Ttable({ data, setData, email }) {
   const columns = [
@@ -148,11 +149,22 @@ export default function Ttable({ data, setData, email }) {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
 
+              {/* <DropdownMenuItem
+                className="bg-re-50 text-green-800   py-2"
+                // onClick={() =>
+                //   updateTransactionStatus(payment.id, "Gain", payment.amount)
+                // }
+              >
+                <Dialog>
+                  <DialogTrigger>Make Changes</DialogTrigger>
+                  <DialogContent>hello</DialogContent>
+                </Dialog>
+              </DropdownMenuItem> */}
               {payment.status !== "Gain" && (
                 <DropdownMenuItem
                   className="bg-re-50 text-green-800   py-2"
                   onClick={() =>
-                    updateTransactionStatus(payment.id, "Gain", payment.amount)
+                    updateTransactionStatus(payment.id, "Gain", payment.market)
                   }
                 >
                   Set to Gain
@@ -165,7 +177,7 @@ export default function Ttable({ data, setData, email }) {
                     updateTransactionStatus(
                       payment.id,
                       "Running",
-                      payment.amount
+                      payment.market
                     )
                   }
                 >
@@ -175,7 +187,9 @@ export default function Ttable({ data, setData, email }) {
               {payment.status !== "Loss" && (
                 <DropdownMenuItem
                   className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
-                  onClick={() => updateTransactionStatus(payment.id, "Loss")}
+                  onClick={() =>
+                    updateTransactionStatus(payment.id, "Loss", payment.market)
+                  }
                 >
                   Set to Loss
                 </DropdownMenuItem>
@@ -186,7 +200,7 @@ export default function Ttable({ data, setData, email }) {
       },
     },
   ];
-  const updateTransactionStatus = async (tradeId, newStatus, amount) => {
+  const updateTransactionStatus = async (tradeId, newStatus, asset) => {
     try {
       // Make a POST request to your backend API to update the transaction status
       const response = await fetch(`/db/trades/`, {
@@ -198,6 +212,7 @@ export default function Ttable({ data, setData, email }) {
           email,
           tradeId,
           newStatus,
+          asset,
         }),
       });
 

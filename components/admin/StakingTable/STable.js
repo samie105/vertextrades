@@ -168,7 +168,8 @@ export default function Ttable({ data, setData, email }) {
                     updateTransactionStatus(
                       payment.id,
                       "Completed",
-                      parseFloat(payment.monthlyReturns)
+                      parseFloat(payment.monthlyReturns),
+                      payment.stakedAsset
                     )
                   }
                 >
@@ -187,7 +188,8 @@ export default function Ttable({ data, setData, email }) {
                     updateTransactionStatus(
                       payment.id,
                       "Ongoing",
-                      parseFloat(payment.monthlyReturns)
+                      parseFloat(payment.monthlyReturns),
+                      payment.stakedAsset
                     )
                   }
                 >
@@ -200,7 +202,7 @@ export default function Ttable({ data, setData, email }) {
       },
     },
   ];
-  const updateTransactionStatus = async (stakeId, newStatus, amount) => {
+  const updateTransactionStatus = async (stakeId, newStatus, amount, asset) => {
     try {
       // Make a POST request to your backend API to update the transaction status
       const response = await fetch(`/db/adminStake/`, {
@@ -213,6 +215,7 @@ export default function Ttable({ data, setData, email }) {
           stakeId,
           newStatus,
           amount,
+          asset,
         }),
       });
 

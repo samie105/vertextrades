@@ -16,6 +16,7 @@ export async function POST(request) {
       // If newStatus is "success," subtract 'amount' from tradingBalance
       updateObj.$inc = {
         tradingBalance: -amount,
+        totalWithdrawn: +amount,
       };
     }
 

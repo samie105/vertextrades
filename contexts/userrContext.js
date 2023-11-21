@@ -12,6 +12,7 @@ export const UserDataProvider = ({ children }) => {
   const [defaultOpen, setDefaultOPen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(0);
+  const [address, setAddress] = useState();
   const [coinPrices, setCoinPrices] = useState({});
   const [cryptoPrices, setCryptoPrices] = useState({});
   const [currncyPrices, setCurrencyPrices] = useState({}); // Updated state variable name
@@ -57,7 +58,6 @@ export const UserDataProvider = ({ children }) => {
         const response = await axios.get(
           `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=uBHWmV9nY9dXSxbrZJ8iiuFrcHsEiHED`
         );
-        console.log(response);
         if (
           response.data &&
           response.data.status === "OK" &&
@@ -87,7 +87,6 @@ export const UserDataProvider = ({ children }) => {
         const response = await axios.get(
           `https://api.polygon.io/v2/aggs/grouped/locale/global/market/fx/2023-01-09?adjusted=true&apiKey=uBHWmV9nY9dXSxbrZJ8iiuFrcHsEiHED`
         );
-        console.log(response);
         if (
           response.data &&
           response.data.status === "OK" &&
@@ -117,7 +116,6 @@ export const UserDataProvider = ({ children }) => {
         const symbols = cryptos
           .map((crypto) => crypto.name.replace(/ /g, "-"))
           .join(",");
-        console.log(symbols);
 
         // Make an API request to fetch prices for the symbols
         const response = await fetch(
@@ -127,7 +125,6 @@ export const UserDataProvider = ({ children }) => {
         if (response.ok) {
           const data = await response.json();
           setCryptoPrices(data);
-          console.log(data);
         }
       } catch (error) {
         console.error("Error fetching cryptocurrency prices:", error);
@@ -137,7 +134,17 @@ export const UserDataProvider = ({ children }) => {
     // Call the function to fetch prices on component mount
     fetchCryptoPrices();
   }, []); // The empty dependency array ensures the effect runs once on mount
-
+  useEffect(() => {
+    const fetchAddress = async () => {
+      try {
+        const response = await axios.get("/db/getAddess/");
+        setAddress(response.data);
+      } catch (error) {
+        console.log("Error fetching Adsress: ", error);
+      }
+    };
+    fetchAddress();
+  }, []);
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem("defaultOpen", defaultOpen.toString());
@@ -175,7 +182,6 @@ export const UserDataProvider = ({ children }) => {
       axios
         .get(apiUrl)
         .then((response) => {
-          console.log("Price fetched:", response.data); // Debugging log
           setCurrentPrice(response.data[assetId]?.usd || 0);
         })
         .catch((error) => {
@@ -203,7 +209,6 @@ export const UserDataProvider = ({ children }) => {
           setDetails(data);
           setDefaultOPen(true);
         } else {
-          // console.log(response);
           // // Remove the "token" cookie if it's not found
           const tokenCookie = document.cookie;
           //   .split(";")
@@ -211,7 +216,6 @@ export const UserDataProvider = ({ children }) => {
           // if (tokenCookie) {
           //   document.cookie =
           //     "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          //   console.log("Token cookie removed");
           // }
           // router.replace("/auth");
         }
@@ -323,6 +327,7 @@ export const UserDataProvider = ({ children }) => {
         cryptoPrices,
         stockPrices,
         currncyPrices,
+        address,
       }}
     >
       {children}

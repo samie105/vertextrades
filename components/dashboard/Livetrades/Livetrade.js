@@ -52,7 +52,7 @@ const Livetrade = () => {
     },
     {
       name: "balance",
-      bal: `$${details && details.tradingBalance.toLocaleString()}.00`,
+      bal: `$${details && details.tradingBalance.toLocaleString()}`,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ const Livetrade = () => {
     },
     {
       name: "total won",
-      bal: "0",
+      bal: details.totalWon || 0,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +106,7 @@ const Livetrade = () => {
     },
     {
       name: "total loss",
-      bal: "0",
+      bal: details.totalLoss || 0,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -30,7 +30,7 @@ export default function Dash() {
   const dashhh = [
     {
       name: "deposited",
-      bal: `$${details && details.totalDeposited.toLocaleString()}.00`,
+      bal: `$${details && details.totalDeposited.toLocaleString()}`,
 
       icon: (
         <svg
@@ -49,7 +49,7 @@ export default function Dash() {
     },
     {
       name: "withdrawn",
-      bal: `$${details && details.totalWithdrawn.toLocaleString()}.00`,
+      bal: `$${details && details.totalWithdrawn.toLocaleString()}`,
 
       icon: (
         <svg
@@ -67,7 +67,7 @@ export default function Dash() {
       ),
     },
     {
-      name: "Stakings",
+      name: "Total Stakes",
       bal: `
        $${
          details &&
@@ -249,7 +249,7 @@ export default function Dash() {
                           isDarkMode ? "text-white/70" : "text-black"
                         }`}
                       >
-                        Trading Balance
+                        Account Balance
                       </p>{" "}
                       <div className="live md:hidden">
                         <div className="live-info p-1 flex items-center bg-green-700 text-xs mx-3 text-white rounded-full">
@@ -267,8 +267,8 @@ export default function Dash() {
                         details &&
                         (
                           details.tradingBalance + details.planBonus
-                        ).toLocaleString()
-                      }.00`}
+                        ).toLocaleString("")
+                      }`}
                     </div>
                     <div className="live hidden md:block">
                       <div className="live-info py-1 px-2 flex items-center bg-green-700 text-xs mx-3 text-white rounded-full">
