@@ -222,43 +222,49 @@ export default function Ttable({ data, setData, email }) {
     price
   ) => {
     try {
-      // Make a POST request to your backend API to update the transaction status
-      const response = await fetch(`/db/trades/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const proceed = confirm("Proceed with this action?");
+
+      if (proceed) {
+        const requestBody = {
           email,
           tradeId,
           newStatus,
           asset,
           type,
           price,
-        }),
-      });
+        };
 
-      if (response.ok) {
-        // Transaction status updated successfully on the backend, update the frontend
-        const updatedData = data.map((trade) => {
-          if (trade.id === tradeId) {
-            // Update the transaction status
-            toast.success("Changes Applied");
-            return { ...trade, status: newStatus };
-          }
-          return trade;
+        const response = await fetch(`/db/trades/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
         });
 
-        // Update the state with the new data
-        setData(updatedData);
-      } else {
-        // Handle error cases when the backend update fails
-        console.error("Failed to update transaction status on the backend");
+        if (response.ok) {
+          // Transaction status updated successfully on the backend, update the frontend
+          const updatedData = data.map((trade) => {
+            if (trade.id === tradeId) {
+              // Update the transaction status
+              toast.success("Changes Applied");
+              return { ...trade, status: newStatus };
+            }
+            return trade;
+          });
+
+          // Update the state with the new data
+          setData(updatedData);
+        } else {
+          // Handle error cases when the backend update fails
+          console.error("Failed to update transaction status on the backend");
+        }
       }
     } catch (error) {
       console.error("Error while updating transaction status:", error);
     }
   };
+
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});

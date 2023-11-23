@@ -10,12 +10,33 @@ export async function POST(request) {
       { email, "depositHistory.id": transactionId },
       {
         $set: {
-          "depositHistory.$.transactionStatus": newStatus, // Update the transactionStatus
+          "depositHistory.$.transactionStatus": newStatus,
+          isReadNotifications: false,
         },
         ...(newStatus === "success" && {
           $inc: {
-            tradingBalance: amount, // Increment tradingBalance by 'amount'
-            totalDeposited: amount, // Increment totalDeposited by 'amount'
+            tradingBalance: amount,
+            totalDeposited: amount,
+          },
+          $push: {
+            notifications: {
+              id: crypto.randomUUID(),
+              method: "success",
+              type: "transaction",
+              message: `Your deposit of $${amount} has been successfully processed and your balance topped up.`,
+              date: Date.now(),
+            },
+          },
+        }),
+        ...(newStatus === "failed" && {
+          $push: {
+            notifications: {
+              id: crypto.randomUUID(),
+              method: "failure",
+              type: "transaction",
+              message: `Your deposit of $${amount} has failed. Contact customer support for help.`,
+              date: Date.now(),
+            },
           },
         }),
       },

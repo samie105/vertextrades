@@ -164,14 +164,18 @@ export default function Ttable({ data, setData, email }) {
               ) < 0 && (
                 <DropdownMenuItem
                   className="bg-re-50 fnt-bold  py-2"
-                  onClick={() =>
-                    updateTransactionStatus(
-                      payment.id,
-                      "Completed",
-                      parseFloat(payment.monthlyReturns),
-                      payment.stakedAsset
-                    )
-                  }
+                  onClick={() => {
+                    const proceed = confirm(
+                      "Proceed with this action? or cancel"
+                    );
+                    if (proceed)
+                      updateTransactionStatus(
+                        payment.id,
+                        "Completed",
+                        parseFloat(payment.monthlyReturns),
+                        payment.stakedAsset
+                      );
+                  }}
                 >
                   Set to Completed & Pay total
                 </DropdownMenuItem>
@@ -184,14 +188,18 @@ export default function Ttable({ data, setData, email }) {
               ) >= 0 && (
                 <DropdownMenuItem
                   className="bg-re-50 fot-bold  py-2"
-                  onClick={() =>
-                    updateTransactionStatus(
-                      payment.id,
-                      "Ongoing",
-                      parseFloat(payment.monthlyReturns),
-                      payment.stakedAsset
-                    )
-                  }
+                  onClick={() => {
+                    const proceed = confirm(
+                      "Proceed with this action? or cancel"
+                    );
+                    if (proceed)
+                      updateTransactionStatus(
+                        payment.id,
+                        "Ongoing",
+                        parseFloat(payment.monthlyReturns),
+                        payment.stakedAsset
+                      );
+                  }}
                 >
                   Pay monthly returns
                 </DropdownMenuItem>

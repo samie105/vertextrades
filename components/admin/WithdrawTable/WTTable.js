@@ -156,7 +156,9 @@ export default function WTTable({ data, setData, email }) {
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
-                onClick={() => updateTransactionStatus(payment.id, "failed")}
+                onClick={() =>
+                  updateTransactionStatus(payment.id, "failed", payment.amount)
+                }
               >
                 Reject Transaction
               </DropdownMenuItem>
@@ -168,41 +170,47 @@ export default function WTTable({ data, setData, email }) {
   ];
   const updateTransactionStatus = async (transactionId, newStatus, amount) => {
     try {
-      // Make a POST request to your backend API to update the transaction status
-      const response = await fetch(`/db/history/updateWithdrawal/api`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          transactionId,
-          newStatus,
-          amount,
-        }),
-      });
+      // Use window.confirm to get user confirmation
+      const proceed = confirm("Proceed with this action?");
 
-      if (response.ok) {
-        // Transaction status updated successfully on the backend, update the frontend
-        const updatedData = data.map((transaction) => {
-          if (transaction.id === transactionId) {
-            // Update the transaction status
-            toast.success("Changes Applied");
-            return { ...transaction, transactionStatus: newStatus };
-          }
-          return transaction;
+      if (proceed) {
+        // Make a POST request to your backend API to update the transaction status
+        const response = await fetch(`/db/history/updateWithdrawal/api`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            transactionId,
+            newStatus,
+            amount,
+          }),
         });
 
-        // Update the state with the new data
-        setData(updatedData);
-      } else {
-        // Handle error cases when the backend update fails
-        console.error("Failed to update transaction status on the backend");
+        if (response.ok) {
+          // Transaction status updated successfully on the backend, update the frontend
+          const updatedData = data.map((transaction) => {
+            if (transaction.id === transactionId) {
+              // Update the transaction status
+              toast.success("Changes Applied");
+              return { ...transaction, transactionStatus: newStatus };
+            }
+            return transaction;
+          });
+
+          // Update the state with the new data
+          setData(updatedData);
+        } else {
+          // Handle error cases when the backend update fails
+          console.error("Failed to update transaction status on the backend");
+        }
       }
     } catch (error) {
       console.error("Error while updating transaction status:", error);
     }
   };
+
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});

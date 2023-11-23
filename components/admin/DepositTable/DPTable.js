@@ -165,7 +165,9 @@ export default function DPTable({ data, setData, email }) {
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="bg-re-50 fot-bold hover:text-red-600 cursor-pointer text-red-700 py-2"
-                onClick={() => updateTransactionStatus(payment.id, "failed")}
+                onClick={() =>
+                  updateTransactionStatus(payment.id, "failed", payment.amount)
+                }
               >
                 Reject Transaction
               </DropdownMenuItem>
@@ -178,59 +180,76 @@ export default function DPTable({ data, setData, email }) {
 
   const handleSendMail = async (amount) => {
     try {
-      // Send a POST request to the /db/sendEmail/api endpoint with the email and amount data
-      const response = await axios.post("/db/sendEmail/api", { email, amount });
+      // Confirm before sending the email
+      const confirmSendMail = confirm("Do you want to send the email?");
 
-      // Check if the response status is OK (200)
-      if (response.status === 200) {
-        // Email sent successfully, you can handle the response data if needed
-        console.log("Email sent successfully");
-      } else {
-        // Handle other status codes or errors here
-        console.error("Failed to send email");
+      if (confirmSendMail) {
+        // Send a POST request to the /db/sendEmail/api endpoint with the email and amount data
+        const response = await axios.post("/db/sendEmail/api", {
+          email,
+          amount,
+        });
+
+        // Check if the response status is OK (200)
+        if (response.status === 200) {
+          // Email sent successfully, you can handle the response data if needed
+          console.log("Email sent successfully");
+        } else {
+          // Handle other status codes or errors here
+          console.error("Failed to send email");
+        }
       }
     } catch (error) {
       // Handle network errors or exceptions here
       console.error("Error while sending email:", error);
     }
   };
+
   const updateTransactionStatus = async (transactionId, newStatus, amount) => {
     try {
-      // Make a POST request to your backend API to update the transaction status
-      const response = await fetch(`/db/history/updateDeposit/api`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          transactionId,
-          newStatus,
-          amount,
-        }),
-      });
+      // Confirm before updating the transaction status
+      const confirmUpdateStatus = confirm(
+        "Proceed with updating the transaction status?"
+      );
 
-      if (response.ok) {
-        // Transaction status updated successfully on the backend, update the frontend
-        const updatedData = data.map((transaction) => {
-          if (transaction.id === transactionId) {
-            // Update the transaction status
-            toast.success("Changes Applied");
-            return { ...transaction, transactionStatus: newStatus };
-          }
-          return transaction;
+      if (confirmUpdateStatus) {
+        // Make a POST request to your backend API to update the transaction status
+        const response = await fetch(`/db/history/updateDeposit/api`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            transactionId,
+            newStatus,
+            amount,
+          }),
         });
 
-        // Update the state with the new data
-        setData(updatedData);
-      } else {
-        // Handle error cases when the backend update fails
-        console.error("Failed to update transaction status on the backend");
+        if (response.ok) {
+          // Transaction status updated successfully on the backend, update the frontend
+          const updatedData = data.map((transaction) => {
+            if (transaction.id === transactionId) {
+              // Update the transaction status
+              toast.success("Changes Applied");
+              return { ...transaction, transactionStatus: newStatus };
+            }
+            return transaction;
+          });
+
+          // Update the state with the new data
+          setData(updatedData);
+        } else {
+          // Handle error cases when the backend update fails
+          console.error("Failed to update transaction status on the backend");
+        }
       }
     } catch (error) {
       console.error("Error while updating transaction status:", error);
     }
   };
+
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});

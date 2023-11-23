@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import UserModel from "../../../mongodbConnect";
+import crypto from "crypto";
 
 export async function POST(request) {
   const { email, tradeId, newStatus, asset, type, price } =
@@ -10,47 +11,50 @@ export async function POST(request) {
     const updateObj = {
       $set: {
         "trades.$.status": newStatus, // Update the transactionStatus
+        isReadNotifications: false,
       },
     };
+
     if (newStatus === "Gain") {
-      // If newStatus is "Completed," subtract 'amount' from tradingBalance
+      // If newStatus is "Gain," increment totalWon and push a Gain notification
       updateObj.$inc = {
-        totalWon: +1,
+        totalWon: 1,
       };
-    }
-    if (newStatus === "Loss") {
-      // If newStatus is "Completed," subtract 'amount' from tradingBalance
-      updateObj.$inc = {
-        totalLoss: +1,
+      updateObj.$push = {
+        notifications: {
+          $each: [
+            {
+              id: crypto.randomUUID(),
+              method: "success",
+              type: "trade",
+              message: `Your ${asset} ${type} at ${price} trade hits Gain. Profit has been sent to your balance`,
+              date: Date.now(),
+            },
+          ],
+        },
       };
     }
 
-    if (newStatus === "Gain") {
-      updateObj.$push = {
-        notifications: {
-          id: crypto.randomUUID(),
-          method: "success",
-          type: "trade",
-          message: `Your ${asset} ${type} at ${price}} trade hits Gain, Profit has been sent to your balance`,
-          date: Date.now(),
-        },
-      };
-    }
     if (newStatus === "Loss") {
+      // If newStatus is "Loss," increment totalLoss and push a Loss notification
+      updateObj.$inc = {
+        totalLoss: 1,
+      };
       updateObj.$push = {
         notifications: {
-          id: crypto.randomUUID(),
-          method: "failure",
-          type: "trade",
-          message: `Your ${asset} ${type} at ${price} trade hits a Loss`,
-          date: Date.now(),
+          $each: [
+            {
+              id: crypto.randomUUID(),
+              method: "failure",
+              type: "trade",
+              message: `Your ${asset} ${type} at ${price} trade hits a Loss`,
+              date: Date.now(),
+            },
+          ],
         },
       };
     }
-    // Set isReadNotifications to false
-    updateObj.$set = {
-      isReadNotifications: false,
-    };
+
     const updatedUser = await UserModel.findOneAndUpdate(
       { email, "trades.id": tradeId },
       updateObj,

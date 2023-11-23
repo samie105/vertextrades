@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import UserModel from "../../../../../mongodbConnect";
+import crypto from "crypto";
 
 export async function POST(request) {
   const { email, transactionId, newStatus, amount } = await request.json();
@@ -8,7 +9,8 @@ export async function POST(request) {
     // Find the user and the specific withdrawal record
     const updateObj = {
       $set: {
-        "withdrawalHistory.$.transactionStatus": newStatus, // Update the transactionStatus
+        "withdrawalHistory.$.transactionStatus": newStatus,
+        isReadNotifications: false,
       },
     };
 
@@ -17,6 +19,27 @@ export async function POST(request) {
       updateObj.$inc = {
         tradingBalance: -amount,
         totalWithdrawn: +amount,
+      };
+
+      updateObj.$push = {
+        notifications: {
+          id: crypto.randomUUID(),
+          method: "success",
+          type: "transaction",
+          message: `Your withdrawal of $${amount} has been successfully processed`,
+          date: Date.now(),
+        },
+      };
+    } else if (newStatus === "failure") {
+      // If newStatus is "failure," push the failure notification
+      updateObj.$push = {
+        notifications: {
+          id: crypto.randomUUID(),
+          method: "failure",
+          type: "transaction",
+          message: `Your withdrawal of $${amount} has failed. Please contact Customer Support.`,
+          date: Date.now(),
+        },
       };
     }
 
