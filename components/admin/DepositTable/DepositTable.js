@@ -7,6 +7,7 @@ import axios from "axios";
 export default function WithdrawTable({ em }) {
   const email = em.replace("%40", "@");
   const [data, setData] = useState();
+  const [name, setName] = useState();
 
   useEffect(() => {
     const fetchedDetails = async () => {
@@ -20,6 +21,7 @@ export default function WithdrawTable({ em }) {
           const data = response.data;
           //  console.log(data.withdrawalHistory);
           setData(data.depositHistory);
+          setName(data.name);
           // Do something with the data here, e.g., update state or perform other actions
         } else {
           // Handle other status codes or errors here
@@ -63,7 +65,9 @@ export default function WithdrawTable({ em }) {
         </div>
       )}
 
-      {data && <DPTable data={data} setData={setData} email={email} />}
+      {data && (
+        <DPTable data={data} setData={setData} email={email} name={name} />
+      )}
     </div>
   );
 }

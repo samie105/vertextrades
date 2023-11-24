@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(request) {
-  const { email, amount } = await request.json();
+  const { email, amount, name } = await request.json();
 
   // Create a Nodemailer transporter with your email credentials
   const transporter = nodemailer.createTransport({
@@ -15,7 +15,7 @@ export async function POST(request) {
 
   // Define the email content
   const mailOptions = {
-    from: '"Capital Nexus Team" <no-reply@brokertest.vercel.app>',
+    from: '"Live Markets Team" <no-reply@livemarkets.com>',
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `
@@ -98,7 +98,7 @@ export async function POST(request) {
         <div class="header">
             <h1>Deposit Confirmation</h1>
         </div>
-        <p>Dear User,</p>
+        <p>Dear ${name},</p>
         <p>Your deposit of <span class="amount">$${amount}</span> has been successfully received.</p>
         <p>Thank you for choosing our services.</p>
        

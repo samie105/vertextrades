@@ -40,6 +40,7 @@ import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
+import axios from "axios";
 
 export default function Ttable({ data, setData, email }) {
   const columns = [
@@ -214,6 +215,7 @@ export default function Ttable({ data, setData, email }) {
       },
     },
   ];
+
   const updateTransactionStatus = async (
     tradeId,
     newStatus,
@@ -222,42 +224,74 @@ export default function Ttable({ data, setData, email }) {
     price
   ) => {
     try {
-      const proceed = confirm("Proceed with this action?");
+      if (newStatus === "Gain") {
+        // If newStatus is "Gain," prompt the user to enter a value
+        const proceed = confirm("Proceed with this action?");
+        const gainValue = prompt("Enter the gain amount in usd:");
+        if (gainValue !== null) {
+          // If the user doesn't cancel the prompt
+          if (proceed) {
+            const response = await axios.post("/db/trades/", {
+              email,
+              tradeId,
+              newStatus,
+              asset,
+              type,
+              price,
+              gain: parseFloat(gainValue),
+            });
 
-      if (proceed) {
-        const requestBody = {
-          email,
-          tradeId,
-          newStatus,
-          asset,
-          type,
-          price,
-        };
+            if (response.status === 200) {
+              // Transaction status updated successfully on the backend, update the frontend
+              const updatedData = data.map((trade) => {
+                if (trade.id === tradeId) {
+                  // Update the transaction status
+                  toast.success("Changes Applied");
+                  return { ...trade, status: newStatus };
+                }
+                return trade;
+              });
 
-        const response = await fetch(`/db/trades/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        });
-
-        if (response.ok) {
-          // Transaction status updated successfully on the backend, update the frontend
-          const updatedData = data.map((trade) => {
-            if (trade.id === tradeId) {
-              // Update the transaction status
-              toast.success("Changes Applied");
-              return { ...trade, status: newStatus };
+              // Update the state with the new data
+              setData(updatedData);
+            } else {
+              // Handle error cases when the backend update fails
+              console.error(
+                "Failed to update transaction status on the backend"
+              );
             }
-            return trade;
+          }
+        }
+      } else {
+        // For other cases, proceed with the usual logic
+        const proceed = confirm("Proceed with this action?");
+        if (proceed) {
+          const response = await axios.post("/db/trades/", {
+            email,
+            tradeId,
+            newStatus,
+            asset,
+            type,
+            price,
           });
 
-          // Update the state with the new data
-          setData(updatedData);
-        } else {
-          // Handle error cases when the backend update fails
-          console.error("Failed to update transaction status on the backend");
+          if (response.status === 200) {
+            // Transaction status updated successfully on the backend, update the frontend
+            const updatedData = data.map((trade) => {
+              if (trade.id === tradeId) {
+                // Update the transaction status
+                toast.success("Changes Applied");
+                return { ...trade, status: newStatus };
+              }
+              return trade;
+            });
+
+            // Update the state with the new data
+            setData(updatedData);
+          } else {
+            // Handle error cases when the backend update fails
+            console.error("Failed to update transaction status on the backend");
+          }
         }
       }
     } catch (error) {

@@ -14,7 +14,7 @@ const sendEmail = async (email, subject, message) => {
   });
 
   const mailOptions = {
-    from: '"Livemarkets Team" <no-reply@livemarkts.vercel.app>',
+    from: '"Livemarkets Team" <no-reply@livemarkts.com>',
     to: email,
     subject: subject,
     text: message,
@@ -24,7 +24,8 @@ const sendEmail = async (email, subject, message) => {
 };
 
 export async function POST(request) {
-  const { email, stakeId, newStatus, amount, asset } = await request.json();
+  const { email, stakeId, newStatus, amount, asset, name } =
+    await request.json();
 
   try {
     // Find the user and the specific withdrawal record
@@ -92,11 +93,11 @@ export async function POST(request) {
     if (newStatus === "Ongoing") {
       const emailSubject = "Staking Update: Ongoing Staking Process";
       const emailMessage = `
-        Dear Staker,\n\n
-        We want to inform you that you have received $${amount} in your balance. The staking process is still ongoing, and we appreciate your trust in our platform.\n\n
+        Dear ${name},\n\n
+        We want to inform you that you have received $${amount} from your ${asset} staking in your balance. The staking process is still ongoing.\n\n
         If you have any questions or concerns, feel free to reach out to our support team.\n\n
-        Thank you for choosing our platform.\n\n
-        Best regards,\n\n
+        Thank you for your trust and cooperation.\n\n
+        Best regards,\n
         Live Markets Team.
       `;
 
@@ -104,11 +105,11 @@ export async function POST(request) {
     } else if (newStatus === "Completed") {
       const emailSubject = "Staking Update: Staking Process Completed";
       const emailMessage = `
-        Dear Staker,\n\n
-        Congratulations! We are pleased to inform you that you've received your final ROI of ${amount}, and the staking process has come to an end.\n\n
+        Dear ${name},\n\n
+        Congratulations! We are pleased to inform you that you've received your final ROI of ${amount} from your ${asset} staking.\n\n Congratulations!!! 🎉🎉 \n Your staking process has come to an end.\n\n
         We appreciate your participation, and if you have any further inquiries, please don't hesitate to contact us.\n\n
-        Thank you for staking with us.\n\n
-        Best regards,\n\n
+        Thank you for your trust and cooperation.\n\n
+        Best regards,\n
         Live Markets Team.
       `;
 

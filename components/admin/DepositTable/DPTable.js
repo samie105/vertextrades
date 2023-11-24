@@ -63,7 +63,7 @@ async function deleteUser(email) {
   }
 }
 
-export default function DPTable({ data, setData, email }) {
+export default function DPTable({ data, setData, email, name }) {
   const columns = [
     {
       id: "select",
@@ -188,6 +188,7 @@ export default function DPTable({ data, setData, email }) {
         const response = await axios.post("/db/sendEmail/api", {
           email,
           amount,
+          name,
         });
 
         // Check if the response status is OK (200)

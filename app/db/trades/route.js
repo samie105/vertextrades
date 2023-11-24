@@ -3,7 +3,7 @@ import UserModel from "../../../mongodbConnect";
 import crypto from "crypto";
 
 export async function POST(request) {
-  const { email, tradeId, newStatus, asset, type, price } =
+  const { email, tradeId, newStatus, asset, type, price, gain } =
     await request.json();
 
   try {
@@ -16,9 +16,11 @@ export async function POST(request) {
     };
 
     if (newStatus === "Gain") {
+      console.log(gain);
       // If newStatus is "Gain," increment totalWon and push a Gain notification
       updateObj.$inc = {
         totalWon: 1,
+        tradingBalance: gain,
       };
       updateObj.$push = {
         notifications: {
@@ -27,7 +29,7 @@ export async function POST(request) {
               id: crypto.randomUUID(),
               method: "success",
               type: "trade",
-              message: `Your ${asset} ${type} at ${price} trade hits Gain. Profit has been sent to your balance`,
+              message: `Your ${asset} ${type} at ${price} trade hits Gain. Profit of $${gain} has been sent to your balance`,
               date: Date.now(),
             },
           ],

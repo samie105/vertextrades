@@ -40,7 +40,7 @@ import { ScrollArea } from "../../../components/ui/scroll-area";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
-export default function Ttable({ data, setData, email }) {
+export default function Ttable({ data, setData, email, name }) {
   const columns = [
     {
       id: "select",
@@ -224,6 +224,7 @@ export default function Ttable({ data, setData, email }) {
           newStatus,
           amount,
           asset,
+          name,
         }),
       });
 
