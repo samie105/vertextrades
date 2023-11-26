@@ -202,7 +202,8 @@ export default function Ttable({ data, setData, email }) {
                       "Loss",
                       payment.market,
                       payment.type,
-                      payment.entryPrice
+                      payment.entryPrice,
+                      payment.amount
                     )
                   }
                 >
@@ -221,7 +222,8 @@ export default function Ttable({ data, setData, email }) {
     newStatus,
     asset,
     type,
-    price
+    price,
+    amount
   ) => {
     try {
       if (newStatus === "Gain") {
@@ -265,32 +267,40 @@ export default function Ttable({ data, setData, email }) {
       } else {
         // For other cases, proceed with the usual logic
         const proceed = confirm("Proceed with this action?");
-        if (proceed) {
-          const response = await axios.post("/db/trades/", {
-            email,
-            tradeId,
-            newStatus,
-            asset,
-            type,
-            price,
-          });
+        const lossValue = prompt("Enter the loss amount in usd:");
 
-          if (response.status === 200) {
-            // Transaction status updated successfully on the backend, update the frontend
-            const updatedData = data.map((trade) => {
-              if (trade.id === tradeId) {
-                // Update the transaction status
-                toast.success("Changes Applied");
-                return { ...trade, status: newStatus };
-              }
-              return trade;
+        if (lossValue !== null) {
+          if (proceed) {
+            const response = await axios.post("/db/trades/", {
+              email,
+              tradeId,
+              newStatus,
+              asset,
+              type,
+              price,
+              loss: parseFloat(lossValue),
+              amount,
             });
 
-            // Update the state with the new data
-            setData(updatedData);
-          } else {
-            // Handle error cases when the backend update fails
-            console.error("Failed to update transaction status on the backend");
+            if (response.status === 200) {
+              // Transaction status updated successfully on the backend, update the frontend
+              const updatedData = data.map((trade) => {
+                if (trade.id === tradeId) {
+                  // Update the transaction status
+                  toast.success("Changes Applied");
+                  return { ...trade, status: newStatus };
+                }
+                return trade;
+              });
+
+              // Update the state with the new data
+              setData(updatedData);
+            } else {
+              // Handle error cases when the backend update fails
+              console.error(
+                "Failed to update transaction status on the backend"
+              );
+            }
           }
         }
       }

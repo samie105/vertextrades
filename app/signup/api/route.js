@@ -52,6 +52,8 @@ export async function POST(request) {
     tradingProgress: 2,
     trades: [],
     tradersCopying: [],
+    paidStaking: Date.now(),
+    lastButtonClick: Date.now(),
   });
   try {
     await user.save();

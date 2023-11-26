@@ -8,6 +8,8 @@ export default function StakingTable({ em }) {
   const email = em.replace("%40", "@");
   const [data, setData] = useState();
   const [name, setName] = useState();
+  const [lastPaid, setLastPaid] = useState();
+  const [paidStake, setPaidStake] = useState();
 
   useEffect(() => {
     const fetchedDetails = async () => {
@@ -21,6 +23,8 @@ export default function StakingTable({ em }) {
           const data = response.data;
           //  console.log(data.withdrawalHistory);
           setData(data.stakings);
+          setPaidStake(data.paidStaking);
+          setLastPaid(data.lastButtonClick);
           setName(data.name);
           // Do something with the data here, e.g., update state or perform other actions
         } else {
@@ -66,7 +70,15 @@ export default function StakingTable({ em }) {
       )}
 
       {data && (
-        <STable data={data} setData={setData} email={email} name={name} />
+        <STable
+          data={data}
+          setData={setData}
+          email={email}
+          name={name}
+          lastPaid={lastPaid}
+          paidStake={paidStake}
+          setLastPaid={setLastPaid}
+        />
       )}
     </div>
   );

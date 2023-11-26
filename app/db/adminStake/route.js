@@ -31,7 +31,8 @@ export async function POST(request) {
     // Find the user and the specific withdrawal record
     const updateObj = {
       $set: {
-        "stakings.$.status": newStatus, // Update the transactionStatus
+        "stakings.$.status": newStatus,
+        "stakings.$.lastPaid": new Date(),
       },
     };
 
@@ -71,6 +72,8 @@ export async function POST(request) {
       // Set isReadNotifications to false
       updateObj.$set = {
         isReadNotifications: false,
+        paidStaking: Date.now(),
+        lastButtonClick: Date.now(),
       };
     }
 

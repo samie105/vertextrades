@@ -59,6 +59,8 @@ const userSchema = new mongoose.Schema({
   stakings: [Object],
   trades: [Object],
   tradingProgress: Number,
+  paidStaking: { type: Date, default: Date.now, required: true },
+  lastButtonClick: Date,
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);

@@ -37,29 +37,32 @@ import {
 } from "../../../components/ui/table";
 import { useState } from "react";
 import { ScrollArea } from "../../../components/ui/scroll-area";
-import Link from "next/link";
 import toast from "react-hot-toast";
 
-export default function Ttable({ data, setData, email, name }) {
+export default function Ttable({
+  data,
+  setData,
+  email,
+  name,
+
+  setLastPaid,
+}) {
+  const currentDate = new Date();
+  const thirtyDaysAgo = new Date(currentDate);
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  console.log(thirtyDaysAgo);
+
   const columns = [
     {
       id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={table.getIsAllPageRowsSelected()}
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
+      header: "Notif",
       cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
+        <>
+          {!(new Date(row.original.lastPaid) >= thirtyDaysAgo) && (
+            <div className="h-2 w-2 rounded-full bg-red-500"></div>
+          )}
+        </>
       ),
-      enableSorting: false,
-      enableHiding: false,
     },
     {
       accessorKey: "stakedAsset",
@@ -144,6 +147,8 @@ export default function Ttable({ data, setData, email, name }) {
       enableHiding: false,
       cell: ({ row }) => {
         const payment = row.original;
+        const isPaid = new Date(row.original.lastPaid) >= thirtyDaysAgo;
+        console.log(isPaid);
 
         return (
           <DropdownMenu>
@@ -161,49 +166,52 @@ export default function Ttable({ data, setData, email, name }) {
                 row.original.stakedDuration -
                   (new Date() - row.original.dateStaked) /
                     (30 * 24 * 60 * 60 * 1000)
-              ) < 0 && (
-                <DropdownMenuItem
-                  className="bg-re-50 fnt-bold  py-2"
-                  onClick={() => {
-                    const proceed = confirm(
-                      "Proceed with this action? or cancel"
-                    );
-                    if (proceed)
-                      updateTransactionStatus(
-                        payment.id,
-                        "Completed",
-                        parseFloat(payment.monthlyReturns),
-                        payment.stakedAsset
+              ) < 0 &&
+                row.original.status.toLowerCase() !== "completed" && (
+                  <DropdownMenuItem
+                    className="bg-re-50 fnt-bold  py-2"
+                    onClick={() => {
+                      const proceed = confirm(
+                        "Proceed with this action? or cancel"
                       );
-                  }}
-                >
-                  Set to Completed & Pay total
-                </DropdownMenuItem>
-              )}
+                      if (proceed)
+                        updateTransactionStatus(
+                          payment.id,
+                          "Completed",
+                          parseFloat(payment.monthlyReturns),
+                          payment.stakedAsset
+                        );
+                    }}
+                  >
+                    Set to Completed & Pay total
+                  </DropdownMenuItem>
+                )}
 
               {Math.floor(
                 row.original.stakedDuration -
                   (new Date() - row.original.dateStaked) /
                     (30 * 24 * 60 * 60 * 1000)
-              ) >= 0 && (
-                <DropdownMenuItem
-                  className="bg-re-50 fot-bold  py-2"
-                  onClick={() => {
-                    const proceed = confirm(
-                      "Proceed with this action? or cancel"
-                    );
-                    if (proceed)
-                      updateTransactionStatus(
-                        payment.id,
-                        "Ongoing",
-                        parseFloat(payment.monthlyReturns),
-                        payment.stakedAsset
+              ) >= 0 &&
+                !isPaid &&
+                row.original.status.toLowerCase() === "ongoing" && (
+                  <DropdownMenuItem
+                    className="bg-re-50 fot-bold  py-2"
+                    onClick={() => {
+                      const proceed = confirm(
+                        "Proceed with this action? or cancel"
                       );
-                  }}
-                >
-                  Pay monthly returns
-                </DropdownMenuItem>
-              )}
+                      if (proceed)
+                        updateTransactionStatus(
+                          payment.id,
+                          "Ongoing",
+                          parseFloat(payment.monthlyReturns),
+                          payment.stakedAsset
+                        );
+                    }}
+                  >
+                    Pay monthly returns
+                  </DropdownMenuItem>
+                )}
             </DropdownMenuContent>
           </DropdownMenu>
         );
@@ -234,12 +242,14 @@ export default function Ttable({ data, setData, email, name }) {
           if (stake.id === stakeId) {
             // Update the transaction status
             toast.success("Changes Applied & email sent");
+
             return { ...stake, status: newStatus };
           }
           return stake;
         });
 
         // Update the state with the new data
+        setLastPaid(Date.now());
         setData(updatedData);
       } else {
         // Handle error cases when the backend update fails
@@ -277,10 +287,10 @@ export default function Ttable({ data, setData, email, name }) {
     <div className="w-full">
       <div className="flex items-center gap-x-2 py-4">
         <Input
-          placeholder="Search by dates..."
-          value={table.getColumn("dateAdded")?.getFilterValue() ?? ""}
+          placeholder="Search by Asset..."
+          value={table.getColumn("stakedAsset")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("dateAdded")?.setFilterValue(event.target.value)
+            table.getColumn("stakedAsset")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

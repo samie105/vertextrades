@@ -79,6 +79,7 @@ export default function AssetDialog({
       totalReturns: roi,
       stakedDuration: month,
       status: "ongoing",
+      lastPaid: new Date(),
     };
     isloading(true);
     try {

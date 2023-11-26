@@ -548,7 +548,7 @@ export default function DepwCrypto() {
                     </strong>{" "}
                     The above address is a temporal trading address that becomes
                     invalid after 10 mins of visibility to avoid fraud and
-                    psiphing and to avoid server overloading, please be sure
+                    phishing and to avoid server overloading, please be sure
                     you're in a secure area for quick and safe deposits.{" "}
                   </p>
                 </div>

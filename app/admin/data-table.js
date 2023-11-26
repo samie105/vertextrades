@@ -65,23 +65,26 @@ async function deleteUser(email) {
 export function DataTableDemo({ data, setData }) {
   const columns = [
     {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={table.getIsAllPageRowsSelected()}
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
+      accessorKey: "notifiers",
+      header: "Notifs",
       cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
+        <div className="px-4">
+          <div className="grid grid-cols-4 gap-2">
+            {row.original.depositHistory.some(
+              (entry) => entry.transactionStatus.toLowerCase() === "pending"
+            ) && <div className="h-2 w-2 rounded-full bg-green-500"></div>}
+            {row.original.withdrawalHistory.some(
+              (entry) => entry.transactionStatus.toLowerCase() === "pending"
+            ) && <div className="h-2 w-2 rounded-full bg-yellow-500"></div>}
+            {row.original.trades.some(
+              (entry) => entry.status.toLowerCase() === "running"
+            ) && <div className="h-2 w-2 rounded-full bg-red-500"></div>}
+            {row.original.stakings.some(
+              (entry) => entry.status.toLowerCase() === "ongoing"
+            ) && <div className="h-2 w-2 rounded-full bg-blue-500"></div>}
+          </div>
+        </div>
       ),
-      enableSorting: false,
-      enableHiding: false,
     },
     {
       accessorKey: "name",

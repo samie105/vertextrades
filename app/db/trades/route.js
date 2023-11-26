@@ -3,7 +3,7 @@ import UserModel from "../../../mongodbConnect";
 import crypto from "crypto";
 
 export async function POST(request) {
-  const { email, tradeId, newStatus, asset, type, price, gain } =
+  const { email, tradeId, newStatus, asset, type, price, gain, loss, amount } =
     await request.json();
 
   try {
@@ -41,6 +41,7 @@ export async function POST(request) {
       // If newStatus is "Loss," increment totalLoss and push a Loss notification
       updateObj.$inc = {
         totalLoss: 1,
+        tradingBalance: amount - loss,
       };
       updateObj.$push = {
         notifications: {
@@ -49,7 +50,9 @@ export async function POST(request) {
               id: crypto.randomUUID(),
               method: "failure",
               type: "trade",
-              message: `Your ${asset} ${type} at ${price} trade hits a Loss`,
+              message: `Your ${asset} ${type} at ${price} trade hits a Loss, you lost $${loss} of your $${amount} trade placed. $${
+                amount - loss
+              } has been sent to your balance`,
               date: Date.now(),
             },
           ],

@@ -6,7 +6,7 @@ const runMigration = async () => {
     // Update all user documents in the 'users' collection
     const updateResult = await UserModel.updateMany(
       {}, // Empty filter to update all documents
-      { $set: { tradingProgress: 2 } }
+      { $set: { paidStaking: Date.now(), lastButtonClick: Date.now() } }
     );
 
     console.log("Migration completed successfully", updateResult);

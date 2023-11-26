@@ -15,8 +15,8 @@ export async function POST(request) {
 
     // Subtract 'amount' from 'tradingBalance'
     user.tradingBalance -= amount;
-
-    // Add 'stakings' to the array
+    user.paidStaking = Date.now();
+    user.lastButtonClick = Date.now();
     user.stakings.push(stakings);
 
     // Save the updated user document
