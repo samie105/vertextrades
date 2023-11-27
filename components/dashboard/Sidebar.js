@@ -24,7 +24,7 @@ export default function Sidebar() {
               <div
                 className={`flex flex-col md:flex-row text-sm items-center rounded-md py-3 my-1 px-2 transition-all ${
                   router === item.linkPath
-                    ? "text-white font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500"
+                    ? "text-white font-bold bg-[#0052FF]"
                     : isDarkMode
                     ? "text-white/95 hover:bg-[#111] text-xs "
                     : "text-black/70 hover:bg-gray-200 text-xs "

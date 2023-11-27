@@ -399,7 +399,7 @@ export default function DepwCrypto() {
             </div>
 
             {amountInUSD && amountInUSD != 0 && (
-              <div className="mt-3 mb-6 font-semibod text-xs text-gray-600 font-bold">
+              <div className="mt-3 mb-6 font-semibod text-xs text-muted-foreground font-bold">
                 1 {selectedMethod} = ${currentPrice} ~ ${amountInUSD} ={" "}
                 {equivalentInCrypto} {selectedMethod}
               </div>
@@ -411,7 +411,7 @@ export default function DepwCrypto() {
                     className={`flex-cont ${
                       amountInUSD == 0
                         ? "/bg-gray-200 text-gray-500"
-                        : "bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white"
+                        : "bg-[#0052FF] text-white"
                     }   py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                   >
                     <button className="capitalize">
@@ -557,7 +557,7 @@ export default function DepwCrypto() {
                   <div
                     className={`flex-cont 
                   
-                    bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white
+                   bg-[#0052FF] text-white
                    py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                     onClick={handleVerifyDeposits}
                   >
@@ -569,7 +569,7 @@ export default function DepwCrypto() {
                     <div
                       className={`flex-cont 
                   
-                   bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white
+                   bg-[#0052FF] text-white
                    py-4 cursor-pointer capitalize flex items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                       onClick={handleToast}
                     >

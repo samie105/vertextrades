@@ -141,7 +141,7 @@ export default function StakeStock() {
                   <div className="btn-section mt-5">
                     <Dialog className={`${isDarkMode ? "bg-[#111]" : ""}`}>
                       <DialogTrigger className="w-full">
-                        <div className="btn rounded-sm cursor-pointer text-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 w-full py-3 text-center font-bold text-sm">
+                        <div className="btn rounded-sm cursor-pointer text-white bg-[#0052FF] w-full py-3 text-center font-bold text-sm">
                           Stake {stake.coinName}
                         </div>
                       </DialogTrigger>

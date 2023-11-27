@@ -126,7 +126,7 @@ export default function Dash() {
           action: (
             <ToastAction
               altText="Deposit"
-              className={`font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] h-11 border-0/  from-red-800 via-red-600 to-orange-500 text-white`}
+              className={`font-bold bg-[#0052FF] text-white`}
             >
               <Link href="/dashboard/deposits" passHref>
                 Deposit
@@ -301,7 +301,7 @@ export default function Dash() {
                   </Link>
                   <Link href="dashboard/deposits" passHref>
                     {" "}
-                    <div className="mx-1 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-red-600 to-orange-500 text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
+                    <div className="mx-1 bg-[#0052FF] text-white flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -333,7 +333,7 @@ export default function Dash() {
           </div>
         ) : (
           <div
-            className={` rounded-sm p-3 ${
+            className={` rounded-sm px-3 py-5 ${
               isDarkMode ? "bg-[#111] text-white" : "bg-gray-400/10 border"
             }`}
           >
@@ -367,7 +367,7 @@ export default function Dash() {
                     }`}
                   >
                     <div
-                      className="bar absolute top-0 left-0 h-full rounded-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500"
+                      className="bar absolute top-0 left-0 h-full rounded-full bg-[#0052FF]"
                       style={{ width: `${details.tradingProgress}%` }}
                     ></div>
                   </div>

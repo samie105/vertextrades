@@ -15,7 +15,7 @@ export default function AssetWidgtet() {
         <Link href="dashboard/deposits" passHref>
           {" "}
           <div>
-            <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 rounded-full py-3 px-5 text-white font-bold text-xs md:text-sm">
+            <button className="bg-[#0052FF] rounded-md py-3 px-5 text-white font-bold text-xs md:text-sm">
               Deposit
             </button>
           </div>

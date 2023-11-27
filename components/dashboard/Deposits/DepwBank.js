@@ -82,7 +82,7 @@ export default function DepwBank() {
                 <div
                   className={`flex-cont ${
                     amountForTransfer && amountForTransfer != 0
-                      ? "bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white"
+                      ? "bg-[#0052FF] text-white"
                       : "bg-gray-300 text-gray-700"
                   }  py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                 >
@@ -129,7 +129,7 @@ export default function DepwBank() {
               <DialogClose>
                 {" "}
                 <div
-                  className={`flex-cont"bg-slate-800 text-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
+                  className={`flex-cont bg-[#0052FF] py-4 cursor-pointer capitalize flex  items-center font-bold  px-3 justify-center rounded-lg fon-bold text-sm w-full`}
                 >
                   <button className="capitalize">Continue</button>
                 </div>
