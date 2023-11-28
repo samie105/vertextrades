@@ -137,7 +137,7 @@ export default function Withdrawals() {
                   </div>
                   <div className="cta pt-2 flex justify-center">
                     <Link href="/dashboard/verify" passHref>
-                      <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white py-3 px-9 text-sm font-bold rounded-full hover:bg-slate-600">
+                      <button className="bg-[#0052FF] text-white py-3 px-9 text-sm font-bold rounded-md hover:bg-slate-600">
                         Verify Now
                       </button>
                     </Link>
@@ -321,7 +321,9 @@ export default function Withdrawals() {
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             fill="currentColor"
-                            className="w-10 h-10"
+                            className={`w-10 h-10 ${
+                              isDarkMode ? "text-white" : ""
+                            }`}
                           >
                             <path
                               fillRule="evenodd"

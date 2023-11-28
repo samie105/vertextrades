@@ -311,8 +311,8 @@ export default function Nav() {
                   <div
                     className={` flex font-bold ${
                       isDarkMode
-                        ? `md:bg-green-800/30 text-green-600`
-                        : "md:bg-green-50 text-green-700"
+                        ? `md:bg-[#0052FF30] text-[#0052FF]`
+                        : "md:bg-[#0052FF30] text-[#0052FF]"
                     } rounded-full md:rounded-lg md:px-3 md:py-3`}
                   >
                     <svg

@@ -742,14 +742,14 @@ export default function BankWire() {
             }`}
           >
             Your bank wire withdrawal has been successfully processed. Please
-            allow up to 2 business days for the funds to be reflected in your
+            allow up to 5 business days for the funds to be reflected in your
             account. You can review the transaction details in your transaction
             history. If you require any further assistance, don't hesitate to
             contact us
           </p>
           <Link href="/dashboard" passHref>
             {" "}
-            <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 py-3 px-10 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
+            <button className="bg-[#0052FF] py-3 px-10 rounded-lg text-sm text-white font-bold hover:bg-slate-600 transition-all focus:outline-none">
               Back to Dashboard
             </button>
           </Link>

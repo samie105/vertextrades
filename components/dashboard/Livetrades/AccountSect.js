@@ -109,7 +109,7 @@ export default function AccountSect() {
                   />
                 </svg>
 
-                <div className="ml-2 font-bold">Investment:</div>
+                <div className="ml-2 font-bold">Balance:</div>
               </div>
               <div className="plan font-bold mx-2 capitalize">
                 ${details && details.tradingBalance.toLocaleString()}
@@ -141,7 +141,7 @@ export default function AccountSect() {
             </div>
           </div>
 
-          <div className="settingGuage col-span2 text-sm pr-3">
+          {/* <div className="settingGuage col-span2 text-sm pr-3">
             <div className="switch-container flex items-center my-4 justify-between w-full">
               <label className="switch-label capitalize font-bold w-ull">
                 Auto Trades
@@ -207,7 +207,7 @@ export default function AccountSect() {
                 {maintenanceGauge}%
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
