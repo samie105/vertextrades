@@ -311,8 +311,8 @@ export default function Nav() {
                   <div
                     className={` flex font-bold ${
                       isDarkMode
-                        ? `md:bg-[#0052FF30] text-[#0052FF]`
-                        : "md:bg-[#0052FF30] text-[#0052FF]"
+                        ? `md:bg-[#0052FF10] text-[#0052FF]`
+                        : "md:bg-[#0052FF10] text-[#0052FF]"
                     } rounded-full md:rounded-lg md:px-3 md:py-3`}
                   >
                     <svg
@@ -329,7 +329,7 @@ export default function Nav() {
                     </svg>
                     <div
                       className={`hidden md:block  ${
-                        isDarkMode ? "text-green-600" : "text-green-800"
+                        isDarkMode ? "text-[#0052FF]" : "text-[#0052FF]"
                       }`}
                     >
                       Notifications
@@ -591,8 +591,8 @@ export default function Nav() {
             <Popover>
               <PopoverTrigger>
                 <div
-                  className={`flex font-bold text-red-600 rounded-full md:p-3 ${
-                    isDarkMode ? "md:bg-red-600/10" : "md:bg-red-50"
+                  className={`flex font-bold text-[#0052FF] rounded-full md:p-3 ${
+                    isDarkMode ? "md:bg-[#0052FF20]" : "md:bg-[#0052FF10]"
                   } md:mr-5 text-sm`}
                 >
                   <svg
@@ -673,7 +673,7 @@ export default function Nav() {
                       <p className="pt-2">Withdraw</p>
                     </div>
                   </Link>
-                  <Link href="/dashboard/livetrades" passHref>
+                  <Link href="/dashboard/markets" passHref>
                     <div
                       className={`deposit flex flex-col items-center text-xs justify-center rounded-md font-bold p-3 relative ${
                         isDarkMode
