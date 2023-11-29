@@ -434,13 +434,13 @@ export default function Dash() {
                         <div>{items.icon}</div>
                       </div>
                     </div>
-                    <div
+                    {/* <div
                       className={`extra font-semibold text-xs ${
                         isDarkMode ? "text-green-600" : "text-green-700"
                       }`}
                     >
                       +0 from last month
-                    </div>
+                    </div> */}
                   </CardContent>
                 </Card>
               </div>

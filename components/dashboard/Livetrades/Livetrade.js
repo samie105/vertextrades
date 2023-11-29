@@ -232,7 +232,7 @@ const Livetrade = () => {
                       </div>
                     </div>
                   </div>
-                  <div
+                  {/* <div
                     className={`extra font-semibold text-xs ${
                       isDarkMode ? "text-green-600" : "text-green-700"
                     }`}
@@ -240,7 +240,7 @@ const Livetrade = () => {
                     {items.name === "live"
                       ? `${changePercent.toFixed(1)}% from last second`
                       : "+0% from last month"}
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
             </div>
