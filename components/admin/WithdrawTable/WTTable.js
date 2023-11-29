@@ -146,22 +146,34 @@ export default function WTTable({ data, setData, email }) {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem
-                className="bg-re-50 text-green-800   py-2"
-                onClick={() =>
-                  updateTransactionStatus(payment.id, "success", payment.amount)
-                }
-              >
-                Approve Transaction
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
-                onClick={() =>
-                  updateTransactionStatus(payment.id, "failed", payment.amount)
-                }
-              >
-                Reject Transaction
-              </DropdownMenuItem>
+              {payment.transactionStatus.toLowerCase() === "pending" && (
+                <DropdownMenuItem
+                  className="bg-re-50 text-green-800   py-2"
+                  onClick={() =>
+                    updateTransactionStatus(
+                      payment.id,
+                      "success",
+                      payment.amount
+                    )
+                  }
+                >
+                  Approve Transaction
+                </DropdownMenuItem>
+              )}
+              {payment.transactionStatus.toLowerCase() === "pending" && (
+                <DropdownMenuItem
+                  className="bg-re-50 fot-bold hover:text-red-600 text-red-700 py-2"
+                  onClick={() =>
+                    updateTransactionStatus(
+                      payment.id,
+                      "failed",
+                      payment.amount
+                    )
+                  }
+                >
+                  Reject Transaction
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );

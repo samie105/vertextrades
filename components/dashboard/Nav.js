@@ -394,7 +394,7 @@ export default function Nav() {
                   {notifications.length !== 0 && (
                     <>
                       <div>
-                        <ScrollArea className=" max-h-[300px] overflow-scroll overflow-x-hidden w-full px-3 py-3">
+                        <div className=" max-h-[300px] overflow-scroll overflow-x-hidden w-full px-3 py-3">
                           {sortedNotifications.reverse().map((notif, index) => (
                             <>
                               <div
@@ -547,7 +547,7 @@ export default function Nav() {
                               </div>
                             </>
                           ))}
-                        </ScrollArea>
+                        </div>
                       </div>
                     </>
                   )}
@@ -557,8 +557,8 @@ export default function Nav() {
             <button
               className={`theme-toggler  md:p-3  ${
                 isDarkMode
-                  ? "md:bg-white/10 text-white "
-                  : "md:bg-black/5 text-black"
+                  ? "md:bg-[#0052FF20] text-[#0052FF] "
+                  : "md:bg-[#0052FF10] text-[#0052FF]"
               } rounded-full mx-5 md:mx-2`}
               onClick={toggleTheme}
             >

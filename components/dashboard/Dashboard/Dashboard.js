@@ -222,10 +222,8 @@ export default function Dash() {
                   <div className="block">
                     {" "}
                     <div
-                      className={`icon-cont bg-gry-50   ${
-                        isDarkMode
-                          ? "text-white bg-[#222]"
-                          : "border bg-black/5 text-black"
+                      className={`icon-cont bg-gry-50 text-[#0052FF]  ${
+                        isDarkMode ? " bg-[#0052FF30]" : "border bg-[#0052FF10]"
                       } rounded-full p-3 mr-2 `}
                     >
                       <svg
@@ -284,8 +282,8 @@ export default function Dash() {
                     <div
                       className={`mx-1 ${
                         isDarkMode
-                          ? "text-white bg-[#222]"
-                          : "bg-black/5 text-black"
+                          ? "text-[#0052FF] bg-[#0052FF20]"
+                          : "bg-[#0052FF10] text-[#0052FF]"
                       }  flex font-bold text-xs items-center cursor-pointer md:px-4 md:py-3 p-3 rounded-full md:rounded-lg`}
                     >
                       <svg
@@ -340,8 +338,8 @@ export default function Dash() {
             <div className="flex items-center gap-x-2">
               <div className="icon">
                 <div
-                  className={`rounded-full p-3 ${
-                    isDarkMode ? "bg-[#222]" : "bg-black/5"
+                  className={`rounded-full text-[#0052FF] p-3 ${
+                    isDarkMode ? "bg-[#0052FF20]" : "bg-[#0052FF10]"
                   }`}
                 >
                   <svg

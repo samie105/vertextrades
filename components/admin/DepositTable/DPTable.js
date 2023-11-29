@@ -148,29 +148,41 @@ export default function DPTable({ data, setData, email, name }) {
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem
+              {/* <DropdownMenuItem
                 className="bg-re-50 cursor-pointer py-2"
                 onClick={() => handleSendMail(payment.amount)}
               >
                 Send Confirmed email
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="bg-re-50 text-green-800  cursor-pointer  py-2"
-                onClick={() =>
-                  updateTransactionStatus(payment.id, "success", payment.amount)
-                }
-              >
-                Approve Transaction
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="bg-re-50 fot-bold hover:text-red-600 cursor-pointer text-red-700 py-2"
-                onClick={() =>
-                  updateTransactionStatus(payment.id, "failed", payment.amount)
-                }
-              >
-                Reject Transaction
-              </DropdownMenuItem>
+              <DropdownMenuSeparator /> */}
+              {payment.transactionStatus.toLowerCase() === "pending" && (
+                <DropdownMenuItem
+                  className="bg-re-50 text-green-800  cursor-pointer  py-2"
+                  onClick={() =>
+                    updateTransactionStatus(
+                      payment.id,
+                      "success",
+                      payment.amount
+                    )
+                  }
+                >
+                  Approve Transaction
+                </DropdownMenuItem>
+              )}
+              {payment.transactionStatus.toLowerCase() === "pending" && (
+                <DropdownMenuItem
+                  className="bg-re-50 fot-bold hover:text-red-600 cursor-pointer text-red-700 py-2"
+                  onClick={() =>
+                    updateTransactionStatus(
+                      payment.id,
+                      "failed",
+                      payment.amount
+                    )
+                  }
+                >
+                  Reject Transaction
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );
@@ -225,6 +237,7 @@ export default function DPTable({ data, setData, email, name }) {
             transactionId,
             newStatus,
             amount,
+            name,
           }),
         });
 
