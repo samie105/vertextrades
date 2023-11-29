@@ -3,12 +3,41 @@ import React from "react";
 import { AdvancedChart, SymbolInfo, TickerTape } from "react-tradingview-embed";
 import { useTheme } from "../../../contexts/themeContext";
 import TradingForm from "./TradingForm";
+import { useRouter } from "next/navigation";
 
 export default function TradingPage({ market, marketType, provider, price }) {
+  const router = useRouter();
   const { isDarkMode } = useTheme();
   return (
     <div className=" pr-3 flex flex-col">
-      <div className={`mt-3 ${isDarkMode ? "text-white" : ""}`}>
+      <div
+        className="back mt-5 mb-2 cursor-pointer"
+        onClick={() => router.back()}
+      >
+        <div className={`flex pl-3`}>
+          <div
+            className={`flex items-center gap-1 text-[#0052FF] rounded-full px-3 py-1 text-sm font-bold ${
+              isDarkMode ? "bg-[#0052FF20]" : "bg-[#0052FF10]"
+            }`}
+          >
+            {" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <p>Back</p>
+          </div>
+        </div>
+      </div>
+      <div className={` ${isDarkMode ? "text-white" : ""}`}>
         {marketType === "crypto" && (
           <SymbolInfo
             widgetPropsAny={{

@@ -312,7 +312,7 @@ export default function AssetDialog({
           } rounded-sm w-full text-center  mt-3 ${
             percentage === 0 || amount === 0 || showError
               ? "bg-muted-foreground"
-              : " bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700"
+              : " bg-[#0052FF]"
           }`}
         >
           {!loading && (

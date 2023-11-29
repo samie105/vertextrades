@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "../../ui/select";
 import { ScrollArea } from "../../ui/scroll-area";
+import { Checkbox } from "../../ui/checkbox";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -23,6 +24,8 @@ export default function TradingForm({ market, marketType, provider, price }) {
   const { details, email, setDetails, setNotification } = useUserData();
   const [entryPrice, setEntryPrice] = useState(price);
   const [stopLoss, setStopLoss] = useState();
+  const [advance, showAdvance] = useState(false);
+  const [advance1, showAdvance1] = useState(false);
   const [takeProfit, setTakeProfit] = useState();
   const [amount, setAmount] = useState();
   const [duration, setDuration] = useState();
@@ -74,15 +77,7 @@ export default function TradingForm({ market, marketType, provider, price }) {
       return;
     }
 
-    if (
-      !entryPrice ||
-      !stopLoss ||
-      !takeProfit ||
-      !amount ||
-      !lotSize ||
-      amountNumber <= 0 ||
-      !duration
-    ) {
+    if (!entryPrice || !amount || !lotSize || amountNumber <= 0 || !duration) {
       setError("All fields are required & valid");
       // You can return or perform other actions based on the error condition
       return;
@@ -106,7 +101,6 @@ export default function TradingForm({ market, marketType, provider, price }) {
       marketType,
       market,
       duration,
-      progress: amount + Math.random * 5,
     };
 
     try {
@@ -155,15 +149,7 @@ export default function TradingForm({ market, marketType, provider, price }) {
       return;
     }
 
-    if (
-      !entryPrice1 ||
-      !stopLoss1 ||
-      !takeProfit1 ||
-      !amount1 ||
-      !lotSize1 ||
-      amount1 <= 0 ||
-      !duration1
-    ) {
+    if (!entryPrice1 || !amount1 || !lotSize1 || amount1 <= 0 || !duration1) {
       setError1("All fields are required");
       // You can return or perform other actions based on the error condition
       return;
@@ -351,46 +337,61 @@ export default function TradingForm({ market, marketType, provider, price }) {
             </SelectContent>
           </Select>
         </div>
-        <Label id="" className=" text-sm font-bold">
-          Stop Loss
-        </Label>
-        <div
-          className={`EntryPrice mb-2 rounded mt-1 text-sm ${
-            isDarkMode
-              ? "bg-transparent text-white/80"
-              : "bg-transparent text-black/80"
-          }`}
-        >
-          <Input
-            value={stopLoss}
-            type="number"
-            onChange={(e) => setStopLoss(e.target.value)}
-            placeholder="Stop Loss"
-            className={`border-0 font-bold rounded h-11 ${
-              isDarkMode ? "bg-[#111]" : "bg-black/5"
-            }`}
+        <div className="checkbox my-2 flex items-center justify-end gap-x-2">
+          <Checkbox
+            id="advance"
+            checked={advance}
+            onCheckedChange={() => showAdvance(!advance)}
           />
+          <Label htmlFor="advance" className="text-sm font-bold ">
+            Advanced
+          </Label>
         </div>
-        <Label id="" className=" text-sm font-bold">
-          Take Profit
-        </Label>
-        <div
-          className={`EntryPrice mb-2 rounded mt-1 text-sm ${
-            isDarkMode
-              ? "bg-transparent text-white/80"
-              : "bg-transparent text-black/80"
-          }`}
-        >
-          <Input
-            value={takeProfit}
-            type="number"
-            onChange={(e) => setTakeProfit(e.target.value)}
-            placeholder="Take Profit"
-            className={`border-0 font-bold rounded h-11 ${
-              isDarkMode ? "bg-[#111]" : "bg-black/5"
-            }`}
-          />
-        </div>
+        {advance && (
+          <>
+            {" "}
+            <Label id="" className=" text-sm font-bold">
+              Stop Loss
+            </Label>
+            <div
+              className={`EntryPrice mb-2 rounded mt-1 text-sm ${
+                isDarkMode
+                  ? "bg-transparent text-white/80"
+                  : "bg-transparent text-black/80"
+              }`}
+            >
+              <Input
+                value={stopLoss}
+                type="number"
+                onChange={(e) => setStopLoss(e.target.value)}
+                placeholder="Stop Loss"
+                className={`border-0 font-bold rounded h-11 ${
+                  isDarkMode ? "bg-[#111]" : "bg-black/5"
+                }`}
+              />
+            </div>
+            <Label id="" className=" text-sm font-bold">
+              Take Profit
+            </Label>
+            <div
+              className={`EntryPrice mb-2 rounded mt-1 text-sm ${
+                isDarkMode
+                  ? "bg-transparent text-white/80"
+                  : "bg-transparent text-black/80"
+              }`}
+            >
+              <Input
+                value={takeProfit}
+                type="number"
+                onChange={(e) => setTakeProfit(e.target.value)}
+                placeholder="Take Profit"
+                className={`border-0 font-bold rounded h-11 ${
+                  isDarkMode ? "bg-[#111]" : "bg-black/5"
+                }`}
+              />
+            </div>
+          </>
+        )}
         <div className="btn mt-3">
           <button
             disabled={loading || loading1}
@@ -532,46 +533,60 @@ export default function TradingForm({ market, marketType, provider, price }) {
             </SelectContent>
           </Select>
         </div>
-        <Label id="" className=" text-sm font-bold">
-          Stop Loss
-        </Label>
-        <div
-          className={`EntryPrice mb-2 mt-1 rounded  text-sm ${
-            isDarkMode
-              ? "bg-transparent text-white/80"
-              : "bg-transparent text-black/80"
-          }`}
-        >
-          <Input
-            value={stopLoss1}
-            type="number"
-            onChange={(e) => setStopLoss1(e.target.value)}
-            placeholder="Stop Loss"
-            className={`border-0 font-bold rounded h-11 ${
-              isDarkMode ? "bg-[#111]" : "bg-black/5"
-            }`}
+        <div className="checkbox my-2 flex items-center gap-x-2">
+          <Checkbox
+            id="advance"
+            checked={advance1}
+            onCheckedChange={() => showAdvance1(!advance1)}
           />
+          <Label htmlFor="advance" className="text-sm font-bold ">
+            Advanced
+          </Label>
         </div>
-        <Label id="" className=" text-sm font-bold">
-          Take Profit
-        </Label>
-        <div
-          className={`EntryPrice mb-2 mt-1 rounded  text-sm ${
-            isDarkMode
-              ? "bg-transparent text-white/80"
-              : "bg-transparent text-black/80"
-          }`}
-        >
-          <Input
-            value={takeProfit1}
-            type="number"
-            onChange={(e) => setTakeProfit1(e.target.value)}
-            placeholder="Take Profit"
-            className={`border-0 font-bold rounded h-11 ${
-              isDarkMode ? "bg-[#111]" : "bg-black/5"
-            }`}
-          />
-        </div>
+        {advance1 && (
+          <>
+            <Label id="" className=" text-sm font-bold">
+              Stop Loss
+            </Label>
+            <div
+              className={`EntryPrice mb-2 mt-1 rounded  text-sm ${
+                isDarkMode
+                  ? "bg-transparent text-white/80"
+                  : "bg-transparent text-black/80"
+              }`}
+            >
+              <Input
+                value={stopLoss1}
+                type="number"
+                onChange={(e) => setStopLoss1(e.target.value)}
+                placeholder="Stop Loss"
+                className={`border-0 font-bold rounded h-11 ${
+                  isDarkMode ? "bg-[#111]" : "bg-black/5"
+                }`}
+              />
+            </div>
+            <Label id="" className=" text-sm font-bold">
+              Take Profit
+            </Label>
+            <div
+              className={`EntryPrice mb-2 mt-1 rounded  text-sm ${
+                isDarkMode
+                  ? "bg-transparent text-white/80"
+                  : "bg-transparent text-black/80"
+              }`}
+            >
+              <Input
+                value={takeProfit1}
+                type="number"
+                onChange={(e) => setTakeProfit1(e.target.value)}
+                placeholder="Take Profit"
+                className={`border-0 font-bold rounded h-11 ${
+                  isDarkMode ? "bg-[#111]" : "bg-black/5"
+                }`}
+              />
+            </div>
+          </>
+        )}
         <div className="btn mt-3">
           <button
             disabled={loading || loading1}
