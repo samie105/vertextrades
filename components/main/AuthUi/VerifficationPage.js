@@ -184,7 +184,7 @@ export default function VerificationPage({ Label, Input, Button, formData }) {
 
         <Button
           type="button"
-          className="w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white h-11 py-5 px-4 rounded-lg mt-4"
+          className="w-full bg-[#0052FF] text-white h-11 py-5 px-4 rounded-lg mt-4"
           onClick={handleVerifyCode}
           disabled={isLoading}
         >

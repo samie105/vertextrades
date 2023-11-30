@@ -535,11 +535,11 @@ export default function TradingForm({ market, marketType, provider, price }) {
         </div>
         <div className="checkbox my-2 flex items-center gap-x-2">
           <Checkbox
-            id="advance"
+            id="advance1"
             checked={advance1}
             onCheckedChange={() => showAdvance1(!advance1)}
           />
-          <Label htmlFor="advance" className="text-sm font-bold ">
+          <Label htmlFor="advance1" className="text-sm font-bold ">
             Advanced
           </Label>
         </div>

@@ -24,14 +24,14 @@ export default function MT() {
               Enhancing{" "}
               <span
                 className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent"
+text-[#0052FF]"
               >
                 Investment
               </span>{" "}
               Opportunities with Capital Nexus's Versatile{" "}
               <span
                 className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent"
+text-[#0052FF]"
               >
                 CFD Trading
               </span>
@@ -40,7 +40,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
               data-aos="fade-up"
               data-aos-delay="100"
               className={`listtext font-semibld  text-sm ${
-                isDarkMode ? "text-gray-400" : "text-gray-800"
+                isDarkMode ? "text-white/80" : "text-gray-800"
               }`}
             >
               Although trading Forex is a key component of our business, Capital
@@ -49,7 +49,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
               classes, including{" "}
               <span
                 className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
+text-[#0052FF] font-bold"
               >
                 Forex, Indices, Shares, Commodities, Metals, Digital Currencies,
                 Bonds, and ETFs
@@ -59,7 +59,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
               States, along with the{" "}
               <span
                 className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
+text-[#0052FF] font-bold"
               >
                 Australian Stock Exchange (ASX)
               </span>

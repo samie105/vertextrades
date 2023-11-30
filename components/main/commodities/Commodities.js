@@ -17,7 +17,7 @@ export default function Commodities() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-5 h-5 mr-2 text-red-600"
+              className="w-5 h-5 mr-2 text-[#0052FF]"
             >
               <path
                 fillRule="evenodd"
@@ -38,14 +38,12 @@ export default function Commodities() {
           }`}
         >
           Trade with world-wide accepted{" "}
-          <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-            Product
-          </span>
+          <span className="text-[#0052FF]">Product</span>
         </div>
         <div
           data-aos="fade-left"
           className={`text-writeUp text-sm my-5 w-full md:w-[60%] md:m ${
-            isDarkMode ? "text-gray-400" : "text-gray-600"
+            isDarkMode ? "text-white/70" : "text-gray-600"
           }`}
         >
           <p>

@@ -112,10 +112,8 @@ const Login = () => {
       <form onSubmit={loginHandleSubmit(handleLoginSubmit)} className="">
         <div className="message mb-5">
           <div className=" font-bold">
-            <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-black">
-              Sign-In
-            </span>{" "}
-            to your account
+            <span className="text-[#0052FF] font-black">Sign-In</span> to your
+            account
           </div>
           <p
             className={`text-sm font-normal  mt-3 ${
@@ -123,10 +121,8 @@ const Login = () => {
             }`}
           >
             Continue where you left off by logging in, we keep{" "}
-            <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-black">
-              track
-            </span>{" "}
-            of your every progress.
+            <span className="text-[#0052FF] font-black">track</span> of your
+            every progress.
           </p>
         </div>
         <div className=" mt-6 mb-2">
@@ -252,7 +248,7 @@ const Login = () => {
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full h-11 font-bold mt-5 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white py-3 px-4 rounded-lg"
+          className="w-full h-11 font-bold mt-5 bg-[#0052FF] text-white py-3 px-4 rounded-lg"
         >
           {isLoading ? <InfinitySpin width="100" color="#ffffff" /> : "Log In"}
         </Button>

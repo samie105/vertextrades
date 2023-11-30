@@ -37,14 +37,9 @@ export default function MT() {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              Advanced{" "}
-              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                Trading
-              </span>{" "}
-              <br /> Platforms &{" "}
-              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                Financial Technology
-              </span>
+              Advanced <span className="text-[#0052FF]">Trading</span> <br />{" "}
+              Platforms &{" "}
+              <span className="text-[#0052FF]">Financial Technology</span>
             </div>
             <div
               className={`listtext font-seibold text-sm ${
@@ -75,21 +70,21 @@ export default function MT() {
                 <div className="message">
                   <span
                     className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
+text-[#0052FF] font-bold"
                   >
                     MetaTrader 4{" "}
                   </span>
                   (MT4) &{" "}
                   <span
                     className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
+text-[#0052FF] font-bold"
                   >
                     MetaTrader 5{" "}
                   </span>{" "}
                   (MT5) , IRESS,{" "}
                   <span
                     className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
+text-[#0052FF] font-bold"
                   >
                     cTrader
                   </span>{" "}
@@ -146,7 +141,7 @@ bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red
                   Superior{" "}
                   <span
                     className="
-bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold"
+text-[#0052FF] font-bold"
                   >
                     Virtual Private Servers (VPS)
                   </span>{" "}

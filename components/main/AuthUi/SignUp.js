@@ -667,12 +667,7 @@ const Signup = () => {
                 isDarkMode ? "text-gray-200" : "text-gray-950"
               } font-bold text-lg`}
             >
-              <span
-                className={`text-red-700  font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent`}
-              >
-                Create
-              </span>{" "}
-              a new account
+              <span className={`text-[#0052FF]`}>Create</span> a new account
             </div>
             <p
               className={`text-sm font-normal ${
@@ -680,17 +675,9 @@ const Signup = () => {
               } mt-3`}
             >
               Create a new{" "}
-              <span
-                className={`bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] bord  fonttb from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-bold`}
-              >
-                account
-              </span>{" "}
-              to enjoy immense benefits and financial freedom, it's easy, it's{" "}
-              <span
-                className={` bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-500 to-orange-500 bg-clip-text text-transparent font-bold`}
-              >
-                simple
-              </span>
+              <span className={`text-[#0052FF] font-bold`}>account</span> to
+              enjoy immense benefits and financial freedom, it's easy, it's{" "}
+              <span className={` text-[#0052FF] font-bold`}>simple</span>
             </p>
           </div>
           <div className="progress w-full mt-2 mb-8">
@@ -700,7 +687,7 @@ const Signup = () => {
               } relative`}
             >
               <div
-                className={`progress-bar h-full w-1/2 transition-all duration-500 absolute bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 rounded-full top-0 left-0`}
+                className={`progress-bar h-full w-1/2 transition-all duration-500 absolute bg-[#0052FF] rounded-full top-0 left-0`}
                 style={{ width: `${currentStep * (100 / 3)}%` }}
               ></div>
             </div>
@@ -736,7 +723,7 @@ const Signup = () => {
               <Button
                 type="button"
                 onClick={handleNextStep}
-                className="w-full flex items-center justify-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white h-12 font-bold roundd-lg"
+                className="w-full flex items-center justify-center bg-[#0052FF] text-white h-12 font-bold roundd-lg"
                 disabled={!formState.isValid}
               >
                 <div className="py-2 flex items-center justify-center">

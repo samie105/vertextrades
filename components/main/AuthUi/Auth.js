@@ -11,14 +11,16 @@ export default function Auth() {
     <div>
       <div
         className={`auth-container w-[80vw] md:w-[40vw] p-4 rounded-md ${
-          isDarkMode ? "bg-[#111] border-white/10 border" : ""
+          isDarkMode ? "bg-[#111] border-white/10 border" : "border"
         }`}
       >
         <div className={`cont w-full `}>
           <div className={`icon-cont flex justify-center items-center w-full`}>
             <div
               className={`cont rounded-full p-5 ${
-                isDarkMode ? "bg-[#222] text-white/80" : ""
+                isDarkMode
+                  ? "bg-[#222] text-white/80"
+                  : "bg-[#0052FF10] text-[#0052FF]"
               }`}
             >
               <svg
@@ -50,7 +52,7 @@ export default function Auth() {
             <Dialog defaultOpen>
               <DialogTrigger className="w-full px-2">
                 <div className="btn w-full">
-                  <div className="px-4 py-3 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center justify-center rounded-md flex">
+                  <div className="px-4 py-3 bg-[#0052FF] text-white font-semibold text-sm items-center justify-center rounded-md flex">
                     <p>Proceed Authentication</p>
                     {/* <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +75,13 @@ export default function Auth() {
           <Link href="/" passHref>
             {" "}
             <div className="btn w-full p-2 mt-1">
-              <div className="px-4 py-3 w-full flex items-center justify-center text-center bg-[#222] text-white/80 font-semibold text-sm rounded-xl">
+              <div
+                className={`px-4 py-3 w-full flex items-center justify-center text-center ${
+                  isDarkMode
+                    ? "bg-[#222] text-white/80"
+                    : "bg-[#0052FF10] text-[#0052FF]"
+                }   font-semibold text-sm rounded-xl`}
+              >
                 <p>Back to home</p>
               </div>
             </div>

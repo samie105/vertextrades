@@ -28,7 +28,7 @@ export default function AboutUs() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5 mr-2 text-red-700"
+                  className="w-5 h-5 mr-2 text-[#0052FF]"
                 >
                   <path
                     fillRule="evenodd"
@@ -44,11 +44,7 @@ export default function AboutUs() {
               className="larger-text text-xl md:text-2xl lg:text-3xl font-bold"
               data-aos="fade-left"
             >
-              Get{" "}
-              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-700 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                Exceptional
-              </span>{" "}
-              Services!!
+              Get <span className="text-[#0052FF]">Exceptional</span> Services!!
             </div>
             <div className="text-writeUp text-sm my-3" data-aos="fade-left">
               <p>
@@ -64,7 +60,7 @@ export default function AboutUs() {
                 className="btn mt-5 md:mt-12 mb-5 lg:block"
                 data-aos="fade-up"
               >
-                <div className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
+                <div className="px-5 py-4 bg-[#0052FF] text-white font-semibold text-sm items-center rounded-xl flex">
                   <p>Start enjoying benefits</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +101,7 @@ export default function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-red-700"
+                        className="w-4 h-4 mr-2 text-[#0052FF]"
                       >
                         <path
                           fillRule="evenodd"
@@ -118,10 +114,7 @@ export default function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      Safe &{" "}
-                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                        Secure
-                      </span>{" "}
+                      Safe & <span className="text-[#0052FF]">Secure</span>{" "}
                     </p>
                   </div>
                 </div>
@@ -155,7 +148,7 @@ export default function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-red-700"
+                        className="w-4 h-4 mr-2 text-[#0052FF]"
                       >
                         <path
                           fillRule="evenodd"
@@ -169,10 +162,7 @@ export default function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      Profitable{" "}
-                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                        Assets
-                      </span>{" "}
+                      Profitable <span className="text-[#0052FF]">Assets</span>{" "}
                     </p>
                   </div>
                 </div>
@@ -212,7 +202,7 @@ export default function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-red-700"
+                        className="w-4 h-4 mr-2 text-[#0052FF]"
                       >
                         <path
                           fillRule="evenodd"
@@ -225,9 +215,7 @@ export default function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                        Secure{" "}
-                      </span>
+                      <span className="text-[#0052FF]">Secure </span>
                       Wallet{" "}
                     </p>
                   </div>
@@ -261,7 +249,7 @@ export default function AboutUs() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="w-4 h-4 mr-2 text-red-700"
+                        className="w-4 h-4 mr-2 text-[#0052FF]"
                       >
                         <path
                           fillRule="evenodd"
@@ -275,9 +263,7 @@ export default function AboutUs() {
                   </div>
                   <div className="large-text capitalize text-lg py-2 font-semibold ml-3">
                     <p>
-                      <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                        Instant
-                      </span>{" "}
+                      <span className="text-[#0052FF]">Instant</span>{" "}
                       Withdrawals
                     </p>
                   </div>

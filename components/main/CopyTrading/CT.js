@@ -35,10 +35,7 @@ export default function CT() {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              Follow{" "}
-              <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
-                Top-performing
-              </span>{" "}
+              Follow <span className="text-[#0052FF]">Top-performing</span>{" "}
               traders
             </div>
             <div
@@ -69,7 +66,7 @@ export default function CT() {
                 </div>
                 <div className="message">
                   Follow & copy{" "}
-                  <span className="font-bold bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent">
+                  <span className="font-bold text-[#0052FF]">
                     top-performing
                   </span>{" "}
                   traders
@@ -124,9 +121,7 @@ export default function CT() {
                 </div>
                 <div className="message">
                   No need to develop your own{" "}
-                  <span className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 bg-clip-text text-transparent font-bold">
-                    trading plan
-                  </span>
+                  <span className="text-[#0052FF] font-bold">trading plan</span>
                 </div>
               </div>
             </div>
@@ -138,7 +133,7 @@ export default function CT() {
                 data-aos="fade-up"
                 data-aos-delay="500"
               >
-                <div className="px-5 py-4 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white font-semibold text-sm items-center rounded-xl flex">
+                <div className="px-5 py-4 bg-[#0052FF] text-white font-semibold text-sm items-center rounded-xl flex">
                   <p>Start Copy-Trading</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
