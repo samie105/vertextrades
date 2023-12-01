@@ -533,7 +533,7 @@ export default function TradingForm({ market, marketType, provider, price }) {
             </SelectContent>
           </Select>
         </div>
-        <div className="checkbox my-2 flex items-center gap-x-2">
+        <div className="checkbox my-2 flex items-center justify-end md:justify-start gap-x-2">
           <Checkbox
             id="advance1"
             checked={advance1}

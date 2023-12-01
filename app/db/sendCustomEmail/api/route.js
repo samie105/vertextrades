@@ -22,13 +22,13 @@ async function sendEmail(emailData) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "livemarketsfx@gmail.com",
+      pass: "qoxw cwck diqf etuh",
     },
   });
 
   await transporter.sendMail({
-    from: `${emailData.sendingAs} <no-reply@brokertest.vercel.app>`,
+    from: `${emailData.sendingAs} <team@livemarkets.com>`,
     to: emailData.recipientEmail,
     subject: `${emailData.heading}`,
     html: `<!DOCTYPE html>

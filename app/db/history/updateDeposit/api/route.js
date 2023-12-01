@@ -8,14 +8,14 @@ export async function POST(request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "livemarketsfx@gmail.com",
+      pass: "qoxw cwck diqf etuh",
     },
   });
 
   // Define the email content
   const mailOptions = {
-    from: '"Live Markets Team" <no-reply@livemarkets.com>',
+    from: "Live Markets Team <no-reply@livemarkets.com>",
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `

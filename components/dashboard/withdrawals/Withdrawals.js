@@ -160,8 +160,8 @@ export default function Withdrawals() {
                         <div className="block">
                           {" "}
                           <div
-                            className={`icon-cont bg-gry-50 bg-white-700 rounded-full p-3 mr-2  bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-600 to-orange-500 ${
-                              isDarkMode ? "" : "border"
+                            className={`icon-cont bg-gry-50 bg-white-700 rounded-full p-3 mr-2 text-[#0052FF]  ${
+                              isDarkMode ? "bg-[#0052FF20]" : "bg-[#0052FF10]"
                             }`}
                           >
                             <svg

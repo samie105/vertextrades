@@ -35,8 +35,8 @@ async function sendVerificationEmail(email, code) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "livemarketsfx@gmail.com",
+      pass: "qoxw cwck diqf etuh",
     },
   });
 
