@@ -160,7 +160,7 @@ export default function Withdrawals() {
                         <div className="block">
                           {" "}
                           <div
-                            className={`icon-cont bg-gry-50 bg-white-700 rounded-full p-3 mr-2 text-[#0052FF]  ${
+                            className={`icon-cont bg-gry-50  rounded-full p-3 mr-2 text-[#0052FF]  ${
                               isDarkMode ? "bg-[#0052FF20]" : "bg-[#0052FF10]"
                             }`}
                           >
@@ -168,7 +168,7 @@ export default function Withdrawals() {
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
                               fill="currentColor"
-                              className="w-4 h-4 text-white"
+                              className="w-4 h-4 text-[#0052FF]"
                             >
                               <path
                                 fillRule="evenodd"
