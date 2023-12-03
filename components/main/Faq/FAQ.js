@@ -65,7 +65,7 @@ export default function FAQ() {
         >
           <AccordionItem
             value="item-1"
-            className=" "
+            className={`${isDarkMode ? "border-white/5" : ""}`}
             data-aos="fade-up"
             data-aos-delay="100"
           >
@@ -80,7 +80,7 @@ export default function FAQ() {
           </AccordionItem>
           <AccordionItem
             value="item-2"
-            className=" "
+            className={`${isDarkMode ? "border-white/5" : ""}`}
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -95,7 +95,7 @@ export default function FAQ() {
           </AccordionItem>
           <AccordionItem
             value="item-3"
-            className=" "
+            className={`${isDarkMode ? "border-white/5" : ""}`}
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -110,7 +110,7 @@ export default function FAQ() {
           </AccordionItem>
           <AccordionItem
             value="item-4"
-            className=" "
+            className={`${isDarkMode ? "border-white/5" : ""}`}
             data-aos="fade-up"
             data-aos-delay="400"
           >
@@ -125,7 +125,7 @@ export default function FAQ() {
           </AccordionItem>
           <AccordionItem
             value="item-5"
-            className=" "
+            className={`${isDarkMode ? "border-white/5" : ""}`}
             data-aos="fade-up"
             data-aos-delay="500"
           >
@@ -140,7 +140,7 @@ export default function FAQ() {
           </AccordionItem>
           <AccordionItem
             value="item-6"
-            className=" "
+            className={`${isDarkMode ? "border-white/5" : ""}`}
             data-aos="fade-up"
             data-aos-delay="600"
           >
@@ -158,7 +158,7 @@ export default function FAQ() {
             <>
               <AccordionItem
                 value="item-7"
-                className=" "
+                className={`${isDarkMode ? "border-white/5" : ""}`}
                 data-aos="fade-up"
                 data-aos-delay="700"
               >
@@ -173,7 +173,7 @@ export default function FAQ() {
               </AccordionItem>
               <AccordionItem
                 value="item-8"
-                className=" "
+                className={`${isDarkMode ? "border-white/5" : ""}`}
                 data-aos="fade-up"
                 data-aos-delay="800"
               >
@@ -188,7 +188,7 @@ export default function FAQ() {
               </AccordionItem>
               <AccordionItem
                 value="item-9"
-                className=" "
+                className={`${isDarkMode ? "border-white/5" : ""}`}
                 data-aos="fade-up"
                 data-aos-delay="900"
               >
@@ -205,7 +205,7 @@ export default function FAQ() {
               </AccordionItem>
               <AccordionItem
                 value="item-10"
-                className=" "
+                className={`${isDarkMode ? "border-white/5" : ""}`}
                 data-aos="fade-up"
                 data-aos-delay="1000"
               >
@@ -221,7 +221,7 @@ export default function FAQ() {
               </AccordionItem>
               <AccordionItem
                 value="item-11"
-                className=" "
+                className={`${isDarkMode ? "border-white/5" : ""}`}
                 data-aos="fade-up"
                 data-aos-delay="1100"
               >
@@ -237,7 +237,7 @@ export default function FAQ() {
               </AccordionItem>
               <AccordionItem
                 value="item-12"
-                className=" "
+                className={`${isDarkMode ? "border-white/5" : ""}`}
                 data-aos="fade-up"
                 data-aos-delay="1200"
               >

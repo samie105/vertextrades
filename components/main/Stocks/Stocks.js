@@ -28,7 +28,7 @@ text-[#0052FF]"
               >
                 Investment
               </span>{" "}
-              Opportunities with Capital Nexus's Versatile{" "}
+              Opportunities with Livemarkets Trade's Versatile{" "}
               <span
                 className="
 text-[#0052FF]"
@@ -43,10 +43,10 @@ text-[#0052FF]"
                 isDarkMode ? "text-white/80" : "text-gray-800"
               }`}
             >
-              Although trading Forex is a key component of our business, Capital
-              Nexus also offers a diverse range of CFD trading options. With
-              Capital Nexus, you can engage in CFD trading across various asset
-              classes, including{" "}
+              Although trading Forex is a key component of our
+              business,Livemarkets Trade also offers a diverse range of CFD
+              trading options. With Livemarkets Trade, you can engage in CFD
+              trading across various asset classes, including{" "}
               <span
                 className="
 text-[#0052FF] font-bold"
