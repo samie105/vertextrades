@@ -149,7 +149,7 @@ export default function Dash() {
         {details !== 0 && (
           <div className="flex items-center gap-x-2">
             <div
-              className={`dash-header font-bold text-sm  mt-3 capitalize p-2 rounded-md ${
+              className={`dash-header font-bold text-xs md:text-sm  mt-3 capitalize p-2 rounded-md ${
                 isDarkMode ? "text-white bg-white/5" : "text-black bg-black/5"
               }`}
             >

@@ -34,7 +34,7 @@ const Livetrade = () => {
     },
     {
       name: "last profit",
-      bal: `$${details && details.lastProfit.toLocaleString()}.00`,
+      bal: `$${details && details.lastProfit.toLocaleString()}`,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

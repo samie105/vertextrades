@@ -116,7 +116,7 @@ export default function MyTrades() {
                 }`}
               >
                 <TableCell className={`font-bold text-center`} colSpan="9">
-                  No stakings yet
+                  No trades yet
                 </TableCell>
               </TableRow>
             )}
