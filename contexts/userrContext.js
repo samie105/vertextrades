@@ -213,11 +213,11 @@ export const UserDataProvider = ({ children }) => {
           const tokenCookie = document.cookie
             .split(";")
             .find((cookie) => cookie.trim().startsWith("token="));
-          // if (tokenCookie) {
-          //   document.cookie =
-          //     "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          // }
-          // router.replace("/auth");
+          if (tokenCookie) {
+            document.cookie =
+              "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          }
+          router.replace("/auth");
         }
       } catch (error) {
         console.error(error);

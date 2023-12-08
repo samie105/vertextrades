@@ -13,9 +13,9 @@ import { ThemeProvider } from "../contexts/themeContext";
 const font = Poppins({ subsets: ["devanagari"], weight: ["300"] });
 
 export const metadata = {
-  title: "Capital Nexus | Best Digital Currency Platform ",
+  title: "Live Markets | Best Digital Currency Platform ",
   description:
-    "A broker site with thousands of stock leading the way in the world of trading",
+    "A broker with thousands of assets leading the way in the world of trading",
 };
 
 export default function RootLayout({ children }) {
