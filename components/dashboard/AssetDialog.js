@@ -31,7 +31,7 @@ export default function AssetDialog({
   const { details, setDetails, setNotification } = useUserData();
   const [error, setError] = useState();
   const [showError, setShowError] = useState();
-  const [amount, setAmount] = useState(minimum || 0);
+  const [amount, setAmount] = useState();
   const [percentage, setPercentage] = useState(0);
   const [month, setMonth] = useState(0);
   const [loading, isloading] = useState(false);
@@ -47,6 +47,7 @@ export default function AssetDialog({
 
     if (numericValue > details.tradingBalance) {
       setShowError(true);
+      setAmount(numericValue);
       setError("Staking amount exceeds balance");
     } else if (numericValue < minimum) {
       setShowError(true);
@@ -56,7 +57,12 @@ export default function AssetDialog({
       setAmount(numericValue);
     }
   };
-  console.log(details.stakings);
+  useEffect(() => {
+    if (amount > details.tradingBalance) {
+      setShowError(true);
+      setError("Staking amount exceeds balance");
+    }
+  }, [amount, details.tradingBalance]);
 
   const getPercentageByMonths = (data, months) => {
     const entry = data.find((item) => item.months === months);
