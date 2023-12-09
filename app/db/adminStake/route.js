@@ -14,7 +14,7 @@ const sendEmail = async (email, subject, message) => {
   });
 
   const mailOptions = {
-    from: '"Livemarkets Team" <no-reply@livemarkts.com>',
+    from: "Livemarkets Team <team@thelivemarkets.net>",
     to: email,
     subject: subject,
     text: message,

