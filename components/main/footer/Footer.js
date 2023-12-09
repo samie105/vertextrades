@@ -44,8 +44,8 @@ export default function Footer() {
               </svg>
             </section>
             <section className="broker-writeup text-sm text-white/60  ">
-              Livemarkets trade is a financial investment company established by
-              a group of professional traders and investors, who have fore seen
+              Livemarkets is a financial investment company established by a
+              group of professional traders and investors, who have fore seen
               the future of International Capital Market. The company has direct
               contracts with professional traders and miners around the world
               that guarantees the best services and ensures profits are made and
@@ -195,7 +195,7 @@ export default function Footer() {
                     E-mail Contact
                   </div>
                   <div className="phone text-gray-400 my-1 text-sm">
-                    team@livemarkets.com
+                    team@thelivemarkets.com
                   </div>
                 </div>
               </section>
@@ -239,7 +239,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-message py-4 flex justify-center text-white/60 bg-[#0a0a0a] text-xs md:text-base">
-        © 2023 livemarketrade.com All Rights Reserved.
+        © 2023 thelivemarkets.net All Rights Reserved.
       </div>
     </>
   );

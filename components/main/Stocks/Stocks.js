@@ -28,7 +28,7 @@ text-[#0052FF]"
               >
                 Investment
               </span>{" "}
-              Opportunities with Livemarkets Trade's Versatile{" "}
+              Opportunities with Livemarkets Versatile{" "}
               <span
                 className="
 text-[#0052FF]"
@@ -44,9 +44,9 @@ text-[#0052FF]"
               }`}
             >
               Although trading Forex is a key component of our
-              business,Livemarkets Trade also offers a diverse range of CFD
-              trading options. With Livemarkets Trade, you can engage in CFD
-              trading across various asset classes, including{" "}
+              business,Livemarkets also offers a diverse range of CFD trading
+              options. With Livemarkets, you can engage in CFD trading across
+              various asset classes, including{" "}
               <span
                 className="
 text-[#0052FF] font-bold"
