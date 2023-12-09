@@ -41,7 +41,7 @@ async function sendVerificationEmail(email, code) {
   });
 
   await transporter.sendMail({
-    from: "Livemarkets Team <team@thelivemarkets.net>",
+    from: "Livemarkets Team '<team@thelivemarkets.net>'",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,
