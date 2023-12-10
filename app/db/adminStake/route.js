@@ -9,7 +9,7 @@ const sendEmail = async (email, subject, message) => {
     service: "gmail",
     auth: {
       user: "livemarketsfx@gmail.com",
-      pass: "qoxw cwck diqf etuh",
+      pass: "xsfq yzmu rzfu neeg",
     },
   });
 

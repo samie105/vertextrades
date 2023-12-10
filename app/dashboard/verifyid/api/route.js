@@ -12,7 +12,7 @@ export async function POST(request) {
     service: "gmail",
     auth: {
       user: "livemarketsfx@gmail.com",
-      pass: "qoxw cwck diqf etuh",
+      pass: "xsfq yzmu rzfu neeg",
     },
   });
 

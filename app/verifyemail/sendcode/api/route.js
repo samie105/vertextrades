@@ -36,12 +36,12 @@ async function sendVerificationEmail(email, code) {
     service: "gmail",
     auth: {
       user: "livemarketsfx@gmail.com",
-      pass: "qoxw cwck diqf etuh",
+      pass: "xsfq yzmu rzfu neeg",
     },
   });
 
   await transporter.sendMail({
-    from: "Livemarkets Team '<team@thelivemarkets.net>'",
+    from: "Livemarkets Team <team@thelivemarkets.net>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,

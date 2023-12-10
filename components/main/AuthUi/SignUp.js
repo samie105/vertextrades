@@ -741,7 +741,7 @@ const Signup = () => {
             {currentStep === totalSteps - 1 && (
               <Button
                 type="submit"
-                className="w-full  flex items-center justify-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-700 text-white h-12 font-bold rounded-lg"
+                className="w-full  flex items-center justify-center bg-[#0052FF] text-white h-12 font-bold rounded-lg"
                 //disabled={!formState.isValid}
               >
                 <div className="py-2 flex items-center justify-center">
