@@ -255,7 +255,7 @@ export default function Nav() {
           </div>
         ) : (
           <div className="nav-tools text-sm flex items-center">
-            <Select defaultValue="Ethereum">
+            <Select defaultValue="Balance">
               <SelectTrigger
                 className={`${isDarkMode ? "border border-[#222]" : "border"}`}
               >
@@ -266,7 +266,7 @@ export default function Nav() {
                   isDarkMode ? `${baseColor} text-white border-0` : ""
                 }`}
               >
-                {/* <SelectItem value="Balance">
+                <SelectItem value="Balance">
                   <div className="flex items-center py-2">
                     <div className="w-5 h-5 ">
                       {" "}
@@ -281,7 +281,7 @@ export default function Nav() {
                       <code>{details.tradingBalance.toLocaleString()}</code>
                     </div>
                   </div>
-                </SelectItem> */}
+                </SelectItem>
                 {deposits.map((deps, index) => (
                   <div key={deps.coinName}>
                     <SelectItem key={deps.coinName} value={deps.coinName}>

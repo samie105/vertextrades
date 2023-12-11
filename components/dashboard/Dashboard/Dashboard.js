@@ -265,7 +265,7 @@ export default function Dash() {
                         details &&
                         (
                           details.tradingBalance + details.planBonus
-                        ).toLocaleString("")
+                        ).toLocaleString()
                       }`}
                     </div>
                     <div className="live hidden md:block">
