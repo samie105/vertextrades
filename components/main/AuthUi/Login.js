@@ -64,7 +64,6 @@ const Login = () => {
 
       const result = await response.json();
       setIsLoading(false);
-      console.log(response);
       if (response.status === 200) {
         // Set the authentication token as a cookie
 
@@ -93,6 +92,11 @@ const Login = () => {
 
         if (result.role == "admin") router.push("/admin");
         if (result.role == "user") router.push("/dashboard");
+      } else {
+        setError("password", {
+          type: "manual",
+          message: "Incorrect details",
+        });
       }
     } catch (error) {
       setIsLoading(false);
@@ -100,7 +104,7 @@ const Login = () => {
         type: "manual",
         message: "An error occurred",
       });
-      console.error(error);
+      // console.error(error);
     }
   };
   useEffect(() => {
