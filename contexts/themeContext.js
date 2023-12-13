@@ -10,67 +10,53 @@ export const useTheme = () => {
 };
 
 // ThemeProvider component
-const getInitialTheme = () => {
-  if (typeof localStorage !== "undefined") {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme !== null) {
-      return storedTheme === "dark";
-    }
-  }
-  return true; // Fallback to 'light' if localStorage is not available or no stored value found
-};
-
 export const ThemeProvider = ({ children }) => {
   // Function to get the initial theme preference from local storage
+  const getInitialTheme = () => {
+    if (typeof localStorage !== "undefined") {
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme !== null) {
+        return storedTheme === "dark";
+      }
+    }
+    return true; // Fallback to 'light' if localStorage is not available or no stored value found
+  };
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [systemTheme, setSystemTheme] = useState(false); // Initialize as false
+  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
+
   // Function to toggle between light and dark themes
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
 
-      // Store the theme preference in localStorage if available
+      // Store the theme preference in localStorage
       if (typeof localStorage !== "undefined") {
-        localStorage.setItem("theme", newMode);
+        localStorage.setItem("theme", newMode ? "dark" : "light");
       }
 
       return newMode;
     });
   };
 
-  // useEffect(() => {
-  //   // Check if 'window' is defined (Next.js might not have 'window' on the server)
-  //   if (typeof window !== "undefined") {
-  //     // Listen for changes to the prefers-color-scheme media query
-  //     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  useEffect(() => {
+    // Check if 'window' is defined (Next.js might not have 'window' on the server)
+    if (typeof window !== "undefined") {
+      // Listen for changes to the prefers-color-scheme media query
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-  //     // Function to handle changes in system dark mode preference
-  //     const handleSystemThemeChange = (e) => {
-  //       setSystemTheme(e.matches);
-  //     };
+      // Function to handle changes in system dark mode preference
+      const handleSystemThemeChange = (e) => {
+        setIsDarkMode(e.matches);
+      };
 
-  //     mediaQuery.addEventListener("change", handleSystemThemeChange);
+      mediaQuery.addEventListener("change", handleSystemThemeChange);
 
-  //     // Cleanup the event listener when the component unmounts
-  //     return () => {
-  //       mediaQuery.removeEventListener("change", handleSystemThemeChange);
-  //     };
-  //   }
-  // }, []);
-
-  // // Determine the initial theme based on system preference and local storage
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     // Only set systemTheme if 'window' is defined (client-side)
-  //     setSystemTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-  //   }
-  // }, []);
-
-  // // Set the initial theme based on systemTheme and local storage
-  // useEffect(() => {
-  //   setIsDarkMode(systemTheme);
-  // }, [systemTheme]);
+      // Cleanup the event listener when the component unmounts
+      return () => {
+        mediaQuery.removeEventListener("change", handleSystemThemeChange);
+      };
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider

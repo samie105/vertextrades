@@ -111,36 +111,35 @@ export default function Dash() {
       ),
     },
   ];
-  useEffect(() => {
-    if (details !== 0) {
-      if (details?.tradingBalance === 0) {
-        toast({
-          variant: "default",
-          duration: 20000,
-          className: isDarkMode
-            ? "bg-[#111] text-white border border-white/10 top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5"
-            : "bg-white text-black top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5",
-          title: "No or Low trading balance??",
-          description:
-            "Why not get started by making a deposit to enjoy all trading benefits",
-          action: (
-            <ToastAction
-              altText="Deposit"
-              className={`font-bold bg-[#0052FF] text-white`}
-            >
-              <Link href="/dashboard/deposits" passHref>
-                Deposit
-              </Link>
-            </ToastAction>
-          ),
-        });
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (details !== 0) {
+  //     if (details?.tradingBalance === 0) {
+  //       toast({
+  //         variant: "default",
+  //         duration: 20000,
+  //         className: isDarkMode
+  //           ? "bg-[#111] text-white border border-white/10 top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5"
+  //           : "bg-white text-black top-0 md:right-0 md:fixed md:w-[400px] md:mt-5 md:mr-5",
+  //         title: "No or Low trading balance??",
+  //         description:
+  //           "Why not get started by making a deposit to enjoy all trading benefits",
+  //         action: (
+  //           <ToastAction
+  //             altText="Deposit"
+  //             className={`font-bold bg-[#0052FF] text-white`}
+  //           >
+  //             <Link href="/dashboard/deposits" passHref>
+  //               Deposit
+  //             </Link>
+  //           </ToastAction>
+  //         ),
+  //       });
+  //     }
+  //   }
+  // }, []);
   return (
     <div>
       {" "}
-      <Toaster />
       <div
         className={`dash-cont p-4 relative ${
           isDarkMode ? `${baseColor}` : ""

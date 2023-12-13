@@ -27,6 +27,7 @@ import toast from "react-hot-toast";
 import { toast as t } from "react-toastify";
 import { Skeleton } from "../../ui/skeleton";
 import { useTheme } from "../../../contexts/themeContext";
+import QRCode from "qrcode.react";
 
 export default function DepwCrypto() {
   const [uploadedImageUrls, setUploadedImageUrls] = useState();
@@ -89,7 +90,6 @@ export default function DepwCrypto() {
         )
       : [];
 
-  console.log(address);
   const handleMethodChange = (value) => {
     setSelectedMethod(value);
     const selectedOption = [...deposits, ...othermeans].find(
@@ -179,7 +179,6 @@ export default function DepwCrypto() {
           "pending"
         );
 
-        console.log("done", uploadedImageUrls);
         //dosmothing
       }
     } catch (error) {
@@ -435,6 +434,11 @@ export default function DepwCrypto() {
                     </span>
                   )}
                 </DialogHeader>
+                <div className="flex justify-center items-center">
+                  <div>
+                    <QRCode value={selectedAddress} />
+                  </div>
+                </div>
                 <div className="address mt-5">
                   <label
                     htmlFor="address"

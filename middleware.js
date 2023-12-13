@@ -66,6 +66,5 @@ function parseCookies(headers) {
       cookies[name] = value;
     });
   }
-  console.log(cookies.role);
   return cookies;
 }
