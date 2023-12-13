@@ -172,7 +172,7 @@ export default function BonusPlan() {
               <div className="text">
                 <div className="currentplan_name text-sm">Plan Bonus</div>
                 <div className="currentplan_name font-bold text-lg capitalize">
-                  ${details !== 0 && details.planBonus.toLocaleString()}.00
+                  ${details !== 0 && details.planBonus.toLocaleString()}
                 </div>
               </div>
             </div>

@@ -41,6 +41,13 @@ export function middleware(request) {
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
+  if (
+    token &&
+    role === "user" &&
+    request.nextUrl.pathname.startsWith("/admin")
+  ) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
 
   return NextResponse.next();
 }
@@ -59,6 +66,6 @@ function parseCookies(headers) {
       cookies[name] = value;
     });
   }
-
+  console.log(cookies.role);
   return cookies;
 }
