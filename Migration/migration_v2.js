@@ -5,12 +5,12 @@ const runMigration = async () => {
   try {
     // Define the addresses you want to add
     const defaultAddresses = {
-      Bitcoin: "",
-      Ethereum: "",
-      Tether: "",
-      Tron: "",
-      Dogecoin: "",
-      Binance: "",
+      Bitcoin: "bitcon",
+      Ethereum: "eth",
+      Tether: "usdt",
+      Tron: "tx",
+      Dogecoin: "doge",
+      Binance: "bnb",
     };
 
     // Use the create method to add the addresses to the collection

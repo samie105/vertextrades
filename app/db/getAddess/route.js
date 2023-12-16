@@ -3,10 +3,13 @@ import AddressModel from "../../../AddressDbmain";
 
 export const revalidate = true;
 
-export async function GET() {
-  const address = await AddressModel.find({});
-  if (address.length > 0) {
-    return NextResponse.json({ address });
+export async function POST(request) {
+  const { _id } = await request.json();
+  console.log(_id);
+  const address = await AddressModel.findOne({ _id });
+  console.log(address);
+  if (address) {
+    return NextResponse.json(address);
   } else {
     return NextResponse.json({ error: "no user found" });
   }

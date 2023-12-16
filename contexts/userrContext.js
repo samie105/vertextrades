@@ -137,14 +137,16 @@ export const UserDataProvider = ({ children }) => {
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-        const response = await axios.get("/db/getAddess/");
+        const response = await axios.post("/db/getAddess/", {
+          _id: "657db2459b2cf8ff10338507",
+        });
         setAddress(response.data);
       } catch (error) {
         console.log("Error fetching Adsress: ", error);
       }
     };
     fetchAddress();
-  }, []);
+  }, [details._id]);
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem("defaultOpen", defaultOpen.toString());
