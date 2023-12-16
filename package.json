@@ -32,6 +32,7 @@
     "@radix-ui/react-toast": "^1.1.4",
     "@tanstack/react-table": "^8.9.3",
     "@ts-morph/common": "^0.20.0",
+    "@vercel/speed-insights": "^1.0.2",
     "animate.css": "^4.1.1",
     "aos": "^3.0.0-beta.6",
     "autoprefixer": "10.4.14",

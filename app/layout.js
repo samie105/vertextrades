@@ -7,13 +7,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleTranslate from "../components/Translator/GoogleTranslator";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "../contexts/themeContext";
 const font = Poppins({ subsets: ["devanagari"], weight: ["300"] });
 
 export const metadata = {
-  title: "Live Markets | Best Digital Currency Platform ",
+  title: "Capital Nexus | Best Digital Currency Platform ",
   description:
     "A broker with thousands of assets leading the way in the world of trading",
 };
