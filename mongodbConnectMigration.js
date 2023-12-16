@@ -63,7 +63,6 @@ const userSchema = new mongoose.Schema({
   lastButtonClick: Date,
 });
 
-const UserModel =
-  mongoose.models.UserShalom || mongoose.model("UserShalom", userSchema);
+const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
 
 module.exports = UserModel;
