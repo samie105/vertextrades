@@ -22,8 +22,8 @@ async function sendEmail(emailData) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "livemarketsfx@gmail.com",
-      pass: "xsfq yzmu rzfu neeg",
+      user: "osr.cty@gmail.com",
+      pass: "btzbcklyxerxvkiy",
     },
   });
 

