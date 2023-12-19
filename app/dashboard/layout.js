@@ -51,7 +51,7 @@ export default function Layout({ children }) {
   return (
     <UserDataProvider>
       <Script
-        src="//code.tidio.co/dps3dblmdrpv4ifvmxhasckkruwjlwas.js"
+        src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
         strategy="afterInteractive"
         async
       ></Script>
