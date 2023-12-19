@@ -37,7 +37,7 @@ export const lists = [
   //   linkPath: "/dashboard/livetrades",
   // },
   {
-    nav: "Capital Nexus",
+    nav: "Live Markets",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -292,7 +292,7 @@ export const navList = [
     new: true,
   },
   {
-    nav: "Capital Nexus",
+    nav: "Live Markets",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
