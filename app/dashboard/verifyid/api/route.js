@@ -90,7 +90,7 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "Capital Nexus <support@capitalnexus.pro>",
+    from: "Cointrust mining <support@capitalnexus.pro>",
     to: "livemarketsfx@gmail.com",
     subject: "Verification Details",
     html: emailContent,
