@@ -53,13 +53,8 @@ export async function POST(request) {
 
     // Define email options
     const mailOptions = {
-<<<<<<< HEAD
       from: "Capital Nexus <support@capitalnexus.pro>",
       to: "samsonrichfield@gmail.com",
-=======
-      from: "Capital Nexus <support@capitalnexus.pro>",
-      to: "samsonrichfield@gmail.com",
->>>>>>> d81a3ed2f20b5cb92ba520fd6d199d3c57cae563
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>
