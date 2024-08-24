@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <>
       <Script
-        src="//code.tidio.co/b3cjjxksq7ckrfh5gv2gm8c5wfudo7oe.js"
+        src="//code.jivosite.com/widget/uGzAULrTPf"
         strategy="afterInteractive"
         async
       ></Script>
