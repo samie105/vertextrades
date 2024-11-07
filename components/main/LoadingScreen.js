@@ -62,7 +62,7 @@ export default function LoadingScreen() {
               progress > 10 && progress <= 95 ? "animate__slideInDown" : ""
             } ${progress >= 95 ? "animate__slideOutUp" : ""}`}
           >
-            <Image alt="" src={"/assets/logo.png"} className="w-20" />
+            <Image alt="" src={"/assets/logo.png"} className="w-32" />
           </div>
         </div>
         <div
