@@ -19,13 +19,12 @@ export async function POST(request) {
 
 async function sendEmail(emailData) {
   let transporter = nodemailer.createTransport({
-    // Transport configuration
-    service: "gmail",
+    // Transport configuration  
+service: "Hostinger",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
-    },
-  });
+      user: "support@@knoxtradevaultpro.com",
+      pass: "Adminktvp326!",
+    },});
 
   await transporter.sendMail({
     from: `${emailData.sendingAs} <team@thelivemarkets.net>`,

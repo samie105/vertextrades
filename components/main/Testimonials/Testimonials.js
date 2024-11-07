@@ -135,7 +135,7 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  I can't thank Capital Nexus enough for their outstanding
+                  I can't thank KnoxTrade Vault Pro enough for their outstanding
                   service. From the moment I signed up, they have provided
                   exceptional support and guidance. Their platform is intuitive
                   and packed with powerful and experiences
@@ -190,7 +190,7 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  Choosing Capital Nexus was a game-changer for me. Their
+                  Choosing KnoxTrade Vault Pro was a game-changer for me. Their
                   dedication to customer satisfaction is unmatched. Whenever I
                   have a question or need assistance, their support team is
                   always there to help.{" "}
@@ -245,8 +245,8 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  Trading with Capital Nexus has been a game-changer for my
-                  investment portfolio. Their user-friendly platform and
+                  Trading with KnoxTrade Vault Pro has been a game-changer for
+                  my investment portfolio. Their user-friendly platform and
                   extensive range of financial instruments have allowed me to
                   diversify my trading strategies effectively{" "}
                   <sup>
@@ -300,10 +300,10 @@ export default function Testimonials() {
                       className="w-3 h-3 inline text-gray-300"
                     />
                   </sup>{" "}
-                  I have been a loyal client of Capital Nexus for several years,
-                  and I have never been disappointed. Their professionalism,
-                  reliability, and personalized approach have made them my go-to
-                  choice anytime.{" "}
+                  I have been a loyal client of KnoxTrade Vault Pro for several
+                  years, and I have never been disappointed. Their
+                  professionalism, reliability, and personalized approach have
+                  made them my go-to choice anytime.{" "}
                   <sup>
                     <FontAwesomeIcon
                       icon={faQuoteRight}

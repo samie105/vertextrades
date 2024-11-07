@@ -44,17 +44,17 @@ export async function POST(request) {
     await user.save();
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: "Hostinger",
       auth: {
-        user: "samsonrichfield@gmail.com",
-        pass: "xsfq yzmu rzfu neeg",
+        user: "support@@knoxtradevaultpro.com",
+        pass: "Adminktvp326!",
       },
     });
 
     // Define email options
     const mailOptions = {
-      from: "Capital Nexus <support@capitalnexus.pro>",
-      to: "samsonrichfield@gmail.com",
+      from: "KnoxTrade Vault Pro <support@@knoxtradevaultpro.com>",
+      to: "<support@@knoxtradevaultpro.com",
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>

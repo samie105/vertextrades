@@ -6,15 +6,15 @@ import UserModel from "../../../mongodbConnect";
 const sendEmail = async (email, subject, message) => {
   // Replace with your nodemailer setup
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "Hostinger",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "support@@knoxtradevaultpro.com",
+      pass: "Adminktvp326!",
     },
   });
 
   const mailOptions = {
-    from: "Capital Nexus <support@capitalnexus.pro>",
+    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
     to: email,
     subject: subject,
     text: message,
@@ -101,7 +101,7 @@ export async function POST(request) {
         If you have any questions or concerns, feel free to reach out to our support team.\n\n
         Thank you for your trust and cooperation.\n\n
         Best regards,\n
-        Capital Nexus Team.
+        KnoxTrade Vault Pro Team.
       `;
 
       await sendEmail(email, emailSubject, emailMessage);
@@ -113,7 +113,7 @@ export async function POST(request) {
         We appreciate your participation, and if you have any further inquiries, please don't hesitate to contact us.\n\n
         Thank you for your trust and cooperation.\n\n
         Best regards,\n
-        Capital Nexus Team.
+        KnoxTrade Vault Pro Team.
       `;
 
       await sendEmail(email, emailSubject, emailMessage);

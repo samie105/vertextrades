@@ -9,10 +9,10 @@ export async function POST(request) {
 
   // Create a Nodemailer transporter
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "Hostinger",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "support@@knoxtradevaultpro.com",
+      pass: "Adminktvp326!",
     },
   });
 
@@ -90,8 +90,8 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "Capital Nexus <support@capitalnexus.pro>",
-    to: "samsonrichfield@gmail.com",
+    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
+    to: "<support@knoxtradevaultpro.com",
     subject: "Verification Details",
     html: emailContent,
   };

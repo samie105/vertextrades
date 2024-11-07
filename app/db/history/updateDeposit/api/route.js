@@ -6,16 +6,16 @@ export async function POST(request) {
   const { email, transactionId, newStatus, amount, name } =
     await request.json();
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "Hostinger",
     auth: {
-      user: "samsonrichfield@gmail.com",
-      pass: "qoxw cwck diqf etuh",
+      user: "support@@knoxtradevaultpro.com",
+      pass: "Adminktvp326!",
     },
   });
 
   // Define the email content
   const mailOptions = {
-    from: "Capital Nexus <support@capitalnexus.pro>",
+    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `

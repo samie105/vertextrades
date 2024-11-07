@@ -33,15 +33,15 @@ function generateVerificationCode() {
 async function sendVerificationEmail(email, code) {
   let transporter = nodemailer.createTransport({
     // Transport configuration
-    service: "gmail",
+    service: "Hostinger",
     auth: {
-      user: "osr.cty@gmail.com",
-      pass: "btzbcklyxerxvkiy",
+      user: "support@@knoxtradevaultpro.com",
+      pass: "Adminktvp326!",
     },
   });
 
   await transporter.sendMail({
-    from: "Capital Nexus <support@capitalnexus.pro>",
+    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,
