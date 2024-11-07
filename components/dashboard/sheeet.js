@@ -16,7 +16,7 @@ export default function Sheeet() {
       <SheetHeader className="text-white">
         <SheetTitle>
           <div className={`${isDarkMode ? "text-white" : ""} font-bold`}>
-            <Image alt="" src={"/assets/logo.png"} className="w-7" />
+            <Image alt="" src={"/assets/logo.png"} className="w-20" />
           </div>
         </SheetTitle>
       </SheetHeader>

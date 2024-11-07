@@ -79,7 +79,7 @@ export default function Navbar() {
                 : ""
             }`}
           >
-            <Image alt="" src={"/assets/logo.png"} className="w-7" />
+            <Image alt="" src={"/assets/logo.png"} className="w-20" />
           </h2>
         </div>{" "}
         <div className="Navigation-Items">

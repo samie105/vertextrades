@@ -202,7 +202,7 @@ export default function Nav() {
         </div>
         <div className="title hidden md:flex">
           <h2 className="font-bold">
-            <Image alt="" src={"/assets/logo.png"} className="w-7" />
+            <Image alt="" src={"/assets/logo.png"} className="w-20" />
           </h2>
         </div>{" "}
         {details === 0 ? (
