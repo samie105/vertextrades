@@ -210,7 +210,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-message py-4 flex justify-center text-white/60 bg-[#0a0a0a] text-xs md:text-base">
-        © 2023 knoxtradevaultpro.com All Rights Reserved.
+        © {new Date().getFullYear()} knoxtradevaultpro.com All Rights Reserved.
       </div>
     </>
   );
