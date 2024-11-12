@@ -36,7 +36,7 @@ async function sendVerificationEmail(email, code) {
     service: "Hostinger",
     auth: {
       user: "support@@knoxtradevaultpro.com",
-      pass: "Adminktvp326!",
+      pass: "Adminktvp93448!",
     },
   });
 

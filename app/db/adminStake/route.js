@@ -9,7 +9,7 @@ const sendEmail = async (email, subject, message) => {
     service: "Hostinger",
     auth: {
       user: "support@@knoxtradevaultpro.com",
-      pass: "Adminktvp326!",
+      pass: "Adminktvp93448!",
     },
   });
 

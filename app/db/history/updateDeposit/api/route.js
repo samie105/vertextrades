@@ -9,7 +9,7 @@ export async function POST(request) {
     service: "Hostinger",
     auth: {
       user: "support@@knoxtradevaultpro.com",
-      pass: "Adminktvp326!",
+      pass: "Adminktvp93448!",
     },
   });
 
