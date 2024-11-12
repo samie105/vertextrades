@@ -34,6 +34,8 @@ async function sendVerificationEmail(email, code) {
   let transporter = nodemailer.createTransport({
     // Transport configuration
     service: "Hostinger",
+    host: "smtp.hostinger.com",
+    port: 465,
     auth: {
       user: "support@@knoxtradevaultpro.com",
       pass: "Adminktvp93448!",

@@ -7,6 +7,8 @@ export async function POST(request) {
     await request.json();
   const transporter = nodemailer.createTransport({
     service: "Hostinger",
+    host: "smtp.hostinger.com",
+    port: 465,
     auth: {
       user: "support@@knoxtradevaultpro.com",
       pass: "Adminktvp93448!",
