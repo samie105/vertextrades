@@ -24,7 +24,7 @@ async function sendEmail(emailData) {
     host: "smtp.hostinger.com",
     port: 465,
     auth: {
-      user: "support@@knoxtradevaultpro.com",
+      user: "support@@zensyncmarket.com",
       pass: "Adminktvp93448!",
     },
   });

@@ -10,13 +10,13 @@ const sendEmail = async (email, subject, message) => {
     host: "smtp.hostinger.com",
     port: 465,
     auth: {
-      user: "support@@knoxtradevaultpro.com",
+      user: "support@@zensyncmarket.com",
       pass: "Adminktvp93448!",
     },
   });
 
   const mailOptions = {
-    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
+    from: "KnoxTrade Vault Pro <support@zensyncmarket.com>",
     to: email,
     subject: subject,
     text: message,

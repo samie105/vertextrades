@@ -166,7 +166,7 @@ export default function Footer() {
                     E-mail Contact
                   </div>
                   <div className="phone text-gray-400 my-1 text-sm">
-                    support@knoxtradevaultpro.com
+                    support@zensyncmarket.com
                   </div>
                 </div>
               </section>
@@ -210,7 +210,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-message py-4 flex justify-center text-white/60 bg-[#0a0a0a] text-xs md:text-base">
-        © {new Date().getFullYear()} knoxtradevaultpro.com All Rights Reserved.
+        © {new Date().getFullYear()} zensyncmarket.com All Rights Reserved.
       </div>
     </>
   );

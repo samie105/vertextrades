@@ -10,14 +10,14 @@ export async function POST(request) {
     host: "smtp.hostinger.com",
     port: 465,
     auth: {
-      user: "support@@knoxtradevaultpro.com",
+      user: "support@@zensyncmarket.com",
       pass: "Adminktvp93448!",
     },
   });
 
   // Define the email content
   const mailOptions = {
-    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
+    from: "KnoxTrade Vault Pro <support@zensyncmarket.com>",
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `

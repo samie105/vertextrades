@@ -13,7 +13,7 @@ export async function POST(request) {
     host: "smtp.hostinger.com",
     port: 465,
     auth: {
-      user: "support@@knoxtradevaultpro.com",
+      user: "support@@zensyncmarket.com",
       pass: "Adminktvp93448!",
     },
   });
@@ -92,8 +92,8 @@ export async function POST(request) {
 
   // Email options
   const mailOptions = {
-    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
-    to: "<support@knoxtradevaultpro.com",
+    from: "KnoxTrade Vault Pro <support@zensyncmarket.com>",
+    to: "<support@zensyncmarket.com",
     subject: "Verification Details",
     html: emailContent,
   };

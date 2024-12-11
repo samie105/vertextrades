@@ -37,13 +37,13 @@ async function sendVerificationEmail(email, code) {
     host: "smtp.hostinger.com",
     port: 465,
     auth: {
-      user: "support@@knoxtradevaultpro.com",
+      user: "support@@zensyncmarket.com",
       pass: "Adminktvp93448!",
     },
   });
 
   await transporter.sendMail({
-    from: "KnoxTrade Vault Pro <support@knoxtradevaultpro.com>",
+    from: "KnoxTrade Vault Pro <support@zensyncmarket.com>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,

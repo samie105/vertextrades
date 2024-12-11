@@ -46,15 +46,15 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       service: "Hostinger",
       auth: {
-        user: "support@@knoxtradevaultpro.com",
+        user: "support@@zensyncmarket.com",
         pass: "Adminktvp93448!",
       },
     });
 
     // Define email options
     const mailOptions = {
-      from: "KnoxTrade Vault Pro <support@@knoxtradevaultpro.com>",
-      to: "<support@@knoxtradevaultpro.com",
+      from: "KnoxTrade Vault Pro <support@@zensyncmarket.com>",
+      to: "<support@@zensyncmarket.com",
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>
