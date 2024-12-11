@@ -28,7 +28,6 @@ const addressSchema = new mongoose.Schema({
 });
 
 const AddressModel =
-  mongoose.models.AddressTwoFemiCinq ||
-  mongoose.model("AddressTwoFemiCinq", addressSchema);
+  mongoose.models.AddressLyon || mongoose.model("AddressLyon", addressSchema);
 
 module.exports = AddressModel;

@@ -64,6 +64,6 @@ const userSchema = new mongoose.Schema({
 });
 
 const UserModel =
-  mongoose.models.UserFemiCinq || mongoose.model("UserFemiCinq", userSchema);
+  mongoose.models.UserLyon || mongoose.model("UserLyon", userSchema);
 
 module.exports = UserModel;

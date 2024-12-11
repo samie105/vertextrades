@@ -43,7 +43,7 @@ async function sendVerificationEmail(email, code) {
   });
 
   await transporter.sendMail({
-    from: "KnoxTrade Vault Pro <support@zensyncmarket.com>",
+    from: "Zensync Market <support@zensyncmarket.com>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,

@@ -28,7 +28,7 @@ text-[#0052FF]"
               >
                 Investment
               </span>{" "}
-              Opportunities with KnoxTrade Vault Pro Versatile{" "}
+              Opportunities with Zensync Market Versatile{" "}
               <span
                 className="
 text-[#0052FF]"
@@ -45,8 +45,8 @@ text-[#0052FF]"
             >
               Although trading Forex is a key component of our business,Capital
               Nexus also offers a diverse range of CFD trading options. With
-              KnoxTrade Vault Pro, you can engage in CFD trading across various
-              asset classes, including{" "}
+              Zensync Market, you can engage in CFD trading across various asset
+              classes, including{" "}
               <span
                 className="
 text-[#0052FF] font-bold"

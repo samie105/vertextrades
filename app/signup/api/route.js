@@ -37,7 +37,7 @@ export async function POST(request) {
         id: crypto.randomUUID(),
         method: "neutral",
         type: "intro",
-        message: "Welcome to KnoxTrade Vault Pro",
+        message: "Welcome to Zensync Market",
         date: new Date(),
       },
     ],

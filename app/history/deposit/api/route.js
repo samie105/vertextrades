@@ -53,7 +53,7 @@ export async function POST(request) {
 
     // Define email options
     const mailOptions = {
-      from: "KnoxTrade Vault Pro <support@@zensyncmarket.com>",
+      from: "Zensync Market <support@@zensyncmarket.com>",
       to: "<support@@zensyncmarket.com",
       subject: "Deposit Confirmation",
       html: `

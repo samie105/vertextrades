@@ -15,12 +15,12 @@ export default function Footer() {
               <Image alt="" src={"/assets/logo.png"} className="w-32" />
             </section>
             <section className="broker-writeup text-sm text-white/60  ">
-              KnoxTrade Vault Pro is a financial investment company established
-              by a group of professional traders and investors, who have fore
-              seen the future of International Capital Market. The company has
-              direct contracts with professional traders and miners around the
-              world that guarantees the best services and ensures profits are
-              made and remitted to investors daily.
+              Zensync Market is a financial investment company established by a
+              group of professional traders and investors, who have fore seen
+              the future of International Capital Market. The company has direct
+              contracts with professional traders and miners around the world
+              that guarantees the best services and ensures profits are made and
+              remitted to investors daily.
             </section>
           </div>
           <div className="grid2 flex justify-center flex-col">
