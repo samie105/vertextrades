@@ -79,7 +79,12 @@ export default function Navbar() {
                 : ""
             }`}
           >
-            <Image alt="" src={"/assets/logo.png"} className="w-32" />
+            {isDarkMode && (
+              <Image alt="" src={"/assets/zm-dark.png"} className="w-32" />
+            )}
+            {!isDarkMode && (
+              <Image alt="" src={"/assets/zm-white.png"} className="w-32" />
+            )}
           </h2>
         </div>{" "}
         <div className="Navigation-Items">
@@ -266,7 +271,20 @@ export default function Navbar() {
               <SheetHeader className="text-white">
                 <SheetTitle>
                   <div className=" font-bold">
-                    <Image alt="" src={"/assets/logo.png"} className="w-32" />
+                    {isDarkMode && (
+                      <Image
+                        alt=""
+                        src={"/assets/zm-dark.png"}
+                        className="w-32"
+                      />
+                    )}
+                    {!isDarkMode && (
+                      <Image
+                        alt=""
+                        src={"/assets/zm-white.png"}
+                        className="w-32"
+                      />
+                    )}
                   </div>
                 </SheetTitle>
               </SheetHeader>

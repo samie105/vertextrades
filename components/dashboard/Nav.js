@@ -23,9 +23,7 @@ import axios from "axios";
 import { useUserData } from "../../contexts/userrContext";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
-import { DropdownMenuSeparator } from "../ui/dropdown-menu";
 import { useTheme } from "../../contexts/themeContext";
-import { ScrollArea } from "../ui/scroll-area";
 
 export default function Nav() {
   const router = useRouter();
@@ -202,7 +200,12 @@ export default function Nav() {
         </div>
         <div className="title hidden md:flex">
           <h2 className="font-bold">
-            <Image alt="" src={"/assets/logo.png"} className="w-32" />
+            {isDarkMode && (
+              <Image alt="" src={"/assets/zm-dark.png"} className="w-32" />
+            )}
+            {!isDarkMode && (
+              <Image alt="" src={"/assets/zm-white.png"} className="w-32" />
+            )}
           </h2>
         </div>{" "}
         {details === 0 ? (
