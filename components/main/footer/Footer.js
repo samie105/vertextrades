@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid-system grid gap-x-5 grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
           <div className="grid1 my-10">
             <section className="broker-name text-3xl my-4">
-              <Image alt="" src={"/assets/logo.png"} className="w-32" />
+              <Image alt="" src={"/assets/zm-dark.png"} className="w-24" />
             </section>
             <section className="broker-writeup text-sm text-white/60  ">
               Zensync Market is a financial investment company established by a

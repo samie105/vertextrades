@@ -201,10 +201,10 @@ export default function Nav() {
         <div className="title hidden md:flex">
           <h2 className="font-bold">
             {isDarkMode && (
-              <Image alt="" src={"/assets/zm-dark.png"} className="w-32" />
+              <Image alt="" src={"/assets/zm-dark.png"} className="w-24" />
             )}
             {!isDarkMode && (
-              <Image alt="" src={"/assets/zm-white.png"} className="w-32" />
+              <Image alt="" src={"/assets/zm-white.png"} className="w-24" />
             )}
           </h2>
         </div>{" "}
