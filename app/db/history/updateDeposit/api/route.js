@@ -6,12 +6,10 @@ export async function POST(request) {
   const { email, transactionId, newStatus, amount, name } =
     await request.json();
   const transporter = nodemailer.createTransport({
-    service: "Hostinger",
-    host: "smtp.hostinger.com",
-    port: 465,
+    service: "gmail",
     auth: {
       user: "support@@zensyncmarket.com",
-      pass: "Adminktvp93448!",
+      pass: "kfbv akdl hqby ssgl !",
     },
   });
 

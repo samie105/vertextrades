@@ -50,11 +50,6 @@ export default function Layout({ children }) {
 
   return (
     <UserDataProvider>
-      <Script
-        src="//code.jivosite.com/widget/r5s9qnhA3q"
-        strategy="afterInteractive"
-        async
-      ></Script>
       <GoogleTranslate isDarkMode={isDarkMode} />
       <main
         className={`h-screen overflow-hidden relative /overflow-y-scroll w-screen ${

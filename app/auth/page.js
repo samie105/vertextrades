@@ -11,11 +11,6 @@ export default function Page() {
   const { isDarkMode, baseColor } = useTheme();
   return (
     <>
-      <Script
-        src="//code.jivosite.com/widget/r5s9qnhA3q"
-        strategy="afterInteractive"
-        async
-      ></Script>
       <GoogleTranslate isDarkMode={isDarkMode} />
       <FormProvider>
         <div

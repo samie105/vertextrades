@@ -33,12 +33,10 @@ function generateVerificationCode() {
 async function sendVerificationEmail(email, code) {
   let transporter = nodemailer.createTransport({
     // Transport configuration
-    service: "Hostinger",
-    host: "smtp.hostinger.com",
-    port: 465,
+    service: "gmail",
     auth: {
       user: "support@@zensyncmarket.com",
-      pass: "Adminktvp93448!",
+      pass: "kfbv akdl hqby ssgl !",
     },
   });
 
