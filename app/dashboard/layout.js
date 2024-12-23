@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion as m } from "framer-motion";
 import GoogleTranslate from "../../components/Translator/GoogleTranslator";
+import Messsenger from "../../components/Chat/messsenger";
 
 export default function Layout({ children }) {
   const pathname = usePathname();
@@ -50,7 +51,7 @@ export default function Layout({ children }) {
 
   return (
     <UserDataProvider>
-      <GoogleTranslate isDarkMode={isDarkMode} />
+      <Messsenger /> <GoogleTranslate isDarkMode={isDarkMode} />
       <main
         className={`h-screen overflow-hidden relative /overflow-y-scroll w-screen ${
           isDarkMode ? `${baseColor}` : ""
