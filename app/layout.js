@@ -11,6 +11,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "../contexts/themeContext";
+import Messsenger from "../components/Chat/messsenger";
 const font = Poppins({ subsets: ["devanagari"], weight: ["300"] });
 
 export const metadata = {
@@ -29,13 +30,12 @@ export default function RootLayout({ children }) {
             src="/plugins/jquery.easing.1.3.js"
             strategy="beforeInteractive"
           />
-
           <Script
             src="/plugins/jquery.mobile.customized.min.js"
             strategy="beforeInteractive"
           />
-
           {children}
+          <Messsenger />{" "}
         </body>
       </ThemeProvider>
     </html>
