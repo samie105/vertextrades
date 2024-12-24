@@ -1,7 +1,7 @@
 export const copyTraders = [
   {
     id: 1,
-    nickname: "ProTraderX",
+    nickname: "J Bravo",
     name: "John Doe",
     winRate: 75,
     losses: 12,
@@ -13,12 +13,12 @@ export const copyTraders = [
     followers: 1200,
     maxDrawdown: 8.2,
     favoriteStock: "AAPL",
-    image: "/assets/copy-7.jpg",
+    image: "/assets/j-bravo.jpg",
     verified: true,
   },
   {
     id: 2,
-    nickname: "SwingMaster",
+    nickname: "Warrior Trading",
     name: "Jane Smith",
     winRate: 62,
     losses: 8,
@@ -30,7 +30,7 @@ export const copyTraders = [
     followers: 800,
     maxDrawdown: 6.5,
     favoriteStock: "GOOGL",
-    image: "/assets/copy-14.jpg",
+    image: "/assets/warrior-trader.jpg",
     verified: false,
   },
   {

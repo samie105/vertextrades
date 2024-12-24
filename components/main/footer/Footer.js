@@ -137,7 +137,7 @@ export default function Footer() {
                     Phone Contact
                   </div>
                   <div className="phone text-gray-400 my-1 text-sm">
-                    +1 (555) - 6488
+                    +1(213) 397‑9373
                   </div>
                 </div>
               </section>
