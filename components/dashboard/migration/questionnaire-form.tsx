@@ -14,12 +14,6 @@ import { Slider } from "../../../components/ui/slider";
 import { Textarea } from "../../../components/ui/textarea";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "../../../components/ui/alert";
-import { AlertCircle } from "lucide-react";
 
 interface QuestionnaireFormProps {
   onSubmit: (data: any) => void;
@@ -33,46 +27,10 @@ export default function QuestionnaireForm({
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
-  const onSubmitForm = (data: any) => {
-    if (Object.keys(errors).length === 0) {
-      setIsSubmitted(true);
-      onSubmit(data);
-    } else {
-      setSubmitError("Please fill in all required fields.");
-    }
-  };
-
-  if (isSubmitted) {
-    return (
-      <div className="space-y-4">
-        <p>
-          {
-            "     You're not eligible to migrate to a 6-figure trader tier. Please upgrade your account CHP."
-          }
-        </p>
-        <Button asChild>
-          <a href="#">Learn More</a>
-        </Button>
-      </div>
-    );
-  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-4">
-      <h2 className="text-lg font-semibold">
-        6-Figure Trader Tier Upgrade Questionnaire
-      </h2>
-
-      {submitError && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{submitError}</AlertDescription>
-        </Alert>
-      )}
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <h2 className="text-lg font-semibold">Questionnaire</h2>
 
       <div className="space-y-2">
         <Label htmlFor="investmentPurpose">Purpose of Investment</Label>
