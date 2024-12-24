@@ -37,9 +37,7 @@ export default function QuestionnaireModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] roundemd">
-        <DialogHeader>
-          <DialogTitle>Questionnaire</DialogTitle>
-        </DialogHeader>
+        <DialogHeader></DialogHeader>
         {errorMessage ? (
           <div className="space-y-4">
             <p>{errorMessage}</p>

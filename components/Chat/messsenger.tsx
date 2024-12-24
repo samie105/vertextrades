@@ -6,7 +6,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 export default function Messsenger() {
   return (
     <Link
-      href={"https://wa.me/+12133979373"}
+      href={"https://wa.me/12133979373"}
       className="bg-green-500 fixed bottom-5 right-5 text-white z-50 h-14 flex items-center justify-center w-14 rounded-full"
     >
       {" "}
