@@ -36,7 +36,7 @@ export default function QuestionnaireModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] rounded-md">
+      <DialogContent className="sm:max-w-[425px] roundemd">
         <DialogHeader>
           <DialogTitle>Questionnaire</DialogTitle>
         </DialogHeader>
