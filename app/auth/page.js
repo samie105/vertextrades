@@ -12,14 +12,14 @@ export default function Page() {
   const { isDarkMode, baseColor } = useTheme();
   return (
     <>
-      <Messsenger /> <GoogleTranslate isDarkMode={isDarkMode} />
+      <GoogleTranslate isDarkMode={isDarkMode} />
       <FormProvider>
         <div
           className={`w-full h-screen flex justify-center items-center ${
             isDarkMode ? `${baseColor} text-white` : ""
           }`}
         >
-          <Auth />
+          <Auth /> <Messsenger />
         </div>
         <Toaster />
       </FormProvider>

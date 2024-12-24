@@ -19,6 +19,7 @@ import GoogleTranslate from "../Translator/GoogleTranslator";
 import LoadingScreen from "./LoadingScreen";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider, useTheme } from "../../contexts/themeContext";
+import Messsenger from "../../components/Chat/messsenger";
 
 export default function WrappedFile() {
   const { isDarkMode, baseColor } = useTheme();
@@ -29,6 +30,7 @@ export default function WrappedFile() {
       }`}
     >
       <GoogleTranslate isDarkMode={isDarkMode} />
+      <Messsenger />
       <div className="z-50 w-full">
         <LoadingScreen />
       </div>

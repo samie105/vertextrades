@@ -7,7 +7,7 @@ export default function Messsenger() {
   return (
     <Link
       href={"#"}
-      className="bg-green-500 fixed bottom-5 right-5 text-white z-50 h-10 flex items-center justify-center w-10 rounded-full"
+      className="bg-green-500 fixed bottom-5 right-5 text-white z-50 h-20 flex items-center justify-center w-20 rounded-full"
     >
       {" "}
       <FontAwesomeIcon icon={faWhatsapp} />
