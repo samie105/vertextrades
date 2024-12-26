@@ -47,7 +47,7 @@ export const copyTraders = [
     followers: 1500,
     maxDrawdown: 7.1,
     favoriteStock: "TSLA",
-    image: "/assets/adrian.jpg",
+    image: "/assets/adrain.jpg",
     verified: true,
   },
   {
@@ -58,7 +58,7 @@ export const copyTraders = [
     losses: 15,
     profitShare: 18.9,
     location: "Pretoria",
-    country: "SA",
+    country: "RSA",
     strategy: "Forex Trading",
     totalTrades: 380,
     followers: 1000,
