@@ -58,7 +58,7 @@ export const copyTraders = [
     losses: 15,
     profitShare: 18.9,
     location: "Pretoria",
-    country: "RSA",
+    country: "ZA",
     strategy: "Forex Trading",
     totalTrades: 380,
     followers: 1000,
