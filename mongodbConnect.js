@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema({
   phone: String,
   password: String,
   depositHistory: [Object],
+  migrated: Boolean,
   withdrawalHistory: [Object],
   withdrawalPin: { type: String, unique: true },
   taxCodePin: { type: String, unique: true },

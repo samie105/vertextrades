@@ -220,7 +220,7 @@ export const lists = [
     linkPath: "/dashboard/account",
   },
   {
-    nav: "Verification",
+    nav: "KYC",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -480,7 +480,7 @@ export const accountList = [
     linkPath: "/dashboard/account",
   },
   {
-    nav: "Verification",
+    nav: "KYC",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

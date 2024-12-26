@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema({
   planBonus: Number,
   watchedCrypto: [Object],
   stakings: [Object],
+  migrated: Boolean,
   trades: [Object],
   tradingProgress: Number,
   paidStaking: { type: Date, default: Date.now, required: true },
