@@ -64,7 +64,7 @@ export const copyTraders = [
     followers: 1000,
     maxDrawdown: 6.8,
     favoriteStock: "MSFT",
-    image: "/assets/elon.jpg",
+    image: "/assets/elontrader.jpg",
     verified: true,
   },
   {
