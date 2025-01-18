@@ -40,7 +40,7 @@ export const copyTraders = [
     winRate: 81,
     losses: 18,
     profitShare: 23.7,
-    location: "London",
+    location: "Spain",
     country: "ES",
     strategy: "Options Trading",
     totalTrades: 250,

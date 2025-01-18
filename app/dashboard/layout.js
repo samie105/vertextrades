@@ -10,7 +10,7 @@ import Script from "next/script";
 import { useIsOnline } from "react-use-is-online";
 import toast, { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion as m } from "framer-motion";
+import { AnimatePresence, motion as m } from "motion";
 import GoogleTranslate from "../../components/Translator/GoogleTranslator";
 import Messsenger from "../../components/Chat/messsenger";
 

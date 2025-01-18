@@ -15,7 +15,7 @@ import { useTheme } from "../../../contexts/themeContext";
 import { Toaster } from "../../ui/toaster";
 import { useToast } from "../../ui/use-toast";
 import { ToastAction } from "../../ui/toast";
-import { motion as m } from "framer-motion";
+import { motion as m } from "motion";
 import { usePathname } from "next/navigation";
 import BonusPlan from "../bonus_plan/BonusPlan";
 import Mystakings from "../stake/Mystakings";

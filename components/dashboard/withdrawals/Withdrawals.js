@@ -10,6 +10,8 @@ import {
   SelectValue,
 } from "../../ui/select";
 import Btcpayment from "./Btcpayment";
+import EthPayment from "./EthPayment";
+import UsdtPayment from "./UsdtPayment";
 import Bankwire from "./BankWire";
 import { useUserData } from "../../../contexts/userrContext";
 import axios from "axios";
@@ -30,8 +32,30 @@ export default function Withdrawals() {
     amount: "",
     password: "",
   });
+  const [formDataEth, setFormDataEth] = useState({
+    walletAddress: "",
+    amount: "",
+    password: "",
+  });
+  const [formDataUsdt, setFormDataUsdt] = useState({
+    walletAddress: "",
+    amount: "",
+    password: "",
+  });
   const [btcFilled, setBtcFilled] = useState(true);
+  const [ethFilled, setEthFilled] = useState(true);
+  const [usdtFilled, setUsdtFilled] = useState(true);
   const [formErrors, setFormErrors] = useState({
+    walletAddress: "",
+    amount: "",
+    password: "",
+  });
+  const [formErrorsEth, setFormErrorsEth] = useState({
+    walletAddress: "",
+    amount: "",
+    password: "",
+  });
+  const [formErrorsUsdt, setFormErrorsUsdt] = useState({
     walletAddress: "",
     amount: "",
     password: "",
@@ -61,11 +85,64 @@ export default function Withdrawals() {
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
+  const validateFormEth = () => {
+    const errors = {};
+    if (!formDataEth.walletAddress) {
+      errors.walletAddress = "Wallet Address is required";
+    }
+    if (!formDataEth.amount) {
+      errors.amount = "Amount is required";
+    }
+    if (!formDataEth.password) {
+      errors.password = "Password is required";
+    }
+    if (formDataEth.amount > tradeBonus) {
+      errors.amount =
+        "Insufficient Balance, you can only withdraw $" +
+        tradeBonus.toLocaleString();
+    }
+    if (formDataEth.amount <= 0) {
+      errors.amount = "Please add a valid amount";
+    }
+    setFormErrorsEth(errors);
+    return Object.keys(errors).length === 0;
+  };
+  const validateFormUsdt = () => {
+    const errors = {};
+    if (!formDataUsdt.walletAddress) {
+      errors.walletAddress = "Wallet Address is required";
+    }
+    if (!formDataUsdt.amount) {
+      errors.amount = "Amount is required";
+    }
+    if (!formDataUsdt.password) {
+      errors.password = "Password is required";
+    }
+    if (formDataUsdt.amount > tradeBonus) {
+      errors.amount =
+        "Insufficient Balance, you can only withdraw $" +
+        tradeBonus.toLocaleString();
+    }
+    if (formDataUsdt.amount <= 0) {
+      errors.amount = "Please add a valid amount";
+    }
+    setFormErrorsUsdt(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+  const handleInputChangeEth = (e) => {
+    const { name, value } = e.target;
+    setFormDataEth((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+  const handleInputChangeUsdt = (e) => {
+    const { name, value } = e.target;
+    setFormDataUsdt((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
   async function loginUser(email, password) {
     const errors = {};
     setLoading(true);
@@ -78,6 +155,8 @@ export default function Withdrawals() {
       if (response.data.success) {
         // Perform action when login is successful
         setBtcFilled(false);
+        setUsdtFilled(false);
+        setEthFilled(false);
         setLoading(false);
       } else {
         setLoading(false);
@@ -89,11 +168,29 @@ export default function Withdrawals() {
       error.password = "An error occurred, Please try again later";
     }
     setFormErrors(errors);
+    setFormErrorsEth(errors);
+    setFormErrorsUsdt(errors);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       loginUser(email, formData.password);
+
+      // Perform submit logic here
+    }
+  };
+  const handleSubmitEth = (e) => {
+    e.preventDefault();
+    if (validateFormEth()) {
+      loginUser(email, formDataEth.password);
+
+      // Perform submit logic here
+    }
+  };
+  const handleSubmitUsdt = (e) => {
+    e.preventDefault();
+    if (validateFormUsdt()) {
+      loginUser(email, formDataUsdt.password);
 
       // Perform submit logic here
     }
@@ -137,7 +234,7 @@ export default function Withdrawals() {
                   </div>
                   <div className="cta pt-2 flex justify-center">
                     <Link href="/dashboard/verify" passHref>
-                      <button className="bg-[#0052FF] text-white py-3 px-9 text-sm font-bold rounded-md hover:bg-slate-600">
+                      <button className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-800 via-red-600 to-orange-500 text-white py-3 px-9 text-sm font-bold rounded-full hover:bg-slate-600">
                         Verify Now
                       </button>
                     </Link>
@@ -160,15 +257,15 @@ export default function Withdrawals() {
                         <div className="block">
                           {" "}
                           <div
-                            className={`icon-cont bg-gry-50  rounded-full p-3 mr-2 text-[#0052FF]  ${
-                              isDarkMode ? "bg-[#0052FF20]" : "bg-[#0052FF10]"
+                            className={`icon-cont bg-gry-50 bg-white-700 rounded-full p-3 mr-2  bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-red-600 via-red-600 to-orange-500 ${
+                              isDarkMode ? "" : "border"
                             }`}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
                               fill="currentColor"
-                              className="w-4 h-4 text-[#0052FF]"
+                              className="w-4 h-4 text-white"
                             >
                               <path
                                 fillRule="evenodd"
@@ -290,6 +387,34 @@ export default function Withdrawals() {
                             <p>Bitcoin Payment</p>
                           </div>
                         </SelectItem>
+                        <SelectItem value="Ethereum Payment" className="">
+                          <div className="flex items-center py-2">
+                            {" "}
+                            <div className="image mr-2">
+                              <Image
+                                alt=""
+                                src="/assets/ethereum.webp"
+                                width={20}
+                                height={20}
+                              />
+                            </div>{" "}
+                            <p>Ethereum Payment</p>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="Tether Payment" className="">
+                          <div className="flex items-center py-2">
+                            {" "}
+                            <div className="image mr-2">
+                              <Image
+                                alt=""
+                                src="/assets/markets/crypto/USDT.svg"
+                                width={20}
+                                height={20}
+                              />
+                            </div>{" "}
+                            <p>Tether Payment</p>
+                          </div>
+                        </SelectItem>
                         <SelectItem value="Bank Wire" className="">
                           <div className="flex items-center py-2">
                             {" "}
@@ -321,9 +446,7 @@ export default function Withdrawals() {
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             fill="currentColor"
-                            className={`w-10 h-10 ${
-                              isDarkMode ? "text-white" : ""
-                            }`}
+                            className="w-10 h-10"
                           >
                             <path
                               fillRule="evenodd"
@@ -355,6 +478,38 @@ export default function Withdrawals() {
                         formData={formData}
                         btcFilled={btcFilled}
                         setBtcFilled={setBtcFilled}
+                        email={email}
+                      />
+                    </div>
+                  )}
+                  {paymentMethod === "Ethereum Payment" && (
+                    <div className="bitcoin-payment my-3 rounded-xl ">
+                      <EthPayment
+                        formErrors={formErrorsEth}
+                        mssg={mssg}
+                        loading={loading}
+                        setLoading={setLoading}
+                        handleInputChange={handleInputChangeEth}
+                        handleSubmit={handleSubmitEth}
+                        formData={formDataEth}
+                        ethFilled={ethFilled}
+                        setEthFilled={setEthFilled}
+                        email={email}
+                      />
+                    </div>
+                  )}
+                  {paymentMethod === "Tether Payment" && (
+                    <div className="bitcoin-payment my-3 rounded-xl ">
+                      <UsdtPayment
+                        formErrors={formErrorsUsdt}
+                        mssg={mssg}
+                        loading={loading}
+                        setLoading={setLoading}
+                        handleInputChange={handleInputChangeUsdt}
+                        handleSubmit={handleSubmitUsdt}
+                        formData={formDataUsdt}
+                        usdtFilled={usdtFilled}
+                        setEthFilled={setUsdtFilled}
                         email={email}
                       />
                     </div>

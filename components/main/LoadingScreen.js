@@ -63,10 +63,22 @@ export default function LoadingScreen() {
             } ${progress >= 95 ? "animate__slideOutUp" : ""}`}
           >
             {isDarkMode && (
-              <Image alt="" src={"/assets/zm-dark.png"} className="w-24" />
+              <Image
+                alt=""
+                src={"/assets/zm-dark.png"}
+                className="w-24"
+            width={1000}
+                height={1000}
+              />
             )}
             {!isDarkMode && (
-              <Image alt="" src={"/assets/zm-white.png"} className="w-24" />
+              <Image
+                alt=""
+                src={"/assets/zm-white.png"}
+                className="w-24"
+                           width={1000}
+                height={1000}
+              />
             )}
           </div>
         </div>
