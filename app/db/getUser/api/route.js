@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import UserModel from "../../../../mongodbConnect";
 
-export const revalidate = true;
+export const revalidate = 1;
 
 export async function GET() {
   const users = await UserModel.find({});
