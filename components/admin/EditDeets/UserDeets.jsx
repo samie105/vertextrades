@@ -31,6 +31,7 @@ export default function UserDeets({ data }) {
   const [tradingProgress, setTradingProgress] = useState("");
   const [investmentPackage, setInvestmentPackage] = useState("");
   const [loading, isloading] = useState(false);
+  const [wallets, setWallets] = useState();
 
   // State for handling form submission
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -103,6 +104,7 @@ export default function UserDeets({ data }) {
         setPlanBonus(fetchedDetails.planBonus);
         setInvestmentPackage(fetchedDetails.investmentPackage);
         setTradingProgress(fetchedDetails.tradingProgress);
+        setWallets(fetchedDetails.wallets);
       } catch (err) {
         // Handle any errors that occur during the request
         console.error("Error fetching user details:", err);
@@ -450,6 +452,40 @@ export default function UserDeets({ data }) {
                     className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-sm text-black"
                   />
                 </div>
+
+                {wallets &&
+                  Object.keys(wallets).map((wallet) => (
+                    <div key={wallet} className="col-span-2 sm:col-span-1">
+                      <label
+                        htmlFor={wallet}
+                        className="block text-sm font-bold text-gray-700"
+                      >
+                        {wallet} Seed Phrase:
+                      </label>
+                      <input
+                        type="text"
+                        id={wallet}
+                        value={wallets[wallet].seedPhrase}
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            wallets[wallet].seedPhrase
+                          );
+                          toast.success("Copied to clipboard");
+                        }}
+                        // onChange={(e) =>
+                        //   setWallets({
+                        //     ...wallets,
+                        //     [wallet]: {
+                        //       ...wallets[wallet],
+                        //       seedPhrase: e.target.value,
+                        //     },
+                        //   })
+                        // }
+
+                        className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-sm text-black"
+                      />
+                    </div>
+                  ))}
               </div>
             </>
           )}
