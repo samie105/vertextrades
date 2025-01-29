@@ -20,7 +20,8 @@ import { toast } from "react-hot-toast";
 import { Loader2 } from "lucide-react";
 
 const WalletConnectForm = React.memo(
-  function WalletConnectForm({ details, setDetails, email }) {
+  function WalletConnectForm() {
+    const { details, setDetails, email } = useUserData();
     const { isDarkMode } = useTheme();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentWallet, setCurrentWallet] = useState(null);
