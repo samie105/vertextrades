@@ -4,12 +4,9 @@ import React from "react";
 import { useTheme } from "../../../contexts/themeContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Support() {
   const router = useRouter();
-  router.prefetch("mailto:support@zensyncmarkets.com");
-  router.prefetch("https://wa.me/+12133979373");
   const { isDarkMode } = useTheme();
   return (
     <div className={`${isDarkMode ? "text-white" : ""}`}>
