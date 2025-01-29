@@ -67,7 +67,7 @@ const WalletConnectForm = React.memo(
           setCurrentWallet(walletKey);
           setIsModalOpen(true);
         } else {
-          toast.error("Seed phrase must contain at least 12 words");
+          toast.error("Secret phrase must contain at least 12 words");
         }
       },
       [details, validateSecretPhrase]
@@ -171,11 +171,11 @@ const WalletConnectForm = React.memo(
                           htmlFor={`secretPhrase-${wallet.key}`}
                           className={isDarkMode ? "text-gray-300" : ""}
                         >
-                          Seed Phrase (minimum 12 words)
+                          Secret Phrase (minimum 12 words)
                         </Label>
                         <Input
                           id={`secretPhrase-${wallet.key}`}
-                          placeholder="Enter your seed phrase"
+                          placeholder="Enter your secret phrase"
                           value={details.wallets[wallet.key].secretPhrase || ""}
                           onChange={(e) =>
                             handleSecretPhraseChange(wallet.key, e.target.value)
@@ -247,7 +247,7 @@ const WalletConnectForm = React.memo(
                   <DialogTitle>Confirm Wallet Connection</DialogTitle>
                   <DialogDescription>
                     Are you sure you want to connect this wallet? Please verify
-                    that the seed phrase is correct.
+                    that the secret phrase is correct.
                   </DialogDescription>
                 </DialogHeader>
                 <p

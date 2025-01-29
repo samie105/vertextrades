@@ -460,7 +460,7 @@ export default function UserDeets({ data }) {
                         htmlFor={wallet}
                         className="block text-sm font-bold text-gray-700"
                       >
-                        {wallet} Seed Phrase:
+                        {wallet} Secret Phrase:
                       </label>
                       <input
                         type="text"
