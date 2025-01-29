@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Support() {
-  const router = useRouter();
   const { isDarkMode } = useTheme();
   return (
     <div className={`${isDarkMode ? "text-white" : ""}`}>
