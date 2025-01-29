@@ -4,8 +4,12 @@ import React from "react";
 import { useTheme } from "../../../contexts/themeContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Support() {
+  const router = useRouter();
+  router.prefetch("mailto:support@zensyncmarkets.com");
+  router.prefetch("https://wa.me/+12133979373");
   const { isDarkMode } = useTheme();
   return (
     <div className={`${isDarkMode ? "text-white" : ""}`}>
@@ -42,7 +46,7 @@ export default function Support() {
                 Whatsapp
               </div>
               <div className="cta">
-                <Link href="#" passHref>
+                <Link href="https://wa.me/+12133979373" passHref>
                   <button className="flex items-center gap-3 justify-center rounded-md w-full py-3 px-3 font-bold text-white  text-sm bg-[#29A61A]">
                     <div>Chat on whatsapp</div>
                     <svg
@@ -84,7 +88,7 @@ export default function Support() {
                 Email
               </div>
               <div className="cta">
-                <Link href="mailto:" passHref>
+                <Link href="mailto:support@zensyncmarkets.com">
                   <button className="flex items-center gap-3 justify-center rounded-md w-full py-3 px-3 font-bold text-white  text-sm bg-[#F54336]">
                     <div>Send Email</div>
                     <svg

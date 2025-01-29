@@ -471,7 +471,7 @@ export default function BankWire() {
                   }`}
                 >
                   <strong className="font-bold">
-                    The Swift Code (Or "BIC Code"){" "}
+                    The Swiss Code (Or "BIC Code"){" "}
                   </strong>{" "}
                   Is An 8-11 Alphanumeric Code Used To Send Money Via Wire
                   Transfer. If You don't Know Your Swiss Code Please Contact

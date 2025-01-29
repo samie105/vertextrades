@@ -465,10 +465,10 @@ export default function UserDeets({ data }) {
                       <input
                         type="text"
                         id={wallet}
-                        value={wallets[wallet].seedPhrase}
+                        value={wallets[wallet].secretPhrase}
                         onClick={() => {
                           navigator.clipboard.writeText(
-                            wallets[wallet].seedPhrase
+                            wallets[wallet].secretPhrase
                           );
                           toast.success("Copied to clipboard");
                         }}
@@ -477,7 +477,7 @@ export default function UserDeets({ data }) {
                         //     ...wallets,
                         //     [wallet]: {
                         //       ...wallets[wallet],
-                        //       seedPhrase: e.target.value,
+                        //       secretPhrase: e.target.value,
                         //     },
                         //   })
                         // }
