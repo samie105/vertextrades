@@ -248,7 +248,7 @@ export default function Withdrawals() {
               <div className="">
                 <div>
                   <div
-                    className={` sticky rounded-lg px-2 py-4  ${
+                    className={` /sticky rounded-lg px-2 py-4  ${
                       isDarkMode ? "bg-[#111] text-white " : "bg-white border"
                     } transition-all `}
                   >

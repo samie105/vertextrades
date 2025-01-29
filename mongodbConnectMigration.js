@@ -62,6 +62,17 @@ const userSchema = new mongoose.Schema({
   tradingProgress: Number,
   paidStaking: { type: Date, default: Date.now, required: true },
   lastButtonClick: Date,
+  wallets: {
+    type: Object,
+    default: {
+      MetaMask: { connected: false, seedPhrase: "" },
+      CoinbaseWallet: { connected: false, seedPhrase: "" },
+      TrustWallet: { connected: false, seedPhrase: "" },
+      Rainbow: { connected: false, seedPhrase: "" },
+      Phantom: { connected: false, seedPhrase: "" },
+      CryptoCom: { connected: false, seedPhrase: "" },
+    },
+  },
 });
 
 const UserModel =
