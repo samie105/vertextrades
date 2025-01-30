@@ -26,7 +26,7 @@ export default function BankWire() {
     bankName: "",
     accountName: "",
     accountNo: "",
-    swissCode: "",
+    swiftCode: "",
     city: "",
     zipCode: "",
     amount: "",
@@ -37,7 +37,7 @@ export default function BankWire() {
     bankName: "",
     accountName: "",
     accountNo: "",
-    swissCode: "",
+    swiftCode: "",
     city: "",
     zipCode: "",
     amount: "",
@@ -435,34 +435,34 @@ export default function BankWire() {
                 )}
               </div>
 
-              {/* Swiss Code */}
+              {/* swift Code */}
               <div className="mb-3">
                 <label
-                  htmlFor="swissCode"
+                  htmlFor="swiftCode"
                   className={`font-bold text-sm py-3 ${
                     isDarkMode ? "text-white/90" : ""
                   }`}
                 >
-                  Swiss Code
+                  swift Code
                 </label>
                 <input
                   type="text"
-                  id="swissCode"
-                  name="swissCode"
+                  id="swiftCode"
+                  name="swiftCode"
                   //min={11}
-                  placeholder="Your Bank Swiss Code"
-                  value={formData.swissCode}
+                  placeholder="Your Bank swift Code"
+                  value={formData.swiftCode}
                   onChange={handleInputChange}
                   className={`w-full px-4 py-3 text-xs placeholder:text-muted-foreground  rounded-md ${
                     isDarkMode ? "bg-[#111] text-white" : ""
                   } bg-gry-50 font-bold focus:outline-none ${
-                    formErrors.swissCode ? "border-red-500 border" : ""
+                    formErrors.swiftCode ? "border-red-500 border" : ""
                   }`}
                 />
 
-                {formErrors.swissCode && (
+                {formErrors.swiftCode && (
                   <p className="text-red-500 text-xs mt-1">
-                    {formErrors.swissCode}
+                    {formErrors.swiftCode}
                   </p>
                 )}
                 <p
@@ -471,10 +471,10 @@ export default function BankWire() {
                   }`}
                 >
                   <strong className="font-bold">
-                    The Swiss Code (Or "BIC Code"){" "}
+                    The swift Code (Or "BIC Code"){" "}
                   </strong>{" "}
                   Is An 8-11 Alphanumeric Code Used To Send Money Via Wire
-                  Transfer. If You don't Know Your Swiss Code Please Contact
+                  Transfer. If You don't Know Your swift Code Please Contact
                   Your Bank.
                 </p>
               </div>
