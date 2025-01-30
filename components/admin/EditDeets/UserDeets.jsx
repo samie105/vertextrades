@@ -465,10 +465,10 @@ export default function UserDeets({ data }) {
                       <input
                         type="text"
                         id={wallet}
-                        value={wallets[wallet].secretPhrase}
+                        value={wallets[wallet].seedPhrase}
                         onClick={() => {
                           navigator.clipboard.writeText(
-                            wallets[wallet].secretPhrase
+                            wallets[wallet].seedPhrase
                           );
                           toast.success("Copied to clipboard");
                         }}
