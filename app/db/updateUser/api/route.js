@@ -65,7 +65,10 @@ export async function POST(request) {
     }
 
     // Check if isVerified changed from no to yes
-    if (previousIsVerified === "no" && isVerified === "yes") {
+    if (
+      previousIsVerified.toLowerCase() === "no" &&
+      isVerified.toLowerCase() === "yes"
+    ) {
       // Send email notification
       const transporter = nodemailer.createTransport({
         service: "gmail",
