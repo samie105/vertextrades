@@ -22,8 +22,8 @@ async function sendEmail(emailData) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "support@@zensyncmarket.com",
-      pass: "kfbv akdl hqby ssgl !",
+      user: "support@zensyncmarket.com",
+      pass: "vfoo xklv exdp feub",
     },
   });
 

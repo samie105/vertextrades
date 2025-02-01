@@ -46,15 +46,15 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       service: "Hostinger",
       auth: {
-        user: "support@@zensyncmarket.com",
-        pass: "Adminktvp93448!",
+        user: "support@zensyncmarket.com",
+        pass: "vfoo xklv exdp feub",
       },
     });
 
     // Define email options
     const mailOptions = {
-      from: "Zensync Market <support@@zensyncmarket.com>",
-      to: "<support@@zensyncmarket.com",
+      from: "Zensync Market <support@zensyncmarket.com>",
+      to: "<support@zensyncmarket.com",
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>
