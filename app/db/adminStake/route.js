@@ -8,7 +8,7 @@ const sendEmail = async (email, subject, message) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "support@zensyncmarket.com",
+      user: "Zensyncmarket@gmail.com",
       pass: "vfoo xklv exdp feub",
     },
   });

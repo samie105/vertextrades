@@ -35,8 +35,8 @@ async function sendVerificationEmail(email, code) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "support@zensyncmarket.com",
-      pass: "kfbv akdl hqby ssgl",
+      user: "Zensyncmarket@gmail.com",
+      pass: "vfoo xklv exdp feub",
     },
   });
 

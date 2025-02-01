@@ -8,7 +8,7 @@ export async function POST(request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "support@zensyncmarket.com",
+      user: "Zensyncmarket@gmail.com",
       pass: "vfoo xklv exdp feub",
     },
   });

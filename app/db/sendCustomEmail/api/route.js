@@ -22,7 +22,7 @@ async function sendEmail(emailData) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "support@zensyncmarket.com",
+      user: "Zensyncmarket@gmail.com",
       pass: "vfoo xklv exdp feub",
     },
   });
