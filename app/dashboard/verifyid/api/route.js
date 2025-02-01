@@ -16,8 +16,8 @@ export async function POST(request) {
     },
   });
 
-  // Email content
-  const emailContent = `
+  // Email content for admin
+  const adminEmailContent = `
     <html>
       <head>
         <style>
@@ -67,47 +67,95 @@ export async function POST(request) {
           <img class="image" src="${backIDSecureUrl}" alt="Back ID Image">
           <div class="form-data">
             <h2>Verification info</h2>
-           p><strong>Name:</strong> ${formData.firstName} ${
+            <p><strong>Name:</strong> ${formData.firstName} ${
     formData.lastName
   }</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Address Line 1:</strong> ${formData.addressLine1}</p>
-          <p><strong>Address Line 2:</strong> ${
-            formData.addressLine2 || "N/A"
-          }</p>
-          <p><strong>City:</strong> ${formData.city}</p>
-          <p><strong>State/Province:</strong> ${formData.stateProvince}</p>
-          <p><strong>Country:</strong> ${formData.country}</p>
-          <p><strong>Zip Code:</strong> ${formData.zipCode}</p>
-          <p><strong>Phone one:</strong> ${formData.phone}</p>
-          <p><strong>Phone two:</strong> ${formData.secondPhone}</p>
-          <p><strong>Id Type:</strong> ${idType}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Address Line 1:</strong> ${formData.addressLine1}</p>
+            <p><strong>Address Line 2:</strong> ${
+              formData.addressLine2 || "N/A"
+            }</p>
+            <p><strong>City:</strong> ${formData.city}</p>
+            <p><strong>State/Province:</strong> ${formData.stateProvince}</p>
+            <p><strong>Country:</strong> ${formData.country}</p>
+            <p><strong>Zip Code:</strong> ${formData.zipCode}</p>
+            <p><strong>Phone one:</strong> ${formData.phone}</p>
+            <p><strong>Phone two:</strong> ${formData.secondPhone}</p>
+            <p><strong>Id Type:</strong> ${idType}</p>
           </div>
         </div>
       </body>
     </html>
   `;
 
-  // Email options
-  const mailOptions = {
+  // Email options for admin
+  const adminMailOptions = {
     from: "Zensync Market <support@zensyncmarket.com>",
-    to: "<support@zensyncmarket.com",
+    to: "support@zensyncmarket.com",
     subject: "Verification Details",
-    html: emailContent,
+    html: adminEmailContent,
+  };
+
+  // Email content for user
+  const userEmailContent = `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+          }
+          .container {
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>Verification Pending</h1>
+          </div>
+          <p>Dear ${formData.firstName},</p>
+          <p>Your verification details have been submitted successfully. We will notify you once the verification process is complete.</p>
+          <p>Thank you for your patience.</p>
+          <p>Best regards,</p>
+          <p>Zensync Market Team</p>
+        </div>
+      </body>
+    </html>
+  `;
+
+  // Email options for user
+  const userMailOptions = {
+    from: "Zensync Market <support@zensyncmarket.com>",
+    to: email,
+    subject: "Verification Pending",
+    html: userEmailContent,
   };
 
   try {
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    // Send the email to admin
+    await transporter.sendMail(adminMailOptions);
+    // Send the email to user
+    await transporter.sendMail(userMailOptions);
     console.log(frontIDSecureUrl, backIDSecureUrl);
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: "Emails sent successfully" },
       { status: 200 }
     );
   } catch (error) {
     console.error("Error sending email:", error);
     return NextResponse.json(
-      { message: "An error occurred while sending email" },
+      { message: "An error occurred while sending emails" },
       { status: 500 }
     );
   }
