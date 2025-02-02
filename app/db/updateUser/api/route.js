@@ -51,6 +51,14 @@ export async function POST(request) {
   } = await request.json();
 
   try {
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return NextResponse.error("User not found", { status: 404 });
+    }
+
+    const previousIsVerified = user.isVerified;
+
     const updateData = {
       name,
       phone,
@@ -71,16 +79,13 @@ export async function POST(request) {
       tradingProgress,
     };
 
-    const user = await UserModel.findOneAndUpdate({ email }, updateData, {
-      new: true,
-    });
-
-    if (!user) {
-      return NextResponse.error("User not found", { status: 404 });
-    }
-
-    const previousIsVerified = user.isVerified;
-    console.log(true, previousIsVerified, isVerified);
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { email },
+      updateData,
+      {
+        new: true,
+      }
+    );
 
     if (!previousIsVerified && isVerified) {
       await sendVerificationEmail(name, email);
@@ -93,12 +98,18 @@ export async function POST(request) {
         date: Date.now(),
       };
 
-      user.notifications.push(notification);
-      user.isReadNotifications = false;
-      await user.save();
+      const updateNotification = {
+        $push: { notifications: notification },
+        $set: { isReadNotifications: false },
+      };
+
+      await UserModel.updateOne({ email }, updateNotification);
     }
 
-    return NextResponse.json({ message: "User updated successfully", user });
+    return NextResponse.json({
+      message: "User updated successfully",
+      user: updatedUser,
+    });
   } catch (error) {
     return NextResponse.error("Internal Server Error", { status: 500 });
   }
