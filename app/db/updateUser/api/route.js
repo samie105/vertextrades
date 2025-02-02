@@ -18,7 +18,7 @@ const sendVerificationEmail = async (name, email) => {
     subject: "ID Approved",
     html: `
       <p>Dear ${name},</p>
-      <p>We are pleased to inform you that your ID has been approved. You can now enjoy full access to our platform and its features.</p>
+      <p>We are pleased to inform you that your KYC has been approved. You can now enjoy full access to our platform and its features.</p>
       <p>If you have any questions or need further assistance, please do not hesitate to contact our support team.</p>
       <p>Best regards,</p>
       <p>Zensync Market Team</p>
@@ -94,7 +94,7 @@ export async function POST(request) {
         id: crypto.randomUUID(),
         method: "success",
         type: "verification",
-        message: `Congratulations!! Your verification ID has now been approved.`,
+        message: `Congratulations!! Your KYC has now been approved.`,
         date: Date.now(),
       };
 
