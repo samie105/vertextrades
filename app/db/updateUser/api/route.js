@@ -19,7 +19,6 @@ const sendVerificationEmail = async (name, email) => {
     html: `
       <p>Dear ${name},</p>
       <p>We are pleased to inform you that your KYC has been approved and your account is now verified. You can now enjoy full access to our platform and its features.</p>
-      <p>If you have any questions or need further assistance, please do not hesitate to contact our support team.</p>
       <p>Best regards,</p>
       <p>Zensync Market Team</p>
     `,
