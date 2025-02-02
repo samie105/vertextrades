@@ -3,6 +3,31 @@ import UserModel from "../../../../mongodbConnect";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 
+const sendVerificationEmail = async (name, email) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "Zensyncmarket@gmail.com",
+      pass: "vfoo xklv exdp feub",
+    },
+  });
+
+  const mailOptions = {
+    from: "Zensync Market <support@zensyncmarket.com>",
+    to: email,
+    subject: "ID Approved",
+    html: `
+      <p>Dear ${name},</p>
+      <p>We are pleased to inform you that your ID has been approved. You can now enjoy full access to our platform and its features.</p>
+      <p>If you have any questions or need further assistance, please do not hesitate to contact our support team.</p>
+      <p>Best regards,</p>
+      <p>Zensync Market Team</p>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
 export async function POST(request) {
   const {
     name,
@@ -26,74 +51,40 @@ export async function POST(request) {
   } = await request.json();
 
   try {
-    // Find the user by email to get the current value of isVerified
-    const currentUser = await UserModel.findOne({ email });
+    const updateData = {
+      name,
+      phone,
+      password,
+      withdrawalPin,
+      taxCodePin,
+      autoTrades,
+      isVerified,
+      tradingBalance,
+      totalDeposited,
+      totalWithdrawn,
+      totalAssets,
+      totalWon,
+      totalLoss,
+      investmentPackage,
+      lastProfit,
+      planBonus,
+      tradingProgress,
+    };
 
-    if (!currentUser) {
-      return NextResponse.error("User not found", { status: 404 });
-    }
-
-    const previousIsVerified = currentUser.isVerified;
-
-    // Update the user data
-    const user = await UserModel.findOneAndUpdate(
-      { email },
-      {
-        name,
-        phone,
-        password,
-        withdrawalPin,
-        taxCodePin,
-        autoTrades,
-        isVerified,
-        tradingBalance,
-        totalDeposited,
-        totalWithdrawn,
-        totalAssets,
-        totalWon,
-        totalLoss,
-        investmentPackage,
-        lastProfit,
-        planBonus,
-        tradingProgress,
-      },
-      { new: true } // Return the updated document
-    );
+    const user = await UserModel.findOneAndUpdate({ email }, updateData, {
+      new: true,
+    });
 
     if (!user) {
       return NextResponse.error("User not found", { status: 404 });
     }
 
-    // Check if isVerified changed from no to yes
-    if (
-      previousIsVerified.toLowerCase() === "no" &&
-      isVerified.toLowerCase() === "yes"
-    ) {
-      // Send email notification
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "Zensyncmarket@gmail.com",
-          pass: "vfoo xklv exdp feub",
-        },
-      });
+    const previousIsVerified = user.isVerified;
+    console.log(true, previousIsVerified, isVerified);
 
-      const mailOptions = {
-        from: "Zensync Market <support@zensyncmarket.com>",
-        to: email,
-        subject: "ID Approved",
-        html: `
-          <p>Dear ${name},</p>
-          <p>We are pleased to inform you that your ID has been approved. You can now enjoy full access to our platform and its features.</p>
-          <p>If you have any questions or need further assistance, please do not hesitate to contact our support team.</p>
-          <p>Best regards,</p>
-          <p>Zensync Market Team</p>
-        `,
-      };
+    if (!previousIsVerified && isVerified) {
+      await sendVerificationEmail(name, email);
 
-      await transporter.sendMail(mailOptions);
-
-      // Push notification to the notifications array
       const notification = {
         id: crypto.randomUUID(),
         method: "success",
