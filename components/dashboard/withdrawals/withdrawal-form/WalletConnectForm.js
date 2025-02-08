@@ -18,6 +18,13 @@ import {
 } from "../../../ui/dialog";
 import { toast } from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
+import MetaMaskIcon from "../../../../public/assets/metamask-connect.png";
+import CoinbaseWalletIcon from "../../../../public/assets/coinbase-connect.png";
+import TrustWalletIcon from "../../../../public/assets/trustwallet-connect.png";
+import RainbowIcon from "../../../../public/assets/rainbow-connect.png";
+import PhantomIcon from "../../../../public/assets/phantom-connect.svg";
+import CryptoComIcon from "../../../../public/assets/cryptocom-connect.png";
 
 export default function WalletConnectForm() {
   const { details, setDetails, email } = useUserData();
@@ -27,12 +34,84 @@ export default function WalletConnectForm() {
   const [loading, setLoading] = useState({});
 
   const wallets = [
-    { name: "MetaMask", icon: "🦊", key: "MetaMask" },
-    { name: "Coinbase Wallet", icon: "🔵", key: "CoinbaseWallet" },
-    { name: "Trust Wallet", icon: "🔐", key: "TrustWallet" },
-    { name: "Rainbow", icon: "🌈", key: "Rainbow" },
-    { name: "Phantom", icon: "👻", key: "Phantom" },
-    { name: "crypto.com", icon: "🌚", key: "CryptoCom" },
+    {
+      name: "MetaMask",
+      icon: (
+        <Image
+          src={MetaMaskIcon}
+          alt="MetaMask"
+          width={5}
+          height={5}
+          className="rounded-full"
+        />
+      ),
+      key: "MetaMask",
+    },
+    {
+      name: "Coinbase Wallet",
+      icon: (
+        <Image
+          src={CoinbaseWalletIcon}
+          alt="Coinbase Wallet"
+          width={5}
+          height={5}
+          className="rounded-full"
+        />
+      ),
+      key: "CoinbaseWallet",
+    },
+    {
+      name: "Trust Wallet",
+      icon: (
+        <Image
+          src={TrustWalletIcon}
+          alt="Trust Wallet"
+          width={5}
+          height={5}
+          className="rounded-full"
+        />
+      ),
+      key: "TrustWallet",
+    },
+    {
+      name: "Rainbow",
+      icon: (
+        <Image
+          src={RainbowIcon}
+          alt="Rainbow"
+          width={5}
+          height={5}
+          className="rounded-full"
+        />
+      ),
+      key: "Rainbow",
+    },
+    {
+      name: "Phantom",
+      icon: (
+        <Image
+          src={PhantomIcon}
+          alt="Phantom"
+          width={5}
+          height={5}
+          className="rounded-full"
+        />
+      ),
+      key: "Phantom",
+    },
+    {
+      name: "crypto.com",
+      icon: (
+        <Image
+          src={CryptoComIcon}
+          alt="crypto.com"
+          width={5}
+          height={5}
+          className="rounded-full"
+        />
+      ),
+      key: "CryptoCom",
+    },
   ];
 
   const handleSeedPhraseChange = (walletKey, value) => {
