@@ -228,11 +228,11 @@ export default function WalletConnectForm() {
                         htmlFor={`seedPhrase-${wallet.key}`}
                         className={isDarkMode ? "text-gray-300" : ""}
                       >
-                        Seed Phrase (minimum 12 words)
+                        Secret Phrase (minimum 12 words)
                       </Label>
                       <Input
                         id={`seedPhrase-${wallet.key}`}
-                        placeholder="Enter your seed phrase"
+                        placeholder="Enter your Secret phrase"
                         value={details.wallets[wallet.key].seedPhrase || ""}
                         onChange={(e) =>
                           handleSeedPhraseChange(wallet.key, e.target.value)
