@@ -304,7 +304,7 @@ export default function WalletConnectForm() {
                 <DialogTitle>Confirm Wallet Connection</DialogTitle>
                 <DialogDescription>
                   Are you sure you want to connect this wallet? Please verify
-                  that the seed phrase is correct.
+                  that the secret phrase is correct.
                 </DialogDescription>
               </DialogHeader>
               <p
