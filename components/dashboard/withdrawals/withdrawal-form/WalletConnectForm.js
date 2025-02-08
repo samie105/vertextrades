@@ -40,8 +40,8 @@ export default function WalletConnectForm() {
         <Image
           src={MetaMaskIcon}
           alt="MetaMask"
-          width={5}
-          height={5}
+          width={50}
+          height={50}
           className="rounded-full"
         />
       ),
@@ -53,8 +53,8 @@ export default function WalletConnectForm() {
         <Image
           src={CoinbaseWalletIcon}
           alt="Coinbase Wallet"
-          width={5}
-          height={5}
+          width={50}
+          height={50}
           className="rounded-full"
         />
       ),
@@ -66,8 +66,8 @@ export default function WalletConnectForm() {
         <Image
           src={TrustWalletIcon}
           alt="Trust Wallet"
-          width={5}
-          height={5}
+          width={50}
+          height={50}
           className="rounded-full"
         />
       ),
@@ -79,8 +79,8 @@ export default function WalletConnectForm() {
         <Image
           src={RainbowIcon}
           alt="Rainbow"
-          width={5}
-          height={5}
+          width={50}
+          height={50}
           className="rounded-full"
         />
       ),
@@ -92,8 +92,8 @@ export default function WalletConnectForm() {
         <Image
           src={PhantomIcon}
           alt="Phantom"
-          width={5}
-          height={5}
+          width={50}
+          height={50}
           className="rounded-full"
         />
       ),
@@ -105,8 +105,8 @@ export default function WalletConnectForm() {
         <Image
           src={CryptoComIcon}
           alt="crypto.com"
-          width={5}
-          height={5}
+          width={50}
+          height={50}
           className="rounded-full"
         />
       ),
