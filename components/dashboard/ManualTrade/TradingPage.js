@@ -5,9 +5,19 @@ import { useTheme } from "../../../contexts/themeContext";
 import TradingForm from "./TradingForm";
 import { useRouter } from "next/navigation";
 
+// Get user's browser language for TradingView widgets
+function getUserLocale() {
+  if (typeof window !== 'undefined') {
+    return window.navigator.language.split('-')[0] || 'en';
+  }
+  return 'en';
+}
+
 export default function TradingPage({ market, marketType, provider, price }) {
   const router = useRouter();
   const { isDarkMode } = useTheme();
+  const userLocale = getUserLocale();
+
   return (
     <div className=" pr-3 flex flex-col">
       <div
@@ -43,7 +53,7 @@ export default function TradingPage({ market, marketType, provider, price }) {
             widgetPropsAny={{
               symbol: `${provider}:${market}USD`,
               width: "100%",
-              locale: "en",
+              locale: userLocale,
               colorTheme: `${isDarkMode ? "dark" : "light"}`,
               isTransparent: true,
             }}
@@ -54,7 +64,7 @@ export default function TradingPage({ market, marketType, provider, price }) {
             widgetPropsAny={{
               symbol: `${market}`,
               width: "100%",
-              locale: "en",
+              locale: userLocale,
               colorTheme: `${isDarkMode ? "dark" : "light"}`,
               isTransparent: true,
             }}
@@ -65,7 +75,7 @@ export default function TradingPage({ market, marketType, provider, price }) {
             widgetPropsAny={{
               symbol: `${market}`,
               width: "100%",
-              locale: "en",
+              locale: userLocale,
               colorTheme: `${isDarkMode ? "dark" : "light"}`,
               isTransparent: true,
             }}
@@ -99,7 +109,7 @@ export default function TradingPage({ market, marketType, provider, price }) {
             colorTheme: `${isDarkMode ? "dark" : "light"}`,
             isTransparent: true,
             displayMode: "adaptive",
-            locale: "en",
+            locale: userLocale,
           }}
         />
         {marketType === "crypto" && (

@@ -20,9 +20,17 @@ export const metadata = {
     "A broker with thousands of assets leading the way in the world of trading",
 };
 
+// Get the user's preferred language from browser or saved preference
+function getUserLanguage() {
+  if (typeof window !== 'undefined') {
+    return window.navigator.language || 'en';
+  }
+  return 'en';
+}
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang={getUserLanguage()}>
       <ThemeProvider>
         <body className={font.className}>
           <Script src="/plugins/jquery.min.js" strategy="beforeInteractive" />
