@@ -16,7 +16,6 @@ import Signup from "./SignUp";
 import { useState } from "react";
 
 export default function AuthUi() {
-  const [defval, setDefval] = useState("signup");
   const { isDarkMode, baseColor } = useTheme();
 
   return (
@@ -29,7 +28,7 @@ export default function AuthUi() {
         <DialogHeader className="text-white">
           <DialogTitle className=""></DialogTitle>
         </DialogHeader>
-        <Tabs defaultValue={defval} className="transition-all">
+        <Tabs defaultValue="signup" className="transition-all">
           <TabsList
             className={`w-full grid grid-cols-2  font-bold ${
               isDarkMode ? "bg-[#111]" : "bg-gray-100"
