@@ -14,7 +14,7 @@ export default function Footer() {
             <section className="broker-name text-3xl my-4">
               <Image
                 alt=""
-                src={"/assets/zm-dark.png"}
+                src={"/assets/logo-dark.svg"}
                 className="w-24"
                 width={1000}
                 height={1000}

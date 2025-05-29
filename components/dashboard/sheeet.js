@@ -19,7 +19,7 @@ export default function Sheeet() {
             {isDarkMode && (
               <Image
                 alt=""
-                src={"/assets/zm-dark.png"}
+                src={"/assets/logo-dark.svg"}
                 className="w-24"
                 width={1000}
                 height={1000}
@@ -28,7 +28,7 @@ export default function Sheeet() {
             {!isDarkMode && (
               <Image
                 alt=""
-                src={"/assets/zm-white.png"}
+                src={"/assets/logo-light.svg"}
                 className="w-24"
                 width={1000}
                 height={1000}
