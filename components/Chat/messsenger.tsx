@@ -2,15 +2,10 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import Script from "next/script";
 
 export default function Messsenger() {
   return (
-    <Link
-      href={"https://wa.me/12133979373"}
-      className="bg-green-500 fixed bottom-5 right-5 text-white z-50 h-14 flex items-center justify-center w-14 rounded-full"
-    >
-      {" "}
-      <FontAwesomeIcon icon={faWhatsapp} />
-    </Link>
+    <Script src="//code.tidio.co/3up39hr1bdjmozsmufxcahvsatjcwsuj.js" strategy="afterInteractive" />
   );
 }
