@@ -36,12 +36,12 @@ async function sendVerificationEmail(email, code) {
     service: "gmail",
     auth: {
       user: "Zensyncmarket@gmail.com",
-      pass: "vfoo xklv exdp feub",
+      pass: "xenh ndsb mmpc xpah",
     },
   });
 
   await transporter.sendMail({
-    from: "Zensync Market <support@zensyncmarket.com>",
+    from: "LinQ Chain <support@linqchainx.com>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,

@@ -8,19 +8,19 @@ const sendVerificationEmail = async (name, email) => {
     service: "gmail",
     auth: {
       user: "Zensyncmarket@gmail.com",
-      pass: "vfoo xklv exdp feub",
+      pass: "xenh ndsb mmpc xpah",
     },
   });
 
   const mailOptions = {
-    from: "Zensync Market <support@zensyncmarket.com>",
+    from: "LinQ Chain <support@linqchainx.com>",
     to: email,
     subject: "ID Approved",
     html: `
       <p>Dear ${name},</p>
       <p>We are pleased to inform you that your KYC has been approved and your account is now verified. You can now enjoy full access to our platform and its features.</p>
       <p>Best regards,</p>
-      <p>Zensync Market Team</p>
+      <p>LinQ Chain Team</p>
     `,
   };
 

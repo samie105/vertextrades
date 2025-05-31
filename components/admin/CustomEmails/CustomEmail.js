@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 export default function CustomEmail({ email }) {
   const [emailHeading, setEmailHeading] = useState("");
-  const [sendingAs, setSendingAs] = useState("Zensync Market Team");
+  const [sendingAs, setSendingAs] = useState("LinQ Chain Team");
   const [emailContent, setEmailContent] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [errors, setErrors] = useState({

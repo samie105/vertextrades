@@ -9,13 +9,13 @@ export async function POST(request) {
     service: "gmail",
     auth: {
       user: "Zensyncmarket@gmail.com",
-      pass: "vfoo xklv exdp feub",
+      pass: "xenh ndsb mmpc xpah",
     },
   });
 
   // Define the email content
   const mailOptions = {
-    from: "Zensync Market <support@zensyncmarket.com>",
+    from: "LinQ Chain <support@linqchainx.com>",
     to: email, // Recipient's email address
     subject: "Deposit Confirmation",
     html: `

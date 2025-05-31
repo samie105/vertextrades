@@ -12,7 +12,7 @@ export async function POST(request) {
     service: "gmail",
     auth: {
       user: "Zensyncmarket@gmail.com",
-      pass: "vfoo xklv exdp feub",
+      pass: "xenh ndsb mmpc xpah",
     },
   });
 
@@ -90,8 +90,8 @@ export async function POST(request) {
 
   // Email options for admin
   const adminMailOptions = {
-    from: "Zensync Market <support@zensyncmarket.com>",
-    to: "support@zensyncmarket.com",
+    from: "LinQ Chain <support@linqchainx.com>",
+    to: "support@linqchainx.com",
     subject: "Verification Details",
     html: adminEmailContent,
   };
@@ -128,7 +128,7 @@ export async function POST(request) {
           <p>Your verification details have been submitted successfully. We will notify you once the verification process is complete.</p>
           <p>Thank you for your patience.</p>
           <p>Best regards,</p>
-          <p>Zensync Market Team</p>
+          <p>LinQ Chain Team</p>
         </div>
       </body>
     </html>
@@ -136,7 +136,7 @@ export async function POST(request) {
 
   // Email options for user
   const userMailOptions = {
-    from: "Zensync Market <support@zensyncmarket.com>",
+    from: "LinQ Chain <support@linqchainx.com>",
     to: email,
     subject: "Verification Pending",
     html: userEmailContent,

@@ -23,7 +23,7 @@ async function sendEmail(emailData) {
     service: "gmail",
     auth: {
       user: "Zensyncmarket@gmail.com",
-      pass: "vfoo xklv exdp feub",
+      pass: "xenh ndsb mmpc xpah",
     },
   });
 

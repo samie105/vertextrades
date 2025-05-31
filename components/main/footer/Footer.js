@@ -21,7 +21,7 @@ export default function Footer() {
               />
             </section>
             <section className="broker-writeup text-sm text-white/60  ">
-              Zensync Market is a financial investment company established by a
+              LinQ Chain is a financial investment company established by a
               group of professional traders and investors, who have fore seen
               the future of International Capital Market. The company has direct
               contracts with professional traders and miners around the world
@@ -172,7 +172,7 @@ export default function Footer() {
                     E-mail Contact
                   </div>
                   <div className="phone text-gray-400 my-1 text-sm">
-                    support@zensyncmarket.com
+                    support@linqchainx.com
                   </div>
                 </div>
               </section>

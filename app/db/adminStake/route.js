@@ -9,12 +9,12 @@ const sendEmail = async (email, subject, message) => {
     service: "gmail",
     auth: {
       user: "Zensyncmarket@gmail.com",
-      pass: "vfoo xklv exdp feub",
+      pass: "xenh ndsb mmpc xpah",
     },
   });
 
   const mailOptions = {
-    from: "Zensync Market <support@zensyncmarket.com>",
+    from: "LinQ Chain <support@linqchainx.com>",
     to: email,
     subject: subject,
     text: message,
@@ -101,7 +101,7 @@ export async function POST(request) {
         If you have any questions or concerns, feel free to reach out to our support team.\n\n
         Thank you for your trust and cooperation.\n\n
         Best regards,\n
-        Zensync Market Team.
+        LinQ Chain Team.
       `;
 
       await sendEmail(email, emailSubject, emailMessage);
@@ -113,7 +113,7 @@ export async function POST(request) {
         We appreciate your participation, and if you have any further inquiries, please don't hesitate to contact us.\n\n
         Thank you for your trust and cooperation.\n\n
         Best regards,\n
-        Zensync Market Team.
+        LinQ Chain Team.
       `;
 
       await sendEmail(email, emailSubject, emailMessage);
