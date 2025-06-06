@@ -6,6 +6,6 @@ import Script from "next/script";
 
 export default function Messsenger() {
   return (
-    <Script src="//code.tidio.co/3up39hr1bdjmozsmufxcahvsatjcwsuj.js" strategy="afterInteractive" />
+  <Script src="//code.jivosite.com/widget/cGftwxvOxB" async />
   );
 }
