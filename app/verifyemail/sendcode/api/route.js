@@ -35,8 +35,8 @@ async function sendVerificationEmail(email, code) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "Zensyncmarket@gmail.com",
-      pass: "xenh ndsb mmpc xpah",
+      user: "linqchain@gmail.com",
+        pass: "xenh ndsb mmpc xpah",
     },
   });
 

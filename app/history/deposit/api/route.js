@@ -46,7 +46,7 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "support@linqchainx.com",
+        user: "linqchain@gmail.com",
         pass: "xenh ndsb mmpc xpah",
       },
     });
