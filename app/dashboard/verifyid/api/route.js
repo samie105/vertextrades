@@ -91,7 +91,7 @@ export async function POST(request) {
   // Email options for admin
   const adminMailOptions = {
     from: "LinQ Chain <support@linqchainx.com>",
-    to: "support@linqchainx.com",
+    to: "linqchain@gmail.com",
     subject: "Verification Details",
     html: adminEmailContent,
   };
