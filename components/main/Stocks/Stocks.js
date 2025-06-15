@@ -28,7 +28,7 @@ text-[#0052FF]"
               >
                 Investment
               </span>{" "}
-              Opportunities with LinQ Chain Versatile{" "}
+              Opportunities with Vertex Trades Versatile{" "}
               <span
                 className="
 text-[#0052FF]"
@@ -45,7 +45,7 @@ text-[#0052FF]"
             >
               Although trading Forex is a key component of our business,Capital
               Nexus also offers a diverse range of CFD trading options. With
-              LinQ Chain, you can engage in CFD trading across various asset
+              Vertex Trades, you can engage in CFD trading across various asset
               classes, including{" "}
               <span
                 className="

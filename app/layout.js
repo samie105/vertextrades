@@ -15,7 +15,7 @@ import Messsenger from "../components/Chat/messsenger";
 const font = Poppins({ subsets: ["latin"], weight: ["300"] });
 
 export const metadata = {
-  title: "LinQ Chain | Best Digital Currency Platform ",
+  title: "Vertex Trades | Best Digital Currency Platform ",
   description:
     "A broker with thousands of assets leading the way in the world of trading",
 };

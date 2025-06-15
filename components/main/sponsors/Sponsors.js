@@ -110,10 +110,10 @@ export default function Sponsors() {
               data-aos-delay="150"
             >
               Companies and agencies from various industries have not only
-              recognized LinQ Chain as a trusted and reliable entity but
+              recognized Vertex Trades as a trusted and reliable entity but
               have also extended their support in forming strong partnerships.
               This collaborative effort reflects the high level of trust and
-              credibility that LinQ Chain has garnered within the financial
+              credibility that Vertex Trades has garnered within the financial
               sector. Our commitment to excellence in testing and validation has
               earned us the respect and endorsement of key players in the
               industry, further solidifying our position as a leader in the

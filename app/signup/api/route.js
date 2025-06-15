@@ -37,7 +37,7 @@ export async function POST(request) {
         id: crypto.randomUUID(),
         method: "neutral",
         type: "intro",
-        message: "Welcome to LinQ Chain",
+        message: "Welcome to Vertex Trades",
         date: new Date(),
       },
     ],

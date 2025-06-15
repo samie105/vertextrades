@@ -13,14 +13,14 @@ const sendVerificationEmail = async (name, email) => {
   });
 
   const mailOptions = {
-    from: "LinQ Chain <support@linqchainx.com>",
+    from: "Vertex Trades <support@linqchainx.com>",
     to: email,
     subject: "ID Approved",
     html: `
       <p>Dear ${name},</p>
       <p>We are pleased to inform you that your KYC has been approved and your account is now verified. You can now enjoy full access to our platform and its features.</p>
       <p>Best regards,</p>
-      <p>LinQ Chain Team</p>
+      <p>Vertex Trades Team</p>
     `,
   };
 

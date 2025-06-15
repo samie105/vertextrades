@@ -21,7 +21,7 @@ export default function Footer() {
               />
             </section>
             <section className="broker-writeup text-sm text-white/60  ">
-              LinQ Chain is a financial investment company established by a
+              Vertex Trades is a financial investment company established by a
               group of professional traders and investors, who have fore seen
               the future of International Capital Market. The company has direct
               contracts with professional traders and miners around the world

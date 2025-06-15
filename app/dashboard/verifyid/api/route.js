@@ -90,7 +90,7 @@ export async function POST(request) {
 
   // Email options for admin
   const adminMailOptions = {
-    from: "LinQ Chain <support@linqchainx.com>",
+    from: "Vertex Trades <support@linqchainx.com>",
     to: "linqchain@gmail.com",
     subject: "Verification Details",
     html: adminEmailContent,
@@ -128,7 +128,7 @@ export async function POST(request) {
           <p>Your verification details have been submitted successfully. We will notify you once the verification process is complete.</p>
           <p>Thank you for your patience.</p>
           <p>Best regards,</p>
-          <p>LinQ Chain Team</p>
+          <p>Vertex Trades Team</p>
         </div>
       </body>
     </html>
@@ -136,7 +136,7 @@ export async function POST(request) {
 
   // Email options for user
   const userMailOptions = {
-    from: "LinQ Chain <support@linqchainx.com>",
+    from: "Vertex Trades <support@linqchainx.com>",
     to: email,
     subject: "Verification Pending",
     html: userEmailContent,

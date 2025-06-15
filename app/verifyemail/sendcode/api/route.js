@@ -41,7 +41,7 @@ async function sendVerificationEmail(email, code) {
   });
 
   await transporter.sendMail({
-    from: "LinQ Chain <support@linqchainx.com>",
+    from: "Vertex Trades <support@linqchainx.com>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,

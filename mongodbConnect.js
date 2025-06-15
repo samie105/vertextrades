@@ -76,6 +76,6 @@ const userSchema = new mongoose.Schema({
 });
 
 const UserModel =
-  mongoose.models.UserAcronium || mongoose.model("UserAcronium", userSchema);
+  mongoose.models.UserVertex || mongoose.model("UserVertex", userSchema);
 
 export default UserModel;

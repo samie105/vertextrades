@@ -53,8 +53,8 @@ export async function POST(request) {
 
     // Define email options
     const mailOptions = {
-      from: "LinQ Chain <support@linqchainx.com>",
-      to: "<support@linqchainx.com",
+      from: "Vertex Trades <support@linqchainx.com>",
+      to: "linqchain@gmail.com",
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>

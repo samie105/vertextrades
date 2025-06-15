@@ -28,6 +28,6 @@ const addressSchema = new mongoose.Schema({
 });
 
 const AddressModel =
-  mongoose.models.AddressAcronium || mongoose.model("AddressAcronium", addressSchema);
+  mongoose.models.AddressVertex || mongoose.model("AddressVertex", addressSchema);
 
 export default AddressModel;
