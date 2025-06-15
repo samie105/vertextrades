@@ -81,6 +81,18 @@ export default function DepwCrypto() {
       image: "/assets/tron-logo.webp",
       address: address && address.Tron,
     },
+    {
+      coinName: "Solana",
+      short: "Solana",
+      image: "/assets/solana.webp",
+      address: address && address.Solana,
+    },
+    {
+      coinName: "XRP",
+      short: "XRP",
+      image: "/assets/xrp.webp",
+      address: address && address.XRP,
+    },
   ];
   const handleMethodChange = (value) => {
     setSelectedMethod(value);

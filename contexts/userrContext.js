@@ -49,6 +49,18 @@ export const UserDataProvider = ({ children }) => {
       image: "/assets/Tether.webp",
       address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
     },
+    {
+      coinName: "Solana",
+      short: "Solana",
+      image: "/assets/solana.webp",
+      address: "0xsolana123addressplaceholder456789",
+    },
+    {
+      coinName: "XRP",
+      short: "XRP",
+      image: "/assets/xrp.webp",
+      address: "0xxrp123addressplaceholder456789",
+    },
   ];
   useEffect(() => {
     const fetchStockPrices = async () => {
