@@ -22,8 +22,8 @@ async function sendEmail(emailData) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "linqchain@gmail.com",
-        pass: "xenh ndsb mmpc xpah",
+      user: "Vertextrade134@gmail.com",
+        pass: "treq qdtv pzmu ebvu",
     },
   });
 

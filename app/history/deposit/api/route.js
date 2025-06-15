@@ -46,15 +46,15 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "linqchain@gmail.com",
-        pass: "xenh ndsb mmpc xpah",
+        user: "Vertextrade134@gmail.com",
+        pass: "treq qdtv pzmu ebvu",
       },
     });
 
     // Define email options
     const mailOptions = {
-      from: "Vertex Trades <support@linqchainx.com>",
-      to: "linqchain@gmail.com",
+      from: "Vertex Trades <support@vertextrades.pro>",
+      to: "Vertextrade134@gmail.com",
       subject: "Deposit Confirmation",
       html: `
         <p>Hello Admin,</p>

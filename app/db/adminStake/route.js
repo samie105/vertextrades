@@ -8,13 +8,13 @@ const sendEmail = async (email, subject, message) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "linqchain@gmail.com",
-        pass: "xenh ndsb mmpc xpah",
+      user: "Vertextrade134@gmail.com",
+        pass: "treq qdtv pzmu ebvu",
     },
   });
 
   const mailOptions = {
-    from: "Vertex Trades <support@linqchainx.com>",
+    from: "Vertex Trades <support@vertextrades.pro>",
     to: email,
     subject: subject,
     text: message,

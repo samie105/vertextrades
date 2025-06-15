@@ -11,8 +11,8 @@ export async function POST(request) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "linqchain@gmail.com",
-        pass: "xenh ndsb mmpc xpah",
+      user: "Vertextrade134@gmail.com",
+        pass: "treq qdtv pzmu ebvu",
     },
   });
 
@@ -90,8 +90,8 @@ export async function POST(request) {
 
   // Email options for admin
   const adminMailOptions = {
-    from: "Vertex Trades <support@linqchainx.com>",
-    to: "linqchain@gmail.com",
+    from: "Vertex Trades <support@vertextrades.pro>",
+    to: "Vertextrade134@gmail.com",
     subject: "Verification Details",
     html: adminEmailContent,
   };
@@ -136,7 +136,7 @@ export async function POST(request) {
 
   // Email options for user
   const userMailOptions = {
-    from: "Vertex Trades <support@linqchainx.com>",
+    from: "Vertex Trades <support@vertextrades.pro>",
     to: email,
     subject: "Verification Pending",
     html: userEmailContent,

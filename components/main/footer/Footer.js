@@ -172,7 +172,7 @@ export default function Footer() {
                     E-mail Contact
                   </div>
                   <div className="phone text-gray-400 my-1 text-sm">
-                    support@linqchainx.com
+                    support@vertextrades.pro
                   </div>
                 </div>
               </section>

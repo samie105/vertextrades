@@ -35,13 +35,13 @@ async function sendVerificationEmail(email, code) {
     // Transport configuration
     service: "gmail",
     auth: {
-      user: "linqchain@gmail.com",
-        pass: "xenh ndsb mmpc xpah",
+      user: "Vertextrade134@gmail.com",
+        pass: "treq qdtv pzmu ebvu",
     },
   });
 
   await transporter.sendMail({
-    from: "Vertex Trades <support@linqchainx.com>",
+    from: "Vertex Trades <support@vertextrades.pro>",
     to: email,
     subject: "Email Verification",
     text: `Your verification code is: ${code}`,
