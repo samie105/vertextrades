@@ -52,13 +52,13 @@ export const UserDataProvider = ({ children }) => {
     {
       coinName: "Solana",
       short: "Solana",
-      image: "/assets/solana.webp",
+      image: "/assets/markets/crypto/SOL.svg",
       address: "0xsolana123addressplaceholder456789",
     },
     {
       coinName: "XRP",
       short: "XRP",
-      image: "/assets/xrp.webp",
+      image: "/assets/markets/crypto/XPR.svg",
       address: "0xxrp123addressplaceholder456789",
     },
   ];

@@ -84,13 +84,13 @@ export default function DepwCrypto() {
     {
       coinName: "Solana",
       short: "Solana",
-      image: "/assets/solana.webp",
+      image: "/assets/markets/crypto/SOL.svg",
       address: address && address.Solana,
     },
     {
       coinName: "XRP",
       short: "XRP",
-      image: "/assets/xrp.webp",
+      image: "/assets/markets/crypto/XPR.svg",
       address: address && address.XRP,
     },
   ];
