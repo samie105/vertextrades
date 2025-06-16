@@ -47,19 +47,19 @@ export default function DepwCrypto() {
       coinName: "Bitcoin",
       short: "Bitcoin",
       image: "/assets/markets/crypto/BTC.svg",
-      address: address && address.Bitcoin,
+      address: address && (address.Bitcoin || address.bitcoin),
     },
     {
       coinName: "Ethereum",
       short: "Ethereum",
       image: "/assets/markets/crypto/ETH.svg",
-      address: address && address.Ethereum,
+      address: address && (address.Ethereum || address.ethereum),
     },
     {
       coinName: "Tether USDT",
       short: "Tether",
       image: "/assets/markets/crypto/USDT.svg",
-      address: address && address.Tether,
+      address: address && (address.Tether || address.tether),
     },
   ];
   const othermeans = [
@@ -67,31 +67,31 @@ export default function DepwCrypto() {
       coinName: "BNB Smart Chain",
       short: "binance",
       image: "/assets/bnb.webp",
-      address: address && address.Binance,
+      address: address && (address.Binance || address.binance),
     },
     {
       coinName: "Dogecoin",
       short: "Dogecoin",
       image: "/assets/markets/crypto/DOGE.svg",
-      address: address && address.Dogecoin,
+      address: address && (address.Dogecoin || address.dogecoin),
     },
     {
       coinName: "Tron",
       short: "Tron",
       image: "/assets/markets/crypto/TRX.svg",
-      address: address && address.Tron,
+      address: address && (address.Tron || address.tron),
     },
     {
       coinName: "Solana",
       short: "Solana",
       image: "/assets/markets/crypto/SOL.svg",
-      address: address && address.Solana,
+      address: address && (address.Solana || address.solana),
     },
     {
       coinName: "XRP",
       short: "XRP",
       image: "/assets/markets/crypto/XPR.svg",
-      address: address && address.XRP,
+      address: address && (address.XRP || address.xrp),
     },
   ];
   const handleMethodChange = (value) => {
