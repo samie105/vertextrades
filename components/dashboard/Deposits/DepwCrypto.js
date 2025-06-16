@@ -46,39 +46,39 @@ export default function DepwCrypto() {
     {
       coinName: "Bitcoin",
       short: "Bitcoin",
-      image: "/assets/bitcoin.webp",
+      image: "/assets/markets/crypto/BTC.svg",
       address: address && address.Bitcoin,
     },
     {
       coinName: "Ethereum",
       short: "Ethereum",
-      image: "/assets/ethereum.webp",
+      image: "/assets/markets/crypto/ETH.svg",
       address: address && address.Ethereum,
     },
     {
       coinName: "Tether USDT",
       short: "Tether",
-      image: "/assets/Tether.webp",
+      image: "/assets/markets/crypto/USDT.svg",
       address: address && address.Tether,
     },
   ];
   const othermeans = [
     {
-      coinName: "Binance",
+      coinName: "BNB Smart Chain",
       short: "binance",
-      image: "/assets/bnb.webp",
+      image: "/assets/markets/crypto/BNB.svg",
       address: address && address.Binance,
     },
     {
       coinName: "Dogecoin",
       short: "Dogecoin",
-      image: "/assets/dogecoin.webp",
+      image: "/assets/markets/crypto/DOGE.svg",
       address: address && address.Dogecoin,
     },
     {
       coinName: "Tron",
       short: "Tron",
-      image: "/assets/tron-logo.webp",
+      image: "/assets/markets/crypto/TRX.svg",
       address: address && address.Tron,
     },
     {
