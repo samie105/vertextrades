@@ -66,7 +66,7 @@ export default function DepwCrypto() {
     {
       coinName: "BNB Smart Chain",
       short: "binance",
-      image: "/assets/markets/crypto/BNB.svg",
+      image: "/assets/bnb.webp",
       address: address && address.Binance,
     },
     {

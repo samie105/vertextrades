@@ -35,49 +35,41 @@ export const UserDataProvider = ({ children }) => {
       coinName: "Bitcoin",
       short: "Bitcoin",
       image: "/assets/markets/crypto/BTC.svg",
-      address: "0xiohxhihfojdokhijkhnofwefodsdhfodhod",
     },
     {
       coinName: "Ethereum",
       short: "Ethereum",
       image: "/assets/markets/crypto/ETH.svg",
-      address: "0xiohxhihfojhijkhnowefodsdhfodhod",
     },
     {
       coinName: "Tether USDT",
       short: "Tether",
       image: "/assets/markets/crypto/USDT.svg",
-      address: "0Xxiohxhihfookhijkhnofwefodsdhfodhod",
     },
     {
       coinName: "BNB Smart Chain",
       short: "binance",
-      image: "/assets/markets/crypto/BNB.svg",
-      address: "0xbnb123addressplaceholder456789",
+      image: "/assets/bnb.webp",
     },
     {
       coinName: "Dogecoin",
       short: "Dogecoin",
       image: "/assets/markets/crypto/DOGE.svg",
-      address: "0xdoge123addressplaceholder456789",
     },
     {
       coinName: "Tron",
       short: "Tron",
       image: "/assets/markets/crypto/TRX.svg",
-      address: "0xtron123addressplaceholder456789",
     },
     {
       coinName: "Solana",
       short: "Solana",
       image: "/assets/markets/crypto/SOL.svg",
-      address: "0xsolana123addressplaceholder456789",
     },
     {
       coinName: "XRP",
       short: "XRP",
       image: "/assets/markets/crypto/XPR.svg",
-      address: "0xxrp123addressplaceholder456789",
     },
   ];
   useEffect(() => {
